@@ -48,5 +48,9 @@ class RootViewController: UIViewController {
         rotatingViewController.view.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
         rotatingViewController.view.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
     }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 }
 
