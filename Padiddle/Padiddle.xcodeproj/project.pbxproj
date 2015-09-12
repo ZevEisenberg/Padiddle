@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
+		CD193CBF1BA4891500203B44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBE1BA4891500203B44 /* ViewController.swift */; };
+		CD193CC21BA4891500203B44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC01BA4891500203B44 /* Main.storyboard */; };
+		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
+		CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
+		CD193CD21BA4891500203B44 /* PadiddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* PadiddleTests.swift */; };
+		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD193CB81BA4891500203B44;
+			remoteInfo = Padiddle;
+		};
+		CD193CD91BA4891500203B44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD193CB81BA4891500203B44;
+			remoteInfo = Padiddle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD193CBC1BA4891500203B44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD193CBE1BA4891500203B44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD193CC11BA4891500203B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD193CC31BA4891500203B44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD193CC61BA4891500203B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD193CC81BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD193CD11BA4891500203B44 /* PadiddleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleTests.swift; sourceTree = "<group>"; };
+		CD193CD31BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
+		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD193CB61BA4891500203B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CCA1BA4891500203B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CD51BA4891500203B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD193CB01BA4891500203B44 = {
+			isa = PBXGroup;
+			children = (
+				CD193CBB1BA4891500203B44 /* Padiddle */,
+				CD193CD01BA4891500203B44 /* PadiddleTests */,
+				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
+				CD193CBA1BA4891500203B44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD193CBA1BA4891500203B44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD193CB91BA4891500203B44 /* Padiddle.app */,
+				CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */,
+				CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD193CBB1BA4891500203B44 /* Padiddle */ = {
+			isa = PBXGroup;
+			children = (
+				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
+				CD193CBE1BA4891500203B44 /* ViewController.swift */,
+				CD193CC01BA4891500203B44 /* Main.storyboard */,
+				CD193CC31BA4891500203B44 /* Assets.xcassets */,
+				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
+				CD193CC81BA4891500203B44 /* Info.plist */,
+			);
+			path = Padiddle;
+			sourceTree = "<group>";
+		};
+		CD193CD01BA4891500203B44 /* PadiddleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD193CD11BA4891500203B44 /* PadiddleTests.swift */,
+				CD193CD31BA4891500203B44 /* Info.plist */,
+			);
+			path = PadiddleTests;
+			sourceTree = "<group>";
+		};
+		CD193CDB1BA4891500203B44 /* PadiddleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */,
+				CD193CDE1BA4891500203B44 /* Info.plist */,
+			);
+			path = PadiddleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD193CB81BA4891500203B44 /* Padiddle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
+			buildPhases = (
+				CD193CB51BA4891500203B44 /* Sources */,
+				CD193CB61BA4891500203B44 /* Frameworks */,
+				CD193CB71BA4891500203B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Padiddle;
+			productName = Padiddle;
+			productReference = CD193CB91BA4891500203B44 /* Padiddle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD193CCC1BA4891500203B44 /* PadiddleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */;
+			buildPhases = (
+				CD193CC91BA4891500203B44 /* Sources */,
+				CD193CCA1BA4891500203B44 /* Frameworks */,
+				CD193CCB1BA4891500203B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD193CCF1BA4891500203B44 /* PBXTargetDependency */,
+			);
+			name = PadiddleTests;
+			productName = PadiddleTests;
+			productReference = CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CD193CD71BA4891500203B44 /* PadiddleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */;
+			buildPhases = (
+				CD193CD41BA4891500203B44 /* Sources */,
+				CD193CD51BA4891500203B44 /* Frameworks */,
+				CD193CD61BA4891500203B44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD193CDA1BA4891500203B44 /* PBXTargetDependency */,
+			);
+			name = PadiddleUITests;
+			productName = PadiddleUITests;
+			productReference = CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD193CB11BA4891500203B44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Zev Eisenberg";
+				TargetAttributes = {
+					CD193CB81BA4891500203B44 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					CD193CCC1BA4891500203B44 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = CD193CB81BA4891500203B44;
+					};
+					CD193CD71BA4891500203B44 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = CD193CB81BA4891500203B44;
+					};
+				};
+			};
+			buildConfigurationList = CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD193CB01BA4891500203B44;
+			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD193CB81BA4891500203B44 /* Padiddle */,
+				CD193CCC1BA4891500203B44 /* PadiddleTests */,
+				CD193CD71BA4891500203B44 /* PadiddleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD193CB71BA4891500203B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */,
+				CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */,
+				CD193CC21BA4891500203B44 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CCB1BA4891500203B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CD61BA4891500203B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD193CB51BA4891500203B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD193CBF1BA4891500203B44 /* ViewController.swift in Sources */,
+				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CC91BA4891500203B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD193CD21BA4891500203B44 /* PadiddleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD193CD41BA4891500203B44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CD193CCF1BA4891500203B44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD193CB81BA4891500203B44 /* Padiddle */;
+			targetProxy = CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */;
+		};
+		CD193CDA1BA4891500203B44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD193CB81BA4891500203B44 /* Padiddle */;
+			targetProxy = CD193CD91BA4891500203B44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CD193CC01BA4891500203B44 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD193CC11BA4891500203B44 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD193CC61BA4891500203B44 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CD193CDF1BA4891500203B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD193CE01BA4891500203B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD193CE21BA4891500203B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Padiddle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Padiddle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CD193CE31BA4891500203B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Padiddle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Padiddle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CD193CE51BA4891500203B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PadiddleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Padiddle.app/Padiddle";
+			};
+			name = Debug;
+		};
+		CD193CE61BA4891500203B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PadiddleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Padiddle.app/Padiddle";
+			};
+			name = Release;
+		};
+		CD193CE81BA4891500203B44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PadiddleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Padiddle;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		CD193CE91BA4891500203B44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PadiddleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Padiddle;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD193CDF1BA4891500203B44 /* Debug */,
+				CD193CE01BA4891500203B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD193CE21BA4891500203B44 /* Debug */,
+				CD193CE31BA4891500203B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD193CE51BA4891500203B44 /* Debug */,
+				CD193CE61BA4891500203B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD193CE81BA4891500203B44 /* Debug */,
+				CD193CE91BA4891500203B44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD193CB11BA4891500203B44 /* Project object */;
+}
