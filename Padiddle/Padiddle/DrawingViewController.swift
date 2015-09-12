@@ -17,13 +17,19 @@ class DrawingViewController: UIViewController {
 
         view.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.3)
 
+        let width = CGRectGetWidth(UIScreen.mainScreen().bounds)
+        let height = CGRectGetHeight(UIScreen.mainScreen().bounds)
+
+        let longSide = max(width, height)
+
+        view.widthAnchor.constraintEqualToConstant(longSide).active = true
+        view.heightAnchor.constraintEqualToConstant(longSide).active = true
+
         label.text = "Drawing view will go here eventually"
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
 
-        label.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        label.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        label.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-        label.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
+        label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+        label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
     }
 }
