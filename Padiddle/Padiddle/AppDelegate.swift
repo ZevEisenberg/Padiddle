@@ -15,7 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let drawingViewController = DrawingViewController()
+        let toolbarViewController = ToolbarViewController()
+        let rootViewController = RootViewController(pinnedViewController: drawingViewController, rotatingViewController: toolbarViewController)
+
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+
         return true
     }
 
