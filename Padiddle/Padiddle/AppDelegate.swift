@@ -15,8 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let toolbarViewController = storyboard.instantiateViewControllerWithIdentifier("ToolbarViewController")
+
         let drawingViewController = DrawingViewController()
-        let toolbarViewController = ToolbarViewController()
         let rootViewController = RootViewController(pinnedViewController: drawingViewController, rotatingViewController: toolbarViewController)
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)

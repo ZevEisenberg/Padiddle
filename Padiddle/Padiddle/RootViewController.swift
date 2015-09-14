@@ -27,6 +27,7 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .whiteColor()
+        view.clipsToBounds = true
 
         addChildViewController(pinnedViewController)
         addChildViewController(rotatingViewController)

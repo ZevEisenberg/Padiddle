@@ -15,7 +15,7 @@ class DrawingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.3)
+        view.backgroundColor = .whiteColor()
 
         let width = CGRectGetWidth(UIScreen.mainScreen().bounds)
         let height = CGRectGetHeight(UIScreen.mainScreen().bounds)
