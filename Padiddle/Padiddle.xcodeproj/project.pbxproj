@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		CD118DC11BA5F65C00668DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD118DC01BA5F65C00668DB6 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
-		CD193CBF1BA4891500203B44 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBE1BA4891500203B44 /* RootViewController.swift */; };
 		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
 		CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
 		CD193CD21BA4891500203B44 /* PadiddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* PadiddleTests.swift */; };
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
-		CDA4DFA81BA4B729005F2053 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA4DFA71BA4B729005F2053 /* ToolbarViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		CDA4DFAA1BA4B733005F2053 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA4DFA91BA4B733005F2053 /* DrawingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		CD118DC01BA5F65C00668DB6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CBC1BA4891500203B44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD193CBE1BA4891500203B44 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CD193CC31BA4891500203B44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD193CC61BA4891500203B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD193CC81BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,8 +48,9 @@
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
 		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDA4DFA71BA4B729005F2053 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
-		CDA4DFA91BA4B733005F2053 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
-				CD193CBE1BA4891500203B44 /* RootViewController.swift */,
-				CDA4DFA71BA4B729005F2053 /* ToolbarViewController.swift */,
-				CDA4DFA91BA4B733005F2053 /* DrawingViewController.swift */,
+				CDA035E01BA8AEAA0023F290 /* View */,
 				CD118DC01BA5F65C00668DB6 /* Main.storyboard */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
 				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
@@ -129,6 +127,16 @@
 				CD193CDE1BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleUITests;
+			sourceTree = "<group>";
+		};
+		CDA035E01BA8AEAA0023F290 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */,
+				CDA035E21BA8AEAA0023F290 /* RootViewController.swift */,
+				CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,10 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDA4DFA81BA4B729005F2053 /* ToolbarViewController.swift in Sources */,
-				CDA4DFAA1BA4B733005F2053 /* DrawingViewController.swift in Sources */,
-				CD193CBF1BA4891500203B44 /* RootViewController.swift in Sources */,
+				CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */,
+				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
+				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
