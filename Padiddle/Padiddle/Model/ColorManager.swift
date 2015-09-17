@@ -24,7 +24,7 @@ enum ColorModel {
     case RGB(r: ColorMode, g: ColorMode, b: ColorMode)
 }
 
-class ColorManager {
+struct ColorManager {
     var radius: CGFloat = 0
     var theta: CGFloat {
         set(newTheta) {
@@ -37,7 +37,7 @@ class ColorManager {
     
     var maxRadius: CGFloat = 0
 
-    var colorModel: ColorModel
+    let colorModel: ColorModel
 
     var title: String?
 
@@ -45,7 +45,7 @@ class ColorManager {
         return self.dynamicType.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
     }
 
-    required init(colorModel: ColorModel) {
+    init(colorModel: ColorModel) {
         self.colorModel = colorModel
     }
 
