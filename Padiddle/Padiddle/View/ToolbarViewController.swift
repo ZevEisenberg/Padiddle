@@ -19,7 +19,12 @@ private let kToolbarAnimationDuration = 0.3
 
 class ToolbarViewController: UIViewController {
 
-    @IBOutlet var recordButton: UIButton!
+
+    @IBOutlet private var clearButton: UIButton!
+    @IBOutlet private var colorButton: UIButton!
+    @IBOutlet private var recordButton: UIButton!
+    @IBOutlet private var shareButton: UIButton!
+    @IBOutlet private var helpButton: UIButton!
 
     @IBOutlet var spacerViews: [UIView]!
 
@@ -44,7 +49,28 @@ class ToolbarViewController: UIViewController {
     }
 
     @IBAction func colorTapped() {
-        print(__FUNCTION__)
+        let viewControllerToShow: UIViewController
+
+        let viewModel = ColorPickerViewModel()
+        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel)
+
+        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+            viewControllerToShow = colorPickerViewController
+            viewControllerToShow.modalPresentationStyle = .Popover
+        }
+        else {
+            let navigationController = UINavigationController(rootViewController: colorPickerViewController)
+            setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: "dismissModal", doneSelector: nil)
+            viewControllerToShow = navigationController
+            viewControllerToShow.modalPresentationStyle = .FormSheet
+        }
+
+        self.presentViewController(viewControllerToShow, animated: true, completion: nil)
+        if let popoverController = viewControllerToShow.popoverPresentationController {
+            popoverController.sourceView = colorButton
+            popoverController.sourceRect = colorButton.bounds
+            popoverController.permittedArrowDirections = .Down
+        }
     }
 
     @IBAction func recordTapped() {
@@ -66,9 +92,13 @@ class ToolbarViewController: UIViewController {
         print(__FUNCTION__)
     }
 
+    func dismissModal() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     //Mark: Private
 
-    func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
+    private func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
         if toolbarVisible {
             toolbarTopConstraint.active = false
             toolbarBottomConstraint.active = true
@@ -76,6 +106,19 @@ class ToolbarViewController: UIViewController {
         else {
             toolbarBottomConstraint.active = false
             toolbarTopConstraint.active = true
+        }
+    }
+
+    private func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
+
+        if cancelSelector != nil {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector!)
+            navigationItem.leftBarButtonItem = cancelButton
+        }
+
+        if doneSelector != nil {
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector!)
+            navigationItem.rightBarButtonItem = doneButton
         }
     }
 }

@@ -155,7 +155,11 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="jyC-NV-rme" id="vgp-pE-KWX"/>
+                        <outlet property="colorButton" destination="Y8v-Q2-nWn" id="cSO-8u-of9"/>
+                        <outlet property="helpButton" destination="m9u-KF-40C" id="F47-4W-LXN"/>
                         <outlet property="recordButton" destination="v7J-ZK-054" id="H3f-cZ-9eN"/>
+                        <outlet property="shareButton" destination="9Es-Cl-vU4" id="F1K-Cj-O3m"/>
                         <outlet property="toolbarBottomConstraint" destination="fN0-Hl-DWR" id="XCq-VN-0JC"/>
                         <outlet property="toolbarTopConstraint" destination="PCG-qf-070" id="HAr-GW-Ca9"/>
                         <outletCollection property="spacerViews" destination="Zh3-7c-Opi" collectionClass="NSMutableArray" id="7ve-ml-SbU"/>
