@@ -16,6 +16,7 @@
 		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
+		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
+				CDA035E71BA8AED50023F290 /* Model */,
 				CDA035E01BA8AEAA0023F290 /* View */,
 				CD118DC01BA5F65C00668DB6 /* Main.storyboard */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
@@ -137,6 +140,14 @@
 				CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CDA035E71BA8AED50023F290 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CDA035E81BA8B02D0023F290 /* ColorManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */,
+				CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */,
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
 				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
