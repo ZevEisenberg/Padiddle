@@ -17,7 +17,7 @@ let defaultColorPickerPersistentIndex = 0
 #endif
 
 struct Defaults {
-    var colorPickerSelection: Int {
+    static var colorPickerSelection: Int {
         get {
             var restoredValue: Int?
             let objectExists = NSUserDefaults().objectForKey(colorPickerPersistentIndexKey) != nil

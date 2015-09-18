@@ -19,6 +19,11 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     private let pageControl: UIPageControl
     private let layout: ColorPickerLayout
     private let viewModel: ColorPickerViewModel
+    private var currentSelection = NSIndexPath(forItem: 0, inSection: 0) {
+        didSet {
+            scrollToPageWithCellAtIndexPath(currentSelection)
+        }
+    }
 
     init(viewModel: ColorPickerViewModel) {
         self.viewModel = viewModel
@@ -82,6 +87,13 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        restoreSelection()
+
+        //--------------------------------------------------
+        // Restore the previous selection in the collection view
+        //--------------------------------------------------
+        collectionView.selectItemAtIndexPath(currentSelection, animated: false, scrollPosition: .None)
     }
 
     override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -91,6 +103,30 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         // Scroll to the correct page
         collectionView.contentOffset = CGPoint(x: CGFloat(viewModel.currentPage) * CGRectGetWidth(collectionView.frame), y: 0);
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let restoredIndex = viewModel.selectedIndex
+        currentSelection = NSIndexPath(forItem:restoredIndex, inSection:0)
+
+        adjustColumnsAndRows(traitCollection)
+
+        collectionView.selectItemAtIndexPath(currentSelection, animated:false, scrollPosition:.None)
+
+        scrollToPageWithCellAtIndexPath(currentSelection)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.selectItemAtIndexPath(currentSelection, animated: false, scrollPosition: .None)
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        scrollToPageWithCellAtIndexPath(currentSelection)
+    }
+
 
     // MARK: Action Handlers
 
@@ -112,7 +148,28 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         return cell
     }
 
+    // MARK: UISCrollViewDelegate
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let pageWidth = CGRectGetWidth(collectionView.frame)
+        viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
+        pageControl.currentPage = viewModel.currentPage;
+    }
+
     // MARK: UICollectionViewDelegate
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        viewModel.selectedIndex = indexPath.item
+
+        if var selectedItems = collectionView.indexPathsForSelectedItems() {
+            selectedItems.removeObject(indexPath)
+            for pathToDeselect in selectedItems {
+                collectionView.deselectItemAtIndexPath(pathToDeselect, animated: false)
+            }
+        }
+
+        currentSelection = indexPath;
+    }
 
     // MARK: Private
 
@@ -125,5 +182,23 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
             layout.numberOfColumns = colsLandscape
             layout.numberOfRows = rowsLandscape
         }
+    }
+
+    private func scrollToPageWithCellAtIndexPath(indexPath: NSIndexPath) {
+
+        guard collectionView.frame != CGRect.zero else { return }
+        guard let cellFrame = collectionView.layoutAttributesForItemAtIndexPath(indexPath)?.frame else { return }
+
+        let pageWidth = CGRectGetWidth(collectionView.frame);
+        viewModel.currentPage = Int(floor(CGRectGetMinX(cellFrame) / pageWidth))
+        pageControl.currentPage = viewModel.currentPage;
+
+        let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
+        collectionView.setContentOffset(scrollTo, animated:false)
+    }
+
+    private func restoreSelection() {
+        let selectedIndex = viewModel.selectedIndex
+        currentSelection = NSIndexPath(forItem:selectedIndex, inSection:0)
     }
 }
