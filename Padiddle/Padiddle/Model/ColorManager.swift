@@ -34,7 +34,7 @@ struct ColorManager {
             return self.theta
         }
     }
-    
+
     var maxRadius: CGFloat = 0
 
     let colorModel: ColorModel

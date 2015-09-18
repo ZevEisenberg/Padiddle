@@ -54,4 +54,3 @@ class RootViewController: UIViewController {
         return true
     }
 }
-
