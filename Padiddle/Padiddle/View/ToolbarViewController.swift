@@ -19,7 +19,6 @@ private let kToolbarAnimationDuration = 0.3
 
 class ToolbarViewController: UIViewController {
 
-
     @IBOutlet private var clearButton: UIButton!
     @IBOutlet private var colorButton: UIButton!
     @IBOutlet private var recordButton: UIButton!

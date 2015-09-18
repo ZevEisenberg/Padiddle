@@ -124,7 +124,6 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         scrollToPageWithCellAtIndexPath(currentSelection)
     }
 
-
     // MARK: Action Handlers
 
     func pageControlChanged() {
