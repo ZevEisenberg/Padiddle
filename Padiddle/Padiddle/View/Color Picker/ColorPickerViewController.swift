@@ -78,10 +78,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.bottomAnchor.constraintEqualToAnchor(pageControl.topAnchor).active = true
         pageControl.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor).active = true
 
-        //--------------------------------------------------
-        // Need to set the scroll view’s content size
-        // before we can tell it to scroll.
-        //--------------------------------------------------
+        // Need to set the scroll view’s content size before we can tell it to scroll.
         collectionView.contentSize = layout.collectionViewContentSize()
     }
 
@@ -90,9 +87,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
 
         restoreSelection()
 
-        //--------------------------------------------------
         // Restore the previous selection in the collection view
-        //--------------------------------------------------
         collectionView.selectItemAtIndexPath(currentSelection, animated: false, scrollPosition: .None)
     }
 
