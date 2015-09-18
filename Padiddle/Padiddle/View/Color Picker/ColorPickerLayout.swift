@@ -28,7 +28,7 @@ class ColorPickerLayout: UICollectionViewLayout {
         let itemsPerPage = numberOfColumns * numberOfRows;
         let numberOfItems = collectionView!.numberOfItemsInSection(0)
         var pageCount = numberOfItems / itemsPerPage
-        if (numberOfItems % itemsPerPage) != 0 {
+        if numberOfItems % itemsPerPage != 0 {
             pageCount++;
         }
         return pageCount;
@@ -89,7 +89,7 @@ class ColorPickerLayout: UICollectionViewLayout {
 
         return CGSize(width: width, height: height)
     }
-    
+
     // MARK: Private
     private func frameForItemAtIndexPath(indexPath: NSIndexPath) -> CGRect {
 
@@ -110,7 +110,7 @@ class ColorPickerLayout: UICollectionViewLayout {
             pageInsets.right -
             CGFloat(numberOfColumns - 1) * spacing)
         let columnWidth = spaceForColumns / CGFloat(numberOfColumns)
-        
+
         let spaceForRows = (
             CGRectGetHeight(collectionView.frame) -
             pageInsets.top -
