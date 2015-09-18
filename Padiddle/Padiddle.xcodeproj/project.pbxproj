@@ -17,6 +17,7 @@
 		CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */; };
 		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */; settings = {ASSET_TAGS = (); }; };
+		CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
@@ -57,6 +58,7 @@
 		CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerLayout.swift; sourceTree = "<group>"; };
 		CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				CDA035E71BA8AED50023F290 /* Model */,
 				CDA035E01BA8AEAA0023F290 /* View */,
 				CD42370E1BAB6F2D0000E395 /* View Model */,
+				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
 				CD118DC01BA5F65C00668DB6 /* Main.storyboard */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
 				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
@@ -157,6 +160,14 @@
 			);
 			name = "View Model";
 			path = "View/View Model";
+			sourceTree = "<group>";
+		};
+		CD5D4EFF1BACA0FE00D4AABB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CDA035E01BA8AEAA0023F290 /* View */ = {
@@ -330,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */,
+				CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */,
 				CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */,
 				CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */,
 				CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */,
