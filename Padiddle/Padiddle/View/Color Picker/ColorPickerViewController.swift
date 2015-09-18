@@ -102,6 +102,8 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        restoreSelection()
+
         let restoredIndex = viewModel.selectedIndex
         currentSelection = NSIndexPath(forItem:restoredIndex, inSection:0)
 
