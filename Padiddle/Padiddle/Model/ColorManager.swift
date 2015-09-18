@@ -39,14 +39,15 @@ struct ColorManager {
 
     let colorModel: ColorModel
 
-    var title: String?
+    var title: String
 
     var currentColor: UIColor {
         return self.dynamicType.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
     }
 
-    init(colorModel: ColorModel) {
+    init(colorModel: ColorModel, title: String) {
         self.colorModel = colorModel
+        self.title = title
     }
 
     private static func color(colorModel colorModel: ColorModel, radius: CGFloat, maxRadius: CGFloat, theta: CGFloat) -> UIColor {

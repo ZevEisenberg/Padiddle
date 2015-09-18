@@ -8,13 +8,20 @@
 
 import UIKit
 
+let colsPortrait = 2
+let rowsPortrait = 3
+let colsLandscape = 3
+let rowsLandscape = 2
+
 class ColorPickerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     private let collectionView: UICollectionView
     private let pageControl: UIPageControl
     private let layout: ColorPickerLayout
+    private let viewModel: ColorPickerViewModel
 
     init(viewModel: ColorPickerViewModel) {
+        self.viewModel = viewModel
         layout = ColorPickerLayout()
 
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -73,6 +80,18 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.contentSize = layout.collectionViewContentSize()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+
+    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+
+        adjustColumnsAndRows(newCollection)
+
+        // Scroll to the correct page
+        collectionView.contentOffset = CGPoint(x: CGFloat(viewModel.currentPage) * CGRectGetWidth(collectionView.frame), y: 0);
+    }
+
     // MARK: Action Handlers
 
     func pageControlChanged() {
@@ -84,8 +103,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     // MARK: UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
-        // TODO: return value from view model
+        return viewModel.colorsToPick.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -95,4 +113,17 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     // MARK: UICollectionViewDelegate
+
+    // MARK: Private
+
+    private func adjustColumnsAndRows(traitCollection: UITraitCollection) {
+        if traitCollection.verticalSizeClass == .Regular {
+            layout.numberOfColumns = colsPortrait
+            layout.numberOfRows = rowsPortrait
+        }
+        else {
+            layout.numberOfColumns = colsLandscape
+            layout.numberOfRows = rowsLandscape
+        }
+    }
 }
