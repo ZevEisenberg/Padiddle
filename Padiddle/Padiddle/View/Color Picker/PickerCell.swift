@@ -100,7 +100,7 @@ class PickerCell: UICollectionViewCell {
 
     override var highlighted: Bool {
         didSet {
-            if ( highlighted ) {
+            if highlighted {
                 contentView.backgroundColor = backgroundColorHighlighted
                 contentView.layer.borderColor = highlightedTrimColor.CGColor
                 contentView.layer.borderWidth = borderWidth
