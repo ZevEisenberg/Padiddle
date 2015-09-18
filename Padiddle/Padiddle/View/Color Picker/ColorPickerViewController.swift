@@ -61,7 +61,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         view.backgroundColor = .whiteColor()
         automaticallyAdjustsScrollViewInsets = false
 
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.registerClass(PickerCell.self, forCellWithReuseIdentifier: "cell")
 
         view.addSubview(collectionView)
         view.addSubview(pageControl)
@@ -140,8 +140,8 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
-        cell.contentView.backgroundColor = .greenColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PickerCell
+        cell.title = viewModel.colorsToPick[indexPath.item].title
         return cell
     }
 
