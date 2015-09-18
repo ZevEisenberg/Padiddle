@@ -15,6 +15,7 @@
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
 		CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */; };
 		CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */; };
+		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
@@ -53,6 +54,7 @@
 		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
+		CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerLayout.swift; sourceTree = "<group>"; };
 		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		CD42370B1BAB54CE0000E395 /* Color Picker */ = {
 			isa = PBXGroup;
 			children = (
+				CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */,
 				CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */,
 			);
 			path = "Color Picker";
@@ -328,6 +331,7 @@
 				CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */,
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
+				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,
 			);
