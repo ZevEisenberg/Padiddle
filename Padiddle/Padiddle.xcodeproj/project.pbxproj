@@ -20,6 +20,8 @@
 		CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; settings = {ASSET_TAGS = (); }; };
 		CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F061BACAD5200D4AABB /* Colors.swift */; settings = {ASSET_TAGS = (); }; };
+		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */; settings = {ASSET_TAGS = (); }; };
 		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
@@ -63,6 +65,8 @@
 		CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		CD5D4F021BACAA0000D4AABB /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		CD5D4F061BACAD5200D4AABB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewModel.swift; sourceTree = "<group>"; };
+		CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMaker.swift; sourceTree = "<group>"; };
 		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		CD42370E1BAB6F2D0000E395 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */,
 				CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */,
 			);
 			name = "View Model";
@@ -192,6 +197,7 @@
 			children = (
 				CDA035E81BA8B02D0023F290 /* ColorManager.swift */,
 				CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */,
+				CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */,
 				CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */,
 				CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */,
 				CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */,
@@ -355,6 +362,7 @@
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
+				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,

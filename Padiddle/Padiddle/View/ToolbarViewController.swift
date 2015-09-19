@@ -19,6 +19,8 @@ private let kToolbarAnimationDuration = 0.3
 
 class ToolbarViewController: UIViewController {
 
+    let viewModel = ToolbarViewModel()
+
     @IBOutlet private var clearButton: UIButton!
     @IBOutlet private var colorButton: UIButton!
     @IBOutlet private var recordButton: UIButton!
@@ -50,8 +52,7 @@ class ToolbarViewController: UIViewController {
     @IBAction func colorTapped() {
         let viewControllerToShow: UIViewController
 
-        let viewModel = ColorPickerViewModel()
-        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel)
+        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel.colorPickerVieModel)
 
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             viewControllerToShow = colorPickerViewController
