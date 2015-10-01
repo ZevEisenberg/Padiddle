@@ -80,7 +80,7 @@ extension ColorPickerViewModel {
             ColorManager(
                 colorModel: .RGB(
                     r: .VelocityOut,
-                    g: .Manual(0.0),
+                    g: .Manual(0.45),
                     b: .Manual(0.0)),
                 title: NSLocalizedString("Autumn", comment: "A color scheme that looks like autumn leaves")),
 
@@ -114,9 +114,9 @@ extension ColorPickerViewModel {
 
             ColorManager(
                 colorModel: .HSV(
-                    h: .VelocityIn,
+                    h: .ThetaIncreasingAndDecreasing,
                     s: .Manual(0.33),
-                    v: .ThetaIncreasingAndDecreasing),
+                    v: .VelocityOut),
                 title: NSLocalizedString("Pastels", comment: "A color scheme with muted pastel hues")),
 
             ColorManager(
