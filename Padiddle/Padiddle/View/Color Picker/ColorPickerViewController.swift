@@ -13,7 +13,14 @@ let rowsPortrait = 3
 let colsLandscape = 3
 let rowsLandscape = 2
 
+protocol ColorPickerDelegate:
+class {
+    func colorPicked(color: ColorManager)
+}
+
 class ColorPickerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+
+    weak var delegate: ColorPickerDelegate?
 
     private let collectionView: UICollectionView
     private let pageControl: UIPageControl
@@ -25,8 +32,9 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
 
-    init(viewModel: ColorPickerViewModel) {
+    init(viewModel: ColorPickerViewModel, delegate: ColorPickerDelegate) {
         self.viewModel = viewModel
+        self.delegate = delegate
         layout = ColorPickerLayout()
 
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -166,6 +174,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         }
 
         currentSelection = indexPath;
+        delegate?.colorPicked(viewModel.colorsToPick[indexPath.item])
     }
 
     // MARK: Private

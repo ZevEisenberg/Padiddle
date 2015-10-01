@@ -17,7 +17,7 @@ private let kRecordButtonPadding = CGFloat(20.0)
 
 private let kToolbarAnimationDuration = 0.3
 
-class ToolbarViewController: UIViewController {
+class ToolbarViewController: UIViewController, ColorPickerDelegate {
 
     let viewModel = ToolbarViewModel()
 
@@ -52,7 +52,7 @@ class ToolbarViewController: UIViewController {
     @IBAction func colorTapped() {
         let viewControllerToShow: UIViewController
 
-        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel.colorPickerVieModel)
+        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel.colorPickerVieModel, delegate: self)
 
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             viewControllerToShow = colorPickerViewController
@@ -94,6 +94,12 @@ class ToolbarViewController: UIViewController {
 
     func dismissModal() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    //Mark: ColorPickerDelegate
+
+    func colorPicked(color: ColorManager) {
+        print("color picked: \(color)")
     }
 
     //Mark: Private
