@@ -65,7 +65,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
             viewControllerToShow.modalPresentationStyle = .FormSheet
         }
 
-        self.presentViewController(viewControllerToShow, animated: true, completion: nil)
+        presentViewController(viewControllerToShow, animated: true, completion: nil)
         if let popoverController = viewControllerToShow.popoverPresentationController {
             popoverController.sourceView = colorButton
             popoverController.sourceRect = colorButton.bounds
@@ -93,7 +93,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
     }
 
     func dismissModal() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     //Mark: ColorPickerDelegate
