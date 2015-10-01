@@ -26,12 +26,14 @@ enum ColorModel {
 
 struct ColorManager {
     var radius: CGFloat = 0
+    private var internalTheta: CGFloat = 0
+
     var theta: CGFloat {
-        set(newTheta) {
-            self.theta = newTheta - twoPi * floor(theta / twoPi)
+        set {
+            internalTheta = newValue - twoPi * floor(newValue / twoPi)
         }
         get {
-            return self.theta
+            return internalTheta
         }
     }
 
@@ -72,7 +74,7 @@ struct ColorManager {
         let channelValue: CGFloat
         switch colorMode {
         case .ThetaIncreasing:
-            channelValue = theta / (π / 2)
+            channelValue = theta / twoPi
 
         case .ThetaIncreasingAndDecreasing:
             var value: CGFloat

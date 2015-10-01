@@ -19,7 +19,7 @@ struct ImageMaker {
         thetaStep: CGFloat,
         lineWidth: CGFloat) -> UIImage {
 
-            colorManager.radius = size.width / 2
+            colorManager.maxRadius = size.width / 2
 
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
 

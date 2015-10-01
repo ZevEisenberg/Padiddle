@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreGraphics.CGBase
 
 class ColorPickerViewModel {
@@ -39,6 +39,18 @@ class ColorPickerViewModel {
             indexPaths.append(NSIndexPath(forItem: (itemsPerPage * page) + item, inSection: 0))
         }
         return indexPaths;
+    }
+
+    func imageForColorManager(colorManager: ColorManager) -> UIImage {
+        let image = ImageMaker.image(colorManager,
+            size: CGSize(width: 86, height: 86),
+            startRadius: 0,
+            spacePerLoop: 1.5,
+            startTheta: 0,
+            endTheta: 2.0 * CGFloat(M_PI) * 4.0,
+            thetaStep: CGFloat(M_PI) / 32.0,
+            lineWidth: 4.9)
+        return image
     }
 }
 
