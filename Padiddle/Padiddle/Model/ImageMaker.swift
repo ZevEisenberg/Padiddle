@@ -125,7 +125,7 @@ struct ImageMaker {
             }
             let intersectionX = (b2 - b1) / (m1 - m2)
 
-            let intersectionY = (m1 * intersectionX) + b1;
+            let intersectionY = (m1 * intersectionX) + b1
 
             return CGPoint(x: intersectionX, y: intersectionY)
     }

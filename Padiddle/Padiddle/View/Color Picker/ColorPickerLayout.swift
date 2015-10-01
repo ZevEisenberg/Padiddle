@@ -25,13 +25,13 @@ class ColorPickerLayout: UICollectionViewLayout {
     private var layoutInfo = [NSIndexPath: UICollectionViewLayoutAttributes]()
 
     var numberOfPages: Int {
-        let itemsPerPage = numberOfColumns * numberOfRows;
+        let itemsPerPage = numberOfColumns * numberOfRows
         let numberOfItems = collectionView!.numberOfItemsInSection(0)
         var pageCount = numberOfItems / itemsPerPage
         if numberOfItems % itemsPerPage != 0 {
-            pageCount++;
+            pageCount++
         }
-        return pageCount;
+        return pageCount
     }
 
     override func prepareLayout() {
@@ -75,7 +75,7 @@ class ColorPickerLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        return layoutInfo[indexPath];
+        return layoutInfo[indexPath]
     }
 
     override func collectionViewContentSize() -> CGSize {
@@ -85,7 +85,7 @@ class ColorPickerLayout: UICollectionViewLayout {
 
         let height = CGRectGetHeight(collectionView.frame)
 
-        let width = CGRectGetWidth(collectionView.frame) * CGFloat(numberOfPages);
+        let width = CGRectGetWidth(collectionView.frame) * CGFloat(numberOfPages)
 
         return CGSize(width: width, height: height)
     }
@@ -97,9 +97,9 @@ class ColorPickerLayout: UICollectionViewLayout {
             return CGRect.zero
         }
 
-        let itemsPerPage = numberOfColumns * numberOfRows;
-        let page = indexPath.item / itemsPerPage;
-        let indexRelativeToThisPage = indexPath.item % itemsPerPage;
+        let itemsPerPage = numberOfColumns * numberOfRows
+        let page = indexPath.item / itemsPerPage
+        let indexRelativeToThisPage = indexPath.item % itemsPerPage
 
         let column = indexRelativeToThisPage % numberOfColumns
         let row    = indexRelativeToThisPage / numberOfColumns
@@ -115,7 +115,7 @@ class ColorPickerLayout: UICollectionViewLayout {
             CGRectGetHeight(collectionView.frame) -
             pageInsets.top -
             pageInsets.bottom -
-            CGFloat(numberOfRows - 1) * spacing);
+            CGFloat(numberOfRows - 1) * spacing)
         let rowHeight = spaceForRows / CGFloat(numberOfRows)
 
         let originX = floor(

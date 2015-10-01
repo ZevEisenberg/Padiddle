@@ -104,7 +104,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         adjustColumnsAndRows(newCollection)
 
         // Scroll to the correct page
-        collectionView.contentOffset = CGPoint(x: CGFloat(viewModel.currentPage) * CGRectGetWidth(collectionView.frame), y: 0);
+        collectionView.contentOffset = CGPoint(x: CGFloat(viewModel.currentPage) * CGRectGetWidth(collectionView.frame), y: 0)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -158,7 +158,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let pageWidth = CGRectGetWidth(collectionView.frame)
         viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
-        pageControl.currentPage = viewModel.currentPage;
+        pageControl.currentPage = viewModel.currentPage
     }
 
     // MARK: UICollectionViewDelegate
@@ -173,7 +173,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
             }
         }
 
-        currentSelection = indexPath;
+        currentSelection = indexPath
         delegate?.colorPicked(viewModel.colorsToPick[indexPath.item])
     }
 
@@ -195,9 +195,9 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         guard collectionView.frame != CGRect.zero else { return }
         guard let cellFrame = collectionView.layoutAttributesForItemAtIndexPath(indexPath)?.frame else { return }
 
-        let pageWidth = CGRectGetWidth(collectionView.frame);
+        let pageWidth = CGRectGetWidth(collectionView.frame)
         viewModel.currentPage = Int(floor(CGRectGetMinX(cellFrame) / pageWidth))
-        pageControl.currentPage = viewModel.currentPage;
+        pageControl.currentPage = viewModel.currentPage
 
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
         collectionView.setContentOffset(scrollTo, animated:false)

@@ -31,14 +31,14 @@ class ColorPickerViewModel {
         //--------------------------------------------------
         let itemsPerPage = colsPortrait * rowsPortrait
 
-        let page = indexPath.item / itemsPerPage;
+        let page = indexPath.item / itemsPerPage
 
         var indexPaths = [NSIndexPath]()
 
         for item in 0..<itemsPerPage {
             indexPaths.append(NSIndexPath(forItem: (itemsPerPage * page) + item, inSection: 0))
         }
-        return indexPaths;
+        return indexPaths
     }
 
     func imageForColorManager(colorManager: ColorManager) -> UIImage {
