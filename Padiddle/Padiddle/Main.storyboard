@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -18,18 +18,21 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RecordButtonBack" translatesAutoresizingMaskIntoConstraints="NO" id="H6B-WV-0cb" userLabel="Record Button Back">
                                 <rect key="frame" x="270" y="535" width="60" height="60"/>
+                                <animations/>
                             </imageView>
                             <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="7pX-wy-JXH" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0T-xZ-3wG" userLabel="Hairline">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="np3-D8-FUX"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <animations/>
                                 <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="A0T-xZ-3wG" secondAttribute="trailing" id="2jd-sh-2v3"/>
@@ -43,10 +46,12 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zh3-7c-Opi" userLabel="Spacer 1">
                                         <rect key="frame" x="0.0" y="0.0" width="142" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.55694302330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyC-NV-rme" userLabel="Trash Button">
                                         <rect key="frame" x="142" y="0.0" width="44" height="44"/>
+                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="wd0-cO-Jzm"/>
                                         </constraints>
@@ -57,6 +62,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5f-KL-mHN" userLabel="Spacer 2">
                                         <rect key="frame" x="186" y="0.0" width="20" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="JaD-vx-ad3"/>
@@ -64,13 +70,14 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8v-Q2-nWn" userLabel="Color Button">
                                         <rect key="frame" x="206" y="0.0" width="44" height="44"/>
-                                        <state key="normal" image="TempColorButton"/>
+                                        <animations/>
                                         <connections>
                                             <action selector="colorTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="9Ao-Hx-Mjr"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P2-2E-wWF" userLabel="Spacer 3">
                                         <rect key="frame" x="250" y="0.0" width="20" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="69G-Sj-Rh4"/>
@@ -78,10 +85,12 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ls9-HE-THf" userLabel="Record Button Placeholder">
                                         <rect key="frame" x="270" y="0.0" width="60" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="0.00067783399319999997" green="0.81532118060000003" blue="0.1579503233" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4s-Wz-oRh" userLabel="Spacer 4">
                                         <rect key="frame" x="330" y="0.0" width="20" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="voN-eZ-2pN"/>
@@ -89,6 +98,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Es-Cl-vU4" userLabel="Share Button">
                                         <rect key="frame" x="350" y="0.0" width="44" height="44"/>
+                                        <animations/>
                                         <state key="normal" image="ShareButton"/>
                                         <connections>
                                             <action selector="shareTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Mdc-hG-psK"/>
@@ -96,6 +106,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-GV-34R" userLabel="Spacer 5">
                                         <rect key="frame" x="394" y="0.0" width="20" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="9S8-dA-ggA"/>
@@ -103,6 +114,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9u-KF-40C" userLabel="Help Button">
                                         <rect key="frame" x="414" y="0.0" width="44" height="44"/>
+                                        <animations/>
                                         <state key="normal" image="HelpButton"/>
                                         <connections>
                                             <action selector="helpTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Niy-Ah-dJt"/>
@@ -110,9 +122,11 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-kq-B1X" userLabel="Spacer 6">
                                         <rect key="frame" x="458" y="0.0" width="142" height="44"/>
+                                        <animations/>
                                         <color key="backgroundColor" red="1" green="0.55694302330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
+                                <animations/>
                                 <constraints>
                                     <constraint firstItem="Zh3-7c-Opi" firstAttribute="width" secondItem="IaR-kq-B1X" secondAttribute="width" id="7fn-IU-ZWQ"/>
                                     <constraint firstItem="Ls9-HE-THf" firstAttribute="height" secondItem="4OF-Vg-VJK" secondAttribute="height" id="9MT-RZ-Hc2"/>
@@ -123,12 +137,14 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7J-ZK-054" userLabel="Record Button Front">
                                 <rect key="frame" x="270" y="535" width="60" height="60"/>
+                                <animations/>
                                 <state key="normal" image="RecordButtonFront"/>
                                 <connections>
                                     <action selector="recordTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="aLV-oI-4SF"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="7pX-wy-JXH" secondAttribute="trailing" id="1yS-RJ-oDK"/>
@@ -181,7 +197,6 @@
         <image name="RecordButtonBack" width="60" height="60"/>
         <image name="RecordButtonFront" width="58" height="58"/>
         <image name="ShareButton" width="19" height="27"/>
-        <image name="TempColorButton" width="36" height="34"/>
         <image name="TrashButton" width="20" height="27"/>
     </resources>
 </document>

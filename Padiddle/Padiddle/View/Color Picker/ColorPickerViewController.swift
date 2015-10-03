@@ -174,7 +174,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         }
 
         currentSelection = indexPath
-        delegate?.colorPicked(viewModel.colorsToPick[indexPath.item])
+        delegate?.colorPicked(viewModel.selectedColorManager)
     }
 
     // MARK: Private

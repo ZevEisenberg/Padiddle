@@ -41,6 +41,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
 
         let pauseImage = UIImage(named: kPauseButtonName)!
         recordButton.setImage(pauseImage, forState: .Selected)
+        updateColorButton(colorManager: viewModel.colorPickerVieModel.selectedColorManager)
     }
 
     //Mark: Button Handlers
@@ -99,10 +100,24 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
     //Mark: ColorPickerDelegate
 
     func colorPicked(color: ColorManager) {
-        print("color picked: \(color)")
+        updateColorButton(colorManager: color)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     //Mark: Private
+
+    private func updateColorButton(colorManager color: ColorManager) {
+        let imageSize = 36
+        let image = ImageMaker.image(color,
+            size: CGSize(width: imageSize, height: imageSize),
+            startRadius: 0,
+            spacePerLoop: 0.7,
+            startTheta: 0,
+            endTheta: 2.0 * CGFloat(M_PI) * 4.0,
+            thetaStep: CGFloat(M_PI) / 16.0,
+            lineWidth: 2.3)
+        colorButton.setImage(image, forState: .Normal)
+    }
 
     private func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
         if toolbarVisible {
