@@ -8,7 +8,7 @@
 
 import UIKit
 
-let showDebugLabel = true
+let showDebugLabel = false
 
 class DrawingViewController: CounterRotatingViewController {
 
