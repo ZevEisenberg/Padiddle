@@ -8,9 +8,9 @@
 
 import UIKit
 
-class DrawingViewController: UIViewController {
+let showDebugLabel = false
 
-    private let label = UILabel()
+class DrawingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +25,14 @@ class DrawingViewController: UIViewController {
         view.widthAnchor.constraintEqualToConstant(longSide).active = true
         view.heightAnchor.constraintEqualToConstant(longSide).active = true
 
-        label.text = "Drawing view will go here eventually"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
+        if showDebugLabel {
+            let label = UILabel()
+            label.text = "Drawing view debug label"
+            label.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(label)
 
-        label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+            label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
+            label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        }
     }
 }
