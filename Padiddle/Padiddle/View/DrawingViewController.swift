@@ -8,9 +8,9 @@
 
 import UIKit
 
-let showDebugLabel = false
+let showDebugLabel = true
 
-class DrawingViewController: UIViewController {
+class DrawingViewController: CounterRotatingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class DrawingViewController: UIViewController {
             let label = UILabel()
             label.text = "Drawing view debug label"
             label.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(label)
+            counterRotatingView.addSubview(label)
 
             label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
             label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true

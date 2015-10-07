@@ -26,6 +26,7 @@
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
+		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
 		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterRotatingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		CDA035E01BA8AEAA0023F290 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */,
 				CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */,
 				CDA035E21BA8AEAA0023F290 /* RootViewController.swift */,
 				CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */,
@@ -362,6 +365,7 @@
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
+				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
