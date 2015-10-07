@@ -35,6 +35,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = nil
+
         for spacer in spacerViews {
             spacer.backgroundColor = nil
         }
