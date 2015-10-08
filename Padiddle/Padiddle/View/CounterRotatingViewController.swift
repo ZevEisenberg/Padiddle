@@ -81,8 +81,8 @@ func transformForStatusBarOrientation(statusBarOrientation: UIInterfaceOrientati
 
 class CounterRotatingViewController: UIViewController {
 
-    internal let counterRotatingView = UIView()
-    internal var rotationLocked = false
+    let counterRotatingView = UIView()
+    var rotationLocked = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

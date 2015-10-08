@@ -22,11 +22,16 @@
 		CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F061BACAD5200D4AABB /* Colors.swift */; settings = {ASSET_TAGS = (); }; };
 		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */; settings = {ASSET_TAGS = (); }; };
-		CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
 		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242E1BC5DCE900A0785C /* DrawingView.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242F1BC5DCE900A0785C /* DrawingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF24331BC5E66D00A0785C /* ScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,11 +73,16 @@
 		CD5D4F061BACAD5200D4AABB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewModel.swift; sourceTree = "<group>"; };
 		CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMaker.swift; sourceTree = "<group>"; };
-		CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
 		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterRotatingViewController.swift; sourceTree = "<group>"; };
+		CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
+		CDBF242E1BC5DCE900A0785C /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		CDBF242F1BC5DCE900A0785C /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenExtensions.swift; sourceTree = "<group>"; };
+		CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceExtensions.swift; sourceTree = "<group>"; };
+		CDBF24361BC5F56600A0785C /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +179,7 @@
 			children = (
 				CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */,
 				CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */,
+				CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */,
 			);
 			name = "View Model";
 			path = "View/View Model";
@@ -179,6 +190,9 @@
 			children = (
 				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
 				CD5D4F061BACAD5200D4AABB /* Colors.swift */,
+				CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */,
+				CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */,
+				CDBF24361BC5F56600A0785C /* ImageExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -187,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */,
-				CDA035E11BA8AEAA0023F290 /* DrawingViewController.swift */,
+				CDBF242D1BC5DCE900A0785C /* Drawing */,
 				CDA035E21BA8AEAA0023F290 /* RootViewController.swift */,
 				CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */,
 				CD42370B1BAB54CE0000E395 /* Color Picker */,
@@ -203,6 +217,15 @@
 				CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CDBF242D1BC5DCE900A0785C /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				CDBF242E1BC5DCE900A0785C /* DrawingView.swift */,
+				CDBF242F1BC5DCE900A0785C /* DrawingViewController.swift */,
+			);
+			path = Drawing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,13 +385,18 @@
 				CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */,
 				CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */,
 				CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */,
+				CDBF24331BC5E66D00A0785C /* ScreenExtensions.swift in Sources */,
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
+				CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */,
+				CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */,
+				CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
+				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
-				CDA035E41BA8AEAA0023F290 /* DrawingViewController.swift in Sources */,
+				CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
