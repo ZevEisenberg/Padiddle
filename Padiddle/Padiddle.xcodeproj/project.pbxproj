@@ -243,6 +243,7 @@
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
 				CD118DBF1BA4E7C800668DB6 /* Build Number */,
+				7ACF44EE1BD1B64500CE7FB2 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -361,6 +362,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7ACF44EE1BD1B64500CE7FB2 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /usr/local/bin/swiftlint;
+		};
 		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

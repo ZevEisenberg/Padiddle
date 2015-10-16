@@ -27,7 +27,7 @@ struct Geometry {
         let returnX = (b2 - b1) / (m1 - m2)
 
         let returnY = m1 * returnX + b1
-        
+
         return CGPoint(x: returnX, y: returnY)
     }
 }
