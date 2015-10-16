@@ -28,7 +28,7 @@ extension UIInterfaceOrientation: CustomStringConvertible {
 extension CGAffineTransform {
     var angle: CGFloat {
         get {
-            return atan2(self.b, self.a)
+            return atan2(b, a)
         }
     }
 }

@@ -50,7 +50,7 @@ class PickerCell: UICollectionViewCell {
         titleLabel.numberOfLines = 0 // in case we are even in a situation where we need to wrap lines
 
         contentView.addSubview(imageView)
-        contentView.self.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
 
         contentView.layer.cornerRadius = 5
         contentView.layer.borderColor = borderColor.CGColor
