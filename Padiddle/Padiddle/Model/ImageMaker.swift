@@ -87,7 +87,7 @@ struct ImageMaker {
                 let oldIntercept = -(oldSlope * oldR * cos(oldTheta) - oldR * sin(oldTheta))
                 let newIntercept = -(newSlope * newR * cos(newTheta) - newR * sin(newTheta))
 
-                if let intersection = lineIntersection(oldSlope, b1: oldIntercept, m2: newSlope, b2: newIntercept) {
+                if let intersection = Geometry.lineIntersection(oldSlope, b1: oldIntercept, m2: newSlope, b2: newIntercept) {
                     controlPoint = intersection
                 }
                 else {
@@ -112,21 +112,5 @@ struct ImageMaker {
             UIGraphicsEndImageContext()
 
             return image
-    }
-
-    static func lineIntersection(
-        m1: CGFloat,
-        b1: CGFloat,
-        m2: CGFloat,
-        b2: CGFloat) -> CGPoint? {
-            if m1 == m2 {
-                // lines are parallel
-                return nil
-            }
-            let intersectionX = (b2 - b1) / (m1 - m2)
-
-            let intersectionY = (m1 * intersectionX) + b1
-
-            return CGPoint(x: intersectionX, y: intersectionY)
     }
 }
