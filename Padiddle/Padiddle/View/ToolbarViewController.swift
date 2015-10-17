@@ -46,7 +46,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
         updateColorButton(colorManager: viewModel.colorPickerVieModel.selectedColorManager)
     }
 
-    //Mark: Button Handlers
+    // MARK: Button Handlers
 
     @IBAction func trashTapped() {
         print(__FUNCTION__)
@@ -99,14 +99,14 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    //Mark: ColorPickerDelegate
+    // MARK: ColorPickerDelegate
 
     func colorPicked(color: ColorManager) {
         updateColorButton(colorManager: color)
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    //Mark: Private
+    // MARK: Private
 
     private func updateColorButton(colorManager color: ColorManager) {
         let imageSize = 36
