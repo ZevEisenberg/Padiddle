@@ -26,14 +26,13 @@ enum ColorModel {
 
 struct ColorManager {
     var radius: CGFloat = 0
-    private var internalTheta: CGFloat = 0
-
+    private var _theta: CGFloat = 0
     var theta: CGFloat {
         set {
-            internalTheta = newValue - twoPi * floor(newValue / twoPi)
+            _theta = newValue - twoPi * floor(newValue / twoPi)
         }
         get {
-            return internalTheta
+            return _theta
         }
     }
 
