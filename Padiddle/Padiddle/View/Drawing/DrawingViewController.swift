@@ -8,8 +8,7 @@
 
 import UIKit
 
-let showDebugLabel = true
-
+let showDebugLabel = false
 
 extension CGPoint {
     var screenPixelsIntegral: CGPoint {
@@ -33,14 +32,14 @@ extension CGPoint {
 
 class DrawingViewController: CounterRotatingViewController, DrawingViewModelDelegate {
 
-    private let viewModel = DrawingViewModel(maxRadius: UIScreen.mainScreen().longestSide)
+    var viewModel: DrawingViewModel?
     private let drawingView = DrawingView()
     private let nib = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.delegate = self
+        viewModel?.delegate = self
 
         view.backgroundColor = .whiteColor()
 
@@ -78,12 +77,37 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        viewModel.startMotionUpdates()
+        viewModel?.startMotionUpdates()
     }
 
-    //MARK: DrawingViewModelDelegate
+    // MARK: DrawingViewModelDelegate
+
+    func start() {
+        viewModel?.isUpdating = true
+        drawingView.startDrawing()
+        viewModel?.startMotionUpdates()
+    }
+
+    func pause() {
+        viewModel?.isUpdating = false
+        viewModel?.needToMoveNibToNewStartLocation = true
+        drawingView.stopDrawing()
+        // TODO: persist image in background
+    }
 
     func drawingViewModelUpdatedLocation(newLocation: CGPoint) {
         nib.center = newLocation.screenPixelsIntegral
+
+        if let extantViewModel = viewModel {
+            if extantViewModel.isUpdating {
+                if extantViewModel.needToMoveNibToNewStartLocation {
+                    extantViewModel.needToMoveNibToNewStartLocation = false
+                    drawingView.restartAtPoint(newLocation)
+                }
+                else {
+                    drawingView.addPoint(newLocation)
+                }
+            }
+        }
     }
 }

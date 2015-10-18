@@ -6,9 +6,18 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-class Weak<T: AnyObject> {
+class Weak<T: AnyObject>: CustomStringConvertible {
     weak var value: T?
     init(value: T) {
         self.value = value
+    }
+
+    var description: String {
+        if let exists = value {
+            return "Weak(\(exists))"
+        }
+        else {
+            return "Weak(nil)"
+        }
     }
 }

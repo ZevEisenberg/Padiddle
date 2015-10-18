@@ -13,11 +13,14 @@ let kMotionManagerUpdateInterval: NSTimeInterval = 1.0 / 120.0
 let kNibUpdateInterval: NSTimeInterval = 1.0 / 60.0
 
 protocol DrawingViewModelDelegate: class {
+    func start()
+    func pause()
     func drawingViewModelUpdatedLocation(newLocation: CGPoint)
 }
 
-class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
+class DrawingViewModel: NSObject, RecordingDelegate { // must inherit from NSObject for NSTimer to work
     var isUpdating = false
+    var needToMoveNibToNewStartLocation = true
     weak var delegate: DrawingViewModelDelegate?
 
     private let motionManager = CMMotionManager()
@@ -64,5 +67,29 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
             delegate?.drawingViewModelUpdatedLocation(CGPoint(x: x, y: y))
         }
+    }
+
+    // MARK: RecordingDelegate
+
+    @objc func recordingStatusChanged(recording: Bool) {
+        if recording {
+            delegate?.start()
+        }
+        else {
+            delegate?.pause()
+        }
+    }
+
+    @objc func motionUpdatesStatusChanged(updates: Bool) {
+        if updates {
+            startMotionUpdates()
+        }
+        else {
+            stopMotionUpdates()
+        }
+    }
+
+    @objc func persistImageInBackground() {
+        // TODO
     }
 }

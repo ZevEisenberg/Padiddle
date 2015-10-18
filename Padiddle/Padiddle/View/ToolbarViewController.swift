@@ -17,9 +17,11 @@ private let kRecordButtonPadding = CGFloat(20.0)
 
 private let kToolbarAnimationDuration = 0.3
 
-class ToolbarViewController: UIViewController, ColorPickerDelegate {
+class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewModelDelegate {
 
-    let viewModel = ToolbarViewModel()
+    var viewModel: ToolbarViewModel?
+
+    var toolbarVisible: Bool = true
 
     @IBOutlet private var clearButton: UIButton!
     @IBOutlet private var colorButton: UIButton!
@@ -43,7 +45,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
 
         let pauseImage = UIImage(named: kPauseButtonName)!
         recordButton.setImage(pauseImage, forState: .Selected)
-        updateColorButton(colorManager: viewModel.colorPickerVieModel.selectedColorManager)
+        updateColorButton(colorManager: (viewModel?.colorPickerVieModel.selectedColorManager)!)
     }
 
     // MARK: Button Handlers
@@ -55,7 +57,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
     @IBAction func colorTapped() {
         let viewControllerToShow: UIViewController
 
-        let colorPickerViewController = ColorPickerViewController(viewModel: viewModel.colorPickerVieModel, delegate: self)
+        let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerVieModel)!, delegate: self)
 
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             viewControllerToShow = colorPickerViewController
@@ -80,11 +82,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
         print(__FUNCTION__)
         recordButton.selected = !recordButton.selected
 
-        updateToolbarConstraints(toolbarVisible: !recordButton.selected)
-
-        UIView.animateWithDuration(kToolbarAnimationDuration) {
-            self.view.layoutIfNeeded()
-        }
+        // TODO: tapping record button when already recording does not correctly restore toolbar
+        viewModel?.recordButtonTapped()
     }
 
     @IBAction func shareTapped() {
@@ -104,6 +103,19 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate {
     func colorPicked(color: ColorManager) {
         updateColorButton(colorManager: color)
         dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    // MARK: ToolbarViewModelDelegate
+
+    func setToolbarVisible(visible: Bool, animated: Bool) {
+        if visible != toolbarVisible {
+            updateToolbarConstraints(toolbarVisible: visible)
+
+            let duration = animated ? kToolbarAnimationDuration : 0.0
+            UIView.animateWithDuration(duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 
     // MARK: Private

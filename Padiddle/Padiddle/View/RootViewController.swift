@@ -10,10 +10,12 @@ import UIKit
 
 class RootViewController: UIViewController {
 
+    let viewModel: RootViewModel
     var pinnedViewController: UIViewController
     var rotatingViewController: UIViewController
 
-    required init(pinnedViewController: UIViewController, rotatingViewController: UIViewController) {
+    required init(viewModel: RootViewModel, pinnedViewController: UIViewController, rotatingViewController: UIViewController) {
+        self.viewModel = viewModel
         self.pinnedViewController = pinnedViewController
         self.rotatingViewController = rotatingViewController
         super.init(nibName: nil, bundle: nil)
