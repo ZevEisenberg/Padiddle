@@ -15,8 +15,18 @@ class {
     optional func persistImageInBackground()
 }
 
-class RootViewModel {
+protocol RootColorManagerDelegate:
+class {
+    func colorManagerPicked(colorManager: ColorManager)
+}
+
+class RootViewModel: ToolbarViewModelColorDelegate {
     private var recordingDelegates = [Weak<RecordingDelegate>]()
+    weak var rootColorManagerDelegate: RootColorManagerDelegate?
+
+    init(rootColorManagerDelegate: RootColorManagerDelegate) {
+        self.rootColorManagerDelegate = rootColorManagerDelegate
+    }
 
     var recording = false {
         didSet {
@@ -42,5 +52,11 @@ class RootViewModel {
 
     func addRecordingDelegate(delegate: RecordingDelegate) {
         recordingDelegates.append(Weak(value: delegate))
+    }
+
+    // MARK: ToolbarViewModelColorDelegate
+
+    func colorManagerPicked(colorManager: ColorManager) {
+        rootColorManagerDelegate?.colorManagerPicked(colorManager)
     }
 }

@@ -86,9 +86,11 @@ struct ColorManager {
             channelValue = value / π
 
         case .VelocityOut:
+            assert(maxRadius > 0)
             channelValue = radius / maxRadius
 
         case .VelocityIn:
+            assert(maxRadius > 0)
             channelValue = 1 - (radius / maxRadius)
 
         case let .Manual(value):

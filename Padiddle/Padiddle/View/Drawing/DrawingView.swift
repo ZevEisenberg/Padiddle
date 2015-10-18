@@ -10,7 +10,14 @@ import UIKit
 
 private let debugging = false
 
+protocol DrawingViewDelegate:
+class {
+    var currentColor: UIColor { get }
+}
+
 class DrawingView: UIView {
+
+    weak var drawingViewDelegate: DrawingViewDelegate?
 
     private var needsErase = true
     private var smoothing = true
@@ -179,9 +186,7 @@ class DrawingView: UIView {
         CGPathMoveToPoint(pathSegment, nil, points[1].x, points[1].y)
         CGPathAddCurveToPoint(pathSegment, nil, ctrl1x, ctrl1y, ctrl2x, ctrl2y, points[2].x, points[2].y)
 
-        // TODO: figure out how to get color from color manager (via delegate probably?)
-        //    let color = ColorManager.sharedInstance.currentColor
-        let color = UIColor.blueColor()
+        let color = (drawingViewDelegate?.currentColor)!
 
         // draw the segment into the context
 

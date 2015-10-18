@@ -18,10 +18,13 @@ protocol DrawingViewModelDelegate: class {
     func drawingViewModelUpdatedLocation(newLocation: CGPoint)
 }
 
-class DrawingViewModel: NSObject, RecordingDelegate { // must inherit from NSObject for NSTimer to work
+class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate, DrawingViewDelegate { // must inherit from NSObject for NSTimer to work
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
+
     weak var delegate: DrawingViewModelDelegate?
+
+    private var colorManager: ColorManager?
 
     private let motionManager = CMMotionManager()
 
@@ -65,6 +68,9 @@ class DrawingViewModel: NSObject, RecordingDelegate { // must inherit from NSObj
             let x = radius * CGFloat(cos(theta)) + maxRadius / 2.0
             let y = radius * CGFloat(sin(theta)) + maxRadius / 2.0
 
+            colorManager?.radius = radius
+            colorManager?.theta = CGFloat(theta)
+
             delegate?.drawingViewModelUpdatedLocation(CGPoint(x: x, y: y))
         }
     }
@@ -91,5 +97,23 @@ class DrawingViewModel: NSObject, RecordingDelegate { // must inherit from NSObj
 
     @objc func persistImageInBackground() {
         // TODO
+    }
+
+    // MARK: RootColorManagerDelegate
+
+    func colorManagerPicked(colorManager: ColorManager) {
+        var newManager = colorManager
+        newManager.maxRadius = maxRadius
+        self.colorManager = newManager
+    }
+
+    // MARK: DrawingViewDelegate
+
+    var currentColor: UIColor {
+        guard colorManager != nil else {
+            return UIColor.magentaColor()
+        }
+
+        return colorManager!.currentColor
     }
 }

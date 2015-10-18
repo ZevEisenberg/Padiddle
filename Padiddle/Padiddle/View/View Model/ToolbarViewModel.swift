@@ -8,21 +8,29 @@
 
 import Foundation
 
-protocol ToolbarViewModelDelegate:
+protocol ToolbarViewModelToolbarDelegate:
 class {
     func setToolbarVisible(visible: Bool, animated: Bool)
 }
 
-class ToolbarViewModel: RecordingDelegate {
-    let colorPickerVieModel = ColorPickerViewModel()
+protocol ToolbarViewModelColorDelegate:
+class {
+    func colorManagerPicked(colorManager: ColorManager)
+}
+
+class ToolbarViewModel: RecordingDelegate, ColorPickerViewModelDelegate {
+    var colorPickerViewModel: ColorPickerViewModel?
 
     let rootViewModel: RootViewModel
 
-    weak var delegate: ToolbarViewModelDelegate?
+    weak var toolbarDelegate: ToolbarViewModelToolbarDelegate?
+    weak var colorDelegate: ToolbarViewModelColorDelegate?
 
-    required init(rootViewModel: RootViewModel, delegate: ToolbarViewModelDelegate) {
+    required init(rootViewModel: RootViewModel, toolbarDelegate: ToolbarViewModelToolbarDelegate, colorDelegate: ToolbarViewModelColorDelegate) {
         self.rootViewModel = rootViewModel
-        self.delegate = delegate
+        self.toolbarDelegate = toolbarDelegate
+        self.colorDelegate = colorDelegate
+        colorPickerViewModel = ColorPickerViewModel(delegate: self)
     }
 
     func recordButtonTapped() {
@@ -32,6 +40,12 @@ class ToolbarViewModel: RecordingDelegate {
     // MARK: RecordingDelegate
 
     @objc func recordingStatusChanged(recording: Bool) {
-        delegate?.setToolbarVisible(!recording, animated: true)
+        toolbarDelegate?.setToolbarVisible(!recording, animated: true)
+    }
+
+    // MARK: ColorPickerViewModelDelegate
+
+    func colorManagerPicked(colorManager: ColorManager) {
+        colorDelegate?.colorManagerPicked(colorManager)
     }
 }

@@ -9,7 +9,19 @@
 import UIKit
 import CoreGraphics.CGBase
 
+protocol ColorPickerViewModelDelegate:
+class {
+    func colorManagerPicked(colorManager: ColorManager)
+}
+
 class ColorPickerViewModel {
+    weak var delegate: ColorPickerViewModelDelegate?
+
+    init(delegate: ColorPickerViewModelDelegate) {
+        self.delegate = delegate
+        delegate.colorManagerPicked(selectedColorManager)
+    }
+
     var currentPage: Int = 0
     var selectedIndex: Int {
         get {
@@ -17,6 +29,7 @@ class ColorPickerViewModel {
         }
         set(newValue) {
             Defaults.colorPickerSelection = newValue
+            delegate?.colorManagerPicked(selectedColorManager)
         }
     }
     var selectedColorManager: ColorManager {

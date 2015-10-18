@@ -39,6 +39,8 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        drawingView.drawingViewDelegate = viewModel
+
         viewModel?.delegate = self
 
         view.backgroundColor = .whiteColor()

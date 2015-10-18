@@ -17,7 +17,7 @@ private let kRecordButtonPadding = CGFloat(20.0)
 
 private let kToolbarAnimationDuration = 0.3
 
-class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewModelDelegate {
+class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewModelToolbarDelegate {
 
     var viewModel: ToolbarViewModel?
 
@@ -45,7 +45,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
         let pauseImage = UIImage(named: kPauseButtonName)!
         recordButton.setImage(pauseImage, forState: .Selected)
-        updateColorButton(colorManager: (viewModel?.colorPickerVieModel.selectedColorManager)!)
+        updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
     }
 
     // MARK: Button Handlers
@@ -57,7 +57,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
     @IBAction func colorTapped() {
         let viewControllerToShow: UIViewController
 
-        let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerVieModel)!, delegate: self)
+        let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
 
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             viewControllerToShow = colorPickerViewController
