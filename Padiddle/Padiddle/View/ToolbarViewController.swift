@@ -82,7 +82,6 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         print(__FUNCTION__)
         recordButton.selected = !recordButton.selected
 
-        // TODO: tapping record button when already recording does not correctly restore toolbar
         viewModel?.recordButtonTapped()
     }
 
@@ -108,7 +107,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
     // MARK: ToolbarViewModelDelegate
 
     func setToolbarVisible(visible: Bool, animated: Bool) {
-        if visible != toolbarVisible {
+        if toolbarVisible != visible {
+            toolbarVisible = visible
             updateToolbarConstraints(toolbarVisible: visible)
 
             let duration = animated ? kToolbarAnimationDuration : 0.0
