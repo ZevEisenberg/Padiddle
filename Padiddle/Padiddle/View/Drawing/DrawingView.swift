@@ -137,8 +137,8 @@ class DrawingView: UIView {
     private func addLineSegmentBasedOnUpdatedPoints() {
         // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
 
-        let x0 = (points[0].x > -1) ? points[0].x : points[1].x; //after 4 touches we should have a back anchor point; if not, use the current anchor point
-        let y0 = (points[0].y > -1) ? points[0].y : points[1].y; //after 4 touches we should have a back anchor point; if not, use the current anchor point
+        let x0 = (points[0].x > -1) ? points[0].x : points[1].x //after 4 touches we should have a back anchor point. If not, use the current anchor point
+        let y0 = (points[0].y > -1) ? points[0].y : points[1].y //after 4 touches we should have a back anchor point. If not, use the current anchor point
         let x1 = points[1].x
         let y1 = points[1].y
         let x2 = points[2].x
@@ -256,7 +256,7 @@ class DrawingView: UIView {
         let bitmapBytesPerRow: Int
 
         // Declare the number of bytes per row. Each pixel in the bitmap in this
-        // example is represented by 4 bytes; 8 bits each of red, green, blue, and
+        // example is represented by 4 bytes: 8 bits each of red, green, blue, and
         // alpha.
 
         bitmapBytesPerRow = Int(contextSize.width) * bytesPerPixel * Int(screenScale)

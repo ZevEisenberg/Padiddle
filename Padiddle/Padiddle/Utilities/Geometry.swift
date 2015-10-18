@@ -14,14 +14,14 @@ struct Geometry {
             return 0
         }
         else {
-            return sqrt(pow((p1.x - p2.x), 2.0) + pow((p1.y - p2.y), 2.0));
+            return sqrt(pow((p1.x - p2.x), 2.0) + pow((p1.y - p2.y), 2.0))
         }
     }
 
     static func lineIntersection(let m1: CGFloat, let b1: CGFloat, let m2: CGFloat, let b2: CGFloat) -> CGPoint? {
         if m1 == m2 {
             // lines are parallel
-            return nil;
+            return nil
         }
 
         let returnX = (b2 - b1) / (m1 - m2)
