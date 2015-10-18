@@ -149,6 +149,8 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PickerCell
         cell.title = viewModel.colorsToPick[indexPath.item].title
+
+        // TODO: cache image for faster scrolling performance
         cell.image = viewModel.imageForColorManager(viewModel.colorsToPick[indexPath.item])
         return cell
     }
