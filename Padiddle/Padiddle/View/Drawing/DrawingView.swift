@@ -270,15 +270,13 @@ class DrawingView: UIView {
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.NoneSkipFirst.rawValue)
-
         let context = CGBitmapContextCreate(nil,
             Int(contextSize.width * screenScale),
             Int(contextSize.height * screenScale),
             bitsPerComponent,
             bitmapBytesPerRow,
             colorSpace,
-            bitmapInfo.rawValue)
+            CGImageAlphaInfo.NoneSkipFirst.rawValue)
 
         guard context != nil else { return false }
 
