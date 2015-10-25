@@ -106,26 +106,26 @@ class ColorPickerLayout: UICollectionViewLayout {
 
         let spaceForColumns = (
             CGRectGetWidth(collectionView.frame) -
-            pageInsets.left -
-            pageInsets.right -
-            CGFloat(numberOfColumns - 1) * spacing)
+                pageInsets.left -
+                pageInsets.right -
+                CGFloat(numberOfColumns - 1) * spacing)
         let columnWidth = spaceForColumns / CGFloat(numberOfColumns)
 
         let spaceForRows = (
             CGRectGetHeight(collectionView.frame) -
-            pageInsets.top -
-            pageInsets.bottom -
-            CGFloat(numberOfRows - 1) * spacing)
+                pageInsets.top -
+                pageInsets.bottom -
+                CGFloat(numberOfRows - 1) * spacing)
         let rowHeight = spaceForRows / CGFloat(numberOfRows)
 
         let originX = floor(
             pageInsets.left +
-            (columnWidth + spacing) * CGFloat(column) +
-            CGFloat(page) * CGRectGetWidth(collectionView.frame))
+                (columnWidth + spacing) * CGFloat(column) +
+                CGFloat(page) * CGRectGetWidth(collectionView.frame))
 
         let originY = floor(
             pageInsets.top +
-            (rowHeight + spacing) * CGFloat(row))
+                (rowHeight + spacing) * CGFloat(row))
 
         let frame = CGRect(x: originX, y: originY, width: floor(columnWidth), height: floor(rowHeight))
         return frame
