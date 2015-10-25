@@ -36,7 +36,7 @@ class DrawingView: UIView {
         // So we divide both sides by L to get ƒ = l / L
         let ƒ = maxDimension / self.contextSize.width
         return ƒ
-        }()
+    }()
 
     private let contextSize = CGSize(width: 1024, height: 1024)
 
