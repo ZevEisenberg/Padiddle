@@ -47,7 +47,7 @@ class DrawingView: UIView {
 
     private var points: [CGPoint]
 
-    // TODO: move offscreen context into view model (duh)
+    // TODO: move offscreen context into view model
     private var offscreenContext: CGContextRef?
 
     private var currentDirtyRect = CGRect.null
