@@ -23,6 +23,7 @@ class {
 class RootViewModel: ToolbarViewModelColorDelegate {
     private var recordingDelegates = [Weak<RecordingDelegate>]()
     weak var rootColorManagerDelegate: RootColorManagerDelegate?
+    weak var drawingViewController: DrawingViewController?
 
     init(rootColorManagerDelegate: RootColorManagerDelegate) {
         self.rootColorManagerDelegate = rootColorManagerDelegate
@@ -52,6 +53,13 @@ class RootViewModel: ToolbarViewModelColorDelegate {
 
     func addRecordingDelegate(delegate: RecordingDelegate) {
         recordingDelegates.append(Weak(value: delegate))
+    }
+
+    func getSnapshotImage(completion: ImageCallback) {
+        guard let drawingViewController = drawingViewController else {
+            fatalError()
+        }
+        drawingViewController.getSnapshotImage(completion)
     }
 
     // MARK: ToolbarViewModelColorDelegate

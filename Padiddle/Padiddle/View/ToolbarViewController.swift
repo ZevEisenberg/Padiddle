@@ -23,6 +23,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     var toolbarVisible: Bool = true
 
+    @IBOutlet private var toolbarStackView: UIStackView!
     @IBOutlet private var clearButton: UIButton!
     @IBOutlet private var colorButton: UIButton!
     @IBOutlet private var recordButton: UIButton!
@@ -33,6 +34,10 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet var toolbarTopConstraint: NSLayoutConstraint!
+
+    private var passthroughViews: [UIView] {
+        return [toolbarStackView, recordButton]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +80,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
             popoverController.sourceView = colorButton
             popoverController.sourceRect = colorButton.bounds
             popoverController.permittedArrowDirections = .Down
+            popoverController.passthroughViews = passthroughViews
         }
     }
 
@@ -87,6 +93,70 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     @IBAction func shareTapped() {
         print(__FUNCTION__)
+
+        guard let viewModel = viewModel else { fatalError() }
+
+        // Prevent the user from doing stuff while we are generating the snapshot
+
+        toolbarStackView.userInteractionEnabled = false
+        recordButton.userInteractionEnabled = false
+
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.color = UIColor.appTintColor
+        activityIndicator.startAnimating()
+
+        guard let indexOfShareButton = toolbarStackView.arrangedSubviews.indexOf(shareButton) else {
+            fatalError("If shareButton does not exist in the toolbar stack view, something is wrong")
+        }
+
+        toolbarStackView.removeArrangedSubview(shareButton)
+        shareButton.hidden = true
+        toolbarStackView.insertArrangedSubview(activityIndicator, atIndex: indexOfShareButton)
+
+        // Dismiss any other modals that may be visible
+        dismissViewControllerAnimated(true, completion: nil)
+
+        // We are going to run this whether or not we get an image back
+        let restoreShareButton: UIViewController? -> Void = { presentedViewController in
+            self.toolbarStackView.removeArrangedSubview(activityIndicator)
+            self.toolbarStackView.insertArrangedSubview(self.shareButton, atIndex: indexOfShareButton)
+            self.shareButton.hidden = false
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+
+            self.toolbarStackView.userInteractionEnabled = true
+            self.recordButton.userInteractionEnabled = true
+
+            guard let popoverController = presentedViewController?.popoverPresentationController else { return }
+            popoverController.sourceView = self.shareButton
+            popoverController.sourceRect = self.shareButton.bounds
+        }
+
+        // Get the snapshot image async
+        viewModel.getSnapshotImage { image in
+
+            assert(NSThread.isMainThread())
+
+            // If, for some reason, we got no image back, give up and restore the buttons
+            guard let image = image else {
+                restoreShareButton(nil)
+                return
+            }
+
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact]
+            activityViewController.modalPresentationStyle = .Popover
+
+            self.presentViewController(activityViewController, animated: true) {
+                restoreShareButton(activityViewController)
+            }
+
+            guard let popoverController = activityViewController.popoverPresentationController else { return }
+            popoverController.sourceView = activityIndicator
+            popoverController.sourceRect = activityIndicator.bounds
+            popoverController.permittedArrowDirections = .Down
+            popoverController.passthroughViews = self.passthroughViews
+        }
     }
 
     @IBAction func helpTapped() {

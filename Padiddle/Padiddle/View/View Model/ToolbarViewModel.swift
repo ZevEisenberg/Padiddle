@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 protocol ToolbarViewModelToolbarDelegate:
 class {
@@ -35,6 +36,10 @@ class ToolbarViewModel: RecordingDelegate, ColorPickerViewModelDelegate {
 
     func recordButtonTapped() {
         rootViewModel.recording = !rootViewModel.recording
+    }
+
+    func getSnapshotImage(completion: ImageCallback) {
+        rootViewModel.getSnapshotImage(completion)
     }
 
     // MARK: RecordingDelegate

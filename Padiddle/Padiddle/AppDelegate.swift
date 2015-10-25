@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawingViewController = DrawingViewController()
         drawingViewController?.viewModel = drawingViewModel
 
+        rootViewModel!.drawingViewController = drawingViewController
+
         rootViewModel!.addRecordingDelegate(toolbarViewModel)
         rootViewModel!.addRecordingDelegate(drawingViewModel)
 

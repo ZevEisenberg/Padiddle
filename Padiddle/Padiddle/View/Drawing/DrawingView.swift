@@ -10,6 +10,8 @@ import UIKit
 
 private let debugging = false
 
+typealias ImageCallback = UIImage? -> Void
+
 protocol DrawingViewDelegate:
 class {
     var currentColor: UIColor { get }
@@ -45,6 +47,7 @@ class DrawingView: UIView {
 
     private var points: [CGPoint]
 
+    // TODO: move offscreen context into view model (duh)
     private var offscreenContext: CGContextRef?
 
     private var currentDirtyRect = CGRect.null

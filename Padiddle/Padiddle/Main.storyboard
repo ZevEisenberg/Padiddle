@@ -177,6 +177,7 @@
                         <outlet property="recordButton" destination="v7J-ZK-054" id="H3f-cZ-9eN"/>
                         <outlet property="shareButton" destination="9Es-Cl-vU4" id="F1K-Cj-O3m"/>
                         <outlet property="toolbarBottomConstraint" destination="fN0-Hl-DWR" id="XCq-VN-0JC"/>
+                        <outlet property="toolbarStackView" destination="4OF-Vg-VJK" id="yez-hd-OpM"/>
                         <outlet property="toolbarTopConstraint" destination="PCG-qf-070" id="HAr-GW-Ca9"/>
                         <outletCollection property="spacerViews" destination="Zh3-7c-Opi" collectionClass="NSMutableArray" id="7ve-ml-SbU"/>
                         <outletCollection property="spacerViews" destination="l5f-KL-mHN" collectionClass="NSMutableArray" id="9rB-yy-utQ"/>
