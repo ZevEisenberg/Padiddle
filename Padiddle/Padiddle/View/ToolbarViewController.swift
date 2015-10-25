@@ -60,6 +60,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
     }
 
     @IBAction func colorTapped() {
+        // TODO: pause recording
+        
         let viewControllerToShow: UIViewController
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
@@ -133,7 +135,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         }
 
         // Get the snapshot image async
-        viewModel.getSnapshotImage { image in
+        let interfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
+        viewModel.getSnapshotImage(interfaceOrientation) { image in
 
             assert(NSThread.isMainThread())
 

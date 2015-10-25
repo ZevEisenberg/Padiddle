@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7ACF44F01BD3060F00CE7FB2 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */; settings = {ASSET_TAGS = (); }; };
-		7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44F11BD3118300CE7FB2 /* Weak.swift */; settings = {ASSET_TAGS = (); }; };
-		7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; settings = {ASSET_TAGS = (); }; };
-		7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; settings = {ASSET_TAGS = (); }; };
+		7ACF44F01BD3060F00CE7FB2 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */; };
+		7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44F11BD3118300CE7FB2 /* Weak.swift */; };
+		7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
+		7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
 		CD118DC11BA5F65C00668DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD118DC01BA5F65C00668DB6 /* Main.storyboard */; };
 		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
 		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
@@ -19,23 +19,24 @@
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
 		CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */; };
 		CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */; };
-		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F061BACAD5200D4AABB /* Colors.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; settings = {ASSET_TAGS = (); }; };
-		CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */; settings = {ASSET_TAGS = (); }; };
+		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; };
+		CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */; };
+		CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; };
+		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; };
+		CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F061BACAD5200D4AABB /* Colors.swift */; };
+		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; };
+		CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
-		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242E1BC5DCE900A0785C /* DrawingView.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242F1BC5DCE900A0785C /* DrawingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF24331BC5E66D00A0785C /* ScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+		CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
+		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; };
+		CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */; };
+		CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242E1BC5DCE900A0785C /* DrawingView.swift */; };
+		CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242F1BC5DCE900A0785C /* DrawingViewController.swift */; };
+		CDBF24331BC5E66D00A0785C /* ScreenExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */; };
+		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; };
+		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewController.swift; sourceTree = "<group>"; };
 		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		CDA3C34E1BDC8EF000D9D309 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterRotatingViewController.swift; sourceTree = "<group>"; };
 		CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 		CDBF242E1BC5DCE900A0785C /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				CDBF24361BC5F56600A0785C /* ImageExtensions.swift */,
 				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
 				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
+				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
+				CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,

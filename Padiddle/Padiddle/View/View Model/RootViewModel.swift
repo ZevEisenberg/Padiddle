@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIApplication
 
 @objc protocol RecordingDelegate:
 class {
@@ -55,11 +56,11 @@ class RootViewModel: ToolbarViewModelColorDelegate {
         recordingDelegates.append(Weak(value: delegate))
     }
 
-    func getSnapshotImage(completion: ImageCallback) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: ImageCallback) {
         guard let drawingViewController = drawingViewController else {
             fatalError()
         }
-        drawingViewController.getSnapshotImage(completion)
+        drawingViewController.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 
     // MARK: ToolbarViewModelColorDelegate

@@ -49,4 +49,62 @@ extension UIImage {
 
         return image
     }
+
+    func imageRotatedByRadians(radians: CGFloat) -> UIImage {
+        // Don't optimize out the radians == 0 case by just returning self.
+        // It results in an image that is flipped vertically.
+        // I likely have a double rotation somewhere.
+
+        var rotatedSize: CGSize
+        if radians == π || radians == 0 {
+            rotatedSize = self.size
+        }
+        else {
+            rotatedSize = CGSize(width: size.height, height: size.width)
+        }
+
+        // Scale the size so it represents pixels instead of points
+        rotatedSize.width *= scale
+        rotatedSize.height *= scale
+
+        // Create the bitmap context
+        let bytesPerPixel: size_t = 4
+        let bitsPerComponent: size_t = 8
+        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+
+        let context = CGBitmapContextCreate(nil,
+            Int(size.width * scale),
+            Int(size.height * scale),
+            bitsPerComponent,
+            bitmapBytesPerRow,
+            colorSpace,
+            CGImageAlphaInfo.NoneSkipLast.rawValue)
+
+        // Move the origin to the middle of the image so we will rotate and scale around the center.
+        CGContextTranslateCTM(context, size.width * scale / 2, size.height * scale / 2)
+
+        // Rotate the image context
+        CGContextRotateCTM(context, radians)
+
+        // Now, draw the rotated/scaled image into the context
+        let imageRect = CGRect(
+            x: -rotatedSize.width / 2,
+            y: -rotatedSize.height / 2,
+            width: rotatedSize.width,
+            height: rotatedSize.height)
+
+        CGContextScaleCTM(context, 1.0, -1.0)
+        CGContextDrawImage(
+            context,
+            imageRect,
+            self.CGImage
+        )
+
+        let newImage = CGBitmapContextCreateImage(context)!
+
+        let retImage = UIImage(CGImage: newImage, scale: scale, orientation: .Up)
+
+        return retImage
+    }
 }

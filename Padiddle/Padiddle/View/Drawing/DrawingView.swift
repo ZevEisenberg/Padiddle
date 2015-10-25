@@ -136,6 +136,20 @@ class DrawingView: UIView {
         }
     }
 
+    func snapshotForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> UIImage {
+        assert(!NSThread.isMainThread(), "Snapshotting must happen on a background thread")
+
+        let (imageOrientation, rotation) = rotationForInterfaceOrientation(interfaceOrientation)
+
+        let cacheImage = CGBitmapContextCreateImage(offscreenContext)!
+
+        let originalImage = UIImage(CGImage: cacheImage, scale: contextScaleFactor, orientation: imageOrientation)
+
+        let rotatedImage = originalImage.imageRotatedByRadians(rotation)
+
+        return rotatedImage
+    }
+
     // MARK: Private
 
     @objc private func displayLinkUpdated() { // marked @objc so it can be looked up by selector
@@ -296,5 +310,28 @@ class DrawingView: UIView {
         clear()
 
         return true
+    }
+
+    private func rotationForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
+
+        let rotation: CGFloat
+        let imageOrientaion: UIImageOrientation
+
+        switch interfaceOrientation {
+        case .LandscapeLeft:
+            rotation = -π / 2.0
+            imageOrientaion = .Right
+        case .LandscapeRight:
+            rotation = π / 2.0
+            imageOrientaion = .Left
+        case .PortraitUpsideDown:
+            rotation = π
+            imageOrientaion = .Down
+        case .Portrait, .Unknown:
+            rotation = 0
+            imageOrientaion = .Up
+        }
+
+        return (imageOrientaion, rotation)
     }
 }

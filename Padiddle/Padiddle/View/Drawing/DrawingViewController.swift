@@ -82,31 +82,13 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
         viewModel?.startMotionUpdates()
     }
 
-    func getSnapshotImage(completion: ImageCallback) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: ImageCallback) {
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let image = self.drawingView.snapshotForInterfaceOrientation(interfaceOrientation)
 
-            let tempColorManager = ColorManager(
-                colorModel: .RGB(
-                    r: .VelocityIn,
-                    g: .VelocityOut,
-                    b: .VelocityIn),
-                title: "")
-
-            let image = ImageMaker.image(tempColorManager,
-                size: CGSize(width: 500, height: 500),
-                startRadius: 0,
-                spacePerLoop: 0.7,
-                startTheta: 0,
-                endTheta: 2.0 * CGFloat(M_PI) * 200.0,
-                thetaStep: CGFloat(M_PI) / 16.0,
-                lineWidth: 2.3)
-
-            // TODO: snapshot image
-
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Int64(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(image)
-                }
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(image)
             }
         }
     }

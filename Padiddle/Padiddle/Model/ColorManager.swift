@@ -8,9 +8,6 @@
 
 import UIKit.UIColor
 
-private let π = CGFloat(M_PI)
-private let twoPi = 2.0 * π
-
 enum ColorMode {
     case ThetaIncreasing
     case ThetaIncreasingAndDecreasing
