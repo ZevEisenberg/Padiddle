@@ -63,6 +63,10 @@ class RootViewModel: ToolbarViewModelColorDelegate {
         drawingViewController.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 
+    func clearTapped() {
+        drawingViewController?.clearTapped()
+    }
+
     // MARK: ToolbarViewModelColorDelegate
 
     func colorManagerPicked(colorManager: ColorManager) {

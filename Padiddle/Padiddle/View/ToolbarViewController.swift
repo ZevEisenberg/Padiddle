@@ -57,6 +57,20 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     @IBAction func trashTapped() {
         print(__FUNCTION__)
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
+            self.viewModel?.clearTapped()
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Button to cancel the current action"), style: .Cancel, handler: nil)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        alert.modalPresentationStyle = .Popover
+
+        presentViewController(alert, animated: true, completion: nil)
+        let popoverController = alert.popoverPresentationController
+        popoverController?.sourceView = self.clearButton
+        popoverController?.sourceRect = self.clearButton.bounds
+        popoverController?.permittedArrowDirections = .Down
     }
 
     @IBAction func colorTapped() {

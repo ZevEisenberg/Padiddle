@@ -93,6 +93,10 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
         }
     }
 
+    func clearTapped() {
+        drawingView.clear()
+    }
+
     // MARK: DrawingViewModelDelegate
 
     func start() {
