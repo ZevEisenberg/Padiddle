@@ -60,8 +60,6 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
     }
 
     @IBAction func colorTapped() {
-        // TODO: pause recording
-
         let viewControllerToShow: UIViewController
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
