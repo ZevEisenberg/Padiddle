@@ -185,8 +185,7 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         if traitCollection.verticalSizeClass == .Regular {
             layout.numberOfColumns = colsPortrait
             layout.numberOfRows = rowsPortrait
-        }
-        else {
+        } else {
             layout.numberOfColumns = colsLandscape
             layout.numberOfRows = rowsLandscape
         }

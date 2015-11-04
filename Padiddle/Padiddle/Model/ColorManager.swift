@@ -76,8 +76,7 @@ struct ColorManager {
             var value: CGFloat
             if theta > π {
                 value = twoPi - theta
-            }
-            else {
+            } else {
                 value = theta
             }
             channelValue = value / π

@@ -23,8 +23,7 @@ struct Defaults {
             let objectExists = NSUserDefaults().objectForKey(colorPickerPersistentIndexKey) != nil
             if objectExists {
                 restoredValue = NSUserDefaults().integerForKey(colorPickerPersistentIndexKey)
-            }
-            else {
+            } else {
                 restoredValue = defaultColorPickerPersistentIndex
             }
 

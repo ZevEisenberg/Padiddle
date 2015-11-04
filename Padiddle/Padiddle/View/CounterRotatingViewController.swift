@@ -44,11 +44,9 @@ extension CGAffineTransform {
         let direction: Direction
         if b > 0 {
             direction = .Left
-        }
-        else if b < 0 {
+        } else if b < 0 {
             direction = .Right
-        }
-        else {
+        } else {
             direction = .None
         }
 

@@ -42,8 +42,7 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate, D
         if motionManager.gyroAvailable {
             if motionManager.magnetometerAvailable {
                 motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryCorrectedZVertical)
-            }
-            else {
+            } else {
                 motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryZVertical)
             }
 
@@ -80,8 +79,7 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate, D
     @objc func recordingStatusChanged(recording: Bool) {
         if recording {
             delegate?.start()
-        }
-        else {
+        } else {
             delegate?.pause()
         }
     }
@@ -89,8 +87,7 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate, D
     @objc func motionUpdatesStatusChanged(updates: Bool) {
         if updates {
             startMotionUpdates()
-        }
-        else {
+        } else {
             stopMotionUpdates()
         }
     }

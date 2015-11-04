@@ -81,8 +81,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
             viewControllerToShow = colorPickerViewController
             viewControllerToShow.modalPresentationStyle = .Popover
-        }
-        else {
+        } else {
             let navigationController = UINavigationController(rootViewController: colorPickerViewController)
             setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: "dismissModal", doneSelector: nil)
             viewControllerToShow = navigationController
@@ -222,8 +221,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         if toolbarVisible {
             toolbarTopConstraint.active = false
             toolbarBottomConstraint.active = true
-        }
-        else {
+        } else {
             toolbarBottomConstraint.active = false
             toolbarTopConstraint.active = true
         }

@@ -120,8 +120,7 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
                 if extantViewModel.needToMoveNibToNewStartLocation {
                     extantViewModel.needToMoveNibToNewStartLocation = false
                     drawingView.restartAtPoint(newLocation)
-                }
-                else {
+                } else {
                     drawingView.addPoint(newLocation)
                 }
             }

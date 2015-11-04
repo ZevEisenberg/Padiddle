@@ -15,8 +15,7 @@ class Weak<T: AnyObject>: CustomStringConvertible {
     var description: String {
         if let exists = value {
             return "Weak(\(exists))"
-        }
-        else {
+        } else {
             return "Weak(nil)"
         }
     }
