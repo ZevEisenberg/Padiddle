@@ -38,7 +38,8 @@ class DrawingView: UIView {
         return ƒ
     }()
 
-    private let contextSize = CGSize(width: 1024, height: 1024)
+    // TODO: make private when image persistence is in view model
+    let contextSize = CGSize(width: 1024, height: 1024)
 
     private let brushDiameter: CGFloat = 12
 
@@ -82,12 +83,7 @@ class DrawingView: UIView {
 
     func clear() {
         CGContextSetFillColorWithColor(offscreenContext, UIColor.whiteColor().CGColor)
-        CGContextFillRect(offscreenContext, CGRect(
-            x: 0,
-            y: 0,
-            width: contextSize.width,
-            height: contextSize.height)
-        )
+        CGContextFillRect(offscreenContext, CGRect(origin: CGPoint.zero, size: contextSize))
 
         setNeedsDisplay()
     }
@@ -136,14 +132,17 @@ class DrawingView: UIView {
         }
     }
 
-    func snapshotForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> UIImage {
-        assert(!NSThread.isMainThread(), "Snapshotting must happen on a background thread")
+    func setInitialImage(image: UIImage) {
+        let rect = CGRect(origin: CGPoint.zero, size: contextSize)
+        CGContextDrawImage(offscreenContext, rect, image.CGImage!)
+    }
 
+    func snapshotForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> UIImage {
         let (imageOrientation, rotation) = rotationForInterfaceOrientation(interfaceOrientation)
 
         let cacheImage = CGBitmapContextCreateImage(offscreenContext)!
 
-        let originalImage = UIImage(CGImage: cacheImage, scale: contextScaleFactor, orientation: imageOrientation)
+        let originalImage = UIImage(CGImage: cacheImage, scale: screenScale, orientation: imageOrientation)
 
         let rotatedImage = originalImage.imageRotatedByRadians(rotation)
 

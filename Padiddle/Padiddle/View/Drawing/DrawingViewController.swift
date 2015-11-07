@@ -35,6 +35,20 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     var viewModel: DrawingViewModel?
     private let drawingView = DrawingView()
     private let nib = UIImageView()
+    private var backgroundSaveTask: UIBackgroundTaskIdentifier?
+
+    private var contextScale: CGFloat {
+        // don't go more extreme than necessary on an @3x device
+        return min(UIScreen.mainScreen().scale, 2.0)
+    }
+
+    #if SCREENSHOTS
+    private let persistedImageName = "ScreenshotPersistedImage"
+    #else
+    private let persistedImageName = "PadiddlePersistedImage"
+    #endif
+
+    private let persistedImageExtension = "png"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +88,8 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
             label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
             label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
         }
+
+        loadPersistedImage()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -109,7 +125,7 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
         viewModel?.isUpdating = false
         viewModel?.needToMoveNibToNewStartLocation = true
         drawingView.stopDrawing()
-        // TODO: persist image in background
+        persistImageInBackground()
     }
 
     func drawingViewModelUpdatedLocation(newLocation: CGPoint) {
@@ -124,6 +140,95 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
                     drawingView.addPoint(newLocation)
                 }
             }
+        }
+    }
+
+    // MARK: Private
+
+    // TODO: move to view model
+    private func persistImageInBackground() {
+        #if !SCREENSHOTS // no-op in screenshot mode
+            let snapshot = drawingView.snapshotForInterfaceOrientation(.Portrait);
+
+            let app = UIApplication.sharedApplication()
+
+
+            backgroundSaveTask = app.beginBackgroundTaskWithExpirationHandler {
+                if let task = self.backgroundSaveTask {
+                    app.endBackgroundTask(task)
+                    self.backgroundSaveTask = UIBackgroundTaskInvalid
+                }
+            }
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                defer {
+                    if let task = self.backgroundSaveTask {
+                        app.endBackgroundTask(task)
+                    }
+                    self.backgroundSaveTask = UIBackgroundTaskInvalid
+                }
+
+                guard let imageData = UIImagePNGRepresentation(snapshot) else {
+                    print("Error - could not generate PNG to save image")
+                    return
+                }
+
+                let imageURL = self.urlForPersistedImage()
+
+                let success = imageData.writeToURL(imageURL, atomically: true)
+
+                if !success {
+                    print("Error writing file")
+                }
+            }
+        #endif
+    }
+
+    // TODO: Move to view model
+    private func urlForPersistedImage() -> NSURL {
+        var scaledContextSize = self.drawingView.contextSize
+        scaledContextSize.width *= contextScale
+        scaledContextSize.height *= contextScale
+
+        let imageName = NSString(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height) as String
+
+        #if SCREENSHOTS
+            let url = NSBundle.mainBundle().URLForResource(imageName, withExtension:persistedImageExtension)
+            return url
+        #endif
+
+        let paths = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+
+        let documentsURL = paths.first!
+
+        let path = documentsURL.path!
+        if !NSFileManager.defaultManager().fileExistsAtPath(path) {
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
+            } catch let error {
+                print("Error creating direcotry at path \(path): \(error)")
+            }
+        }
+
+        let fullURL = documentsURL.URLByAppendingPathComponent(imageName).URLByAppendingPathExtension(persistedImageExtension)
+
+        return fullURL;
+    }
+
+    private func loadPersistedImageData(imageData: NSData) {
+        guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
+            print("Error: couldn't create image from data on disk")
+            return
+        }
+
+        drawingView.setInitialImage(image)
+    }
+
+    func loadPersistedImage() {
+        let imageURL = urlForPersistedImage()
+
+        if let imageData = NSData(contentsOfURL: imageURL) {
+            loadPersistedImageData(imageData)
         }
     }
 }
