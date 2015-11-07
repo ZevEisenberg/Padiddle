@@ -106,4 +106,47 @@ extension UIImage {
 
         return retImage
     }
+
+    var imageFlippedHorizontally: UIImage {
+        return imageScaledBy(CGVector(dx: -1, dy: 1))
+    }
+
+    var imageFlippedVertically: UIImage {
+        return imageScaledBy(CGVector(dx: 1, dy: -1))
+    }
+
+    private func imageScaledBy(scaleVector: CGVector) -> UIImage {
+
+        let bytesPerPixel: size_t = 4
+        let bitsPerComponent: size_t = 8
+        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+
+        let bitmap = CGBitmapContextCreate(nil,
+            Int(size.width * scale),
+            Int(size.height * scale),
+            bitsPerComponent,
+            bitmapBytesPerRow,
+            colorSpace,
+            CGImageAlphaInfo.NoneSkipLast.rawValue)
+
+        // Move the origin to the middle of the image so we will rotate and scale around the center.
+        CGContextTranslateCTM(bitmap, size.width * scale / 2, size.height * scale / 2)
+
+        CGContextScaleCTM(bitmap, scaleVector.dx, scaleVector.dy)
+
+        // Now, draw the rotated/scaled image into the context
+        let drawRect = CGRect(
+            x: -size.width * scale / 2,
+            y: -size.height * scale / 2,
+            width: size.width * scale,
+            height: size.height * scale)
+        CGContextDrawImage(bitmap, drawRect, self.CGImage)
+
+        let newImage = CGBitmapContextCreateImage(bitmap)!
+
+        let retImage = UIImage(CGImage: newImage, scale: scale, orientation: .Up)
+
+        return retImage;
+    }
 }
