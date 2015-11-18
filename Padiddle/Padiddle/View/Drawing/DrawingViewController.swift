@@ -148,7 +148,7 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     // TODO: move to view model
     private func persistImageInBackground() {
         #if !SCREENSHOTS // no-op in screenshot mode
-            let snapshot = drawingView.snapshotForInterfaceOrientation(.Portrait);
+            let snapshot = drawingView.snapshotForInterfaceOrientation(.Portrait)
 
             let app = UIApplication.sharedApplication()
 
@@ -212,7 +212,7 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
 
         let fullURL = documentsURL.URLByAppendingPathComponent(imageName).URLByAppendingPathExtension(persistedImageExtension)
 
-        return fullURL;
+        return fullURL
     }
 
     private func loadPersistedImageData(imageData: NSData) {

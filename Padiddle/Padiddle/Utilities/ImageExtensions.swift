@@ -147,6 +147,6 @@ extension UIImage {
 
         let retImage = UIImage(CGImage: newImage, scale: scale, orientation: .Up)
 
-        return retImage;
+        return retImage
     }
 }
