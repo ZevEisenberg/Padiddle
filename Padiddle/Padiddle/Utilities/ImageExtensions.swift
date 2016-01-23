@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     class func ellipseImageWithColor(color color: UIColor, size: CGSize, borderWidth: CGFloat, borderColor: UIColor) -> UIImage {
         // Build a rect of appropriate size at origin (1,1)
-        let fullRect = CGRectMake(0, 0, size.width, size.height)
+        let fullRect = CGRect(origin: CGPoint.zero, size: size)
         let insetRect = CGRectInset(fullRect, borderWidth / 2.0, borderWidth / 2.0)
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
