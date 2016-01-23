@@ -17,4 +17,29 @@ extension UIDevice {
             return 25
         }
     }
+
+    class var padDeviceName: NSString {
+        var deviceName = currentDevice().model
+
+
+        if runningOnSimulator {
+            let range = deviceName.rangeOfString("simulator",
+                options: [.AnchoredSearch, .BackwardsSearch, .CaseInsensitiveSearch]
+            )
+
+            if range != nil {
+                if currentDevice().userInterfaceIdiom == .Pad {
+                    deviceName = "iPad"
+                } else {
+                    deviceName = "iPhone"
+                }
+            }
+        }
+
+        return deviceName
+    }
+
+    private class var runningOnSimulator: Bool {
+        return TARGET_OS_SIMULATOR != 0
+    }
 }

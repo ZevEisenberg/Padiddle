@@ -21,15 +21,30 @@ struct HelpViewModel {
         }
 
         do {
-            var htmlString = try NSMutableString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
-            HelpViewModel.populateString(htmlString)
-            return htmlString as String
+            let htmlString = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            let filledHMTLString = HelpViewModel.populateHTMLString(htmlString)
+            return filledHMTLString as String
         } catch let error as NSError {
             fatalError("Error reading in help HTML file: \(error)")
         }
     }()
 
-    static private func populateString(string: NSMutableString) {
-        // TODO: populate HTML string
+    static private func populateHTMLString(htmlString: String) -> String {
+
+        var newString = ""
+        guard let deviceRange = htmlString.rangeOfString("^device^") else { fatalError() }
+
+        let deviceName = UIDevice.padDeviceName
+
+        newString = htmlString.stringByReplacingCharactersInRange(deviceRange, withString: deviceName as String)
+
+        guard let versionRange = newString.rangeOfString("^version^", options: .BackwardsSearch),
+        versionString = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"],
+            buildString = NSBundle.mainBundle().infoDictionary?[String(kCFBundleVersionKey)] else { fatalError() }
+
+        let combinedString = "\(versionString) (\(buildString))"
+        newString = newString.stringByReplacingCharactersInRange(versionRange, withString: combinedString)
+
+        return newString
     }
 }
