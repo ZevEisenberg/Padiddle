@@ -237,6 +237,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
             thetaStep: CGFloat(M_PI) / 16.0,
             lineWidth: 2.3)
         colorButton.setImage(image, forState: .Normal)
+        HelpImageProtocol.colorButtonImage = image
     }
 
     private func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {

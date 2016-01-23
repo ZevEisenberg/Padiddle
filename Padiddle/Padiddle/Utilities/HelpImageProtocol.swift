@@ -11,6 +11,8 @@ import UIKit.UIImage
 
 class HelpImageProtocol: NSURLProtocol {
 
+    static var colorButtonImage: UIImage?
+
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         return request.URL?.pathExtension == "asset"
     }
@@ -31,6 +33,8 @@ class HelpImageProtocol: NSURLProtocol {
         switch imageName {
         case "recordButton":
             image = UIImage.recordButtonImage()
+        case "colorButton":
+            image = HelpImageProtocol.colorButtonImage
         default:
             image = UIImage(named: imageName)
         }
