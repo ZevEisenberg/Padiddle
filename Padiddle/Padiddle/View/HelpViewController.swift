@@ -12,6 +12,7 @@ class HelpViewController: UIViewController {
 
     var viewModel = HelpViewModel()
 
+    // Using UIWebView because WKWebView won't talk to the custom NSURLProtocol subclass
     let webView = UIWebView()
 
     override func viewDidLoad() {
