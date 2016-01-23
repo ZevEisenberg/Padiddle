@@ -32,12 +32,28 @@ struct HelpViewModel {
     static private func populateHTMLString(htmlString: String) -> String {
 
         var newString = ""
-        guard let deviceRange = htmlString.rangeOfString("^device^") else { fatalError() }
+
+        // Device Name
+        guard let deviceNameRange = htmlString.rangeOfString("^deviceName^") else { fatalError() }
 
         let deviceName = UIDevice.padDeviceName
 
-        newString = htmlString.stringByReplacingCharactersInRange(deviceRange, withString: deviceName as String)
+        newString = htmlString.stringByReplacingCharactersInRange(deviceNameRange, withString: deviceName as String)
 
+        // Device Image
+        guard let deviceImageRange = newString.rangeOfString("^deviceImage^") else { fatalError() }
+
+        newString = newString.stringByReplacingCharactersInRange(deviceImageRange, withString: deviceName as String)
+
+        // Device Image Width
+        guard let deviceImage = UIImage.Asset(rawValue: deviceName)?.image else { fatalError() }
+
+        let nativeWidth = deviceImage.size.width
+
+        guard let imageWidthRange = newString.rangeOfString("^maxDeviceImageWidthPoints^") else { fatalError() }
+        newString = newString.stringByReplacingCharactersInRange(imageWidthRange, withString: String(nativeWidth))
+
+        // Version Number
         guard let versionRange = newString.rangeOfString("^version^", options: .BackwardsSearch),
         versionString = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"],
             buildString = NSBundle.mainBundle().infoDictionary?[String(kCFBundleVersionKey)] else { fatalError() }

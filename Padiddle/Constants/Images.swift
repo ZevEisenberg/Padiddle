@@ -6,6 +6,8 @@ import UIKit
 extension UIImage {
   enum Asset: String {
     case HelpButton = "HelpButton"
+    case IPad = "iPad"
+    case IPhone = "iPhone"
     case PauseButton = "PauseButton"
     case RecordButtonBack = "RecordButtonBack"
     case RecordButtonFront = "RecordButtonFront"

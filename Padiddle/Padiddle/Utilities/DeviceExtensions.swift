@@ -18,7 +18,7 @@ extension UIDevice {
         }
     }
 
-    class var padDeviceName: NSString {
+    class var padDeviceName: String {
         var deviceName = currentDevice().model
 
 

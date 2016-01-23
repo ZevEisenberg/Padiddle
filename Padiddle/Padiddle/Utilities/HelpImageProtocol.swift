@@ -12,7 +12,7 @@ import UIKit.UIImage
 class HelpImageProtocol: NSURLProtocol {
 
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        return request.URL?.pathExtension == "png"
+        return request.URL?.pathExtension == "asset"
     }
 
     override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
