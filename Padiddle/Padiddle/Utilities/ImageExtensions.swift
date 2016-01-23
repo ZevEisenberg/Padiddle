@@ -115,6 +115,29 @@ extension UIImage {
         return imageScaledBy(CGVector(dx: 1, dy: -1))
     }
 
+    class func recordButtonImage() -> UIImage {
+        let backgroundImage = UIImage(asset: .RecordButtonBack)
+        let foregroundImage = UIImage(asset: .RecordButtonFront)
+
+        let contextSize = CGSize.max(backgroundImage.size, foregroundImage.size)
+        UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)
+
+        let backgroundImageBounds = CGRect(origin: CGPoint.zero, size: backgroundImage.size)
+        let foregroundImageBounds = CGRect(origin: CGPoint.zero, size: backgroundImage.size)
+
+        let contextRect = CGRect(origin: CGPoint.zero, size: contextSize)
+
+        let backgroundImageFrame = contextRect.centerSmallerRect(backgroundImageBounds)
+        let foregroundImageFrame = contextRect.centerSmallerRect(foregroundImageBounds)
+
+        backgroundImage.drawInRect(backgroundImageFrame)
+        foregroundImage.drawInRect(foregroundImageFrame)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+
     private func imageScaledBy(scaleVector: CGVector) -> UIImage {
 
         let bytesPerPixel: size_t = 4

@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 struct HelpViewModel {
+    init() {
+        let success = NSURLProtocol.registerClass(HelpImageProtocol)
+        assert(success)
+    }
+
     lazy var html: String = {
         guard let filePath = NSBundle.mainBundle().pathForResource("help", ofType: "html") else {
             fatalError("Couldn't find help HTML file")

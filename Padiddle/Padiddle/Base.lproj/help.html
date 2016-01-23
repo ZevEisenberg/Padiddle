@@ -69,7 +69,7 @@
 
         .dedication {
             font: -apple-system-body;
-            font-style:italic;
+            font-style: italic;
         }
 
         .footer {
@@ -80,11 +80,15 @@
             color: #^toolbarButtonColor^;
         }
 
-        .recordButton {
-            color: #FB0007;
-        }
-
         /* images */
+
+        #recordButton {
+            vertical-align: middle;
+            position: relative;
+            top: -1pt;
+            width: 1em;
+            height: 1em;
+        }
 
         #device-image {
             margin-left: auto;
@@ -96,7 +100,7 @@
     </head>
     <body>
         <h1>Instructions</h1>
-        <p>Tap the <span class="recordButton toolbarButton">Record</span> button, then spin your ^device^ around like this:</p>
+        <p>Tap the <img id="recordButton" src="recordButton.png" alt="picture of the app’s Record button" /> button, then spin your ^device^ around like this:</p>
         <p><img id="device-image" src="^imagePlaceholder^.png" onload="scaleImage(this)" alt="iOS device spinning on a person&rsquo;s finger" /></p>
         <p>Tap anywhere to pause recording.</p>
         <p>Tap the <span class="toolbarButton">Color</span> button to choose from a library of color schemes.</p>

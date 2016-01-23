@@ -30,3 +30,25 @@ struct Geometry {
         return CGPoint(x: returnX, y: returnY)
     }
 }
+
+extension CGSize {
+    static func max(size1: CGSize, _ size2: CGSize) -> CGSize {
+        let maxWidth = Swift.max(size1.width, size2.width)
+        let maxHeight = Swift.max(size1.height, size2.height)
+        return CGSize(width: maxWidth, height: maxHeight)
+    }
+}
+
+extension CGRect {
+    func centerSmallerRect(smallerRect: CGRect) -> CGRect {
+        assert(smallerRect.width <= self.width)
+        assert(smallerRect.height <= self.height)
+
+        let newRect = smallerRect.offsetBy(
+            dx: (self.width - smallerRect.width) / 2,
+            dy: (self.height - smallerRect.height) / 2
+        )
+
+        return newRect
+    }
+}
