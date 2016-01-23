@@ -174,7 +174,29 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
     }
 
     @IBAction func helpTapped() {
-        print(__FUNCTION__)
+        let helpViewController = HelpViewController()
+        helpViewController.modalPresentationStyle = .Popover
+
+        let viewControllerToShow: UIViewController
+
+        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+            viewControllerToShow = helpViewController
+            viewControllerToShow.modalPresentationStyle = .Popover
+        } else {
+            let navigationController = UINavigationController(rootViewController: helpViewController)
+            setUpNavigationItem(helpViewController.navigationItem, cancelSelector: nil, doneSelector: "dismissModal")
+            viewControllerToShow = navigationController
+            viewControllerToShow.modalPresentationStyle = .FormSheet
+        }
+
+        self.presentViewController(viewControllerToShow, animated: true) { }
+
+        if let popoverController = viewControllerToShow.popoverPresentationController {
+            popoverController.sourceView = helpButton
+            popoverController.sourceRect = helpButton.bounds
+            popoverController.permittedArrowDirections = .Down
+            popoverController.passthroughViews = passthroughViews
+        }
     }
 
     func dismissModal() {
