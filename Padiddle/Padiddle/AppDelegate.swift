@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        toolbarViewController = storyboard.instantiateViewControllerWithIdentifier("ToolbarViewController") as? ToolbarViewController
+        toolbarViewController = StoryboardScene.Main.instanciateToolbarViewController()
 
         let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.mainScreen().longestSide)
 

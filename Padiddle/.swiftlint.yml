@@ -20,3 +20,4 @@ included: # paths to include during linting. `--path` is ignored if present. tak
 excluded: # paths to ignore during linting. overridden by `included`.
   - Carthage
   - Pods
+  - Constants

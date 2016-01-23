@@ -40,6 +40,8 @@
 		CDDA9DC71C52FED200D9EF19 /* HelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */; };
 		CDDA9DCE1C5300CD00D9EF19 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDA9DCC1C5300CD00D9EF19 /* help.html */; };
 		CDDA9DD51C53054B00D9EF19 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD41C53054B00D9EF19 /* Layout.swift */; };
+		CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD81C5310CB00D9EF19 /* Images.swift */; };
+		CDDA9DDB1C5310DB00D9EF19 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDA1C5310DB00D9EF19 /* Storyboards.swift */; };
 		CDEA9C5B1C02ACFC00E02D66 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,8 @@
 		CDDA9DD21C53011000D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/help.html"; sourceTree = "<group>"; };
 		CDDA9DD31C53011100D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/help.html"; sourceTree = "<group>"; };
 		CDDA9DD41C53054B00D9EF19 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		CDDA9DD81C5310CB00D9EF19 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		CDDA9DDA1C5310DB00D9EF19 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +167,7 @@
 				CDA035E01BA8AEAA0023F290 /* View */,
 				CD42370E1BAB6F2D0000E395 /* View Model */,
 				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
+				CDDA9DD71C5310C100D9EF19 /* Constants */,
 				CD118DC01BA5F65C00668DB6 /* Main.storyboard */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
 				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
@@ -261,6 +266,16 @@
 			path = Drawing;
 			sourceTree = "<group>";
 		};
+		CDDA9DD71C5310C100D9EF19 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CDDA9DD81C5310CB00D9EF19 /* Images.swift */,
+				CDDA9DDA1C5310DB00D9EF19 /* Storyboards.swift */,
+			);
+			name = Constants;
+			path = ../Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,6 +283,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
+				CDDA9DD61C530FDA00D9EF19 /* SwiftGen */,
 				CD193CB51BA4891500203B44 /* Sources */,
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
@@ -420,6 +436,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
+		CDDA9DD61C530FDA00D9EF19 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftgen >/dev/null; then\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\nswiftgen storyboards \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Storyboards.swift\"\nswiftgen images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\nfi\nelse\necho \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -448,6 +478,8 @@
 				CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
+				CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */,
+				CDDA9DDB1C5310DB00D9EF19 /* Storyboards.swift in Sources */,
 				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */,
