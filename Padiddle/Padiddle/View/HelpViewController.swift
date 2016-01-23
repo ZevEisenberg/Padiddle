@@ -25,6 +25,8 @@ class HelpViewController: UIViewController {
         view.addSubview(webView)
         webView.pinEdgesToMargins(view)
         webView.loadHTMLString(viewModel.html, baseURL: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "typeSizeChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -37,6 +39,10 @@ class HelpViewController: UIViewController {
         coordinator.animateAlongsideTransition(nil) { _ in
             self.webView.scrollView.flashScrollIndicators()
         }
+    }
+
+    func typeSizeChanged(note: NSNotification) {
+        webView.loadHTMLString(viewModel.html, baseURL: nil)
     }
 }
 
