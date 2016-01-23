@@ -18,7 +18,7 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Color Settings", comment: "Title of a view that lets you choose a color scheme")
+        title = NSLocalizedString("About Padiddle", comment: "Title of the About screen")
 
         webView.backgroundColor = .whiteColor()
         webView.delegate = self
