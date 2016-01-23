@@ -251,13 +251,13 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     private func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
 
-        if cancelSelector != nil {
-            let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector!)
+        if let cancelSelector = cancelSelector {
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector)
             navigationItem.leftBarButtonItem = cancelButton
         }
 
-        if doneSelector != nil {
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector!)
+        if let doneSelector = doneSelector {
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector)
             navigationItem.rightBarButtonItem = doneButton
         }
     }
