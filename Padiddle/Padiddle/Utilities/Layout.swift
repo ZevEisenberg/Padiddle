@@ -27,7 +27,6 @@ extension UIView {
 
         translatesAutoresizingMaskIntoConstraints = false
 
-
         self.topAnchor.constraintEqualToAnchor(parentView.layoutMarginsGuide.topAnchor).active = true
         self.bottomAnchor.constraintEqualToAnchor(parentView.layoutMarginsGuide.bottomAnchor).active = true
 
