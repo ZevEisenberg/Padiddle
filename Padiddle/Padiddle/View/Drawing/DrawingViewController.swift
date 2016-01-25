@@ -10,7 +10,7 @@ import UIKit
 
 let showDebugLabel = false
 
-class DrawingViewController: CounterRotatingViewController, DrawingViewModelDelegate {
+class DrawingViewController: CounterRotatingViewController {
 
     private let viewModel: DrawingViewModel
     private let drawingView: DrawingView
@@ -79,9 +79,9 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     func clearTapped() {
         drawingView.clear()
     }
+}
 
-    // MARK: DrawingViewModelDelegate
-
+extension DrawingViewController: DrawingViewModelDelegate {
     func start() {
         viewModel.isUpdating = true
         drawingView.startDrawing()

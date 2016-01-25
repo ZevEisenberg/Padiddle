@@ -10,3 +10,5 @@ import CoreGraphics.CGBase
 
 let π = CGFloat(M_PI)
 let twoPi = 2.0 * π
+let bytesPerPixel: size_t = 4
+let bitsPerComponent: size_t = 8

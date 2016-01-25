@@ -10,7 +10,7 @@ import UIKit.UIImage
 
 struct ImageIO {
 
-    static func persistImageInBackground(image: UIImage, contextScale: CGFloat, contextSize: CGSize, completion: () -> Void) {
+    static func persistImageInBackground(image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
         #if !SCREENSHOTS // no-op in screenshot mode
             let app = UIApplication.sharedApplication()
 
@@ -27,7 +27,6 @@ struct ImageIO {
                         app.endBackgroundTask(task)
                     }
                     self.backgroundSaveTask = UIBackgroundTaskInvalid
-                    completion()
                 }
 
                 guard let imageData = UIImagePNGRepresentation(image) else {
@@ -46,7 +45,7 @@ struct ImageIO {
         #endif
     }
 
-    static func loadPersistedImage(contextScale: CGFloat, contextSize: CGSize, completion: UIImage? -> Void) {
+    static func loadPersistedImage(contextScale contextScale: CGFloat, contextSize: CGSize, completion: UIImage? -> Void) {
         let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
         if let imageData = NSData(contentsOfURL: imageURL) {

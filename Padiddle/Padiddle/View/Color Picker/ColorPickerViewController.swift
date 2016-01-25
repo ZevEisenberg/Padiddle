@@ -18,7 +18,7 @@ class {
     func colorPicked(color: ColorManager)
 }
 
-class ColorPickerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ColorPickerViewController: UIViewController {
 
     weak var delegate: ColorPickerDelegate?
 
@@ -140,48 +140,6 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.setContentOffset(scrollTo, animated:true)
     }
 
-    // MARK: UICollectionViewDataSource
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.colorsToPick.count
-    }
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? PickerCell else {
-            fatalError()
-        }
-
-        cell.title = viewModel.colorsToPick[indexPath.item].title
-
-        // TODO: cache image for faster scrolling performance
-        cell.image = viewModel.imageForColorManager(viewModel.colorsToPick[indexPath.item])
-        return cell
-    }
-
-    // MARK: UISCrollViewDelegate
-
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let pageWidth = CGRectGetWidth(collectionView.frame)
-        viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
-        pageControl.currentPage = viewModel.currentPage
-    }
-
-    // MARK: UICollectionViewDelegate
-
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        viewModel.selectedIndex = indexPath.item
-
-        if var selectedItems = collectionView.indexPathsForSelectedItems() {
-            selectedItems.removeObject(indexPath)
-            for pathToDeselect in selectedItems {
-                collectionView.deselectItemAtIndexPath(pathToDeselect, animated: false)
-            }
-        }
-
-        currentSelection = indexPath
-        delegate?.colorPicked(viewModel.selectedColorManager)
-    }
-
     // MARK: Private
 
     private func adjustColumnsAndRows(traitCollection: UITraitCollection) {
@@ -210,5 +168,47 @@ class ColorPickerViewController: UIViewController, UICollectionViewDataSource, U
     private func restoreSelection() {
         let selectedIndex = viewModel.selectedIndex
         currentSelection = NSIndexPath(forItem:selectedIndex, inSection:0)
+    }
+}
+
+extension ColorPickerViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let pageWidth = CGRectGetWidth(collectionView.frame)
+        viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
+        pageControl.currentPage = viewModel.currentPage
+    }
+}
+
+extension ColorPickerViewController: UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.colorsToPick.count
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? PickerCell else {
+            fatalError()
+        }
+
+        cell.title = viewModel.colorsToPick[indexPath.item].title
+
+        // TODO: cache image for faster scrolling performance
+        cell.image = viewModel.imageForColorManager(viewModel.colorsToPick[indexPath.item])
+        return cell
+    }
+}
+
+extension ColorPickerViewController: UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        viewModel.selectedIndex = indexPath.item
+
+        if var selectedItems = collectionView.indexPathsForSelectedItems() {
+            selectedItems.removeObject(indexPath)
+            for pathToDeselect in selectedItems {
+                collectionView.deselectItemAtIndexPath(pathToDeselect, animated: false)
+            }
+        }
+
+        currentSelection = indexPath
+        delegate?.colorPicked(viewModel.selectedColorManager)
     }
 }

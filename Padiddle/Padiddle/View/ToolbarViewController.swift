@@ -17,7 +17,7 @@ private let kRecordButtonPadding = CGFloat(20.0)
 
 private let kToolbarAnimationDuration = 0.3
 
-class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewModelToolbarDelegate {
+class ToolbarViewController: UIViewController {
 
     var viewModel: ToolbarViewModel?
 
@@ -197,32 +197,11 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    // MARK: ColorPickerDelegate
-
-    func colorPicked(color: ColorManager) {
-        updateColorButton(colorManager: color)
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
-    // MARK: ToolbarViewModelDelegate
-
-    func setToolbarVisible(visible: Bool, animated: Bool) {
-        if toolbarVisible != visible {
-            toolbarVisible = visible
-            updateToolbarConstraints(toolbarVisible: visible)
-
-            let duration = animated ? kToolbarAnimationDuration : 0.0
-            UIView.animateWithDuration(duration) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-
     // MARK: Private
 
-    private func updateColorButton(colorManager color: ColorManager) {
+    private func updateColorButton(colorManager colorManager: ColorManager) {
         let imageSize = 36
-        let image = SpiralImageMaker.image(color,
+        let image = SpiralImageMaker.image(colorManager,
             size: CGSize(width: imageSize, height: imageSize),
             startRadius: 0,
             spacePerLoop: 0.7,
@@ -243,8 +222,32 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
             toolbarTopConstraint.active = true
         }
     }
+}
 
-    private func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
+extension ToolbarViewController: ColorPickerDelegate {
+    func colorPicked(color: ColorManager) {
+        updateColorButton(colorManager: color)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
+    func setToolbarVisible(visible: Bool, animated: Bool) {
+        if toolbarVisible != visible {
+            toolbarVisible = visible
+            updateToolbarConstraints(toolbarVisible: visible)
+
+            let duration = animated ? kToolbarAnimationDuration : 0.0
+            UIView.animateWithDuration(duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+}
+
+// MARK: Utilities
+private extension ToolbarViewController {
+    func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
 
         if let cancelSelector = cancelSelector {
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector)

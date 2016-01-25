@@ -24,15 +24,12 @@ protocol DrawingViewBoundsVendor: class {
     var bounds: CGRect { get }
 }
 
-class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { // must inherit from NSObject for NSTimer to work
+class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
     private var smoothing = true
 
     private let brushDiameter: CGFloat = 12
-
-    private let bytesPerPixel: size_t = 4
-    private let bitsPerComponent: size_t = 8
 
     weak var delegate: DrawingViewModelDelegate?
     weak var view: DrawingViewBoundsVendor?
@@ -102,42 +99,6 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
         assert(success, "Problem creating bitmap context")
     }
 
-    func startMotionUpdates() {
-        if motionManager.gyroAvailable {
-            if motionManager.magnetometerAvailable {
-                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryCorrectedZVertical)
-            } else {
-                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryZVertical)
-            }
-
-            if updateTimer == nil {
-                updateTimer = NSTimer.scheduledTimerWithTimeInterval(kNibUpdateInterval, target: self, selector: "timerFired", userInfo: nil, repeats: true)
-            }
-        }
-    }
-
-    func stopMotionUpdates() {
-        updateTimer?.invalidate()
-        motionManager.stopDeviceMotionUpdates()
-    }
-
-    func timerFired() {
-        if let deviceMotion = motionManager.deviceMotion {
-
-            let zRotation = deviceMotion.rotationRate.z
-            let radius = maxRadius / UIDevice.gyroMaxValue * CGFloat(fabs(zRotation))
-            let theta = deviceMotion.attitude.yaw
-
-            let x = radius * CGFloat(cos(theta)) + maxRadius / 2.0
-            let y = radius * CGFloat(sin(theta)) + maxRadius / 2.0
-
-            colorManager?.radius = radius
-            colorManager?.theta = CGFloat(theta)
-
-            delegate?.drawingViewModelUpdatedLocation(CGPoint(x: x, y: y))
-        }
-    }
-
     func addPoint(point: CGPoint) {
         let scaledPoint = convertViewPointToContextCoordinates(point)
         let distance = Geometry.distanceBetween(scaledPoint, p2: points[3])
@@ -198,39 +159,44 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
     private func addLineSegmentBasedOnUpdatedPoints() {
         // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
 
-        let x0 = (points[0].x > -1) ? points[0].x : points[1].x //after 4 touches we should have a back anchor point. If not, use the current anchor point
-        let y0 = (points[0].y > -1) ? points[0].y : points[1].y //after 4 touches we should have a back anchor point. If not, use the current anchor point
-        let x1 = points[1].x
-        let y1 = points[1].y
-        let x2 = points[2].x
-        let y2 = points[2].y
-        let x3 = points[3].x
-        let y3 = points[3].y
+        let p0 = points[0]
+        let p1 = points[1]
+        let p2 = points[2]
+        let p3 = points[3]
 
-        let xc1 = (x0 + x1) / 2.0
-        let yc1 = (y0 + y1) / 2.0
-        let xc2 = (x1 + x2) / 2.0
-        let yc2 = (y1 + y2) / 2.0
-        let xc3 = (x2 + x3) / 2.0
-        let yc3 = (y2 + y3) / 2.0
+        let c1 = CGPoint(
+            x: (p0.x + p1.x) / 2.0,
+            y: (p0.y + p1.y) / 2.0)
+        let c2 = CGPoint(
+            x: (p1.x + p2.x) / 2.0,
+            y: (p1.y + p2.y) / 2.0)
+        let c3 = CGPoint(
+            x: (p2.x + p3.x) / 2.0,
+            y: (p2.y + p3.y) / 2.0)
 
-        let len1 = sqrt(pow(x1 - x0, 2.0) + pow(y1 - y0, 2.0))
-        let len2 = sqrt(pow(x2 - x1, 2.0) + pow(y2 - y1, 2.0))
-        let len3 = sqrt(pow(x3 - x2, 2.0) + pow(y3 - y2, 2.0))
+        let len1 = sqrt(pow(p1.x - p0.x, 2.0) + pow(p1.y - p0.y, 2.0))
+        let len2 = sqrt(pow(p2.x - p1.x, 2.0) + pow(p2.y - p1.y, 2.0))
+        let len3 = sqrt(pow(p3.x - p2.x, 2.0) + pow(p3.y - p2.y, 2.0))
 
         let k1 = len1 / (len1 + len2)
         let k2 = len2 / (len2 + len3)
 
-        let xm1 = xc1 + (xc2 - xc1) * k1
-        let ym1 = yc1 + (yc2 - yc1) * k1
-        let xm2 = xc2 + (xc3 - xc2) * k2
-        let ym2 = yc2 + (yc3 - yc2) * k2
+        let m1 = CGPoint(
+            x: c1.x + (c2.x - c1.x) * k1,
+            y: c1.y + (c2.y - c1.y) * k1)
+        let m2 = CGPoint(
+            x: c2.x + (c3.x - c2.x) * k2,
+            y: c2.y + (c3.y - c2.y) * k2)
 
         let smoothValue = CGFloat(0.5)
-        let ctrl1x = xm1 + (xc2 - xm1) * smoothValue + x1 - xm1
-        let ctrl1y = ym1 + (yc2 - ym1) * smoothValue + y1 - ym1
-        let ctrl2x = xm2 + (xc2 - xm2) * smoothValue + x2 - xm2
-        let ctrl2y = ym2 + (yc2 - ym2) * smoothValue + y2 - ym2
+        let ctrl1 = CGPoint(
+            x: m1.x + (c2.x - m1.x) * smoothValue + p1.x - m1.x,
+            y: m1.y + (c2.y - m1.y) * smoothValue + p1.y - m1.y
+        )
+        let ctrl2 = CGPoint(
+            x: m2.x + (c2.x - m2.x) * smoothValue + p2.x - m2.x,
+            y: m2.y + (c2.y - m2.y) * smoothValue + p2.y - m2.y
+        )
 
         // Create path segment. We are making a mutable path segment,
         // rather than just adding the path to the context directly,
@@ -238,7 +204,7 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
 
         let pathSegment = CGPathCreateMutable()
         CGPathMoveToPoint(pathSegment, nil, points[1].x, points[1].y)
-        CGPathAddCurveToPoint(pathSegment, nil, ctrl1x, ctrl1y, ctrl2x, ctrl2y, points[2].x, points[2].y)
+        CGPathAddCurveToPoint(pathSegment, nil, ctrl1.x, ctrl1.y, ctrl2.x, ctrl2.y, points[2].x, points[2].y)
 
         // draw the segment into the context
 
@@ -255,12 +221,9 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
     func snapshotForInterfaceOrientation(orientation: UIInterfaceOrientation) -> UIImage {
         let (imageOrientation, rotation) = orientation.imageRotation
 
-        let cacheImage = CGBitmapContextCreateImage(offscreenContext)!
-
-        let originalImage = UIImage(CGImage: cacheImage, scale: UIScreen.mainScreen().scale, orientation: imageOrientation)
-
-        let rotatedImage = originalImage.imageRotatedByRadians(rotation)
-
+        let cacheCGImage = CGBitmapContextCreateImage(offscreenContext)!
+        let unrotatedImage = UIImage(CGImage: cacheCGImage, scale: UIScreen.mainScreen().scale, orientation: imageOrientation)
+        let rotatedImage = unrotatedImage.imageRotatedByRadians(rotation)
         return rotatedImage
     }
 
@@ -277,21 +240,19 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
 
     func persistImageInBackground() {
         let snapshot = snapshotForInterfaceOrientation(.Portrait)
-        ImageIO.persistImageInBackground(snapshot, contextScale: contextScale, contextSize: contextSize) {
-
-        }
+        ImageIO.persistImageInBackground(snapshot, contextScale: contextScale, contextSize: contextSize)
     }
 
     func loadPersistedImage() {
-        ImageIO.loadPersistedImage(contextScale, contextSize: contextSize) { image in
+        ImageIO.loadPersistedImage(contextScale: contextScale, contextSize: contextSize) { image in
             if let image = image {
                 self.setInitialImage(image)
             }
         }
     }
+}
 
-    // MARK: RecordingDelegate
-
+extension DrawingViewModel: RecordingDelegate {
     @objc func recordingStatusChanged(recording: Bool) {
         if recording {
             delegate?.start()
@@ -307,16 +268,17 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
             stopMotionUpdates()
         }
     }
+}
 
-    // MARK: RootColorManagerDelegate
-
+extension DrawingViewModel: RootColorManagerDelegate {
     func colorManagerPicked(colorManager: ColorManager) {
         var newManager = colorManager
         newManager.maxRadius = maxRadius
         self.colorManager = newManager
     }
+}
 
-    // MARK: Private
+extension DrawingViewModel { // Coordinate conversions
 
     private func convertViewPointToContextCoordinates(point: CGPoint) -> CGPoint {
 
@@ -378,8 +340,10 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
 
         return offsetRect
     }
+}
 
-    private func configureOffscreenContext() -> Bool {
+private extension DrawingViewModel { // Context configuration
+    func configureOffscreenContext() -> Bool {
         let bitmapBytesPerRow: Int
 
         // Declare the number of bytes per row. Each pixel in the bitmap in this
@@ -387,8 +351,6 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
         // alpha.
 
         bitmapBytesPerRow = Int(contextSize.width) * bytesPerPixel * Int(screenScale)
-
-        // Passing NULL as first param makes Quartz handle memory allocation.
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
@@ -416,5 +378,43 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
         clear()
 
         return true
+    }
+}
+
+extension DrawingViewModel { // Core Motion
+    func startMotionUpdates() {
+        if motionManager.gyroAvailable {
+            if motionManager.magnetometerAvailable {
+                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryCorrectedZVertical)
+            } else {
+                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryZVertical)
+            }
+
+            if updateTimer == nil {
+                updateTimer = NSTimer.scheduledTimerWithTimeInterval(kNibUpdateInterval, target: self, selector: "timerFired", userInfo: nil, repeats: true)
+            }
+        }
+    }
+
+    func stopMotionUpdates() {
+        updateTimer?.invalidate()
+        motionManager.stopDeviceMotionUpdates()
+    }
+
+    private func timerFired() {
+        if let deviceMotion = motionManager.deviceMotion {
+
+            let zRotation = deviceMotion.rotationRate.z
+            let radius = maxRadius / UIDevice.gyroMaxValue * CGFloat(fabs(zRotation))
+            let theta = deviceMotion.attitude.yaw
+
+            let x = radius * CGFloat(cos(theta)) + maxRadius / 2.0
+            let y = radius * CGFloat(sin(theta)) + maxRadius / 2.0
+
+            colorManager?.radius = radius
+            colorManager?.theta = CGFloat(theta)
+
+            delegate?.drawingViewModelUpdatedLocation(CGPoint(x: x, y: y))
+        }
     }
 }

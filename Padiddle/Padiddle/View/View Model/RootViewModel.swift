@@ -21,7 +21,7 @@ class {
     func colorManagerPicked(colorManager: ColorManager)
 }
 
-class RootViewModel: ToolbarViewModelColorDelegate {
+class RootViewModel {
     private var recordingDelegates = [Weak<RecordingDelegate>]()
     weak var rootColorManagerDelegate: RootColorManagerDelegate?
     weak var drawingViewController: DrawingViewController?
@@ -64,9 +64,9 @@ class RootViewModel: ToolbarViewModelColorDelegate {
     func clearTapped() {
         drawingViewController?.clearTapped()
     }
+}
 
-    // MARK: ToolbarViewModelColorDelegate
-
+extension RootViewModel: ToolbarViewModelColorDelegate {
     func colorManagerPicked(colorManager: ColorManager) {
         rootColorManagerDelegate?.colorManagerPicked(colorManager)
     }

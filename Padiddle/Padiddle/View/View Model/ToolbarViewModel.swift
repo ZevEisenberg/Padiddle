@@ -19,7 +19,7 @@ class {
     func colorManagerPicked(colorManager: ColorManager)
 }
 
-class ToolbarViewModel: RecordingDelegate, ColorPickerViewModelDelegate {
+class ToolbarViewModel {
     var colorPickerViewModel: ColorPickerViewModel?
 
     let rootViewModel: RootViewModel
@@ -45,15 +45,15 @@ class ToolbarViewModel: RecordingDelegate, ColorPickerViewModelDelegate {
     func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
         rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
     }
+}
 
-    // MARK: RecordingDelegate
-
+extension ToolbarViewModel: RecordingDelegate {
     @objc func recordingStatusChanged(recording: Bool) {
         toolbarDelegate?.setToolbarVisible(!recording, animated: true)
     }
+}
 
-    // MARK: ColorPickerViewModelDelegate
-
+extension ToolbarViewModel: ColorPickerViewModelDelegate {
     func colorManagerPicked(colorManager: ColorManager) {
         colorDelegate?.colorManagerPicked(colorManager)
     }

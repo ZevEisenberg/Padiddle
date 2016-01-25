@@ -66,19 +66,7 @@ extension UIImage {
         rotatedSize.width *= scale
         rotatedSize.height *= scale
 
-        // Create the bitmap context
-        let bytesPerPixel: size_t = 4
-        let bitsPerComponent: size_t = 8
-        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-
-        let context = CGBitmapContextCreate(nil,
-            Int(size.width * scale),
-            Int(size.height * scale),
-            bitsPerComponent,
-            bitmapBytesPerRow,
-            colorSpace,
-            CGImageAlphaInfo.NoneSkipLast.rawValue)
+        let context = createContext()
 
         // Move the origin to the middle of the image so we will rotate and scale around the center.
         CGContextTranslateCTM(context, size.width * scale / 2, size.height * scale / 2)
@@ -94,11 +82,7 @@ extension UIImage {
             height: rotatedSize.height)
 
         CGContextScaleCTM(context, 1.0, -1.0)
-        CGContextDrawImage(
-            context,
-            imageRect,
-            self.CGImage
-        )
+        CGContextDrawImage(context, imageRect, self.CGImage)
 
         let newImage = CGBitmapContextCreateImage(context)!
 
@@ -140,8 +124,6 @@ extension UIImage {
 
     private func imageScaledBy(scaleVector: CGVector) -> UIImage {
 
-        let bytesPerPixel: size_t = 4
-        let bitsPerComponent: size_t = 8
         let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
@@ -171,5 +153,21 @@ extension UIImage {
         let retImage = UIImage(CGImage: newImage, scale: scale, orientation: .Up)
 
         return retImage
+    }
+
+    private func createContext() -> CGContextRef? {
+        // Create the bitmap context
+        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+
+        let context = CGBitmapContextCreate(nil,
+            Int(size.width * scale),
+            Int(size.height * scale),
+            bitsPerComponent,
+            bitmapBytesPerRow,
+            colorSpace,
+            CGImageAlphaInfo.NoneSkipLast.rawValue)
+
+        return context
     }
 }
