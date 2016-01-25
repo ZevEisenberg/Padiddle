@@ -233,8 +233,8 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
             startRadius: 0,
             spacePerLoop: 0.7,
             startTheta: 0,
-            endTheta: 2.0 * CGFloat(M_PI) * 4.0,
-            thetaStep: CGFloat(M_PI) / 16.0,
+            endTheta: 2.0 * π * 4.0,
+            thetaStep: π / 16.0,
             lineWidth: 2.3)
         colorButton.setImage(image, forState: .Normal)
         HelpImageProtocol.colorButtonImage = image

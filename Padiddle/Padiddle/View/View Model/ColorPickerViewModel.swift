@@ -60,8 +60,8 @@ class ColorPickerViewModel {
             startRadius: 0,
             spacePerLoop: 1.5,
             startTheta: 0,
-            endTheta: 2.0 * CGFloat(M_PI) * 4.0,
-            thetaStep: CGFloat(M_PI) / 32.0,
+            endTheta: 2.0 * π * 4.0,
+            thetaStep: π / 32.0,
             lineWidth: 4.9)
         return image
     }

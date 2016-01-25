@@ -68,11 +68,11 @@ func transformForStatusBarOrientation(statusBarOrientation: UIInterfaceOrientati
     case .Portrait, .Unknown:
         newTransform = CGAffineTransformIdentity
     case .PortraitUpsideDown:
-        newTransform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        newTransform = CGAffineTransformMakeRotation(π)
     case .LandscapeLeft:
-        newTransform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+        newTransform = CGAffineTransformMakeRotation(π / 2)
     case .LandscapeRight:
-        newTransform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+        newTransform = CGAffineTransformMakeRotation(-π / 2)
     }
     return newTransform
 }
