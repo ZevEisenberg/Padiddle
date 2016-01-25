@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         rootViewModel!.rootColorManagerDelegate = drawingViewModel
 
-        drawingViewController = DrawingViewController()
-        drawingViewController?.viewModel = drawingViewModel
+        drawingViewController = DrawingViewController(viewModel: drawingViewModel)
 
         rootViewModel!.drawingViewController = drawingViewController
 

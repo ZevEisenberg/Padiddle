@@ -32,8 +32,8 @@ extension CGPoint {
 
 class DrawingViewController: CounterRotatingViewController, DrawingViewModelDelegate {
 
-    var viewModel: DrawingViewModel?
-    private let drawingView = DrawingView()
+    private let viewModel: DrawingViewModel
+    private let drawingView: DrawingView
     private let nib = UIImageView()
     private var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
@@ -50,12 +50,22 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
 
     private let persistedImageExtension = "png"
 
+    init(viewModel: DrawingViewModel) {
+        self.viewModel = viewModel
+        drawingView = DrawingView(viewModel: self.viewModel)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("\(__FUNCTION__) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         drawingView.drawingViewDelegate = viewModel
 
-        viewModel?.delegate = self
+        viewModel.delegate = self
 
         view.backgroundColor = .whiteColor()
 
@@ -95,7 +105,7 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        viewModel?.startMotionUpdates()
+        viewModel.startMotionUpdates()
     }
 
     func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: ImageCallback) {
@@ -116,14 +126,14 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     // MARK: DrawingViewModelDelegate
 
     func start() {
-        viewModel?.isUpdating = true
+        viewModel.isUpdating = true
         drawingView.startDrawing()
-        viewModel?.startMotionUpdates()
+        viewModel.startMotionUpdates()
     }
 
     func pause() {
-        viewModel?.isUpdating = false
-        viewModel?.needToMoveNibToNewStartLocation = true
+        viewModel.isUpdating = false
+        viewModel.needToMoveNibToNewStartLocation = true
         drawingView.stopDrawing()
         persistImageInBackground()
     }
@@ -131,14 +141,12 @@ class DrawingViewController: CounterRotatingViewController, DrawingViewModelDele
     func drawingViewModelUpdatedLocation(newLocation: CGPoint) {
         nib.center = newLocation.screenPixelsIntegral
 
-        if let extantViewModel = viewModel {
-            if extantViewModel.isUpdating {
-                if extantViewModel.needToMoveNibToNewStartLocation {
-                    extantViewModel.needToMoveNibToNewStartLocation = false
-                    drawingView.restartAtPoint(newLocation)
-                } else {
-                    drawingView.addPoint(newLocation)
-                }
+        if viewModel.isUpdating {
+            if viewModel.needToMoveNibToNewStartLocation {
+                viewModel.needToMoveNibToNewStartLocation = false
+                drawingView.restartAtPoint(newLocation)
+            } else {
+                drawingView.addPoint(newLocation)
             }
         }
     }

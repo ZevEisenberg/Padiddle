@@ -46,7 +46,7 @@ class DrawingView: UIView {
     private let bytesPerPixel: size_t = 4
     private let bitsPerComponent: size_t = 8
 
-    private var points: [CGPoint]
+    private var points = Array(count: 4, repeatedValue: CGPoint.zero)
 
     // TODO: move offscreen context into view model
     private var offscreenContext: CGContextRef?
@@ -55,12 +55,13 @@ class DrawingView: UIView {
 
     private var displayLink: CADisplayLink?
 
-    override init(frame: CGRect) {
+    private var viewModel: DrawingViewModel
 
-        let initialPoint = CGPoint(x: CGRectGetWidth(frame) / 2.0, y: CGRectGetHeight(frame) / 2.0)
-        points = [ initialPoint, initialPoint, initialPoint, initialPoint ]
+    init(viewModel: DrawingViewModel) {
 
-        super.init(frame: frame)
+        self.viewModel = viewModel
+
+        super.init(frame: CGRect.zero)
 
         displayLink = CADisplayLink(target: self, selector: "displayLinkUpdated")
         displayLink?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
@@ -92,10 +93,8 @@ class DrawingView: UIView {
         let scaledPoint = convertViewPointToContextCoordinates(point)
         let distance = Geometry.distanceBetween(scaledPoint, p2: points[3])
         if distance > 2.25 || !smoothing {
-            points[0] = points[1]
-            points[1] = points[2]
-            points[2] = points[3]
-            points[3] = scaledPoint
+            points.removeFirst()
+            points.append(scaledPoint)
 
             addLineSegmentBasedOnUpdatedPoints()
         }
@@ -103,10 +102,7 @@ class DrawingView: UIView {
 
     func restartAtPoint(point: CGPoint) {
         let convertedPoint = convertViewPointToContextCoordinates(point)
-        points[0] = convertedPoint
-        points[1] = convertedPoint
-        points[2] = convertedPoint
-        points[3] = convertedPoint
+        points = Array(count: points.count, repeatedValue: convertedPoint)
         addLineSegmentBasedOnUpdatedPoints()
     }
 
