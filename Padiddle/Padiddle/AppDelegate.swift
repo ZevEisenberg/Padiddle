@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         toolbarViewController = StoryboardScene.Main.instanciateToolbarViewController()
 
         let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.mainScreen().longestSide)
+        drawingViewModel.configure()
 
         rootViewModel = RootViewModel(rootColorManagerDelegate: drawingViewModel)
 
