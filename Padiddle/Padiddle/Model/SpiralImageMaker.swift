@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ImageMaker {
+struct SpiralImageMaker {
     static func image(
         var colorManager: ColorManager,
         size: CGSize,

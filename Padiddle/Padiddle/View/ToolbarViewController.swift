@@ -228,7 +228,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
 
     private func updateColorButton(colorManager color: ColorManager) {
         let imageSize = 36
-        let image = ImageMaker.image(color,
+        let image = SpiralImageMaker.image(color,
             size: CGSize(width: imageSize, height: imageSize),
             startRadius: 0,
             spacePerLoop: 0.7,

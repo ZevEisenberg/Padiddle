@@ -25,7 +25,7 @@
 		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; };
 		CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F061BACAD5200D4AABB /* Colors.swift */; };
 		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; };
-		CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */; };
+		CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
@@ -87,7 +87,7 @@
 		CD5D4F021BACAA0000D4AABB /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PickerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD5D4F061BACAD5200D4AABB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewModel.swift; sourceTree = "<group>"; };
-		CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageMaker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SpiralImageMaker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -255,7 +255,7 @@
 			children = (
 				CDA035E81BA8B02D0023F290 /* ColorManager.swift */,
 				CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */,
-				CD5D4F0A1BACB18200D4AABB /* ImageMaker.swift */,
+				CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,7 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD5D4F0B1BACB18200D4AABB /* ImageMaker.swift in Sources */,
+				CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */,
 				7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */,
 				CD5D4F071BACAD5200D4AABB /* Colors.swift in Sources */,
