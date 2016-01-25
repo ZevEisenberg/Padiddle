@@ -358,7 +358,6 @@
 					};
 					CD193CCC1BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
-						TestTargetID = CD193CB81BA4891500203B44;
 					};
 					CD193CD71BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
@@ -669,24 +668,20 @@
 		CD193CE51BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Padiddle.app/Padiddle";
 			};
 			name = Debug;
 		};
 		CD193CE61BA4891500203B44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Padiddle.app/Padiddle";
 			};
 			name = Release;
 		};
