@@ -10,26 +10,6 @@ import UIKit
 
 let showDebugLabel = false
 
-extension CGPoint {
-    var screenPixelsIntegral: CGPoint {
-        let screenScale = UIScreen.mainScreen().scale
-        var newX = x
-        var newY = y
-
-        // integralize to screen pixels
-        newX *= screenScale
-        newY *= screenScale
-
-        newX = round(newX)
-        newY = round(newY)
-
-        newX /= screenScale
-        newY /= screenScale
-
-        return CGPoint(x: newX, y: newY)
-    }
-}
-
 class DrawingViewController: CounterRotatingViewController, DrawingViewModelDelegate {
 
     private let viewModel: DrawingViewModel

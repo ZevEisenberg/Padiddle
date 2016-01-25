@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics.CGGeometry
+import UIKit.UIScreen
 
 struct Geometry {
     static func distanceBetween(let p1: CGPoint, let p2: CGPoint) -> CGFloat {
@@ -50,5 +51,25 @@ extension CGRect {
         )
 
         return newRect
+    }
+}
+
+extension CGPoint {
+    var screenPixelsIntegral: CGPoint {
+        let screenScale = UIScreen.mainScreen().scale
+        var newX = x
+        var newY = y
+
+        // integralize to screen pixels
+        newX *= screenScale
+        newY *= screenScale
+
+        newX = round(newX)
+        newY = round(newY)
+
+        newX /= screenScale
+        newY /= screenScale
+
+        return CGPoint(x: newX, y: newY)
     }
 }
