@@ -401,7 +401,7 @@ extension DrawingViewModel { // Core Motion
         motionManager.stopDeviceMotionUpdates()
     }
 
-    private func timerFired() {
+    func timerFired() {
         if let deviceMotion = motionManager.deviceMotion {
 
             let zRotation = deviceMotion.rotationRate.z
