@@ -8,8 +8,6 @@
 
 import UIKit
 
-typealias ImageCallback = UIImage? -> Void
-
 class DrawingView: UIView, DrawingViewBoundsVendor {
     private var needsErase = true
     private let screenScale = UIScreen.mainScreen().scale
@@ -81,10 +79,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
     func setInitialImage(image: UIImage) {
         viewModel.setInitialImage(image)
-    }
-
-    func snapshotForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> UIImage {
-        return viewModel.snapshotForInterfaceOrientation(interfaceOrientation)
     }
 
     // MARK: Private

@@ -43,6 +43,7 @@
 		CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD81C5310CB00D9EF19 /* Images.swift */; };
 		CDDA9DDB1C5310DB00D9EF19 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDA1C5310DB00D9EF19 /* Storyboards.swift */; };
 		CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */; };
+		CDE071331C55BDFE00BB5D6A /* ImageIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE071321C55BDFE00BB5D6A /* ImageIO.swift */; };
 		CDEA9C5B1C02ACFC00E02D66 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		CDDA9DD81C5310CB00D9EF19 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		CDDA9DDA1C5310DB00D9EF19 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageProtocol.swift; sourceTree = "<group>"; };
+		CDE071321C55BDFE00BB5D6A /* ImageIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIO.swift; sourceTree = "<group>"; };
 		CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,6 +258,7 @@
 				CDA035E81BA8B02D0023F290 /* ColorManager.swift */,
 				CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */,
 				CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */,
+				CDE071321C55BDFE00BB5D6A /* ImageIO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */,
+				CDE071331C55BDFE00BB5D6A /* ImageIO.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,

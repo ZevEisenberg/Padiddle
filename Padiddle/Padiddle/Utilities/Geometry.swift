@@ -73,3 +73,27 @@ extension CGPoint {
         return CGPoint(x: newX, y: newY)
     }
 }
+
+extension UIInterfaceOrientation {
+    var imageRotation: (orientation: UIImageOrientation, rotation: CGFloat) {
+        let rotation: CGFloat
+        let imageOrientaion: UIImageOrientation
+
+        switch self {
+        case .LandscapeLeft:
+            rotation = -π / 2.0
+            imageOrientaion = .Right
+        case .LandscapeRight:
+            rotation = π / 2.0
+            imageOrientaion = .Left
+        case .PortraitUpsideDown:
+            rotation = π
+            imageOrientaion = .Down
+        case .Portrait, .Unknown:
+            rotation = 0
+            imageOrientaion = .Up
+        }
+
+        return (imageOrientaion, rotation)
+    }
+}

@@ -130,7 +130,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         dismissViewControllerAnimated(true, completion: nil)
 
         // We are going to run this whether or not we get an image back
-        let restoreShareButton: UIViewController? -> Void = { presentedViewController in
+        let restoreShareButton: UIViewController -> Void = { presentedViewController in
             self.toolbarStackView.removeArrangedSubview(activityIndicator)
             self.toolbarStackView.insertArrangedSubview(self.shareButton, atIndex: indexOfShareButton)
             self.shareButton.hidden = false
@@ -140,7 +140,7 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
             self.toolbarStackView.userInteractionEnabled = true
             self.recordButton.userInteractionEnabled = true
 
-            guard let popoverController = presentedViewController?.popoverPresentationController else { return }
+            guard let popoverController = presentedViewController.popoverPresentationController else { return }
             popoverController.sourceView = self.shareButton
             popoverController.sourceRect = self.shareButton.bounds
         }
@@ -150,12 +150,6 @@ class ToolbarViewController: UIViewController, ColorPickerDelegate, ToolbarViewM
         viewModel.getSnapshotImage(interfaceOrientation) { image in
 
             assert(NSThread.isMainThread())
-
-            // If, for some reason, we got no image back, give up and restore the buttons
-            guard let image = image else {
-                restoreShareButton(nil)
-                return
-            }
 
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact]

@@ -29,16 +29,6 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
     var needToMoveNibToNewStartLocation = true
     private var smoothing = true
 
-    private let persistedImageExtension = "png"
-
-    private var backgroundSaveTask: UIBackgroundTaskIdentifier?
-
-    #if SCREENSHOTS
-    private let persistedImageName = "ScreenshotPersistedImage"
-    #else
-    private let persistedImageName = "PadiddlePersistedImage"
-    #endif
-
     private let brushDiameter: CGFloat = 12
 
     private let bytesPerPixel: size_t = 4
@@ -199,18 +189,6 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
         CGContextDrawImage(offscreenContext, rect, image.CGImage!)
     }
 
-    func snapshotForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> UIImage {
-        let (imageOrientation, rotation) = DrawingViewModel.rotationForInterfaceOrientation(interfaceOrientation)
-
-        let cacheImage = CGBitmapContextCreateImage(offscreenContext)!
-
-        let originalImage = UIImage(CGImage: cacheImage, scale: screenScale, orientation: imageOrientation)
-
-        let rotatedImage = originalImage.imageRotatedByRadians(rotation)
-
-        return rotatedImage
-    }
-
     func addPathSegment(pathSegment: CGPathRef, color: UIColor) {
         CGContextAddPath(offscreenContext, pathSegment)
         CGContextSetStrokeColorWithColor(offscreenContext, color.CGColor)
@@ -274,88 +252,41 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
 
     // Saving & Loading
 
-    private func urlForPersistedImage() -> NSURL {
-        var scaledContextSize = contextSize
-        scaledContextSize.width *= contextScale
-        scaledContextSize.height *= contextScale
+    func snapshotForInterfaceOrientation(orientation: UIInterfaceOrientation) -> UIImage {
+        let (imageOrientation, rotation) = orientation.imageRotation
 
-        let imageName = NSString(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height) as String
+        let cacheImage = CGBitmapContextCreateImage(offscreenContext)!
 
-        #if SCREENSHOTS
-            let url = NSBundle.mainBundle().URLForResource(imageName, withExtension:persistedImageExtension)
-            return url
-        #endif
+        let originalImage = UIImage(CGImage: cacheImage, scale: UIScreen.mainScreen().scale, orientation: imageOrientation)
 
-        let paths = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let rotatedImage = originalImage.imageRotatedByRadians(rotation)
 
-        let documentsURL = paths.first!
+        return rotatedImage
+    }
 
-        let path = documentsURL.path!
-        if !NSFileManager.defaultManager().fileExistsAtPath(path) {
-            do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
-            } catch let error {
-                print("Error creating direcotry at path \(path): \(error)")
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+
+            let image = self.snapshotForInterfaceOrientation(interfaceOrientation)
+
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(image)
             }
         }
-
-        let fullURL = documentsURL.URLByAppendingPathComponent(imageName).URLByAppendingPathExtension(persistedImageExtension)
-
-        return fullURL
     }
 
     func persistImageInBackground() {
-        #if !SCREENSHOTS // no-op in screenshot mode
-            let snapshot = snapshotForInterfaceOrientation(.Portrait)
+        let snapshot = snapshotForInterfaceOrientation(.Portrait)
+        ImageIO.persistImageInBackground(snapshot, contextScale: contextScale, contextSize: contextSize) {
 
-            let app = UIApplication.sharedApplication()
-
-
-            backgroundSaveTask = app.beginBackgroundTaskWithExpirationHandler {
-                if let task = self.backgroundSaveTask {
-                    app.endBackgroundTask(task)
-                    self.backgroundSaveTask = UIBackgroundTaskInvalid
-                }
-            }
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                defer {
-                    if let task = self.backgroundSaveTask {
-                        app.endBackgroundTask(task)
-                    }
-                    self.backgroundSaveTask = UIBackgroundTaskInvalid
-                }
-
-                guard let imageData = UIImagePNGRepresentation(snapshot) else {
-                    print("Error - could not generate PNG to save image")
-                    return
-                }
-
-                let imageURL = self.urlForPersistedImage()
-
-                let success = imageData.writeToURL(imageURL, atomically: true)
-
-                if !success {
-                    print("Error writing file")
-                }
-            }
-        #endif
-    }
-
-    private func loadPersistedImageData(imageData: NSData) {
-        guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
-            print("Error: couldn't create image from data on disk")
-            return
         }
-
-        setInitialImage(image)
     }
 
     func loadPersistedImage() {
-        let imageURL = urlForPersistedImage()
-
-        if let imageData = NSData(contentsOfURL: imageURL) {
-            loadPersistedImageData(imageData)
+        ImageIO.loadPersistedImage(contextScale, contextSize: contextSize) { image in
+            if let image = image {
+                self.setInitialImage(image)
+            }
         }
     }
 
@@ -386,29 +317,6 @@ class DrawingViewModel: NSObject, RecordingDelegate, RootColorManagerDelegate { 
     }
 
     // MARK: Private
-
-    private class func rotationForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
-
-        let rotation: CGFloat
-        let imageOrientaion: UIImageOrientation
-
-        switch interfaceOrientation {
-        case .LandscapeLeft:
-            rotation = -π / 2.0
-            imageOrientaion = .Right
-        case .LandscapeRight:
-            rotation = π / 2.0
-            imageOrientaion = .Left
-        case .PortraitUpsideDown:
-            rotation = π
-            imageOrientaion = .Down
-        case .Portrait, .Unknown:
-            rotation = 0
-            imageOrientaion = .Up
-        }
-
-        return (imageOrientaion, rotation)
-    }
 
     private func convertViewPointToContextCoordinates(point: CGPoint) -> CGPoint {
 

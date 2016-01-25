@@ -56,10 +56,8 @@ class RootViewModel: ToolbarViewModelColorDelegate {
         recordingDelegates.append(Weak(value: delegate))
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: ImageCallback) {
-        guard let drawingViewController = drawingViewController else {
-            fatalError()
-        }
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+        guard let drawingViewController = drawingViewController else { fatalError() }
         drawingViewController.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 

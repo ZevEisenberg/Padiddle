@@ -42,7 +42,7 @@ class ToolbarViewModel: RecordingDelegate, ColorPickerViewModelDelegate {
         rootViewModel.clearTapped()
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: ImageCallback) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
         rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 
