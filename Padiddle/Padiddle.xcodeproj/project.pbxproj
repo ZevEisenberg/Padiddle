@@ -15,7 +15,7 @@
 		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
 		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
 		CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
-		CD193CD21BA4891500203B44 /* PadiddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* PadiddleTests.swift */; };
+		CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* GeometryTests.swift */; };
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
 		CD2AD6011C56E7A600910FFE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
 		CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */; };
@@ -76,7 +76,7 @@
 		CD193CC61BA4891500203B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD193CC81BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD193CD11BA4891500203B44 /* PadiddleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleTests.swift; sourceTree = "<group>"; };
+		CD193CD11BA4891500203B44 /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		CD193CD31BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		CD193CD01BA4891500203B44 /* PadiddleTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD193CD11BA4891500203B44 /* PadiddleTests.swift */,
+				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
 				CD193CD31BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleTests;
@@ -313,6 +313,7 @@
 				CD193CC91BA4891500203B44 /* Sources */,
 				CD193CCA1BA4891500203B44 /* Frameworks */,
 				CD193CCB1BA4891500203B44 /* Resources */,
+				CD2AD6021C56EA9400910FFE /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -331,6 +332,7 @@
 				CD193CD41BA4891500203B44 /* Sources */,
 				CD193CD51BA4891500203B44 /* Frameworks */,
 				CD193CD61BA4891500203B44 /* Resources */,
+				CD2AD6031C56EA9D00910FFE /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -442,6 +444,34 @@
 			shellPath = /bin/sh;
 			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
+		CD2AD6021C56EA9400910FFE /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		CD2AD6031C56EA9D00910FFE /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		CDDA9DD61C530FDA00D9EF19 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,7 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD193CD21BA4891500203B44 /* PadiddleTests.swift in Sources */,
+				CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */,
 				7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD2AD6011C56E7A600910FFE /* Math.swift in Sources */,
 			);
