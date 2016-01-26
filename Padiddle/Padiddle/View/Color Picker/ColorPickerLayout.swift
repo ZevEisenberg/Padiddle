@@ -29,7 +29,7 @@ class ColorPickerLayout: UICollectionViewLayout {
         let numberOfItems = collectionView!.numberOfItemsInSection(0)
         var pageCount = numberOfItems / itemsPerPage
         if numberOfItems % itemsPerPage != 0 {
-            pageCount++
+            pageCount += 1
         }
         return pageCount
     }
