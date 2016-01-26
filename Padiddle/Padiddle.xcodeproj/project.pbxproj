@@ -18,6 +18,8 @@
 		CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* GeometryTests.swift */; };
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
 		CD2AD6011C56E7A600910FFE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
+		CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2AD6041C56F00F00910FFE /* ArrayTests.swift */; };
+		CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; };
 		CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */; };
 		CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */; };
 		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; };
@@ -81,6 +83,7 @@
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
 		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD2AD6041C56F00F00910FFE /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorPickerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerLayout.swift; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
+				CD2AD6041C56F00F00910FFE /* ArrayTests.swift */,
 				CD193CD31BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleTests;
@@ -532,6 +536,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */,
+				CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */,
+				CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */,
 				7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD2AD6011C56E7A600910FFE /* Math.swift in Sources */,
 			);
