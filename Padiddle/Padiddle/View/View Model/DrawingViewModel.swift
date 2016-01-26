@@ -101,7 +101,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     func addPoint(point: CGPoint) {
         let scaledPoint = convertViewPointToContextCoordinates(point)
-        let distance = Geometry.distanceBetween(scaledPoint, p2: points[3])
+        let distance = CGPoint.distanceBetween(scaledPoint, points[3])
         if distance > 2.25 || !smoothing {
             points.removeFirst()
             points.append(scaledPoint)

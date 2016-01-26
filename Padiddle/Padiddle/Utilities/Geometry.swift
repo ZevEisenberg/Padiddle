@@ -9,16 +9,16 @@
 import CoreGraphics.CGGeometry
 import UIKit.UIScreen
 
-struct Geometry {
-    static func distanceBetween(let p1: CGPoint, let p2: CGPoint) -> CGFloat {
+extension CGPoint {
+    static func distanceBetween(p1: CGPoint, _ p2: CGPoint) -> CGFloat {
         if CGPointEqualToPoint(p1, p2) {
             return 0
         } else {
-            return sqrt(pow((p1.x - p2.x), 2.0) + pow((p1.y - p2.y), 2.0))
+            return hypot(p1.x - p2.x, p1.y - p2.y)
         }
     }
 
-    static func lineIntersection(let m1: CGFloat, let b1: CGFloat, let m2: CGFloat, let b2: CGFloat) -> CGPoint? {
+    static func lineIntersection(m1 m1: CGFloat, b1: CGFloat, m2: CGFloat, b2: CGFloat) -> CGPoint? {
         if m1 == m2 {
             // lines are parallel
             return nil
@@ -44,6 +44,8 @@ extension CGRect {
     func centerSmallerRect(smallerRect: CGRect) -> CGRect {
         assert(smallerRect.width <= self.width)
         assert(smallerRect.height <= self.height)
+        assert(smallerRect.origin == CGPoint.zero)
+        assert(self.origin == CGPoint.zero)
 
         let newRect = smallerRect.offsetBy(
             dx: (self.width - smallerRect.width) / 2,

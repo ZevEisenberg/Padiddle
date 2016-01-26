@@ -86,7 +86,7 @@ struct SpiralImageMaker {
                 let oldIntercept = -(oldSlope * oldR * cos(oldTheta) - oldR * sin(oldTheta))
                 let newIntercept = -(newSlope * newR * cos(newTheta) - newR * sin(newTheta))
 
-                if let intersection = Geometry.lineIntersection(oldSlope, b1: oldIntercept, m2: newSlope, b2: newIntercept) {
+                if let intersection = CGPoint.lineIntersection(m1: oldSlope, b1: oldIntercept, m2: newSlope, b2: newIntercept) {
                     controlPoint = intersection
                 } else {
                     fatalError("lines are parallel")
