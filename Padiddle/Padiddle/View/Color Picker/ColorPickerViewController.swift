@@ -202,7 +202,7 @@ extension ColorPickerViewController: UICollectionViewDelegate {
         viewModel.selectedIndex = indexPath.item
 
         if var selectedItems = collectionView.indexPathsForSelectedItems() {
-            selectedItems.removeObject(indexPath)
+            selectedItems.remove(indexPath)
             for pathToDeselect in selectedItems {
                 collectionView.deselectItemAtIndexPath(pathToDeselect, animated: false)
             }
