@@ -72,8 +72,8 @@ class DrawingViewController: CounterRotatingViewController {
         viewModel.startMotionUpdates()
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
-        viewModel.getSnapshotImage(interfaceOrientation, completion: completion)
+    func getSnapshotImage(interfaceOrientation interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+        viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
 
     func clearTapped() {

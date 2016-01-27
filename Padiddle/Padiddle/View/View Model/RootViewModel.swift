@@ -58,7 +58,7 @@ class RootViewModel {
 
     func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
         guard let drawingViewController = drawingViewController else { fatalError() }
-        drawingViewController.getSnapshotImage(interfaceOrientation, completion: completion)
+        drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
 
     func clearTapped() {

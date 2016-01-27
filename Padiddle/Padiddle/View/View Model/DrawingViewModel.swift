@@ -159,52 +159,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     private func addLineSegmentBasedOnUpdatedPoints() {
         // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
 
-        let p0 = points[0]
-        let p1 = points[1]
-        let p2 = points[2]
-        let p3 = points[3]
-
-        let c1 = CGPoint(
-            x: (p0.x + p1.x) / 2.0,
-            y: (p0.y + p1.y) / 2.0)
-        let c2 = CGPoint(
-            x: (p1.x + p2.x) / 2.0,
-            y: (p1.y + p2.y) / 2.0)
-        let c3 = CGPoint(
-            x: (p2.x + p3.x) / 2.0,
-            y: (p2.y + p3.y) / 2.0)
-
-        let len1 = sqrt(pow(p1.x - p0.x, 2.0) + pow(p1.y - p0.y, 2.0))
-        let len2 = sqrt(pow(p2.x - p1.x, 2.0) + pow(p2.y - p1.y, 2.0))
-        let len3 = sqrt(pow(p3.x - p2.x, 2.0) + pow(p3.y - p2.y, 2.0))
-
-        let k1 = len1 / (len1 + len2)
-        let k2 = len2 / (len2 + len3)
-
-        let m1 = CGPoint(
-            x: c1.x + (c2.x - c1.x) * k1,
-            y: c1.y + (c2.y - c1.y) * k1)
-        let m2 = CGPoint(
-            x: c2.x + (c3.x - c2.x) * k2,
-            y: c2.y + (c3.y - c2.y) * k2)
-
-        let smoothValue = CGFloat(0.5)
-        let ctrl1 = CGPoint(
-            x: m1.x + (c2.x - m1.x) * smoothValue + p1.x - m1.x,
-            y: m1.y + (c2.y - m1.y) * smoothValue + p1.y - m1.y
-        )
-        let ctrl2 = CGPoint(
-            x: m2.x + (c2.x - m2.x) * smoothValue + p2.x - m2.x,
-            y: m2.y + (c2.y - m2.y) * smoothValue + p2.y - m2.y
-        )
-
-        // Create path segment. We are making a mutable path segment,
-        // rather than just adding the path to the context directly,
-        // so we can also mark dirty the segment's bounding rect
-
-        let pathSegment = CGPathCreateMutable()
-        CGPathMoveToPoint(pathSegment, nil, points[1].x, points[1].y)
-        CGPathAddCurveToPoint(pathSegment, nil, ctrl1.x, ctrl1.y, ctrl2.x, ctrl2.y, points[2].x, points[2].y)
+        let pathSegment = CGPathRef.smoothedPath(points)
 
         // draw the segment into the context
 
@@ -218,7 +173,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     // Saving & Loading
 
-    func snapshotForInterfaceOrientation(orientation: UIInterfaceOrientation) -> UIImage {
+    func snapshot(orientation orientation: UIInterfaceOrientation) -> UIImage {
         let (imageOrientation, rotation) = orientation.imageRotation
 
         let cacheCGImage = CGBitmapContextCreateImage(offscreenContext)!
@@ -227,10 +182,10 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return rotatedImage
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+    func getSnapshotImage(interfaceOrientation interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
 
-            let image = self.snapshotForInterfaceOrientation(interfaceOrientation)
+            let image = self.snapshot(orientation: interfaceOrientation)
 
             dispatch_async(dispatch_get_main_queue()) {
                 completion(image)
@@ -239,8 +194,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     }
 
     func persistImageInBackground() {
-        let snapshot = snapshotForInterfaceOrientation(.Portrait)
-        ImageIO.persistImageInBackground(snapshot, contextScale: contextScale, contextSize: contextSize)
+        let image = self.snapshot(orientation: .Portrait)
+        ImageIO.persistImageInBackground(image, contextScale: contextScale, contextSize: contextSize)
     }
 
     func loadPersistedImage() {

@@ -33,6 +33,7 @@
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
 		CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
+		CDAD89CF1C57CC3300E61908 /* PathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */; };
 		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; };
 		CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */; };
 		CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242E1BC5DCE900A0785C /* DrawingView.swift */; };
@@ -97,6 +98,7 @@
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDA035E81BA8B02D0023F290 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDA3C34E1BDC8EF000D9D309 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathExtensions.swift; sourceTree = "<group>"; };
 		CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CounterRotatingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DrawingViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDBF242E1BC5DCE900A0785C /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
 				CDDA9DD41C53054B00D9EF19 /* Layout.swift */,
 				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
+				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */,
 				7ACF44F01BD3060F00CE7FB2 /* RootViewModel.swift in Sources */,
 				CDBF24331BC5E66D00A0785C /* ScreenExtensions.swift in Sources */,
+				CDAD89CF1C57CC3300E61908 /* PathExtensions.swift in Sources */,
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
 				CDDA9DD51C53054B00D9EF19 /* Layout.swift in Sources */,
