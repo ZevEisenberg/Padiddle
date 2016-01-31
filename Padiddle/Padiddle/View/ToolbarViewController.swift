@@ -8,10 +8,6 @@
 
 import UIKit
 
-private let kPauseButtonName = "PauseButton"
-private let kTempColorButtonName = "TempColorButton"
-private let kHelpButtonName = "HelpButton"
-
 private let kOtherButtonPadding = CGFloat(20.0)
 private let kRecordButtonPadding = CGFloat(20.0)
 
@@ -48,7 +44,7 @@ class ToolbarViewController: UIViewController {
             spacer.backgroundColor = nil
         }
 
-        let pauseImage = UIImage(named: kPauseButtonName)!
+        let pauseImage = UIImage(asset: .PauseButton)
         recordButton.setImage(pauseImage, forState: .Selected)
         updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
     }
