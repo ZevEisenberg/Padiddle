@@ -31,6 +31,7 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="toolbar"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="A0T-xZ-3wG" secondAttribute="trailing" id="2jd-sh-2v3"/>
                                     <constraint firstItem="A0T-xZ-3wG" firstAttribute="leading" secondItem="7pX-wy-JXH" secondAttribute="leading" id="TsX-gH-VBp"/>
@@ -47,6 +48,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyC-NV-rme" userLabel="Trash Button">
                                         <rect key="frame" x="142" y="0.0" width="44" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="clear button"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="wd0-cO-Jzm"/>
                                         </constraints>
@@ -64,6 +66,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8v-Q2-nWn" userLabel="Color Button">
                                         <rect key="frame" x="206" y="0.0" width="44" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="color button"/>
                                         <connections>
                                             <action selector="colorTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="9Ao-Hx-Mjr"/>
                                         </connections>
@@ -88,6 +91,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Es-Cl-vU4" userLabel="Share Button">
                                         <rect key="frame" x="350" y="0.0" width="44" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="share button"/>
                                         <state key="normal" image="ShareButton"/>
                                         <connections>
                                             <action selector="shareTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Mdc-hG-psK"/>
@@ -102,6 +106,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9u-KF-40C" userLabel="Help Button">
                                         <rect key="frame" x="414" y="0.0" width="44" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="help button"/>
                                         <state key="normal" image="HelpButton"/>
                                         <connections>
                                             <action selector="helpTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Niy-Ah-dJt"/>
@@ -122,6 +127,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7J-ZK-054" userLabel="Record Button Front">
                                 <rect key="frame" x="270" y="535" width="60" height="60"/>
+                                <accessibility key="accessibilityConfiguration" identifier="record button"/>
                                 <state key="normal" image="RecordButtonFront"/>
                                 <connections>
                                     <action selector="recordTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="aLV-oI-4SF"/>

@@ -39,10 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootViewModel!.addRecordingDelegate(drawingViewModel)
 
         let rootViewController = RootViewController(viewModel: rootViewModel!, pinnedViewController: drawingViewController!, rotatingViewController: toolbarViewController!)
+        rootViewController.view.accessibilityIdentifier = "root view"
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
+        window?.accessibilityIdentifier = "main window"
 
         return true
     }

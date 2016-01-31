@@ -32,6 +32,7 @@ class DrawingViewController: CounterRotatingViewController {
         viewModel.delegate = self
 
         view.backgroundColor = .whiteColor()
+        view.accessibilityIdentifier = "drawing view controller view"
 
         counterRotatingView.addSubview(drawingView)
         drawingView.translatesAutoresizingMaskIntoConstraints = false

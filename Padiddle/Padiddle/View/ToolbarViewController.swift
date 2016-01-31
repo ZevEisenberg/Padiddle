@@ -36,6 +36,7 @@ class ToolbarViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = nil
+        view.accessibilityIdentifier = "toolbar view controller view"
 
         for spacer in spacerViews {
             spacer.backgroundColor = nil
