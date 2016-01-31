@@ -89,9 +89,10 @@ class ColorPickerLayout: UICollectionViewLayout {
 
         return CGSize(width: width, height: height)
     }
+}
 
-    // MARK: Private
-    private func frameForItemAtIndexPath(indexPath: NSIndexPath) -> CGRect {
+private extension ColorPickerLayout {
+    func frameForItemAtIndexPath(indexPath: NSIndexPath) -> CGRect {
 
         guard let collectionView = collectionView else {
             return CGRect.zero

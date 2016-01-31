@@ -157,9 +157,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     }
 
     private func addLineSegmentBasedOnUpdatedPoints() {
-        // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
-
-        let pathSegment = CGPathRef.smoothedPath(points)
+        let pathSegment = CGPathRef.smoothedPathSegment(points: points)
 
         // draw the segment into the context
 

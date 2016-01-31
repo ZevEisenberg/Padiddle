@@ -139,10 +139,10 @@ class ColorPickerViewController: UIViewController {
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
         collectionView.setContentOffset(scrollTo, animated:true)
     }
+}
 
-    // MARK: Private
-
-    private func adjustColumnsAndRows(traitCollection: UITraitCollection) {
+private extension ColorPickerViewController {
+    func adjustColumnsAndRows(traitCollection: UITraitCollection) {
         if traitCollection.verticalSizeClass == .Regular {
             layout.numberOfColumns = colsPortrait
             layout.numberOfRows = rowsPortrait
@@ -152,7 +152,7 @@ class ColorPickerViewController: UIViewController {
         }
     }
 
-    private func scrollToPageWithCellAtIndexPath(indexPath: NSIndexPath) {
+    func scrollToPageWithCellAtIndexPath(indexPath: NSIndexPath) {
 
         guard collectionView.frame != CGRect.zero else { return }
         guard let cellFrame = collectionView.layoutAttributesForItemAtIndexPath(indexPath)?.frame else { return }
@@ -165,7 +165,7 @@ class ColorPickerViewController: UIViewController {
         collectionView.setContentOffset(scrollTo, animated:false)
     }
 
-    private func restoreSelection() {
+    func restoreSelection() {
         let selectedIndex = viewModel.selectedIndex
         currentSelection = NSIndexPath(forItem:selectedIndex, inSection:0)
     }

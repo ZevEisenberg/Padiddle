@@ -9,7 +9,8 @@
 import CoreGraphics.CGPath
 
 extension CGPathRef {
-    class func smoothedPath(points: [CGPoint]) -> CGPathRef {
+    // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
+    class func smoothedPathSegment(points points: [CGPoint]) -> CGPathRef {
         assert(points.count == 4)
 
         let p0 = points[0]

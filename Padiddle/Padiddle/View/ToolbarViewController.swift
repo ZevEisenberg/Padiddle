@@ -8,12 +8,9 @@
 
 import UIKit
 
-private let kOtherButtonPadding = CGFloat(20.0)
-private let kRecordButtonPadding = CGFloat(20.0)
-
-private let kToolbarAnimationDuration = 0.3
-
 class ToolbarViewController: UIViewController {
+
+    private let toolbarAnimationDuration = 0.3
 
     var viewModel: ToolbarViewModel?
 
@@ -48,9 +45,10 @@ class ToolbarViewController: UIViewController {
         recordButton.setImage(pauseImage, forState: .Selected)
         updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
     }
+}
 
-    // MARK: Button Handlers
 
+private extension ToolbarViewController { // button handlers
     @IBAction func trashTapped() {
         print(__FUNCTION__)
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
@@ -188,36 +186,6 @@ class ToolbarViewController: UIViewController {
             popoverController.passthroughViews = passthroughViews
         }
     }
-
-    func dismissModal() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
-    // MARK: Private
-
-    private func updateColorButton(colorManager colorManager: ColorManager) {
-        let imageSize = 36
-        let image = SpiralImageMaker.image(colorManager,
-            size: CGSize(width: imageSize, height: imageSize),
-            startRadius: 0,
-            spacePerLoop: 0.7,
-            startTheta: 0,
-            endTheta: 2.0 * π * 4.0,
-            thetaStep: π / 16.0,
-            lineWidth: 2.3)
-        colorButton.setImage(image, forState: .Normal)
-        HelpImageProtocol.colorButtonImage = image
-    }
-
-    private func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
-        if toolbarVisible {
-            toolbarTopConstraint.active = false
-            toolbarBottomConstraint.active = true
-        } else {
-            toolbarBottomConstraint.active = false
-            toolbarTopConstraint.active = true
-        }
-    }
 }
 
 extension ToolbarViewController: ColorPickerDelegate {
@@ -233,7 +201,7 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
             toolbarVisible = visible
             updateToolbarConstraints(toolbarVisible: visible)
 
-            let duration = animated ? kToolbarAnimationDuration : 0.0
+            let duration = animated ? toolbarAnimationDuration : 0.0
             UIView.animateWithDuration(duration) {
                 self.view.layoutIfNeeded()
             }
@@ -241,8 +209,12 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
     }
 }
 
-// MARK: Utilities
 private extension ToolbarViewController {
+
+    func dismissModal() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
     func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
 
         if let cancelSelector = cancelSelector {
@@ -253,6 +225,31 @@ private extension ToolbarViewController {
         if let doneSelector = doneSelector {
             let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector)
             navigationItem.rightBarButtonItem = doneButton
+        }
+    }
+
+    func updateColorButton(colorManager colorManager: ColorManager) {
+        let imageSize = 36
+        let image = SpiralImageMaker.image(
+            colorManager: colorManager,
+            size: CGSize(width: imageSize, height: imageSize),
+            startRadius: 0,
+            spacePerLoop: 0.7,
+            startTheta: 0,
+            endTheta: 2.0 * π * 4.0,
+            thetaStep: π / 16.0,
+            lineWidth: 2.3)
+        colorButton.setImage(image, forState: .Normal)
+        HelpImageProtocol.colorButtonImage = image
+    }
+
+    func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
+        if toolbarVisible {
+            toolbarTopConstraint.active = false
+            toolbarBottomConstraint.active = true
+        } else {
+            toolbarBottomConstraint.active = false
+            toolbarTopConstraint.active = true
         }
     }
 }

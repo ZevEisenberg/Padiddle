@@ -55,7 +55,8 @@ class ColorPickerViewModel {
     }
 
     func imageForColorManager(colorManager: ColorManager) -> UIImage {
-        let image = SpiralImageMaker.image(colorManager,
+        let image = SpiralImageMaker.image(
+            colorManager: colorManager,
             size: CGSize(width: 86, height: 86),
             startRadius: 0,
             spacePerLoop: 1.5,

@@ -80,10 +80,10 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
     func setInitialImage(image: UIImage) {
         viewModel.setInitialImage(image)
     }
+}
 
-    // MARK: Private
-
-    @objc private func displayLinkUpdated() { // marked @objc so it can be looked up by selector
+private extension DrawingView {
+    @objc func displayLinkUpdated() { // marked @objc so it can be looked up by selector
         setNeedsDisplayInRect(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
     }
 }

@@ -54,20 +54,20 @@ struct ImageIO {
             completion(image)
         }
     }
+}
 
-    // MARK: Private
-
-    private static let persistedImageExtension = "png"
+private extension ImageIO {
+    static let persistedImageExtension = "png"
 
     #if SCREENSHOTS
-    private static let persistedImageName = "ScreenshotPersistedImage"
+    static let persistedImageName = "ScreenshotPersistedImage"
     #else
-    private static let persistedImageName = "PadiddlePersistedImage"
+    static let persistedImageName = "PadiddlePersistedImage"
     #endif
 
-    private static var backgroundSaveTask: UIBackgroundTaskIdentifier?
+    static var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
-    private static func rotationForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
+    static func rotationForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
 
         let rotation: CGFloat
         let imageOrientaion: UIImageOrientation
@@ -91,7 +91,7 @@ struct ImageIO {
     }
 
 
-    private static func urlForPersistedImage(contextScale: CGFloat, contextSize: CGSize) -> NSURL {
+    static func urlForPersistedImage(contextScale: CGFloat, contextSize: CGSize) -> NSURL {
         var scaledContextSize = contextSize
         scaledContextSize.width *= contextScale
         scaledContextSize.height *= contextScale
@@ -121,7 +121,7 @@ struct ImageIO {
         return fullURL
     }
 
-    private static func loadPersistedImageData(imageData: NSData, contextScale: CGFloat) -> UIImage? {
+    static func loadPersistedImageData(imageData: NSData, contextScale: CGFloat) -> UIImage? {
         guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
             print("Error: couldn't create image from data on disk")
             return nil
