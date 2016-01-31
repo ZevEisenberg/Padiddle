@@ -42,9 +42,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OF-Vg-VJK">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zh3-7c-Opi" userLabel="Spacer 1">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zh3-7c-Opi" userLabel="Spacer 1">
                                         <rect key="frame" x="0.0" y="0.0" width="142" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.55694302330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyC-NV-rme" userLabel="Trash Button">
                                         <rect key="frame" x="142" y="0.0" width="44" height="44"/>
@@ -57,9 +60,12 @@
                                             <action selector="trashTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="212-c7-W5b"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5f-KL-mHN" userLabel="Spacer 2">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5f-KL-mHN" userLabel="Spacer 2">
                                         <rect key="frame" x="186" y="0.0" width="20" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="JaD-vx-ad3"/>
                                         </constraints>
@@ -71,20 +77,26 @@
                                             <action selector="colorTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="9Ao-Hx-Mjr"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P2-2E-wWF" userLabel="Spacer 3">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4P2-2E-wWF" userLabel="Spacer 3">
                                         <rect key="frame" x="250" y="0.0" width="20" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="69G-Sj-Rh4"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ls9-HE-THf" userLabel="Record Button Placeholder">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ls9-HE-THf" userLabel="Record Button Placeholder">
                                         <rect key="frame" x="270" y="0.0" width="60" height="44"/>
                                         <color key="backgroundColor" red="0.00067783399319999997" green="0.81532118060000003" blue="0.1579503233" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4s-Wz-oRh" userLabel="Spacer 4">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4s-Wz-oRh" userLabel="Spacer 4">
                                         <rect key="frame" x="330" y="0.0" width="20" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="voN-eZ-2pN"/>
                                         </constraints>
@@ -97,9 +109,12 @@
                                             <action selector="shareTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Mdc-hG-psK"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-GV-34R" userLabel="Spacer 5">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-GV-34R" userLabel="Spacer 5">
                                         <rect key="frame" x="394" y="0.0" width="20" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="9S8-dA-ggA"/>
                                         </constraints>
@@ -112,9 +127,12 @@
                                             <action selector="helpTapped" destination="ShF-fq-c6e" eventType="touchUpInside" id="Niy-Ah-dJt"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-kq-B1X" userLabel="Spacer 6">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaR-kq-B1X" userLabel="Spacer 6">
                                         <rect key="frame" x="458" y="0.0" width="142" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.55694302330000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                     </view>
                                 </subviews>
                                 <constraints>
