@@ -48,8 +48,8 @@ class ToolbarViewController: UIViewController {
     }
 }
 
-
-private extension ToolbarViewController { // button handlers
+private typealias ButtonHandlers = ToolbarViewController
+private extension ButtonHandlers {
     @IBAction func trashTapped() {
         print(__FUNCTION__)
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
