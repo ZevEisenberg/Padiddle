@@ -29,9 +29,37 @@ class PadiddleUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testToolbarStaysHiddenWhileRotating() {
+
+        let app = XCUIApplication()
+
+        let window = app.windows.elementBoundByIndex(0)
+        XCTAssert(window.exists)
+
+        let rootView = window.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "root view")
+        XCTAssert(rootView.exists)
+
+        let toolbarViewControllerView = rootView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbar view controller view")
+        XCTAssert(toolbarViewControllerView.exists)
+
+        let toolbar = toolbarViewControllerView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbar")
+        XCTAssert(toolbar.exists)
+
+        XCTAssert(CGRectContainsRect(window.frame, toolbar.frame), "At the start, the toolbar is on screen")
+
+        let recordButtonButton = app.buttons["record button"]
+        recordButtonButton.tap()
+
+        XCTAssertFalse(CGRectContainsRect(window.frame, toolbar.frame), "After recording begins, the toolbar is hidden")
+
+        XCUIDevice.sharedDevice().orientation = .LandscapeRight
+        XCUIDevice.sharedDevice().orientation = .Portrait
+
+        XCTAssertFalse(CGRectContainsRect(window.frame, toolbar.frame), "After rotation, the toolbar remains hidden")
+
+        recordButtonButton.tap()
+
+        XCTAssertTrue(CGRectContainsRect(window.frame, toolbar.frame), "Tapping the Record button again un-hides the toolbar")
     }
 
 }
