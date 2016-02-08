@@ -8,17 +8,27 @@
 
 import UIKit
 
-struct SpiralImageMaker {
-    static func image(colorManager colorManager: ColorManager,
-                size: CGSize,
-                startRadius: CGFloat,
-                spacePerLoop: CGFloat,
-                startTheta: CGFloat,
-                endTheta: CGFloat,
-                thetaStep: CGFloat,
-                lineWidth: CGFloat) -> UIImage {
+struct SpiralModel {
+    let colorManager: ColorManager
+    let size: CGSize
+    let startRadius: CGFloat
+    let spacePerLoop: CGFloat
+    let thetaRange: ClosedInterval<CGFloat>
+    let thetaStep: CGFloat
+    let lineWidth: CGFloat
+}
 
-        var mutableColorManager = colorManager
+struct SpiralImageMaker {
+    static func image(spiralModel spiralModel: SpiralModel) -> UIImage {
+
+        let size = spiralModel.size
+        let startRadius = spiralModel.startRadius
+        let spacePerLoop = spiralModel.spacePerLoop
+        let thetaRange = spiralModel.thetaRange
+        let thetaStep = spiralModel.thetaStep
+        let lineWidth = spiralModel.lineWidth
+
+        var mutableColorManager = spiralModel.colorManager
 
         mutableColorManager.maxRadius = size.width / 2
 
@@ -34,9 +44,9 @@ struct SpiralImageMaker {
         path.lineCapStyle = .Square
         path.lineJoinStyle = .Round
 
-        var oldTheta = startTheta
-        var newTheta = startTheta
-        mutableColorManager.theta = startTheta
+        var oldTheta = thetaRange.start
+        var newTheta = thetaRange.start
+        mutableColorManager.theta = thetaRange.start
         mutableColorManager.radius = a
 
         var oldR = a + (b * oldTheta)
@@ -54,7 +64,7 @@ struct SpiralImageMaker {
         newPoint.y = center.y + (oldR * sin(oldTheta))
 
         var firstSlope = true
-        while oldTheta < (endTheta - thetaStep) {
+        while oldTheta < (thetaRange.end - thetaStep) {
             path.removeAllPoints()
             path.moveToPoint(newPoint)
 
@@ -101,7 +111,7 @@ struct SpiralImageMaker {
             let color = mutableColorManager.currentColor
             color.setStroke()
 
-            if !(oldTheta < (endTheta - thetaStep)) {
+            if !(oldTheta < (thetaRange.end - thetaStep)) {
                 path.lineCapStyle = .Round
             }
             path.stroke()

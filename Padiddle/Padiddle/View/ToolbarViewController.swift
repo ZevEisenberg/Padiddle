@@ -231,15 +231,17 @@ private extension ToolbarViewController {
 
     func updateColorButton(colorManager colorManager: ColorManager) {
         let imageSize = 36
-        let image = SpiralImageMaker.image(
+        let model = SpiralModel(
             colorManager: colorManager,
             size: CGSize(width: imageSize, height: imageSize),
             startRadius: 0,
             spacePerLoop: 0.7,
-            startTheta: 0,
-            endTheta: 2.0 * π * 4.0,
+            thetaRange: 0...(2.0 * π * 4.0),
             thetaStep: π / 16.0,
             lineWidth: 2.3)
+
+        let image = SpiralImageMaker.image(spiralModel: model)
+
         colorButton.setImage(image, forState: .Normal)
         HelpImageProtocol.colorButtonImage = image
     }
