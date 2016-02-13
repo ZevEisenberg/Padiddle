@@ -53,8 +53,8 @@ class ColorPickerViewController: UIViewController {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.numberOfPages = layout.numberOfPages
         pageControl.exclusiveTouch = true
-        pageControl.pageIndicatorTintColor = UIColor(white: 0.6, alpha: 1)
-        pageControl.currentPageIndicatorTintColor = UIColor(white: 0.2, alpha: 1)
+        pageControl.pageIndicatorTintColor = UIColor(named: .PageIndicator)
+        pageControl.currentPageIndicatorTintColor = UIColor(named: .PageIndicatorCurrentPage)
         pageControl.addTarget(self, action: "pageControlChanged", forControlEvents: .ValueChanged)
 
         title = NSLocalizedString("Colors", comment: "Title of a view that lets you choose a color scheme")

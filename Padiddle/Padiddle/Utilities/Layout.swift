@@ -9,16 +9,15 @@
 import UIKit
 
 extension UIView {
-    func pinEdges(parentView: UIView) {
-        assert(self.isDescendantOfView(parentView))
+    func pinEdges(otherView: UIView) {
         assert(translatesAutoresizingMaskIntoConstraints, "No need to disable this manually any more")
 
         translatesAutoresizingMaskIntoConstraints = false
 
-        self.topAnchor.constraintEqualToAnchor(parentView.topAnchor).active = true
-        self.leadingAnchor.constraintEqualToAnchor(parentView.leadingAnchor).active = true
-        self.bottomAnchor.constraintEqualToAnchor(parentView.bottomAnchor).active = true
-        self.trailingAnchor.constraintEqualToAnchor(parentView.trailingAnchor).active = true
+        self.topAnchor.constraintEqualToAnchor(otherView.topAnchor).active = true
+        self.leadingAnchor.constraintEqualToAnchor(otherView.leadingAnchor).active = true
+        self.bottomAnchor.constraintEqualToAnchor(otherView.bottomAnchor).active = true
+        self.trailingAnchor.constraintEqualToAnchor(otherView.trailingAnchor).active = true
     }
 
     func pinEdgesToMargins(parentView: UIView) {

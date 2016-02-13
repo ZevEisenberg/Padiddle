@@ -1,0 +1,5 @@
+AppTint: #007AFF
+PageIndicator: #999999
+PageIndicatorCurrentPage: #323232
+Toolbar: #FFFFFF
+ToolbarHairline: #ADADAD

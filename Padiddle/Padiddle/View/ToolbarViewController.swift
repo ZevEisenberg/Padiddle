@@ -14,43 +14,183 @@ class ToolbarViewController: UIViewController {
 
     var viewModel: ToolbarViewModel?
 
-    var toolbarVisible: Bool = true
+    private var toolbarVisible: Bool = true
 
-    @IBOutlet private var toolbarStackView: UIStackView!
-    @IBOutlet private var clearButton: UIButton!
-    @IBOutlet private var colorButton: UIButton!
-    @IBOutlet private var recordButton: UIButton!
-    @IBOutlet private var shareButton: UIButton!
-    @IBOutlet private var helpButton: UIButton!
+    private let recordButtonBack = UIImageView()
+    private let toolbarStackView = UIStackView()
+    private let clearButton = UIButton(type: .Custom)
+    private let colorButton = UIButton(type: .Custom)
+    private let recordButtonPlaceholder = UIView()
+    private let recordButton = UIButton(type: .Custom)
+    private let shareButton = UIButton(type: .Custom)
+    private let helpButton = UIButton(type: .Custom)
 
-    @IBOutlet var spacerViews: [UIView]!
-
-    @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var toolbarTopConstraint: NSLayoutConstraint!
+    private var toolbarBottomConstraint: NSLayoutConstraint!
+    private var toolbarTopConstraint: NSLayoutConstraint!
 
     private var passthroughViews: [UIView] {
         return [toolbarStackView, recordButton]
     }
+}
 
+private typealias Layout = ToolbarViewController
+extension Layout {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = nil
         view.accessibilityIdentifier = "toolbar view controller view"
 
-        for spacer in spacerViews {
-            spacer.backgroundColor = nil
+        configureViews()
+
+        updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
+    }
+
+    private func configureViews() {
+
+        let toolbarView = UIView()
+        let toolbarHairline = UIView()
+        let spacerViews: [UIView] = {
+            var spacers = [UIView]()
+            for _ in 0..<6 {
+                spacers.append(UIView())
+            }
+            return spacers
+        }()
+
+        let disableTranslatesViews = [
+            recordButtonBack,
+            recordButton,
+            toolbarView,
+            toolbarHairline,
+            ]
+
+        disableTranslatesViews.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        let pauseImage = UIImage(asset: .PauseButton)
-        recordButton.setImage(pauseImage, forState: .Selected)
-        updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
+        // Record Button Back View
+        recordButtonBack.image = UIImage(asset: .RecordButtonBack)
+        view.addSubview(recordButtonBack)
+
+        // Toolbar
+        toolbarView.backgroundColor = UIColor(named: .Toolbar)
+        toolbarView.accessibilityIdentifier = "toolbar"
+        view.addSubview(toolbarView)
+        toolbarView.heightAnchor.constraintEqualToConstant(44).active = true
+
+        let toolbarEdgeConstraints = [
+            toolbarView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
+            toolbarView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
+        ]
+
+        toolbarEdgeConstraints.forEach {
+            $0.priority = UILayoutPriorityDefaultHigh
+            $0.active = true
+        }
+
+        toolbarBottomConstraint = toolbarView.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor)
+        toolbarBottomConstraint.active = true
+
+        // don't activate yet
+        toolbarTopConstraint = toolbarView.topAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor)
+
+        toolbarHairline.backgroundColor = UIColor(named: .ToolbarHairline)
+        toolbarView.addSubview(toolbarHairline)
+        toolbarHairline.heightAnchor.constraintEqualToConstant(1).active = true
+        toolbarHairline.topAnchor.constraintEqualToAnchor(toolbarView.topAnchor).active = true
+        toolbarHairline.leadingAnchor.constraintEqualToAnchor(toolbarView.leadingAnchor).active = true
+        toolbarHairline.trailingAnchor.constraintEqualToAnchor(toolbarView.trailingAnchor).active = true
+
+        // Stack View
+        view.addSubview(toolbarStackView)
+        toolbarStackView.axis = .Horizontal
+        toolbarStackView.alignment = .Fill
+        toolbarStackView.distribution = .Fill
+        toolbarStackView.spacing = 0
+
+        toolbarStackView.pinEdges(toolbarView)
+
+        spacerViews.forEach {
+            $0.backgroundColor = nil
+        }
+
+        let buttons = [
+            clearButton,
+            colorButton,
+            recordButtonPlaceholder,
+            shareButton,
+            helpButton,
+        ]
+
+        let stackSubViews = spacerViews.zip(almostSameLengthArray: buttons)
+
+        stackSubViews.forEach {
+            toolbarStackView.addArrangedSubview($0)
+        }
+
+        recordButtonPlaceholder.widthAnchor.constraintEqualToAnchor(recordButtonBack.widthAnchor).active = true
+        recordButtonPlaceholder.centerXAnchor.constraintEqualToAnchor(recordButtonBack.centerXAnchor).active = true
+        recordButtonPlaceholder.heightAnchor.constraintEqualToAnchor(recordButtonPlaceholder.superview?.heightAnchor).active = true
+
+        clearButton.accessibilityIdentifier = "clear button"
+        clearButton.setImage(UIImage(asset: .TrashButton), forState: .Normal)
+        clearButton.addTarget(self, action: "trashTapped", forControlEvents: .TouchUpInside)
+
+        colorButton.accessibilityIdentifier = "color button"
+        // image is dynamic
+        colorButton.addTarget(self, action: "colorTapped", forControlEvents: .TouchUpInside)
+
+        recordButtonBack.image = UIImage(asset: .RecordButtonBack)
+
+        recordButton.accessibilityIdentifier = "record button"
+        recordButton.setImage(UIImage(asset: .RecordButtonFront), forState: .Normal)
+        recordButton.setImage(UIImage(asset: .PauseButton), forState: .Selected)
+        recordButton.addTarget(self, action: "recordTapped", forControlEvents: .TouchUpInside)
+
+        shareButton.accessibilityIdentifier = "share button"
+        shareButton.setImage((UIImage(asset: .ShareButton)), forState: .Normal)
+        shareButton.addTarget(self, action: "shareTapped", forControlEvents: .TouchUpInside)
+
+        helpButton.accessibilityIdentifier = "help button"
+        helpButton.setImage(UIImage(asset: .HelpButton), forState: .Normal)
+        helpButton.addTarget(self, action: "helpTapped", forControlEvents: .TouchUpInside)
+
+        let nonRecordButtons: [UIButton] = [
+            clearButton,
+            colorButton,
+            shareButton,
+            helpButton,
+        ]
+
+        // make buttons equal width to each other
+        for buttonDoublet in nonRecordButtons.doublets! {
+            buttonDoublet.0.widthAnchor.constraintEqualToAnchor(buttonDoublet.1.widthAnchor).active = true
+        }
+
+        // Make first and last spacer views’ widths equal to each other
+        guard let first = spacerViews.first, last = spacerViews.last else { fatalError() }
+        first.widthAnchor.constraintEqualToAnchor(last.widthAnchor).active = true
+
+        // Make all other spacer views a fixed width
+        spacerViews.dropFirst().dropLast().forEach {
+            $0.widthAnchor.constraintEqualToConstant(20).active = true
+        }
+
+        view.addSubview(recordButton)
+        recordButton.centerXAnchor.constraintEqualToAnchor(recordButtonPlaceholder.centerXAnchor).active = true
+        recordButton.widthAnchor.constraintEqualToAnchor(recordButtonPlaceholder.widthAnchor).active = true
+        recordButton.centerXAnchor.constraintEqualToAnchor(recordButton.superview?.centerXAnchor).active = true
+        recordButton.centerXAnchor.constraintEqualToAnchor(recordButtonBack.centerXAnchor).active = true
+        recordButton.centerYAnchor.constraintEqualToAnchor(recordButtonBack.centerYAnchor).active = true
+        recordButton.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor, constant: -5).active = true
+        recordButton.widthAnchor.constraintEqualToAnchor(recordButtonBack.widthAnchor).active = true
+        recordButton.heightAnchor.constraintEqualToAnchor(recordButtonBack.heightAnchor).active = true
     }
 }
 
-private typealias ButtonHandlers = ToolbarViewController
-private extension ButtonHandlers {
-    @IBAction func trashTapped() {
+typealias ButtonHandlers = ToolbarViewController
+extension ButtonHandlers {
+    func trashTapped() {
         print(__FUNCTION__)
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
             self.viewModel?.clearTapped()
@@ -68,7 +208,7 @@ private extension ButtonHandlers {
         popoverController?.permittedArrowDirections = .Down
     }
 
-    @IBAction func colorTapped() {
+    func colorTapped() {
         let viewControllerToShow: UIViewController
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
@@ -92,14 +232,14 @@ private extension ButtonHandlers {
         }
     }
 
-    @IBAction func recordTapped() {
+    func recordTapped() {
         print(__FUNCTION__)
         recordButton.selected = !recordButton.selected
 
         viewModel?.recordButtonTapped()
     }
 
-    @IBAction func shareTapped() {
+    func shareTapped() {
         print(__FUNCTION__)
 
         guard let viewModel = viewModel else { fatalError() }
@@ -110,7 +250,7 @@ private extension ButtonHandlers {
         recordButton.userInteractionEnabled = false
 
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.color = UIColor.appTintColor
+        activityIndicator.color = UIColor(named: .AppTint)
         activityIndicator.startAnimating()
 
         guard let indexOfShareButton = toolbarStackView.arrangedSubviews.indexOf(shareButton) else {
@@ -162,7 +302,7 @@ private extension ButtonHandlers {
         }
     }
 
-    @IBAction func helpTapped() {
+    func helpTapped() {
         let helpViewController = HelpViewController()
         helpViewController.modalPresentationStyle = .Popover
 
@@ -212,7 +352,7 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
 
 private extension ToolbarViewController {
 
-    func dismissModal() {
+    @objc func dismissModal() {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
