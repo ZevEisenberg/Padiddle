@@ -38,7 +38,6 @@ extension Array {
         return newArray
     }
 
-    // alternate implementation: zip(elts, elts.dropFirst())
     var doublets: [(Element, Element)]? {
         guard count >= 2 else { return nil }
 
