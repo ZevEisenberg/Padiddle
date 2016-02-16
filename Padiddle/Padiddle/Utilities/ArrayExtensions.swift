@@ -43,7 +43,7 @@ extension Array {
 
         var output: [(Element, Element)] = []
         for i in 1..<count {
-            output.append((self[i-1], self[i]))
+            output.append((self[i - 1], self[i]))
         }
 
         return output
