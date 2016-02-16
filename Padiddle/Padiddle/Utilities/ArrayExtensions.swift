@@ -8,7 +8,7 @@
 
 extension Array where Element : Equatable {
     // Remove first collection element that is equal to the given `object`:
-    mutating func remove(object: Generator.Element) {
+    mutating func remove(object: Element) {
         if let index = indexOf(object) {
             removeAtIndex(index)
         }
@@ -16,7 +16,7 @@ extension Array where Element : Equatable {
 }
 
 extension Array {
-    func zip(almostSameLengthArray otherArray: [Generator.Element]) -> [Generator.Element] {
+    func zip(almostSameLengthArray otherArray: [Element]) -> [Element] {
         let selfCount = count
         let otherCount = otherArray.count
         let selfIsBigger = selfCount > otherCount
@@ -39,10 +39,10 @@ extension Array {
     }
 
     // alternate implementation: zip(elts, elts.dropFirst())
-    var doublets: [(Generator.Element, Generator.Element)]? {
+    var doublets: [(Element, Element)]? {
         guard count >= 2 else { return nil }
 
-        var output: [(Generator.Element, Generator.Element)] = []
+        var output: [(Element, Element)] = []
         for i in 1..<count {
             output.append((self[i-1], self[i]))
         }
