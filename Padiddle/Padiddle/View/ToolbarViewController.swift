@@ -250,25 +250,21 @@ extension ButtonHandlers {
         recordButton.userInteractionEnabled = false
 
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.color = UIColor(named: .AppTint)
         activityIndicator.startAnimating()
 
-        guard let indexOfShareButton = toolbarStackView.arrangedSubviews.indexOf(shareButton) else {
-            fatalError("If shareButton does not exist in the toolbar stack view, something is wrong")
-        }
-
-        toolbarStackView.removeArrangedSubview(shareButton)
-        shareButton.hidden = true
-        toolbarStackView.insertArrangedSubview(activityIndicator, atIndex: indexOfShareButton)
+        shareButton.alpha = 0
+        toolbarStackView.addSubview(activityIndicator) // not insertArrangedSubview!
+        activityIndicator.centerXAnchor.constraintEqualToAnchor(shareButton.centerXAnchor).active = true
+        activityIndicator.centerYAnchor.constraintEqualToAnchor(shareButton.centerYAnchor).active = true
 
         // Dismiss any other modals that may be visible
         dismissViewControllerAnimated(true, completion: nil)
 
         // We are going to run this whether or not we get an image back
         let restoreShareButton: UIViewController -> Void = { presentedViewController in
-            self.toolbarStackView.removeArrangedSubview(activityIndicator)
-            self.toolbarStackView.insertArrangedSubview(self.shareButton, atIndex: indexOfShareButton)
-            self.shareButton.hidden = false
+            self.shareButton.alpha = 1
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
 
