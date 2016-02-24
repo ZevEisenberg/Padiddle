@@ -80,7 +80,7 @@ class ColorPickerLayout: UICollectionViewLayout {
 
     override func collectionViewContentSize() -> CGSize {
         guard let collectionView = collectionView else {
-            return CGSize()
+            return CGSize.zero
         }
 
         let height = CGRectGetHeight(collectionView.frame)
