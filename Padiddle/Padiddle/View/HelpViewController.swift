@@ -26,7 +26,7 @@ class HelpViewController: UIViewController {
         webView.pinEdgesToMargins(view)
         webView.loadHTMLString(viewModel.html, baseURL: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "typeSizeChanged:", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {

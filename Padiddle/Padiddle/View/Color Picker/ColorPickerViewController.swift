@@ -55,13 +55,13 @@ class ColorPickerViewController: UIViewController {
         pageControl.exclusiveTouch = true
         pageControl.pageIndicatorTintColor = UIColor(named: .PageIndicator)
         pageControl.currentPageIndicatorTintColor = UIColor(named: .PageIndicatorCurrentPage)
-        pageControl.addTarget(self, action: "pageControlChanged", forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), forControlEvents: .ValueChanged)
 
         title = NSLocalizedString("Colors", comment: "Title of a view that lets you choose a color scheme")
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("\(__FUNCTION__) has not been implemented")
+        fatalError("\(#function) has not been implemented")
     }
 
     override func viewDidLoad() {

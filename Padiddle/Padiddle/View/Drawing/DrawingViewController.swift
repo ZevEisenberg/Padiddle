@@ -23,7 +23,7 @@ class DrawingViewController: CounterRotatingViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("\(__FUNCTION__) has not been implemented")
+        fatalError("\(#function) has not been implemented")
     }
 
     override func viewDidLoad() {

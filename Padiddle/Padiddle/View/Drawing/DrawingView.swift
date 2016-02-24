@@ -42,12 +42,12 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
         viewModel.view = self
 
-        displayLink = CADisplayLink(target: self, selector: "displayLinkUpdated")
+        displayLink = CADisplayLink(target: self, selector: #selector(DrawingView.displayLinkUpdated))
         displayLink?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("\(__FUNCTION__) has not been implemented")
+        fatalError("\(#function) has not been implemented")
     }
 
     func startDrawing() {

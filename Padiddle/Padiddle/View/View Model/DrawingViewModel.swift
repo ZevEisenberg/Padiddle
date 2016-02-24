@@ -344,7 +344,7 @@ extension DrawingViewModel { // Core Motion
             }
 
             if updateTimer == nil {
-                updateTimer = NSTimer.scheduledTimerWithTimeInterval(kNibUpdateInterval, target: self, selector: "timerFired", userInfo: nil, repeats: true)
+                updateTimer = NSTimer.scheduledTimerWithTimeInterval(kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
             }
         }
     }

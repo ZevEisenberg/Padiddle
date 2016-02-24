@@ -134,26 +134,26 @@ extension Layout {
 
         clearButton.accessibilityIdentifier = "clear button"
         clearButton.setImage(UIImage(asset: .TrashButton), forState: .Normal)
-        clearButton.addTarget(self, action: "trashTapped", forControlEvents: .TouchUpInside)
+        clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), forControlEvents: .TouchUpInside)
 
         colorButton.accessibilityIdentifier = "color button"
         // image is dynamic
-        colorButton.addTarget(self, action: "colorTapped", forControlEvents: .TouchUpInside)
+        colorButton.addTarget(self, action: #selector(ToolbarViewController.colorTapped), forControlEvents: .TouchUpInside)
 
         recordButtonBack.image = UIImage(asset: .RecordButtonBack)
 
         recordButton.accessibilityIdentifier = "record button"
         recordButton.setImage(UIImage(asset: .RecordButtonFront), forState: .Normal)
         recordButton.setImage(UIImage(asset: .PauseButton), forState: .Selected)
-        recordButton.addTarget(self, action: "recordTapped", forControlEvents: .TouchUpInside)
+        recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), forControlEvents: .TouchUpInside)
 
         shareButton.accessibilityIdentifier = "share button"
         shareButton.setImage((UIImage(asset: .ShareButton)), forState: .Normal)
-        shareButton.addTarget(self, action: "shareTapped", forControlEvents: .TouchUpInside)
+        shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), forControlEvents: .TouchUpInside)
 
         helpButton.accessibilityIdentifier = "help button"
         helpButton.setImage(UIImage(asset: .HelpButton), forState: .Normal)
-        helpButton.addTarget(self, action: "helpTapped", forControlEvents: .TouchUpInside)
+        helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), forControlEvents: .TouchUpInside)
 
         let nonRecordButtons: [UIButton] = [
             clearButton,
@@ -191,7 +191,7 @@ extension Layout {
 typealias ButtonHandlers = ToolbarViewController
 extension ButtonHandlers {
     func trashTapped() {
-        print(__FUNCTION__)
+        print(#function)
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
             self.viewModel?.clearTapped()
         }
@@ -218,7 +218,7 @@ extension ButtonHandlers {
             viewControllerToShow.modalPresentationStyle = .Popover
         } else {
             let navigationController = UINavigationController(rootViewController: colorPickerViewController)
-            setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: "dismissModal", doneSelector: nil)
+            setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: #selector(ToolbarViewController.dismissModal), doneSelector: nil)
             viewControllerToShow = navigationController
             viewControllerToShow.modalPresentationStyle = .FormSheet
         }
@@ -233,14 +233,14 @@ extension ButtonHandlers {
     }
 
     func recordTapped() {
-        print(__FUNCTION__)
+        print(#function)
         recordButton.selected = !recordButton.selected
 
         viewModel?.recordButtonTapped()
     }
 
     func shareTapped() {
-        print(__FUNCTION__)
+        print(#function)
 
         guard let viewModel = viewModel else { fatalError() }
 
@@ -309,7 +309,7 @@ extension ButtonHandlers {
             viewControllerToShow.modalPresentationStyle = .Popover
         } else {
             let navigationController = UINavigationController(rootViewController: helpViewController)
-            setUpNavigationItem(helpViewController.navigationItem, cancelSelector: nil, doneSelector: "dismissModal")
+            setUpNavigationItem(helpViewController.navigationItem, cancelSelector: nil, doneSelector: #selector(ToolbarViewController.dismissModal))
             viewControllerToShow = navigationController
             viewControllerToShow.modalPresentationStyle = .FormSheet
         }
