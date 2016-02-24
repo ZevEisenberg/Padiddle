@@ -209,6 +209,7 @@ extension ButtonHandlers {
     }
 
     func colorTapped() {
+        print(#function)
         let viewControllerToShow: UIViewController
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
@@ -299,6 +300,7 @@ extension ButtonHandlers {
     }
 
     func helpTapped() {
+        print(#function)
         let helpViewController = HelpViewController()
         helpViewController.modalPresentationStyle = .Popover
 
