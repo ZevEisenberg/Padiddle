@@ -76,6 +76,14 @@ extension CGPoint {
     }
 }
 
+extension CGAffineTransform {
+    var angle: CGFloat {
+        get {
+            return atan2(b, a)
+        }
+    }
+}
+
 extension UIInterfaceOrientation {
     var imageRotation: (orientation: UIImageOrientation, rotation: CGFloat) {
         let rotation: CGFloat

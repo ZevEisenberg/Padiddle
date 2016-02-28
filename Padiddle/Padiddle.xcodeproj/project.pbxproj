@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7ACE6A151C83966C001F7062 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE6A141C83966C001F7062 /* MathTests.swift */; };
 		7ACF44F01BD3060F00CE7FB2 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */; };
 		7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44F11BD3118300CE7FB2 /* Weak.swift */; };
 		7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7ACE6A141C83966C001F7062 /* MathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		7ACF44F11BD3118300CE7FB2 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Weak.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7AE7217D1BD1A8B2001B7791 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Geometry.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -187,6 +189,7 @@
 			children = (
 				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
 				CD2AD6041C56F00F00910FFE /* ArrayTests.swift */,
+				7ACE6A141C83966C001F7062 /* MathTests.swift */,
 				CD193CD31BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleTests;
@@ -534,6 +537,7 @@
 				CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */,
 				CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */,
 				CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */,
+				7ACE6A151C83966C001F7062 /* MathTests.swift in Sources */,
 				7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD2AD6011C56E7A600910FFE /* Math.swift in Sources */,
 			);

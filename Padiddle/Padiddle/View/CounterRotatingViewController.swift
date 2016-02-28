@@ -25,43 +25,6 @@ extension UIInterfaceOrientation: CustomStringConvertible {
     }
 }
 
-extension CGAffineTransform {
-    var angle: CGFloat {
-        get {
-            return atan2(b, a)
-        }
-    }
-}
-
-enum Direction {
-    case None
-    case Left
-    case Right
-}
-
-extension CGAffineTransform {
-    var direction: Direction {
-        let direction: Direction
-        if b > 0 {
-            direction = .Left
-        } else if b < 0 {
-            direction = .Right
-        } else {
-            direction = .None
-        }
-
-        return direction
-    }
-}
-
-extension CGFloat {
-    var reasonableValue: CGFloat {
-        get {
-            return (fabs(self) < 0.0001 ? 0 : self)
-        }
-    }
-}
-
 func transformForStatusBarOrientation(statusBarOrientation: UIInterfaceOrientation) -> CGAffineTransform {
     let newTransform: CGAffineTransform
     switch statusBarOrientation {
@@ -106,22 +69,45 @@ class CounterRotatingViewController: UIViewController {
 
         let oldAngle = counterRotatingView.transform.angle.reasonableValue
         let newAngle = newTransform.angle.reasonableValue
+        let delta = newAngle - oldAngle
 
         let duration = coordinator.transitionDuration()
 
         if rotationLocked {
             UIView.setAnimationsEnabled(false)
         }
-        UIView.animateKeyframesWithDuration(duration, delay: 0, options: UIViewKeyframeAnimationOptions(rawValue: 0), animations: {
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: {
-                let average = (oldAngle + newAngle) / 2
-                self.counterRotatingView.transform = CGAffineTransformMakeRotation(average)
-            })
-            UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5, animations: {
-                self.counterRotatingView.transform = newTransform
-            })
-            }) { (finished: Bool) -> Void in
-        }
+
+        UIView.animateKeyframesWithDuration(
+            duration,
+            delay: 0,
+            options: UIViewKeyframeAnimationOptions(),
+            animations: {
+                UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5) {
+
+                    // The midpoint of the two-step rotation animation
+                    var average = (oldAngle + newAngle) / 2
+
+                    // Handle two edge cases that cause undesirable reverse counter-rotation,
+                    // where the counter-rotating view makes a full 360° or 270° rotation
+                    // instead of taking the 180° or 90° shortest path.
+                    // The edge cases are as follows:
+                    //     1. if the delta is +180° (+π rad)
+                    //     2. if the delta is ±270° (±3π/2 rad)
+                    // In both cases, we subtract 180° (π rad) so it will take the shortest path.
+                    if delta.closeEnough(π) || abs(delta).closeEnough(3 * π / 2) {
+                        average -= π
+                    }
+
+                    self.counterRotatingView.transform = CGAffineTransformMakeRotation(average.reasonableValue)
+                }
+
+                UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5) {
+                    self.counterRotatingView.transform = newTransform
+                }
+
+            },
+            completion: nil
+        )
 
         coordinator.animateAlongsideTransition(nil, completion: { _ in
             if self.rotationLocked {
