@@ -36,9 +36,9 @@ class HelpViewController: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
 
-        coordinator.animateAlongsideTransition(nil) { _ in
+        coordinator.animateAlongsideTransition(nil, completion: { _ in
             self.webView.scrollView.flashScrollIndicators()
-        }
+        })
     }
 
     func typeSizeChanged(note: NSNotification) {

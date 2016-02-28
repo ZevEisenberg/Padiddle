@@ -123,11 +123,10 @@ class CounterRotatingViewController: UIViewController {
             }) { (finished: Bool) -> Void in
         }
 
-        coordinator.animateAlongsideTransition({ (context) -> Void in
-            }) { (context) -> Void in
-                if self.rotationLocked {
-                    UIView.setAnimationsEnabled(true)
-                }
-        }
+        coordinator.animateAlongsideTransition(nil, completion: { _ in
+            if self.rotationLocked {
+                UIView.setAnimationsEnabled(true)
+            }
+        })
     }
 }
