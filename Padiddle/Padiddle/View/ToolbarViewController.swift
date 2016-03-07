@@ -203,10 +203,7 @@ extension ButtonHandlers {
         alert.modalPresentationStyle = .Popover
 
         presentViewController(alert, animated: true, completion: nil)
-        let popoverController = alert.popoverPresentationController
-        popoverController?.sourceView = self.clearButton
-        popoverController?.sourceRect = self.clearButton.bounds
-        popoverController?.permittedArrowDirections = .Down
+        configurePopover(viewController: alert, sourceView: clearButton)
     }
 
     func colorTapped() {
@@ -226,12 +223,7 @@ extension ButtonHandlers {
         }
 
         presentViewController(viewControllerToShow, animated: true, completion: nil)
-        if let popoverController = viewControllerToShow.popoverPresentationController {
-            popoverController.sourceView = colorButton
-            popoverController.sourceRect = colorButton.bounds
-            popoverController.permittedArrowDirections = .Down
-            popoverController.passthroughViews = passthroughViews
-        }
+        configurePopover(viewController: viewControllerToShow, sourceView: colorButton)
     }
 
     func recordTapped() {
@@ -295,15 +287,10 @@ extension ButtonHandlers {
                 }
             }
 
-            self.presentViewController(activityViewController, animated: true) {
+            self.presentViewController(activityViewController, animated: true, completion: {
                 restoreShareButton(activityViewController)
-            }
-
-            guard let popoverController = activityViewController.popoverPresentationController else { return }
-            popoverController.sourceView = activityIndicator
-            popoverController.sourceRect = activityIndicator.bounds
-            popoverController.permittedArrowDirections = .Down
-            popoverController.passthroughViews = self.passthroughViews
+            })
+            self.configurePopover(viewController: activityViewController, sourceView: activityIndicator)
         }
     }
 
@@ -324,14 +311,8 @@ extension ButtonHandlers {
             viewControllerToShow.modalPresentationStyle = .FormSheet
         }
 
-        self.presentViewController(viewControllerToShow, animated: true) { }
-
-        if let popoverController = viewControllerToShow.popoverPresentationController {
-            popoverController.sourceView = helpButton
-            popoverController.sourceRect = helpButton.bounds
-            popoverController.permittedArrowDirections = .Down
-            popoverController.passthroughViews = passthroughViews
-        }
+        self.presentViewController(viewControllerToShow, animated: true, completion: nil)
+        configurePopover(viewController: viewControllerToShow, sourceView: helpButton)
     }
 }
 
@@ -402,5 +383,13 @@ private extension ToolbarViewController {
             toolbarBottomConstraint.active = false
             toolbarTopConstraint.active = true
         }
+    }
+
+    func configurePopover(viewController viewController: UIViewController, sourceView: UIView) {
+        guard let popoverController = viewController.popoverPresentationController else { return }
+        popoverController.sourceView = sourceView
+        popoverController.sourceRect = sourceView.bounds
+        popoverController.permittedArrowDirections = .Down
+        popoverController.passthroughViews = self.passthroughViews
     }
 }
