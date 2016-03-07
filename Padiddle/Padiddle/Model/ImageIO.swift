@@ -38,7 +38,7 @@ struct ImageIO {
 
                 do {
                     try imageData.writeToURL(imageURL, options: [.DataWritingAtomic])
-                } catch let error as NSError {
+                } catch let error {
                     Log.error("Error writing to file: \(error)")
                 }
             }
@@ -111,7 +111,7 @@ private extension ImageIO {
         if !NSFileManager.defaultManager().fileExistsAtPath(path) {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
-            } catch let error as NSError {
+            } catch let error {
                 Log.error("Error creating direcotry at path \(path): \(error)")
             }
         }
