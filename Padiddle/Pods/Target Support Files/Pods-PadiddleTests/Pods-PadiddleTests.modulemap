@@ -1,0 +1,6 @@
+framework module Pods_PadiddleTests {
+  umbrella header "Pods-PadiddleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

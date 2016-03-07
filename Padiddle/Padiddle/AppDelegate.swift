@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Fabric
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

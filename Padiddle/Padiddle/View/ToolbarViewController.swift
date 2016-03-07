@@ -191,11 +191,12 @@ extension Layout {
 typealias ButtonHandlers = ToolbarViewController
 extension ButtonHandlers {
     func trashTapped() {
-        print(#function)
+        Log.info()
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear Drawing", comment: "Title of a button to erase the current drawing immediately"), style: .Destructive) { _ in
+            Log.info("Clear Drawing tapped")
             self.viewModel?.clearTapped()
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Button to cancel the current action"), style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Button to cancel the current action"), style: .Cancel) { _ in Log.info("Clear Drawing canceled") }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         alert.addAction(clearAction)
         alert.addAction(cancelAction)
@@ -209,7 +210,7 @@ extension ButtonHandlers {
     }
 
     func colorTapped() {
-        print(#function)
+        Log.info()
         let viewControllerToShow: UIViewController
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
@@ -234,14 +235,14 @@ extension ButtonHandlers {
     }
 
     func recordTapped() {
-        print(#function)
+        Log.info("new recording status: \(!recordButton.selected)")
         recordButton.selected = !recordButton.selected
 
         viewModel?.recordButtonTapped()
     }
 
     func shareTapped() {
-        print(#function)
+        Log.info()
 
         guard let viewModel = viewModel else { fatalError() }
 
@@ -286,6 +287,13 @@ extension ButtonHandlers {
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact]
             activityViewController.modalPresentationStyle = .Popover
+            activityViewController.completionWithItemsHandler = { (activityType: String?, completed: Bool, returnedItems: [AnyObject]?, activityError: NSError?) in
+                if completed {
+                    Log.info("shared via \(activityType ?? "unknown sharing type")")
+                } else {
+                    Log.info("Canceled sharing")
+                }
+            }
 
             self.presentViewController(activityViewController, animated: true) {
                 restoreShareButton(activityViewController)
@@ -300,7 +308,7 @@ extension ButtonHandlers {
     }
 
     func helpTapped() {
-        print(#function)
+        Log.info()
         let helpViewController = HelpViewController()
         helpViewController.modalPresentationStyle = .Popover
 
@@ -331,6 +339,7 @@ extension ToolbarViewController: ColorPickerDelegate {
     func colorPicked(color: ColorManager) {
         updateColorButton(colorManager: color)
         dismissViewControllerAnimated(true, completion: nil)
+        Log.info(color)
     }
 }
 
@@ -351,6 +360,7 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
 private extension ToolbarViewController {
 
     @objc func dismissModal() {
+        Log.info()
         dismissViewControllerAnimated(true, completion: nil)
     }
 

@@ -30,16 +30,16 @@ struct ImageIO {
                 }
 
                 guard let imageData = UIImagePNGRepresentation(image) else {
-                    print("Error - could not generate PNG to save image")
+                    Log.error("Could not generate PNG to save image: \(image)")
                     return
                 }
 
                 let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
-                let success = imageData.writeToURL(imageURL, atomically: true)
-
-                if !success {
-                    print("Error writing file")
+                do {
+                    try imageData.writeToURL(imageURL, options: [.DataWritingAtomic])
+                } catch let error as NSError {
+                    Log.error("Error writing to file: \(error)")
                 }
             }
         #endif
@@ -111,8 +111,8 @@ private extension ImageIO {
         if !NSFileManager.defaultManager().fileExistsAtPath(path) {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
-            } catch let error {
-                print("Error creating direcotry at path \(path): \(error)")
+            } catch let error as NSError {
+                Log.error("Error creating direcotry at path \(path): \(error)")
             }
         }
 
@@ -123,7 +123,7 @@ private extension ImageIO {
 
     static func loadPersistedImageData(imageData: NSData, contextScale: CGFloat) -> UIImage? {
         guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
-            print("Error: couldn't create image from data on disk")
+            Log.error("Couldn't create image from data on disk")
             return nil
         }
 

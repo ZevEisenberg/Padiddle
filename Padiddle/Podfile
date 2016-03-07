@@ -1,0 +1,14 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'Padiddle' do
+  
+end
+
+target 'PadiddleTests' do
+
+end
+
+target 'PadiddleUITests' do
+
+end
