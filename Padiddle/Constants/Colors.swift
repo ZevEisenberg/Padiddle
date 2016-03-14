@@ -40,6 +40,10 @@ extension UIColor {
       case .ToolbarHairline: return 0xadadadff
       }
     }
+
+    var color: UIColor {
+      return UIColor(named: self)
+    }
   }
 
   convenience init(named name: Name) {
