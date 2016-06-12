@@ -127,8 +127,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         guard let view = view else { fatalError() }
         let offscreenImage = CGBitmapContextCreateImage(offscreenContext)
         let offset = CGSize(
-            width: contextSize.width * contextScaleFactor - CGRectGetWidth(view.bounds),
-            height: contextSize.height * contextScaleFactor - CGRectGetHeight(view.bounds)
+            width: contextSize.width * contextScaleFactor - view.bounds.width,
+            height: contextSize.height * contextScaleFactor - view.bounds.height
         )
         let drawingRect = CGRect(
             x: -offset.width / 2.0,
@@ -165,8 +165,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
         let pathBoundingRect = CGPathGetPathBoundingBox(pathSegment)
 
-        let insetPathBoundingRect = CGRectInset(pathBoundingRect, -brushDiameter, -brushDiameter)
-        currentDirtyRect = CGRectUnion(currentDirtyRect, insetPathBoundingRect)
+        let insetPathBoundingRect = pathBoundingRect.insetBy(dx: -brushDiameter, dy: -brushDiameter)
+        currentDirtyRect = currentDirtyRect.union(insetPathBoundingRect)
     }
 
     // Saving & Loading
@@ -244,7 +244,7 @@ extension DrawingViewModel { // Coordinate conversions
         newPoint.y *= (1 / contextScaleFactor)
 
         // 2. Get the size of self in context coordinates
-        let viewSize = CGSize(width: CGRectGetWidth(view.bounds), height: CGRectGetHeight(view.bounds))
+        let viewSize = view.bounds.size
         let scaledViewSize = CGSize(
             width: viewSize.width * (1 / contextScaleFactor),
             height: viewSize.height * (1 / contextScaleFactor)
@@ -275,10 +275,7 @@ extension DrawingViewModel { // Coordinate conversions
         )
 
         // 2. Get the difference in size between self and the context
-        let boundsSize = CGSize(
-            width: CGRectGetWidth(view.bounds),
-            height: CGRectGetHeight(view.bounds)
-        )
+        let boundsSize = view.bounds.size
 
         let difference = CGSize(
             width: scaledContextSize.width - boundsSize.width,
@@ -289,7 +286,7 @@ extension DrawingViewModel { // Coordinate conversions
         let scaledRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(contextScaleFactor, contextScaleFactor))
 
         // 4. Shift the rect by negative the half the difference in width and height
-        let offsetRect = CGRectOffset(scaledRect, -difference.width / 2.0, -difference.height / 2.0)
+        let offsetRect = scaledRect.offsetBy(dx: -difference.width / 2.0, dy: -difference.height / 2.0)
 
         return offsetRect
     }

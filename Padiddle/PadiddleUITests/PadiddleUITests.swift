@@ -45,21 +45,21 @@ class PadiddleUITests: XCTestCase {
         let toolbar = toolbarViewControllerView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbar")
         XCTAssert(toolbar.exists)
 
-        XCTAssert(CGRectContainsRect(window.frame, toolbar.frame), "At the start, the toolbar is on screen")
+        XCTAssert(window.frame.contains(toolbar.frame), "At the start, the toolbar is on screen")
 
         let recordButtonButton = app.buttons["record button"]
         recordButtonButton.tap()
 
-        XCTAssertFalse(CGRectContainsRect(window.frame, toolbar.frame), "After recording begins, the toolbar is hidden")
+        XCTAssertFalse(window.frame.contains(toolbar.frame), "After recording begins, the toolbar is hidden")
 
         XCUIDevice.sharedDevice().orientation = .LandscapeRight
         XCUIDevice.sharedDevice().orientation = .Portrait
 
-        XCTAssertFalse(CGRectContainsRect(window.frame, toolbar.frame), "After rotation, the toolbar remains hidden")
+        XCTAssertFalse(window.frame.contains(toolbar.frame), "After rotation, the toolbar remains hidden")
 
         recordButtonButton.tap()
 
-        XCTAssertTrue(CGRectContainsRect(window.frame, toolbar.frame), "Tapping the Record button again un-hides the toolbar")
+        XCTAssertTrue(window.frame.contains(toolbar.frame), "Tapping the Record button again un-hides the toolbar")
     }
 
 }

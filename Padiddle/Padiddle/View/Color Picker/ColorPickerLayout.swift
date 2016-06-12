@@ -66,7 +66,7 @@ class ColorPickerLayout: UICollectionViewLayout {
         var allAtributes = [UICollectionViewLayoutAttributes]()
 
         for (_, attributes) in layoutInfo {
-            if CGRectIntersectsRect(rect, attributes.frame) {
+            if rect.intersects(attributes.frame) {
                 allAtributes.append(attributes)
             }
         }
@@ -83,9 +83,9 @@ class ColorPickerLayout: UICollectionViewLayout {
             return CGSize.zero
         }
 
-        let height = CGRectGetHeight(collectionView.frame)
+        let height = collectionView.frame.height
 
-        let width = CGRectGetWidth(collectionView.frame) * CGFloat(numberOfPages)
+        let width = collectionView.frame.width * CGFloat(numberOfPages)
 
         return CGSize(width: width, height: height)
     }
@@ -106,14 +106,14 @@ private extension ColorPickerLayout {
         let row    = indexRelativeToThisPage / numberOfColumns
 
         let spaceForColumns = (
-            CGRectGetWidth(collectionView.frame) -
+            collectionView.frame.width -
                 pageInsets.left -
                 pageInsets.right -
                 CGFloat(numberOfColumns - 1) * spacing)
         let columnWidth = spaceForColumns / CGFloat(numberOfColumns)
 
         let spaceForRows = (
-            CGRectGetHeight(collectionView.frame) -
+            collectionView.frame.height -
                 pageInsets.top -
                 pageInsets.bottom -
                 CGFloat(numberOfRows - 1) * spacing)
@@ -122,7 +122,7 @@ private extension ColorPickerLayout {
         let originX = floor(
             pageInsets.left +
                 (columnWidth + spacing) * CGFloat(column) +
-                CGFloat(page) * CGRectGetWidth(collectionView.frame))
+                CGFloat(page) * collectionView.frame.width)
 
         let originY = floor(
             pageInsets.top +
