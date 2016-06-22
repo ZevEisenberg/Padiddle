@@ -711,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftgen >/dev/null; then\n    if [ \"$CONFIGURATION\" == \"Debug\" ]; then\n        swiftgen images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        swiftgen colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\necho \"binary is at $SWIFTGEN_BINARY\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
 		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

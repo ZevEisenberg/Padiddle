@@ -47,7 +47,7 @@ struct HelpViewModel {
         newString = newString.stringByReplacingCharactersInRange(deviceImageRange, withString: deviceName as String)
 
         // Device Image Width
-        guard let deviceImage = UIImage.Asset(rawValue: deviceName)?.image else { fatalError() }
+        guard let deviceImage = Asset(rawValue: deviceName)?.image else { fatalError() }
 
         let nativeWidth = deviceImage.size.width
 
