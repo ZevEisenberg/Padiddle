@@ -29,6 +29,11 @@ class HelpViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.accessibilityIdentifier = "about padiddle"
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         webView.scrollView.flashScrollIndicators()

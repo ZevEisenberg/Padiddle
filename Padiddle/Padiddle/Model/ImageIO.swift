@@ -11,7 +11,7 @@ import UIKit.UIImage
 struct ImageIO {
 
     static func persistImageInBackground(image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
-        #if !SCREENSHOTS // no-op in screenshot mode
+        if !Defaults.snapshotMode { // no-op in screenshot mode
             let app = UIApplication.sharedApplication()
 
             backgroundSaveTask = app.beginBackgroundTaskWithExpirationHandler {
@@ -42,7 +42,7 @@ struct ImageIO {
                     Log.error("Error writing to file: \(error)")
                 }
             }
-        #endif
+        }
     }
 
     static func loadPersistedImage(contextScale contextScale: CGFloat, contextSize: CGSize, completion: UIImage? -> Void) {
@@ -59,11 +59,13 @@ struct ImageIO {
 private extension ImageIO {
     static let persistedImageExtension = "png"
 
-    #if SCREENSHOTS
-    static let persistedImageName = "ScreenshotPersistedImage"
-    #else
-    static let persistedImageName = "PadiddlePersistedImage"
-    #endif
+    static let persistedImageName: String = {
+        if Defaults.snapshotMode {
+            return "ScreenshotPersistedImage"
+        } else {
+            return "PadiddlePersistedImage"
+        }
+    }()
 
     static var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
@@ -98,10 +100,9 @@ private extension ImageIO {
 
         let imageName = NSString(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height) as String
 
-        #if SCREENSHOTS
-            let url = NSBundle.mainBundle().URLForResource(imageName, withExtension:persistedImageExtension)
-            return url
-        #endif
+        guard !Defaults.snapshotMode else {
+            return NSBundle.mainBundle().URLForResource(imageName, withExtension:persistedImageExtension)!
+        }
 
         let paths = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
 

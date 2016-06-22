@@ -8,21 +8,29 @@
 
 import Foundation
 
-private let colorPickerPersistentIndexKey = "ColorPickerIndex"
-
-#if SCREENSHOTS
-let defaultColorPickerPersistentIndex = 6
-    #else
-let defaultColorPickerPersistentIndex = 0
-#endif
-
 struct Defaults {
+
+    static var snapshotMode: Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(snapshotKey)
+    }
+
     static var colorPickerSelection: Int {
         get {
-            return (NSUserDefaults().objectForKey(colorPickerPersistentIndexKey) as? Int) ?? defaultColorPickerPersistentIndex
+            if snapshotMode {
+                return snapshotPersistedIndex
+            } else {
+                return (NSUserDefaults().objectForKey(colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
+            }
         }
         set(newSelection) {
             NSUserDefaults().setInteger(newSelection, forKey: colorPickerPersistentIndexKey)
         }
     }
+
+    private static let snapshotPersistedIndex = 6
+    private static let deafultPersistedIndex = 0
+
+    private static let colorPickerPersistentIndexKey = "ColorPickerIndex"
+    private static let snapshotKey = "FASTLANE_SNAPSHOT"
+
 }

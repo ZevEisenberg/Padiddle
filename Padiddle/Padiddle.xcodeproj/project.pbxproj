@@ -14,6 +14,8 @@
 		7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44F11BD3118300CE7FB2 /* Weak.swift */; };
 		7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
 		7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
+		CD114B711CB80066001BBF75 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD114B701CB80066001BBF75 /* Screenshots.swift */; };
+		CD114B791CB8008A001BBF75 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */; };
 		CD1317CA1C8B6F6D0018D720 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1317C91C8B6F6D0018D720 /* Log.swift */; };
 		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
 		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
@@ -55,6 +57,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD114B731CB80066001BBF75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD193CB81BA4891500203B44;
+			remoteInfo = Padiddle;
+		};
 		CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
@@ -75,9 +84,11 @@
 		06915CDE3C0A8F707D8A4D6A /* Pods_PadiddleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		080487F199181FEB1400AE1E /* Pods-Padiddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Padiddle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle.release.xcconfig"; sourceTree = "<group>"; };
 		09904CE9530085084C8C07EE /* Pods-PadiddleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		14B23746CD75BE300300EE5A /* Pods-Padiddle.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Padiddle.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle.screenshots.xcconfig"; sourceTree = "<group>"; };
 		1A7F96CAE0D8F176B09A95E6 /* Pods-PadiddleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		32E108BA8E5CC0BC4D21DB2A /* Pods-PadiddleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		525D26F9F7D659B123DCFB39 /* Pods-Padiddle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Padiddle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle.debug.xcconfig"; sourceTree = "<group>"; };
+		723036F8EEC2A6BEC5007BF5 /* Pods-PadiddleUITests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.screenshots.xcconfig"; sourceTree = "<group>"; };
 		7492F44E314776067B04C9AF /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ACE6A141C83966C001F7062 /* MathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTests.swift; sourceTree = "<group>"; };
 		7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -85,6 +96,11 @@
 		7AE7217D1BD1A8B2001B7791 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Geometry.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		BAB20864C599E558E6CBF932 /* Pods-PadiddleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.release.xcconfig"; sourceTree = "<group>"; };
 		BBAA0AF05DBDDB1D9FE22AE2 /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC9A8884BDBC315CB422B38 /* Pods-PadiddleTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.screenshots.xcconfig"; sourceTree = "<group>"; };
+		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD114B701CB80066001BBF75 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
+		CD114B721CB80066001BBF75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		CD1317C91C8B6F6D0018D720 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CBC1BA4891500203B44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +153,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CD114B6B1CB80066001BBF75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD193CB61BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,8 +206,21 @@
 				BAB20864C599E558E6CBF932 /* Pods-PadiddleTests.release.xcconfig */,
 				09904CE9530085084C8C07EE /* Pods-PadiddleUITests.debug.xcconfig */,
 				1A7F96CAE0D8F176B09A95E6 /* Pods-PadiddleUITests.release.xcconfig */,
+				14B23746CD75BE300300EE5A /* Pods-Padiddle.screenshots.xcconfig */,
+				BEC9A8884BDBC315CB422B38 /* Pods-PadiddleTests.screenshots.xcconfig */,
+				723036F8EEC2A6BEC5007BF5 /* Pods-PadiddleUITests.screenshots.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD114B6F1CB80066001BBF75 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				CD114B701CB80066001BBF75 /* Screenshots.swift */,
+				CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */,
+				CD114B721CB80066001BBF75 /* Info.plist */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		CD193CB01BA4891500203B44 = {
@@ -193,6 +229,7 @@
 				CD193CBB1BA4891500203B44 /* Padiddle */,
 				CD193CD01BA4891500203B44 /* PadiddleTests */,
 				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
+				CD114B6F1CB80066001BBF75 /* Screenshots */,
 				CD193CBA1BA4891500203B44 /* Products */,
 				75432E97D1126247F315B74C /* Pods */,
 				55D90D88AE3C18FC488B6956 /* Frameworks */,
@@ -205,6 +242,7 @@
 				CD193CB91BA4891500203B44 /* Padiddle.app */,
 				CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */,
 				CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */,
+				CD114B6E1CB80066001BBF75 /* Screenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,19 +371,38 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CD114B6D1CB80066001BBF75 /* Screenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD114B771CB80066001BBF75 /* Build configuration list for PBXNativeTarget "Screenshots" */;
+			buildPhases = (
+				CD114B6A1CB80066001BBF75 /* Sources */,
+				CD114B6B1CB80066001BBF75 /* Frameworks */,
+				CD114B6C1CB80066001BBF75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD114B741CB80066001BBF75 /* PBXTargetDependency */,
+			);
+			name = Screenshots;
+			productName = Screenshots;
+			productReference = CD114B6E1CB80066001BBF75 /* Screenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CD193CB81BA4891500203B44 /* Padiddle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
-				E8A01669921DB1877014DA1E /* Check Pods Manifest.lock */,
+				E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */,
 				CDDA9DD61C530FDA00D9EF19 /* SwiftGen */,
 				CD193CB51BA4891500203B44 /* Sources */,
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
 				CD118DBF1BA4E7C800668DB6 /* Build Number */,
 				7ACF44EE1BD1B64500CE7FB2 /* Swiftlint */,
-				A77514DFBBBC9E4B6E0FC363 /* Embed Pods Frameworks */,
-				9AA03E83AAB5F6722AF7B50B /* Copy Pods Resources */,
+				A77514DFBBBC9E4B6E0FC363 /* [CP] Embed Pods Frameworks */,
+				9AA03E83AAB5F6722AF7B50B /* [CP] Copy Pods Resources */,
+				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
 			);
 			buildRules = (
 			);
@@ -360,13 +417,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */;
 			buildPhases = (
-				3113BC90D9F864FC0060881E /* Check Pods Manifest.lock */,
+				3113BC90D9F864FC0060881E /* [CP] Check Pods Manifest.lock */,
 				CD193CC91BA4891500203B44 /* Sources */,
 				CD193CCA1BA4891500203B44 /* Frameworks */,
 				CD193CCB1BA4891500203B44 /* Resources */,
 				CD2AD6021C56EA9400910FFE /* Swiftlint */,
-				319C63749D29748FE2DEE950 /* Embed Pods Frameworks */,
-				496A4703B2C6480C95E30ACD /* Copy Pods Resources */,
+				319C63749D29748FE2DEE950 /* [CP] Embed Pods Frameworks */,
+				496A4703B2C6480C95E30ACD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,12 +439,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */;
 			buildPhases = (
-				B3FEA9B66249B6211A5AD979 /* Check Pods Manifest.lock */,
+				B3FEA9B66249B6211A5AD979 /* [CP] Check Pods Manifest.lock */,
 				CD193CD41BA4891500203B44 /* Sources */,
 				CD193CD51BA4891500203B44 /* Frameworks */,
 				CD193CD61BA4891500203B44 /* Resources */,
 				CD2AD6031C56EA9D00910FFE /* Swiftlint */,
-				F27EAADCBACFA8424D3B6EE6 /* Copy Pods Resources */,
+				F27EAADCBACFA8424D3B6EE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -405,10 +462,14 @@
 		CD193CB11BA4891500203B44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 				TargetAttributes = {
+					CD114B6D1CB80066001BBF75 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = CD193CB81BA4891500203B44;
+					};
 					CD193CB81BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 2KJHM26Y46;
@@ -438,11 +499,19 @@
 				CD193CB81BA4891500203B44 /* Padiddle */,
 				CD193CCC1BA4891500203B44 /* PadiddleTests */,
 				CD193CD71BA4891500203B44 /* PadiddleUITests */,
+				CD114B6D1CB80066001BBF75 /* Screenshots */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CD114B6C1CB80066001BBF75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD193CB71BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,14 +539,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3113BC90D9F864FC0060881E /* Check Pods Manifest.lock */ = {
+		3113BC90D9F864FC0060881E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,14 +554,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		319C63749D29748FE2DEE950 /* Embed Pods Frameworks */ = {
+		319C63749D29748FE2DEE950 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,14 +569,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		496A4703B2C6480C95E30ACD /* Copy Pods Resources */ = {
+		496A4703B2C6480C95E30ACD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,14 +598,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		9AA03E83AAB5F6722AF7B50B /* Copy Pods Resources */ = {
+		9AA03E83AAB5F6722AF7B50B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,14 +613,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A77514DFBBBC9E4B6E0FC363 /* Embed Pods Frameworks */ = {
+		A77514DFBBBC9E4B6E0FC363 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,14 +628,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B3FEA9B66249B6211A5AD979 /* Check Pods Manifest.lock */ = {
+		B3FEA9B66249B6211A5AD979 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +685,20 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Screenshot Images If Needed";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOGFILE=\"/Users/zev/Desktop/output.txt\"\necho \"arguments for build phase: $@\" >> $LOGFILE\necho \"Starting at `date` with configuration ${CONFIGURATION}\" >> $LOGFILE\necho \"the value of FASTLANE_SNAPSHOT is '$FASTLANE_SNAPSHOT'\" >> $LOGFILE\nif [[ $FASTLANE_SNAPSHOT == 1 ]]; then\n    echo \"copying da stuffs\" >> $LOGFILE\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nelse\n    echo \"no stuffs for you\" >> $LOGFILE\nfi\n";
+		};
 		CDDA9DD61C530FDA00D9EF19 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -630,14 +713,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftgen >/dev/null; then\n    if [ \"$CONFIGURATION\" == \"Debug\" ]; then\n        swiftgen images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        swiftgen colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
-		E8A01669921DB1877014DA1E /* Check Pods Manifest.lock */ = {
+		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,14 +728,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F27EAADCBACFA8424D3B6EE6 /* Copy Pods Resources */ = {
+		F27EAADCBACFA8424D3B6EE6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,6 +746,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CD114B6A1CB80066001BBF75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD114B711CB80066001BBF75 /* Screenshots.swift in Sources */,
+				CD114B791CB8008A001BBF75 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CD193CB51BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -726,6 +818,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD114B741CB80066001BBF75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD193CB81BA4891500203B44 /* Padiddle */;
+			targetProxy = CD114B731CB80066001BBF75 /* PBXContainerItemProxy */;
+		};
 		CD193CCF1BA4891500203B44 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD193CB81BA4891500203B44 /* Padiddle */;
@@ -766,6 +863,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CD114B751CB80066001BBF75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Padiddle;
+			};
+			name = Debug;
+		};
+		CD114B761CB80066001BBF75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DSCREENSHOTS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Padiddle;
+			};
+			name = Release;
+		};
 		CD193CDF1BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -928,6 +1053,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CD114B771CB80066001BBF75 /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD114B751CB80066001BBF75 /* Debug */,
+				CD114B761CB80066001BBF75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -349,11 +349,13 @@ private extension ToolbarViewController {
 
         if let cancelSelector = cancelSelector {
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector)
+            cancelButton.accessibilityIdentifier = "cancel button"
             navigationItem.leftBarButtonItem = cancelButton
         }
 
         if let doneSelector = doneSelector {
             let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector)
+            doneButton.accessibilityIdentifier = "done button"
             navigationItem.rightBarButtonItem = doneButton
         }
     }
