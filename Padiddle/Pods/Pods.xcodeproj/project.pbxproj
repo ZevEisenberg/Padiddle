@@ -315,6 +315,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>241D9B598B52C63DD4AE10463EB93C4E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A37FBF3A24FDFDC42CF88456B31A5E93</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>27ABCF5CD46857986029DAC9D97C04CC</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -733,6 +746,7 @@
 			<array>
 				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
+				<string>241D9B598B52C63DD4AE10463EB93C4E</string>
 				<string>6393D0CBAFA21E707C6A7A4FE0A7F475</string>
 				<string>980B1B45AF03713F609D6CE0447C6274</string>
 			</array>
@@ -956,6 +970,19 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>A37FBF3A24FDFDC42CF88456B31A5E93</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>SwiftGen</string>
+			<key>path</key>
+			<string>SwiftGen</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A7CDBFF4A4EF83BD1EEE0C2900BD3FF8</key>
 		<dict>
