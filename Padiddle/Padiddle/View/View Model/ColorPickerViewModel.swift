@@ -76,84 +76,84 @@ extension ColorPickerViewModel {
                 h: .ThetaIncreasing,
                 s: .Manual(1.0),
                 v: .VelocityIn),
-            title: NSLocalizedString("Classic", comment: "The original color scheme")),
+            title: L10n.ColorsClassic.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .Manual(30.0 / 360.0),
                     s: .Manual(0.2),
                     v: .ThetaIncreasingAndDecreasing),
-                title: NSLocalizedString("Sepia", comment: "A color scheme named after the light brown color derived from cuttlefish ink")),
+                title: L10n.ColorsSepia.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .Manual(0.0),
                     s: .Manual(1.0),
                     v: .VelocityIn),
-                title: NSLocalizedString("Black Widow", comment: "A color scheme with a red center like a black widow spider")),
+                title: L10n.ColorsBlackWidow.string),
 
             ColorManager(
                 colorModel: .RGB(
                     r: .VelocityOut,
                     g: .Manual(0.45),
                     b: .Manual(0.0)),
-                title: NSLocalizedString("Autumn", comment: "A color scheme that looks like autumn leaves")),
+                title: L10n.ColorsAutumn.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .Manual(30.0 / 360.0),
                     s: .VelocityIn,
                     v: .Manual(1.0)),
-                title: NSLocalizedString("Tangerine", comment: "A color scheme that is bright, tagnerine yellow")),
+                title: L10n.ColorsTangerine.string),
 
             ColorManager(
                 colorModel: .RGB(
                     r: .ThetaIncreasingAndDecreasing,
                     g: .ThetaIncreasing,
                     b: .ThetaIncreasing),
-                title: NSLocalizedString("3-D", comment: "A color scheme that looks like red-cyan 3-D glasses")),
+                title: L10n.Colors3D.string),
 
             ColorManager(
                 colorModel: .RGB(
                     r: .ThetaIncreasingAndDecreasing,
                     g: .VelocityIn,
                     b: .ThetaIncreasing),
-                title: NSLocalizedString("Watercolor", comment: "A color scheme with bright tones like watercolor paint")),
+                title: L10n.ColorsWatercolor.string),
 
             ColorManager(
                 colorModel: .RGB(
                     r: .VelocityIn,
                     g: .VelocityOut,
                     b: .VelocityIn),
-                title: NSLocalizedString("Monsters", comment: "A color scheme that looks like Mike and Sully from Monsters, Inc.")),
+                title: L10n.ColorsMonsters.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .ThetaIncreasingAndDecreasing,
                     s: .Manual(0.33),
                     v: .VelocityOut),
-                title: NSLocalizedString("Pastels", comment: "A color scheme with muted pastel hues")),
+                title: L10n.ColorsPastels.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .VelocityIn,
                     s: .VelocityOut,
                     v: .ThetaIncreasingAndDecreasing),
-                title: NSLocalizedString("Merlin", comment: "A color scheme that looks like 1998’s Merlin TV mini-series")),
+                title: L10n.ColorsMerlin.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .Manual(0.0),
                     s: .Manual(0.0),
                     v: .VelocityOut),
-                title: NSLocalizedString("Regolith", comment: "A color scheme that looks like the surface of the moon")),
+                title: L10n.ColorsRegolith.string),
 
             ColorManager(
                 colorModel: .HSV(
                     h: .Manual(0.0),
                     s: .Manual(0.0),
                     v: .ThetaIncreasingAndDecreasing),
-                title: NSLocalizedString("Film Noir", comment: "A color scheme that looks like black and white detective movies from the 1950s")),
+                title: L10n.ColorsFilmNoir.string),
         ]
     }
 }

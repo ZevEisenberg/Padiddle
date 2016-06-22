@@ -57,7 +57,7 @@ class ColorPickerViewController: UIViewController {
         pageControl.currentPageIndicatorTintColor = UIColor(named: .PageIndicatorCurrentPage)
         pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), forControlEvents: .ValueChanged)
 
-        title = NSLocalizedString("Colors", comment: "Title of a view that lets you choose a color scheme")
+        title = L10n.Colors.string
     }
 
     required init?(coder aDecoder: NSCoder) {

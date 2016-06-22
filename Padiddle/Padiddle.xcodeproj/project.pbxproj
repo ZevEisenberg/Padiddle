@@ -22,6 +22,8 @@
 		CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
 		CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* GeometryTests.swift */; };
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
+		CD2025831D1A2DAD0002C2A0 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2025821D1A2DAD0002C2A0 /* L10n.swift */; };
+		CD2025861D1A2DC70002C2A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD2025841D1A2DC70002C2A0 /* Localizable.strings */; };
 		CD2AD6011C56E7A600910FFE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
 		CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2AD6041C56F00F00910FFE /* ArrayTests.swift */; };
 		CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; };
@@ -113,6 +115,8 @@
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
 		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD2025821D1A2DAD0002C2A0 /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		CD2025851D1A2DC70002C2A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD2AD6041C56F00F00910FFE /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorPickerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
 				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
 				CDDA9DCC1C5300CD00D9EF19 /* help.html */,
+				CD2025841D1A2DC70002C2A0 /* Localizable.strings */,
 				CD193CC81BA4891500203B44 /* Info.plist */,
 			);
 			path = Padiddle;
@@ -363,6 +368,7 @@
 			children = (
 				CDBB16861C6F19F600B7E0A2 /* Colors.swift */,
 				CDDA9DD81C5310CB00D9EF19 /* Images.swift */,
+				CD2025821D1A2DAD0002C2A0 /* L10n.swift */,
 			);
 			name = Constants;
 			path = ../Constants;
@@ -517,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDDA9DCE1C5300CD00D9EF19 /* help.html in Resources */,
+				CD2025861D1A2DC70002C2A0 /* Localizable.strings in Resources */,
 				CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */,
 				CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */,
 			);
@@ -711,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\necho \"binary is at $SWIFTGEN_BINARY\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/en.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
 		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -779,6 +786,7 @@
 				CDEA9C5B1C02ACFC00E02D66 /* HelpViewController.swift in Sources */,
 				CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */,
 				CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */,
+				CD2025831D1A2DAD0002C2A0 /* L10n.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */,
@@ -846,6 +854,14 @@
 				CDDA9DCB1C53007C00D9EF19 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CD2025841D1A2DC70002C2A0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD2025851D1A2DC70002C2A0 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		CDDA9DCC1C5300CD00D9EF19 /* help.html */ = {
@@ -979,6 +995,8 @@
 			baseConfigurationReference = 525D26F9F7D659B123DCFB39 /* Pods-Padiddle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -993,6 +1011,8 @@
 			baseConfigurationReference = 080487F199181FEB1400AE1E /* Pods-Padiddle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
