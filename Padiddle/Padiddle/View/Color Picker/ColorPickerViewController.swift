@@ -191,7 +191,6 @@ extension ColorPickerViewController: UICollectionViewDataSource {
 
         cell.title = viewModel.colorsToPick[indexPath.item].title
 
-        // TODO: cache image for faster scrolling performance
         cell.image = viewModel.imageForColorManager(viewModel.colorsToPick[indexPath.item])
         return cell
     }
