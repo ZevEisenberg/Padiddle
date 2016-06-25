@@ -1,12 +1,15 @@
 PODS:
+  - SimulatorStatusMagic (1.8)
   - SwiftGen (1.1.2)
 
 DEPENDENCIES:
+  - SimulatorStatusMagic
   - SwiftGen
 
 SPEC CHECKSUMS:
+  SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
   SwiftGen: 18b1421be72f6e565a1844d0fb402825c249859e
 
-PODFILE CHECKSUM: e3e28dc8d4fca828b00be26c5c85f2818eefb902
+PODFILE CHECKSUM: 7c65b9534ec777e6176fffe6f51564bccc375297
 
 COCOAPODS: 1.0.1
