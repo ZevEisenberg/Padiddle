@@ -228,7 +228,8 @@
 				CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */,
 				CD114B721CB80066001BBF75 /* Info.plist */,
 			);
-			path = Screenshots;
+			name = Screenshots;
+			path = fastlane/screenshots;
 			sourceTree = "<group>";
 		};
 		CD193CB01BA4891500203B44 = {
