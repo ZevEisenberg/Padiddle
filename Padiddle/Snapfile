@@ -10,10 +10,10 @@ devices([
 
 languages([
   "en-US",
-  # "fr-Fr",
-  # "it-It",
-  # "zh-Hans",
-  # "zh-Hant",
+  "fr-Fr",
+  "it-It",
+  "zh-Hans",
+  "zh-Hant",
 ])
 
 ENV["FASTLANE_SNAPSHOT"] = "1"
@@ -26,7 +26,7 @@ configuration "Debug"
 # Where should the resulting screenshots be stored?
 output_directory "../Captured Screenshots"
 
-# clear_previous_screenshots true # remove the '#' to clear all previously generated screenshots before creating new ones
+clear_previous_screenshots true
 
 # Choose which project/workspace to use
 # project "./Project.xcodeproj"

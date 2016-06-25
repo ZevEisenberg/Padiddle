@@ -69,39 +69,48 @@
 
         .dedication {
             font: -apple-system-body;
-            font-style:italic;
+            font-style: italic;
         }
 
         .footer {
             font: -apple-system-caption;
         }
 
-        .toolbarButton {
-            color: #^toolbarButtonColor^;
-        }
-
-        .recordButton {
-            color: #FB0007;
-        }
-
         /* images */
 
-        #device-image {
+        #recordButton {
+            vertical-align: middle;
+            position: relative;
+            top: -2pt;
+            width: 2em;
+            height: 2em;
+        }
+
+        #colorButton {
+            vertical-align: middle;
+            position: relative;
+            top: -2pt;
+            width: 2em;
+            height: 2em;
+        }
+
+        #deviceImage {
             margin-left: auto;
             margin-right: auto;
             display: block;
+            width: 100%;
+            max-width: ^maxDeviceImageWidthPoints^pt;
         }
 
             </style>
     </head>
     <body>
         <h1>簡介</h1>
-        <p>按下<span class="recordButton toolbarButton">記錄</span>按鈕，快速旋轉您的^device^設備如下圖所示:</p>
-        <p><img id="device-image" src="^imagePlaceholder^.png" onload="scaleImage(this)" alt="iPad spinning on a person&rsquo;s finger" /></p>
-        <p>點擊任意位置暫停記錄。</p>
-        <p>點擊<span class="toolbarButton ^colorButtonClass^">色彩</span>按鈕，選擇更多精彩主題。</p>
+        <p>按下<img id="recordButton" src="recordButton.asset" alt="picture of the app&rsquo;s Record button" />按鈕，快速旋轉您的^deviceName^設備如下圖所示:</p>
+        <p><img id="deviceImage" src="^deviceImage^.asset" alt="iOS device spinning on a person&rsquo;s finger" /></p>
+        <p>點擊<img id="colorButton" src="colorButton.asset" alt="picture of the app&rsquo;s Color button" />按鈕，選擇更多精彩主題。</p>
         <h1>支持</h1>
-        <p>我非常樂意收到來自您的任何疑問、建議、反饋。可以使用這些方法聯系我: <a href="https://twitter.com/ZevEisenberg">twitter</a>或者<a href="http://alpha.app.net/zev">app.net</a>。也可以通過在線的FAQ疑問區<a href="http://ZevEisenberg.com/#padiddle-faq">website</a>獲得支持。</p>
+        <p>我非常樂意收到來自您的任何疑問、建議、反饋。可以使用這些方法聯系我: <a href="https://twitter.com/ZevEisenberg">Twitter</a>或者<a href="https://alpha.app.net/zev">App.net</a>。也可以通過在線的FAQ疑問區<a href="http://ZevEisenberg.com/#padiddle-faq">website</a>獲得支持。</p>
         <h1>關于</h1>
         <p>由<a href="https://twitter.com/ZevEisenberg">Zev Eisenberg</a>創建</p>
         <p>感谢我的那些beta版本测试者以及他们的反馈和建议。</p>
@@ -110,51 +119,4 @@
         <p class="dedication">僅以轉圖Padiddle獻給Luke Wilson這位聰明和富有創造力的人士。他給了我使用iPad旋轉進行繪畫的創意理念。Luke是我的第一個beta版本測試者，他提供了很多建議和幫助才有了今天的軟件。我一直想念他。</p>
         <p class="footer">轉圖 Padiddle ^version^<br />&copy; 2014 Zev Eisenberg.</p>
     </body>
-    <script type="text/javascript">
-
-        function scaleImage(image) {
-            if ( image == null ) {
-                image = document.getElementById("device-image")
-            }
-
-            var naturalWidth = image.naturalWidth
-            var naturalHeight = image.naturalHeight
-            // Use 1.0 to force floating point division
-            var scaledNaturalWidth = naturalWidth * 1.0 / window.devicePixelRatio
-            var scaledNaturalHeight = naturalHeight * 1.0 / window.devicePixelRatio
-
-            var containerWidth = image.parentNode.offsetWidth
-
-            var scaleFactor = 1.0
-            if ( containerWidth < scaledNaturalWidth ) {
-                scaleFactor = (containerWidth * 1.0 / scaledNaturalWidth)
-            }
-
-            image.style.width = (scaledNaturalWidth * scaleFactor) + "px"
-            image.style.height = (scaledNaturalHeight * scaleFactor) + "px"
-        }
-    
-    // addEvent via http://stackoverflow.com/a/3150139/255489
-    var addEvent = function(elem, type, eventHandle) {
-        if ( elem == null || typeof(elem) == 'undefined' ) {
-            return;
-        }
-        if ( elem.addEventListener ) {
-            elem.addEventListener(type, eventHandle, false)
-        }
-        else if ( elem.attachEvent ) {
-            elem.attachEvent("on" + type, eventHandle)
-        }
-        else {
-            elem["on" + type]=eventHandle
-        }
-    };
-    
-    function boundsChanged () {
-        scaleImage(null)
-    }
-    
-    addEvent(window, "resize", boundsChanged)
-    
-        </script>
 </html>

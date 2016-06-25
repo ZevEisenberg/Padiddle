@@ -19,14 +19,15 @@
 		CD1317CA1C8B6F6D0018D720 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1317C91C8B6F6D0018D720 /* Log.swift */; };
 		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
 		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
-		CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
 		CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CD11BA4891500203B44 /* GeometryTests.swift */; };
 		CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */; };
 		CD2025831D1A2DAD0002C2A0 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2025821D1A2DAD0002C2A0 /* L10n.swift */; };
-		CD2025861D1A2DC70002C2A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD2025841D1A2DC70002C2A0 /* Localizable.strings */; };
 		CD2AD6011C56E7A600910FFE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3C34E1BDC8EF000D9D309 /* Math.swift */; };
 		CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2AD6041C56F00F00910FFE /* ArrayTests.swift */; };
 		CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */; };
+		CD2BE7A71D1E206400A06FC3 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDA9DCC1C5300CD00D9EF19 /* help.html */; };
+		CD2BE7A81D1E206800A06FC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD2025841D1A2DC70002C2A0 /* Localizable.strings */; };
+		CD2BE7A91D1E206B00A06FC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
 		CD42370D1BAB54EB0000E395 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */; };
 		CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */; };
 		CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */; };
@@ -35,7 +36,6 @@
 		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; };
 		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; };
 		CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */; };
-		CD92FB011D1B7A6700AE86FB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC81BA4891500203B44 /* Info.plist */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
@@ -50,7 +50,6 @@
 		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; };
 		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; };
 		CDDA9DC71C52FED200D9EF19 /* HelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */; };
-		CDDA9DCE1C5300CD00D9EF19 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDA9DCC1C5300CD00D9EF19 /* help.html */; };
 		CDDA9DD51C53054B00D9EF19 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD41C53054B00D9EF19 /* Layout.swift */; };
 		CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD81C5310CB00D9EF19 /* Images.swift */; };
 		CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */; };
@@ -117,11 +116,11 @@
 		CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadiddleUITests.swift; sourceTree = "<group>"; };
 		CD193CDE1BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD2025821D1A2DAD0002C2A0 /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
-		CD2025871D1A35900002C2A0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD2025891D1A35A00002C2A0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD20258A1D1A35A90002C2A0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD20258B1D1A35AD0002C2A0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD2AD6041C56F00F00910FFE /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
+		CD2BE7AA1D1E20A700A06FC3 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorPickerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		CD4237121BAB97FA0000E395 /* ColorPickerLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerLayout.swift; sourceTree = "<group>"; };
@@ -499,7 +498,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				it,
 				fr,
@@ -531,10 +529,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDDA9DCE1C5300CD00D9EF19 /* help.html in Resources */,
-				CD2025861D1A2DC70002C2A0 /* Localizable.strings in Resources */,
-				CD193CC71BA4891500203B44 /* LaunchScreen.storyboard in Resources */,
-				CD92FB011D1B7A6700AE86FB /* Info.plist in Resources */,
+				CD2BE7A71D1E206400A06FC3 /* help.html in Resources */,
+				CD2BE7A81D1E206800A06FC3 /* Localizable.strings in Resources */,
+				CD2BE7A91D1E206B00A06FC3 /* LaunchScreen.storyboard in Resources */,
 				CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,7 +725,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/en.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/Base.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --output \"$PROJECT_DIR/Constants/Colors.swift\"\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
 		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -869,11 +866,11 @@
 		CD2025841D1A2DC70002C2A0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CD2025871D1A35900002C2A0 /* it */,
 				CD2025891D1A35A00002C2A0 /* fr */,
 				CD20258A1D1A35A90002C2A0 /* zh-Hans */,
 				CD20258B1D1A35AD0002C2A0 /* zh-Hant */,
 				CD92FB001D1B7A6700AE86FB /* Base */,
+				CD2BE7AA1D1E20A700A06FC3 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
