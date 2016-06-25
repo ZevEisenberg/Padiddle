@@ -10,6 +10,10 @@ import UIKit
 
 import Fabric
 
+#if DEBUG
+    import SimulatorStatusMagic
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -47,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.accessibilityIdentifier = "main window"
+
+        #if DEBUG
+            if Defaults.snapshotMode {
+                SDStatusBarManager.sharedInstance().enableOverrides()
+            }
+        #endif
 
         return true
     }
