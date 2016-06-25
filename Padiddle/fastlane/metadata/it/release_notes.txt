@@ -1,0 +1,1 @@
+Aggiunto il supporto per i più recenti modelli di iPod touch.

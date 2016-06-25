@@ -1,0 +1,1 @@
+Padiddle utilise le gyroscope de votre appareil pour dessiner des images pendant que vous le tournez. Choisissez parmi une bibliothèque de douze combinaisons de couleurs fabriqués à la main. Les combiner pour créer quelque chose de nouveau!
