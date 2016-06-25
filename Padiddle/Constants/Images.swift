@@ -14,6 +14,7 @@ enum Asset: String {
   case IPhone = "iPhone"
   case PauseButton = "PauseButton"
   case RecordButtonBack = "RecordButtonBack"
+  case RecordButtonBlank = "RecordButtonBlank"
   case RecordButtonFront = "RecordButtonFront"
   case ShareButton = "ShareButton"
   case TrashButton = "TrashButton"

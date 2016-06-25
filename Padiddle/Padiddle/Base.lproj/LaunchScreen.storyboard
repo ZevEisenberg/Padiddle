@@ -15,7 +15,43 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="RecordButtonBack" translatesAutoresizingMaskIntoConstraints="NO" id="ecj-Ej-5yI">
+                                <rect key="frame" x="270" y="535" width="60" height="60"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hf0-ao-ebi" userLabel="Toolbar">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjN-xg-x1e" userLabel="Hairline">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
+                                        <color key="backgroundColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="T58-k3-EIu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YjN-xg-x1e" secondAttribute="trailing" id="6J4-ul-Tdj"/>
+                                    <constraint firstAttribute="height" constant="44" id="7vs-pE-dTH"/>
+                                    <constraint firstItem="YjN-xg-x1e" firstAttribute="top" secondItem="hf0-ao-ebi" secondAttribute="top" id="8ST-L7-aXc"/>
+                                    <constraint firstItem="YjN-xg-x1e" firstAttribute="leading" secondItem="hf0-ao-ebi" secondAttribute="leading" id="JKg-xS-dxj"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="RecordButtonBlank" translatesAutoresizingMaskIntoConstraints="NO" id="sQq-Ep-d05">
+                                <rect key="frame" x="271" y="536" width="58" height="58"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ecj-Ej-5yI" firstAttribute="centerX" secondItem="sQq-Ep-d05" secondAttribute="centerX" id="1i9-rb-IaA"/>
+                            <constraint firstItem="hf0-ao-ebi" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="CcI-e2-ybY"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ecj-Ej-5yI" secondAttribute="bottom" constant="5" id="Gbl-FO-WpR"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="hf0-ao-ebi" secondAttribute="bottom" id="Pdb-Xt-ZgS"/>
+                            <constraint firstAttribute="trailing" secondItem="hf0-ao-ebi" secondAttribute="trailing" id="ZvY-NV-ceL"/>
+                            <constraint firstItem="ecj-Ej-5yI" firstAttribute="centerY" secondItem="sQq-Ep-d05" secondAttribute="centerY" id="vTm-q1-WPB"/>
+                            <constraint firstItem="ecj-Ej-5yI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xk6-yY-leP"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +59,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="RecordButtonBack" width="60" height="60"/>
+        <image name="RecordButtonBlank" width="58" height="58"/>
+    </resources>
 </document>
