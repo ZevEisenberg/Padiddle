@@ -711,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "LOGFILE=\"/Users/zev/Desktop/output.txt\"\necho \"arguments for build phase: $@\" >> $LOGFILE\necho \"Starting at `date` with configuration ${CONFIGURATION}\" >> $LOGFILE\necho \"the value of FASTLANE_SNAPSHOT is '$FASTLANE_SNAPSHOT'\" >> $LOGFILE\nif [[ $FASTLANE_SNAPSHOT == 1 ]]; then\n    echo \"copying da stuffs\" >> $LOGFILE\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nelse\n    echo \"no stuffs for you\" >> $LOGFILE\nfi\n";
+			shellScript = "if [[ $FASTLANE_SNAPSHOT == 1 ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
 		};
 		CDDA9DD61C530FDA00D9EF19 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
