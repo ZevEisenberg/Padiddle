@@ -897,7 +897,7 @@
 				INFOPLIST_FILE = Screenshots/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = Padiddle;
@@ -911,7 +911,7 @@
 				INFOPLIST_FILE = Screenshots/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DSCREENSHOTS";
+				OTHER_SWIFT_FLAGS = "-DSCREENSHOTS $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = Padiddle;
@@ -1011,7 +1011,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zeveisenberg.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1027,7 +1027,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zeveisenberg.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
