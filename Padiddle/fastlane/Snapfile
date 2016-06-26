@@ -23,9 +23,6 @@ scheme "Screenshots"
 
 configuration "Debug"
 
-# Where should the resulting screenshots be stored?
-output_directory "../Captured Screenshots"
-
 clear_previous_screenshots true
 
 # Choose which project/workspace to use
