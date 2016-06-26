@@ -1,15 +1,18 @@
 PODS:
+  - Anchorage (2.0.0)
   - SimulatorStatusMagic (1.8)
   - SwiftGen (1.1.2)
 
 DEPENDENCIES:
+  - Anchorage
   - SimulatorStatusMagic
   - SwiftGen
 
 SPEC CHECKSUMS:
+  Anchorage: 3fb9d1ca397ac68b7ce9857792660a0d683f2e11
   SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
   SwiftGen: 18b1421be72f6e565a1844d0fb402825c249859e
 
-PODFILE CHECKSUM: 7c65b9534ec777e6176fffe6f51564bccc375297
+PODFILE CHECKSUM: 38b5c9031a931faff857978ab032ad4e2d46942d
 
 COCOAPODS: 1.0.1
