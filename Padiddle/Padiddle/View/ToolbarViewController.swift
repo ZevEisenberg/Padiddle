@@ -16,14 +16,14 @@ class ToolbarViewController: UIViewController {
 
     private var toolbarVisible: Bool = true
 
-    private let recordButtonBack = UIImageView()
-    private let toolbarStackView = UIStackView()
-    private let clearButton = UIButton(type: .Custom)
-    private let colorButton = UIButton(type: .Custom)
-    private let recordButtonPlaceholder = UIView()
-    private let recordButton = UIButton(type: .Custom)
-    private let shareButton = UIButton(type: .Custom)
-    private let helpButton = UIButton(type: .Custom)
+    private let recordButtonBack = UIImageView("recordButtonBack")
+    private let toolbarStackView = UIStackView("toolbarStackView")
+    private let clearButton = UIButton(type: .Custom, "clearButton")
+    private let colorButton = UIButton(type: .Custom, "colorButton")
+    private let recordButtonPlaceholder = UIView("recordButtonPlaceholder")
+    private let recordButton = UIButton(type: .Custom, "recordButton")
+    private let shareButton = UIButton(type: .Custom, "shareButton")
+    private let helpButton = UIButton(type: .Custom, "helpButton")
 
     private var toolbarBottomConstraint: NSLayoutConstraint!
     private var toolbarTopConstraint: NSLayoutConstraint!
@@ -47,12 +47,12 @@ extension Layout {
 
     private func configureViews() {
 
-        let toolbarView = UIView()
-        let toolbarHairline = UIView()
+        let toolbarView = UIView("toolbarView")
+        let toolbarHairline = UIView("toolbarHairline")
         let spacerViews: [UIView] = {
             var spacers = [UIView]()
-            for _ in 0..<6 {
-                spacers.append(UIView())
+            for i in 0..<6 {
+                spacers.append(UIView("spacer\(i)"))
             }
             return spacers
         }()
@@ -74,7 +74,6 @@ extension Layout {
 
         // Toolbar
         toolbarView.backgroundColor = UIColor(named: .Toolbar)
-        toolbarView.accessibilityIdentifier = "toolbar"
         view.addSubview(toolbarView)
         toolbarView.heightAnchor.constraintEqualToConstant(44).active = true
 
@@ -132,26 +131,21 @@ extension Layout {
         recordButtonPlaceholder.centerXAnchor.constraintEqualToAnchor(recordButtonBack.centerXAnchor).active = true
         recordButtonPlaceholder.heightAnchor.constraintEqualToAnchor(recordButtonPlaceholder.superview?.heightAnchor).active = true
 
-        clearButton.accessibilityIdentifier = "clear button"
         clearButton.setImage(UIImage(asset: .TrashButton), forState: .Normal)
         clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), forControlEvents: .TouchUpInside)
 
-        colorButton.accessibilityIdentifier = "color button"
         // image is dynamic
         colorButton.addTarget(self, action: #selector(ToolbarViewController.colorTapped), forControlEvents: .TouchUpInside)
 
         recordButtonBack.image = UIImage(asset: .RecordButtonBack)
 
-        recordButton.accessibilityIdentifier = "record button"
         recordButton.setImage(UIImage(asset: .RecordButtonFront), forState: .Normal)
         recordButton.setImage(UIImage(asset: .PauseButton), forState: .Selected)
         recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), forControlEvents: .TouchUpInside)
 
-        shareButton.accessibilityIdentifier = "share button"
         shareButton.setImage((UIImage(asset: .ShareButton)), forState: .Normal)
         shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), forControlEvents: .TouchUpInside)
 
-        helpButton.accessibilityIdentifier = "help button"
         helpButton.setImage(UIImage(asset: .HelpButton), forState: .Normal)
         helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), forControlEvents: .TouchUpInside)
 
@@ -349,13 +343,13 @@ private extension ToolbarViewController {
 
         if let cancelSelector = cancelSelector {
             let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector)
-            cancelButton.accessibilityIdentifier = "cancel button"
+            cancelButton.accessibilityIdentifier = "cancelButton"
             navigationItem.leftBarButtonItem = cancelButton
         }
 
         if let doneSelector = doneSelector {
             let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector)
-            doneButton.accessibilityIdentifier = "done button"
+            doneButton.accessibilityIdentifier = "doneButton"
             navigationItem.rightBarButtonItem = doneButton
         }
     }

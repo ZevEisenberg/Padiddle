@@ -42,12 +42,12 @@ class PadiddleUITests: XCTestCase {
         let toolbarViewControllerView = rootView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbar view controller view")
         XCTAssert(toolbarViewControllerView.exists)
 
-        let toolbar = toolbarViewControllerView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbar")
+        let toolbar = toolbarViewControllerView.childrenMatchingType(.Other).elementMatchingType(.Other, identifier: "toolbarView")
         XCTAssert(toolbar.exists)
 
         XCTAssert(window.frame.contains(toolbar.frame), "At the start, the toolbar is on screen")
 
-        let recordButtonButton = app.buttons["record button"]
+        let recordButtonButton = app.buttons["recordButton"]
         recordButtonButton.tap()
 
         XCTAssertFalse(window.frame.contains(toolbar.frame), "After recording begins, the toolbar is hidden")
