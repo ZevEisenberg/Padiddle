@@ -36,6 +36,9 @@
 		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; };
 		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; };
 		CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */; };
+		CD7C27501D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
+		CD7C27511D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
+		CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C27521D20BAC800F3E924 /* ViewTests.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
@@ -129,6 +132,8 @@
 		CD5D4F021BACAA0000D4AABB /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PickerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarViewModel.swift; sourceTree = "<group>"; };
 		CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SpiralImageMaker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifierExtensions.swift; sourceTree = "<group>"; };
+		CD7C27521D20BAC800F3E924 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
 		CD92FB001D1B7A6700AE86FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -279,6 +284,7 @@
 				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
 				CD2AD6041C56F00F00910FFE /* ArrayTests.swift */,
 				7ACE6A141C83966C001F7062 /* MathTests.swift */,
+				CD7C27521D20BAC800F3E924 /* ViewTests.swift */,
 				CD193CD31BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleTests;
@@ -330,6 +336,7 @@
 				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
 				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
 				CD1317C91C8B6F6D0018D720 /* Log.swift */,
+				CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -795,6 +802,7 @@
 				CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */,
 				CD2025831D1A2DAD0002C2A0 /* L10n.swift in Sources */,
 				CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */,
+				CD7C27501D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */,
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */,
 				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
@@ -813,6 +821,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */,
+				CD7C27511D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */,
 				CD193CD21BA4891500203B44 /* GeometryTests.swift in Sources */,
 				CD2AD6061C56F03D00910FFE /* ArrayExtensions.swift in Sources */,
 				CD2AD6051C56F00F00910FFE /* ArrayTests.swift in Sources */,
