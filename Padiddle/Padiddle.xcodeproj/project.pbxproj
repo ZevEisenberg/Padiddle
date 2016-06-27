@@ -53,7 +53,6 @@
 		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; };
 		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; };
 		CDDA9DC71C52FED200D9EF19 /* HelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */; };
-		CDDA9DD51C53054B00D9EF19 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD41C53054B00D9EF19 /* Layout.swift */; };
 		CDDA9DD91C5310CB00D9EF19 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DD81C5310CB00D9EF19 /* Images.swift */; };
 		CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */; };
 		CDE071331C55BDFE00BB5D6A /* ImageIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE071321C55BDFE00BB5D6A /* ImageIO.swift */; };
@@ -158,7 +157,6 @@
 		CDDA9DD11C53010E00D9EF19 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/help.html; sourceTree = "<group>"; };
 		CDDA9DD21C53011000D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/help.html"; sourceTree = "<group>"; };
 		CDDA9DD31C53011100D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/help.html"; sourceTree = "<group>"; };
-		CDDA9DD41C53054B00D9EF19 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		CDDA9DD81C5310CB00D9EF19 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageProtocol.swift; sourceTree = "<group>"; };
 		CDE071321C55BDFE00BB5D6A /* ImageIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIO.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
 				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
 				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
-				CDDA9DD41C53054B00D9EF19 /* Layout.swift */,
 				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
 				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
 				CD1317C91C8B6F6D0018D720 /* Log.swift */,
@@ -795,7 +792,6 @@
 				CDAD89CF1C57CC3300E61908 /* PathExtensions.swift in Sources */,
 				CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */,
 				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
-				CDDA9DD51C53054B00D9EF19 /* Layout.swift in Sources */,
 				CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */,
 				CDEA9C5B1C02ACFC00E02D66 /* HelpViewController.swift in Sources */,
 				CDBF24311BC5DCE900A0785C /* DrawingViewController.swift in Sources */,

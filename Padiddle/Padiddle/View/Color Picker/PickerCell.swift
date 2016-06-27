@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 let backgroundColorNormal = UIColor.clearColor()
 let backgroundColorHighlighted = UIColor(white:0.85, alpha:1)
@@ -39,11 +39,9 @@ class PickerCell: UICollectionViewCell {
 
         super.init(frame: frame)
 
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .Center
         imageView.clipsToBounds = true
 
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = textColor
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
@@ -57,15 +55,13 @@ class PickerCell: UICollectionViewCell {
 
         // Layout
 
-        imageView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-        imageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
-        imageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor).active = true
+        imageView.horizontalAnchors == contentView.horizontalAnchors
+        imageView.topAnchor == contentView.topAnchor
 
-        titleLabel.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-        titleLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
-        contentView.bottomAnchor.constraintEqualToAnchor(titleLabel.bottomAnchor, constant: 6).active = true
+        titleLabel.horizontalAnchors == contentView.horizontalAnchors
+        titleLabel.bottomAnchor == contentView.bottomAnchor - 6
 
-        imageView.bottomAnchor.constraintEqualToAnchor(titleLabel.topAnchor).active = true
+        titleLabel.topAnchor == imageView.bottomAnchor
     }
 
     required init?(coder aDecoder: NSCoder) {

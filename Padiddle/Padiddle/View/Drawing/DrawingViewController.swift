@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 let showDebugLabel = false
 
@@ -35,12 +35,11 @@ class DrawingViewController: CounterRotatingViewController {
         view.accessibilityIdentifier = "drawing view controller view"
 
         counterRotatingView.addSubview(drawingView)
-        drawingView.translatesAutoresizingMaskIntoConstraints = false
 
-        drawingView.widthAnchor.constraintEqualToConstant(UIScreen.mainScreen().longestSide).active = true
-        drawingView.heightAnchor.constraintEqualToConstant(UIScreen.mainScreen().longestSide).active = true
-        drawingView.centerXAnchor.constraintEqualToAnchor(counterRotatingView.centerXAnchor).active = true
-        drawingView.centerYAnchor.constraintEqualToAnchor(counterRotatingView.centerYAnchor).active = true
+        drawingView.widthAnchor == UIScreen.mainScreen().longestSide
+        drawingView.heightAnchor == UIScreen.mainScreen().longestSide
+        drawingView.centerXAnchor == counterRotatingView.centerXAnchor
+        drawingView.centerYAnchor == counterRotatingView.centerYAnchor
 
         let nibDiameter = 12.0
         let borderWidth: CGFloat = (UIScreen.mainScreen().scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
@@ -57,11 +56,10 @@ class DrawingViewController: CounterRotatingViewController {
         if showDebugLabel {
             let label = UILabel()
             label.text = "Drawing view debug label"
-            label.translatesAutoresizingMaskIntoConstraints = false
             counterRotatingView.addSubview(label)
 
-            label.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-            label.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+            label.centerXAnchor == view.centerXAnchor
+            label.centerYAnchor == view.centerYAnchor
         }
 
         viewModel.loadPersistedImage()

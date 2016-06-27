@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 extension UIInterfaceOrientation: CustomStringConvertible {
     public var description: String {
@@ -49,10 +49,9 @@ class CounterRotatingViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(counterRotatingView)
-        counterRotatingView.translatesAutoresizingMaskIntoConstraints = false
 
-        counterRotatingView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        counterRotatingView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
+        counterRotatingView.centerXAnchor == view.centerXAnchor
+        counterRotatingView.centerYAnchor == view.centerYAnchor
 
         counterRotatingView.transform = transformForStatusBarOrientation(UIApplication.sharedApplication().statusBarOrientation)
     }

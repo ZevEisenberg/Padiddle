@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 class RootViewController: UIViewController {
 
@@ -40,16 +40,10 @@ class RootViewController: UIViewController {
         pinnedViewController.didMoveToParentViewController(self)
         rotatingViewController.didMoveToParentViewController(self)
 
-        pinnedViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        rotatingViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        pinnedViewController.view.centerXAnchor == view.centerXAnchor
+        pinnedViewController.view.centerYAnchor == view.centerYAnchor
 
-        pinnedViewController.view.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor).active = true
-        pinnedViewController.view.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor).active = true
-
-        rotatingViewController.view.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        rotatingViewController.view.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        rotatingViewController.view.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
-        rotatingViewController.view.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
+        rotatingViewController.view.edgeAnchors == view.edgeAnchors
     }
 
     override func prefersStatusBarHidden() -> Bool {

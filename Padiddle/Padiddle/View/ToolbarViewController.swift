@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 class ToolbarViewController: UIViewController {
 
@@ -57,17 +57,6 @@ extension Layout {
             return spacers
         }()
 
-        let disableTranslatesViews = [
-            recordButtonBack,
-            recordButton,
-            toolbarView,
-            toolbarHairline,
-            ]
-
-        disableTranslatesViews.forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-
         // Record Button Back View
         recordButtonBack.image = UIImage(asset: .RecordButtonBack)
         view.addSubview(recordButtonBack)
@@ -75,30 +64,21 @@ extension Layout {
         // Toolbar
         toolbarView.backgroundColor = UIColor(named: .Toolbar)
         view.addSubview(toolbarView)
-        toolbarView.heightAnchor.constraintEqualToConstant(44).active = true
+        toolbarView.heightAnchor == 44
 
-        let toolbarEdgeConstraints = [
-            toolbarView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            toolbarView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-        ]
+        toolbarView.horizontalAnchors == view.horizontalAnchors ~ UILayoutPriorityDefaultHigh
 
-        toolbarEdgeConstraints.forEach {
-            $0.priority = UILayoutPriorityDefaultHigh
-            $0.active = true
-        }
-
-        toolbarBottomConstraint = toolbarView.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor)
-        toolbarBottomConstraint.active = true
+        toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
 
         // don't activate yet
         toolbarTopConstraint = toolbarView.topAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor)
 
         toolbarHairline.backgroundColor = UIColor(named: .ToolbarHairline)
         toolbarView.addSubview(toolbarHairline)
-        toolbarHairline.heightAnchor.constraintEqualToConstant(1).active = true
-        toolbarHairline.topAnchor.constraintEqualToAnchor(toolbarView.topAnchor).active = true
-        toolbarHairline.leadingAnchor.constraintEqualToAnchor(toolbarView.leadingAnchor).active = true
-        toolbarHairline.trailingAnchor.constraintEqualToAnchor(toolbarView.trailingAnchor).active = true
+
+        toolbarHairline.heightAnchor == 1
+        toolbarHairline.topAnchor == toolbarView.topAnchor
+        toolbarHairline.horizontalAnchors == toolbarView.horizontalAnchors
 
         // Stack View
         view.addSubview(toolbarStackView)
@@ -107,7 +87,7 @@ extension Layout {
         toolbarStackView.distribution = .Fill
         toolbarStackView.spacing = 0
 
-        toolbarStackView.pinEdges(toolbarView)
+        toolbarStackView.edgeAnchors == toolbarView.edgeAnchors
 
         spacerViews.forEach {
             $0.backgroundColor = nil
@@ -127,9 +107,11 @@ extension Layout {
             toolbarStackView.addArrangedSubview($0)
         }
 
-        recordButtonPlaceholder.widthAnchor.constraintEqualToAnchor(recordButtonBack.widthAnchor).active = true
-        recordButtonPlaceholder.centerXAnchor.constraintEqualToAnchor(recordButtonBack.centerXAnchor).active = true
-        recordButtonPlaceholder.heightAnchor.constraintEqualToAnchor(recordButtonPlaceholder.superview?.heightAnchor).active = true
+        recordButtonBack.widthAnchor == recordButtonPlaceholder.widthAnchor
+        recordButtonBack.centerXAnchor == recordButtonPlaceholder.centerXAnchor
+        if let recordButtonPlaceholderSuperview = recordButtonPlaceholder.superview {
+            recordButtonPlaceholder.heightAnchor == recordButtonPlaceholderSuperview.heightAnchor
+        }
 
         clearButton.setImage(UIImage(asset: .TrashButton), forState: .Normal)
         clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), forControlEvents: .TouchUpInside)
@@ -158,27 +140,29 @@ extension Layout {
 
         // make buttons equal width to each other
         for buttonDoublet in nonRecordButtons.doublets! {
-            buttonDoublet.0.widthAnchor.constraintEqualToAnchor(buttonDoublet.1.widthAnchor).active = true
+            buttonDoublet.0.widthAnchor == buttonDoublet.1.widthAnchor
         }
 
         // Make first and last spacer views’ widths equal to each other
         guard let first = spacerViews.first, last = spacerViews.last else { fatalError() }
-        first.widthAnchor.constraintEqualToAnchor(last.widthAnchor).active = true
+        first.widthAnchor == last.widthAnchor
 
         // Make all other spacer views a fixed width
         spacerViews.dropFirst().dropLast().forEach {
-            $0.widthAnchor.constraintEqualToConstant(20).active = true
+            $0.widthAnchor == 20
         }
 
         view.addSubview(recordButton)
-        recordButton.centerXAnchor.constraintEqualToAnchor(recordButtonPlaceholder.centerXAnchor).active = true
-        recordButton.widthAnchor.constraintEqualToAnchor(recordButtonPlaceholder.widthAnchor).active = true
-        recordButton.centerXAnchor.constraintEqualToAnchor(recordButton.superview?.centerXAnchor).active = true
-        recordButton.centerXAnchor.constraintEqualToAnchor(recordButtonBack.centerXAnchor).active = true
-        recordButton.centerYAnchor.constraintEqualToAnchor(recordButtonBack.centerYAnchor).active = true
-        recordButton.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor, constant: -5).active = true
-        recordButton.widthAnchor.constraintEqualToAnchor(recordButtonBack.widthAnchor).active = true
-        recordButton.heightAnchor.constraintEqualToAnchor(recordButtonBack.heightAnchor).active = true
+        recordButton.centerXAnchor == recordButtonPlaceholder.centerXAnchor
+        recordButton.widthAnchor == recordButtonPlaceholder.widthAnchor
+        recordButton.centerXAnchor == recordButtonBack.centerXAnchor
+        recordButton.centerYAnchor == recordButtonBack.centerYAnchor
+        recordButton.bottomAnchor == bottomLayoutGuide.topAnchor - 5
+        recordButton.widthAnchor == recordButtonBack.widthAnchor
+        recordButton.heightAnchor == recordButtonBack.heightAnchor
+        if let recordButtonSuperview = recordButton.superview {
+            recordButton.centerXAnchor == recordButtonSuperview.centerXAnchor
+        }
     }
 }
 
@@ -238,14 +222,13 @@ extension ButtonHandlers {
         recordButton.userInteractionEnabled = false
 
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.color = UIColor(named: .AppTint)
         activityIndicator.startAnimating()
 
         shareButton.alpha = 0
         toolbarStackView.addSubview(activityIndicator) // not insertArrangedSubview!
-        activityIndicator.centerXAnchor.constraintEqualToAnchor(shareButton.centerXAnchor).active = true
-        activityIndicator.centerYAnchor.constraintEqualToAnchor(shareButton.centerYAnchor).active = true
+        activityIndicator.centerXAnchor == shareButton.centerXAnchor
+        activityIndicator.centerYAnchor == shareButton.centerYAnchor
 
         // Dismiss any other modals that may be visible
         dismissViewControllerAnimated(true, completion: nil)

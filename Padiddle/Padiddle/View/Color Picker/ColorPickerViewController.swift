@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 let colsPortrait = 2
 let rowsPortrait = 3
@@ -42,7 +42,6 @@ class ColorPickerViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.allowsMultipleSelection = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .whiteColor()
@@ -50,7 +49,6 @@ class ColorPickerViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.numberOfPages = layout.numberOfPages
         pageControl.exclusiveTouch = true
         pageControl.pageIndicatorTintColor = UIColor(named: .PageIndicator)
@@ -76,15 +74,12 @@ class ColorPickerViewController: UIViewController {
 
         // Layout
 
-        collectionView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        collectionView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
+        collectionView.horizontalAnchors == view.horizontalAnchors
+        pageControl.horizontalAnchors == view.horizontalAnchors
 
-        pageControl.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        pageControl.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
-
-        topLayoutGuide.bottomAnchor.constraintEqualToAnchor(collectionView.topAnchor).active = true
-        collectionView.bottomAnchor.constraintEqualToAnchor(pageControl.topAnchor).active = true
-        pageControl.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor).active = true
+        collectionView.topAnchor == topLayoutGuide.bottomAnchor
+        pageControl.topAnchor == collectionView.bottomAnchor
+        pageControl.bottomAnchor == bottomLayoutGuide.topAnchor
 
         // Need to set the scroll view’s content size before we can tell it to scroll.
         collectionView.contentSize = layout.collectionViewContentSize()

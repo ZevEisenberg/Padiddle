@@ -6,7 +6,7 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
+import Anchorage
 
 class HelpViewController: UIViewController {
 
@@ -23,7 +23,8 @@ class HelpViewController: UIViewController {
         webView.backgroundColor = .whiteColor()
         webView.delegate = self
         view.addSubview(webView)
-        webView.pinEdgesToMargins(view)
+        webView.verticalAnchors == view.layoutMarginsGuide.verticalAnchors
+        webView.horizontalAnchors == view.horizontalAnchors
         webView.loadHTMLString(viewModel.html, baseURL: nil)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)

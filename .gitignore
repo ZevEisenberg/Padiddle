@@ -3,4 +3,13 @@ project.xcworkspace
 xcuserdata
 .DS_Store
 Graphics/Export
-Padiddle/fastlane/screenshots
+
+# fastlane specific
+fastlane/report.xml
+fastlane/screenshots
+
+# deliver temporary files
+fastlane/Preview.html
+
+# scan temporary files
+fastlane/test_output
