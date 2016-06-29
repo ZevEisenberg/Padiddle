@@ -89,5 +89,4 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Anchorage/Anchorage.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SimulatorStatusMagic/SimulatorStatusMagic.framework"
 fi
