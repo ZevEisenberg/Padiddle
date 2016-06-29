@@ -68,10 +68,10 @@ extension Layout {
 
         toolbarView.horizontalAnchors == view.horizontalAnchors ~ UILayoutPriorityDefaultHigh
 
-        toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
+        toolbarTopConstraint = (toolbarView.topAnchor == bottomLayoutGuide.topAnchor)
+        toolbarTopConstraint.active = false // so it doesn't conflict with toolbarBottomConstraint
 
-        // don't activate yet
-        toolbarTopConstraint = toolbarView.topAnchor.constraintEqualToAnchor(self.bottomLayoutGuide.topAnchor)
+        toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
 
         toolbarHairline.backgroundColor = UIColor(named: .ToolbarHairline)
         toolbarView.addSubview(toolbarHairline)
