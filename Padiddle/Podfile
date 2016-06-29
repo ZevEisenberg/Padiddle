@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'Padiddle' do  
   pod 'SwiftGen'
-  pod 'SimulatorStatusMagic'
   pod 'Anchorage'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
