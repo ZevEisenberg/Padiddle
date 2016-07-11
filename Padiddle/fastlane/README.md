@@ -23,13 +23,6 @@ This will also make sure the profile is up to date
 fastlane ios appstore
 ```
 Deploy a new version to the App Store
-### ios refresh_dsyms
-```
-fastlane ios refresh_dsyms
-```
-Pull dSYM files from Apple and upload them to Crashlytics.
-
-This is so we can get symbolicated crash reports even when using Bitcode.
 
 ----
 
