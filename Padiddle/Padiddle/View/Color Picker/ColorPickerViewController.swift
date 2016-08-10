@@ -15,7 +15,7 @@ let rowsLandscape = 2
 
 protocol ColorPickerDelegate:
 class {
-    func colorPicked(color: ColorManager)
+    func colorPicked(_ color: ColorManager)
 }
 
 class ColorPickerViewController: UIViewController {
@@ -26,7 +26,7 @@ class ColorPickerViewController: UIViewController {
     private let pageControl: UIPageControl
     private let layout: ColorPickerLayout
     private let viewModel: ColorPickerViewModel
-    private var currentSelection = NSIndexPath(forItem: 0, inSection: 0) {
+    private var currentSelection = IndexPath(item: 0, section: 0) {
         didSet {
             scrollToPageWithCellAtIndexPath(currentSelection)
         }
@@ -44,16 +44,16 @@ class ColorPickerViewController: UIViewController {
 
         collectionView.allowsMultipleSelection = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .whiteColor()
-        collectionView.pagingEnabled = true
+        collectionView.backgroundColor = .white
+        collectionView.isPagingEnabled = true
         collectionView.dataSource = self
         collectionView.delegate = self
 
         pageControl.numberOfPages = layout.numberOfPages
-        pageControl.exclusiveTouch = true
+        pageControl.isExclusiveTouch = true
         pageControl.pageIndicatorTintColor = UIColor(named: .PageIndicator)
         pageControl.currentPageIndicatorTintColor = UIColor(named: .PageIndicatorCurrentPage)
-        pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), for: .valueChanged)
 
         title = L10n.Colors.string
     }
@@ -64,10 +64,10 @@ class ColorPickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
         automaticallyAdjustsScrollViewInsets = false
 
-        collectionView.registerClass(PickerCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(PickerCell.self, forCellWithReuseIdentifier: "cell")
 
         view.addSubview(collectionView)
         view.addSubview(pageControl)
@@ -82,7 +82,7 @@ class ColorPickerViewController: UIViewController {
         pageControl.bottomAnchor == bottomLayoutGuide.topAnchor
 
         // Need to set the scroll view’s content size before we can tell it to scroll.
-        collectionView.contentSize = layout.collectionViewContentSize()
+        collectionView.contentSize = layout.collectionViewContentSize
     }
 
     override func viewDidLayoutSubviews() {
@@ -91,10 +91,10 @@ class ColorPickerViewController: UIViewController {
         restoreSelection()
 
         // Restore the previous selection in the collection view
-        collectionView.selectItemAtIndexPath(currentSelection, animated: false, scrollPosition: .None)
+        collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
     }
 
-    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
 
         adjustColumnsAndRows(newCollection)
 
@@ -102,27 +102,27 @@ class ColorPickerViewController: UIViewController {
         collectionView.contentOffset = CGPoint(x: CGFloat(viewModel.currentPage) * collectionView.frame.width, y: 0)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         restoreSelection()
 
         let restoredIndex = viewModel.selectedIndex
-        currentSelection = NSIndexPath(forItem:restoredIndex, inSection:0)
+        currentSelection = IndexPath(item: restoredIndex, section: 0)
 
         adjustColumnsAndRows(traitCollection)
 
-        collectionView.selectItemAtIndexPath(currentSelection, animated:false, scrollPosition:.None)
+        collectionView.selectItem(at: currentSelection, animated:false, scrollPosition: [])
 
         scrollToPageWithCellAtIndexPath(currentSelection)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.selectItemAtIndexPath(currentSelection, animated: false, scrollPosition: .None)
+        collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scrollToPageWithCellAtIndexPath(currentSelection)
     }
@@ -137,8 +137,8 @@ class ColorPickerViewController: UIViewController {
 }
 
 private extension ColorPickerViewController {
-    func adjustColumnsAndRows(traitCollection: UITraitCollection) {
-        if traitCollection.verticalSizeClass == .Regular {
+    func adjustColumnsAndRows(_ traitCollection: UITraitCollection) {
+        if traitCollection.verticalSizeClass == .regular {
             layout.numberOfColumns = colsPortrait
             layout.numberOfRows = rowsPortrait
         } else {
@@ -147,10 +147,10 @@ private extension ColorPickerViewController {
         }
     }
 
-    func scrollToPageWithCellAtIndexPath(indexPath: NSIndexPath) {
+    func scrollToPageWithCellAtIndexPath(_ indexPath: IndexPath) {
 
         guard collectionView.frame != CGRect.zero else { return }
-        guard let cellFrame = collectionView.layoutAttributesForItemAtIndexPath(indexPath)?.frame else { return }
+        guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath as IndexPath)?.frame else { return }
 
         let pageWidth = collectionView.frame.width
         viewModel.currentPage = Int(floor(cellFrame.minX / pageWidth))
@@ -162,12 +162,12 @@ private extension ColorPickerViewController {
 
     func restoreSelection() {
         let selectedIndex = viewModel.selectedIndex
-        currentSelection = NSIndexPath(forItem:selectedIndex, inSection:0)
+        currentSelection = IndexPath(item: selectedIndex, section: 0)
     }
 }
 
 extension ColorPickerViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.width
         viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
         pageControl.currentPage = viewModel.currentPage
@@ -175,12 +175,12 @@ extension ColorPickerViewController: UIScrollViewDelegate {
 }
 
 extension ColorPickerViewController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.colorsToPick.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? PickerCell else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as? PickerCell else {
             fatalError()
         }
 
@@ -192,17 +192,17 @@ extension ColorPickerViewController: UICollectionViewDataSource {
 }
 
 extension ColorPickerViewController: UICollectionViewDelegate {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.selectedIndex = indexPath.item
 
-        if var selectedItems = collectionView.indexPathsForSelectedItems() {
-            selectedItems.remove(indexPath)
+        if var selectedItems = collectionView.indexPathsForSelectedItems {
+            selectedItems.remove(indexPath as IndexPath)
             for pathToDeselect in selectedItems {
-                collectionView.deselectItemAtIndexPath(pathToDeselect, animated: false)
+                collectionView.deselectItem(at: pathToDeselect, animated: false)
             }
         }
 
-        currentSelection = indexPath
+        currentSelection = indexPath as IndexPath
         delegate?.colorPicked(viewModel.selectedColorManager)
     }
 }

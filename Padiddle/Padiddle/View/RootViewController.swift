@@ -28,7 +28,7 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
         view.clipsToBounds = true
 
         addChildViewController(pinnedViewController)
@@ -37,8 +37,8 @@ class RootViewController: UIViewController {
         view.addSubview(pinnedViewController.view)
         view.addSubview(rotatingViewController.view)
 
-        pinnedViewController.didMoveToParentViewController(self)
-        rotatingViewController.didMoveToParentViewController(self)
+        pinnedViewController.didMove(toParentViewController: self)
+        rotatingViewController.didMove(toParentViewController: self)
 
         pinnedViewController.view.centerXAnchor == view.centerXAnchor
         pinnedViewController.view.centerYAnchor == view.centerYAnchor
@@ -46,7 +46,7 @@ class RootViewController: UIViewController {
         rotatingViewController.view.edgeAnchors == view.edgeAnchors
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
 }

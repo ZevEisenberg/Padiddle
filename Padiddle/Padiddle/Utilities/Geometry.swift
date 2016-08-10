@@ -10,15 +10,15 @@ import CoreGraphics.CGGeometry
 import UIKit.UIScreen
 
 extension CGPoint {
-    static func distanceBetween(p1: CGPoint, _ p2: CGPoint) -> CGFloat {
-        if CGPointEqualToPoint(p1, p2) {
+    static func distanceBetween(_ p1: CGPoint, _ p2: CGPoint) -> CGFloat {
+        if p1.equalTo(p2) {
             return 0
         } else {
             return hypot(p1.x - p2.x, p1.y - p2.y)
         }
     }
 
-    static func lineIntersection(m1 m1: CGFloat, b1: CGFloat, m2: CGFloat, b2: CGFloat) -> CGPoint? {
+    static func lineIntersection(m1: CGFloat, b1: CGFloat, m2: CGFloat, b2: CGFloat) -> CGPoint? {
         if m1 == m2 {
             // lines are parallel
             return nil
@@ -33,7 +33,7 @@ extension CGPoint {
 }
 
 extension CGSize {
-    static func max(size1: CGSize, _ size2: CGSize) -> CGSize {
+    static func max(_ size1: CGSize, _ size2: CGSize) -> CGSize {
         let maxWidth = Swift.max(size1.width, size2.width)
         let maxHeight = Swift.max(size1.height, size2.height)
         return CGSize(width: maxWidth, height: maxHeight)
@@ -41,7 +41,7 @@ extension CGSize {
 }
 
 extension CGRect {
-    func centerSmallerRect(smallerRect: CGRect) -> CGRect {
+    func centerSmallerRect(_ smallerRect: CGRect) -> CGRect {
         assert(smallerRect.width <= self.width)
         assert(smallerRect.height <= self.height)
         assert(smallerRect.origin == CGPoint.zero)
@@ -58,7 +58,7 @@ extension CGRect {
 
 extension CGPoint {
     var screenPixelsIntegral: CGPoint {
-        let screenScale = UIScreen.mainScreen().scale
+        let screenScale = UIScreen.main.scale
         var newX = x
         var newY = y
 
@@ -90,18 +90,18 @@ extension UIInterfaceOrientation {
         let imageOrientaion: UIImageOrientation
 
         switch self {
-        case .LandscapeLeft:
-            rotation = -π / 2.0
-            imageOrientaion = .Right
-        case .LandscapeRight:
-            rotation = π / 2.0
-            imageOrientaion = .Left
-        case .PortraitUpsideDown:
-            rotation = π
-            imageOrientaion = .Down
-        case .Portrait, .Unknown:
+        case .landscapeLeft:
+            rotation = -.pi / 2.0
+            imageOrientaion = .right
+        case .landscapeRight:
+            rotation = .pi / 2.0
+            imageOrientaion = .left
+        case .portraitUpsideDown:
+            rotation = .pi
+            imageOrientaion = .down
+        case .portrait, .unknown:
             rotation = 0
-            imageOrientaion = .Up
+            imageOrientaion = .up
         }
 
         return (imageOrientaion, rotation)

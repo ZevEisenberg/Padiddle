@@ -1,9 +1,9 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'Padiddle' do  
   pod 'SwiftGen'
-  pod 'Anchorage'
+  pod 'Anchorage', :git => 'git@github.com:Raizlabs/Anchorage.git', :commit => 'da947d7c8c554de48fb9404a91ea4b26cfb1e7f9'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 

@@ -11,13 +11,13 @@ import CoreMotion
 
 private let debugging = false
 
-let kMotionManagerUpdateInterval: NSTimeInterval = 1.0 / 120.0
-let kNibUpdateInterval: NSTimeInterval = 1.0 / 60.0
+let kMotionManagerUpdateInterval: TimeInterval = 1.0 / 120.0
+let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
 
 protocol DrawingViewModelDelegate: class {
     func start()
     func pause()
-    func drawingViewModelUpdatedLocation(newLocation: CGPoint)
+    func drawingViewModelUpdatedLocation(_ newLocation: CGPoint)
 }
 
 protocol DrawingViewBoundsVendor: class {
@@ -40,15 +40,15 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private let maxRadius: CGFloat
 
-    private var updateTimer: NSTimer?
+    private var updateTimer: Timer?
 
-    private var offscreenContext: CGContextRef?
+    private var offscreenContext: CGContext?
 
     private let contextSize: CGSize
 
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
-        return min(UIScreen.mainScreen().scale, 2.0)
+        return min(UIScreen.main.scale, 2.0)
     }()
 
     private(set) var currentDirtyRect = CGRect.null
@@ -57,9 +57,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         currentDirtyRect = .null
     }
 
-    private var points = Array(count: 4, repeatedValue: CGPoint.zero)
+    private var points = Array(repeating: CGPoint.zero, count: 4)
 
-    private let screenScale = UIScreen.mainScreen().scale
+    private let screenScale = UIScreen.main.scale
 
     lazy private var contextScaleFactor: CGFloat = {
         // The context image is scaled as Aspect Fill, so the larger dimension
@@ -76,7 +76,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private var currentColor: UIColor {
         guard let colorManager = colorManager else {
-            return UIColor.magentaColor()
+            return UIColor.magenta
         }
 
         return colorManager.currentColor
@@ -99,9 +99,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         assert(success, "Problem creating bitmap context")
     }
 
-    func addPoint(point: CGPoint) {
+    func addPoint(_ point: CGPoint) {
         let scaledPoint = convertViewPointToContextCoordinates(point)
-        let distance = CGPoint.distanceBetween(scaledPoint, points[3])
+        let distance = CGPoint.distanceBetween(points[3], scaledPoint)
         if distance > 2.25 || !smoothing {
             points.removeFirst()
             points.append(scaledPoint)
@@ -113,19 +113,19 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     // MARK: Drawing
 
     func clear() {
-        CGContextSetFillColorWithColor(offscreenContext, UIColor.whiteColor().CGColor)
-        CGContextFillRect(offscreenContext, CGRect(origin: CGPoint.zero, size: contextSize))
+        offscreenContext?.setFillColor(UIColor.white.cgColor)
+        offscreenContext?.fill(CGRect(origin: CGPoint.zero, size: contextSize))
     }
 
-    func restartAtPoint(point: CGPoint) {
+    func restartAtPoint(_ point: CGPoint) {
         let convertedPoint = convertViewPointToContextCoordinates(point)
-        points = Array(count: points.count, repeatedValue: convertedPoint)
+        points = Array(repeating: convertedPoint, count: points.count)
         addLineSegmentBasedOnUpdatedPoints()
     }
 
-    func drawInto(context: CGContextRef, dirtyRect: CGRect) {
+    func drawInto(_ context: CGContext, dirtyRect: CGRect) {
         guard let view = view else { fatalError() }
-        let offscreenImage = CGBitmapContextCreateImage(offscreenContext)
+        let offscreenImage = offscreenContext?.makeImage()
         let offset = CGSize(
             width: contextSize.width * contextScaleFactor - view.bounds.width,
             height: contextSize.height * contextScaleFactor - view.bounds.height
@@ -136,34 +136,34 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
             width: contextSize.width * contextScaleFactor,
             height: contextSize.height * contextScaleFactor
         )
-        CGContextDrawImage(context, drawingRect, offscreenImage)
+        context.draw(in: drawingRect, image: offscreenImage!)
 
         if debugging {
-            CGContextSetStrokeColorWithColor(context, UIColor.greenColor().CGColor)
-            CGContextSetLineWidth(context, 1)
-            CGContextStrokeRect(context, dirtyRect)
+            context.setStrokeColor(UIColor.green.cgColor)
+            context.setLineWidth(1)
+            context.stroke(dirtyRect)
         }
     }
 
-    func setInitialImage(image: UIImage) {
+    func setInitialImage(_ image: UIImage) {
         let rect = CGRect(origin: CGPoint.zero, size: contextSize)
-        CGContextDrawImage(offscreenContext, rect, image.CGImage!)
+        offscreenContext?.draw(in: rect, image: image.cgImage!)
     }
 
-    func addPathSegment(pathSegment: CGPathRef, color: UIColor) {
-        CGContextAddPath(offscreenContext, pathSegment)
-        CGContextSetStrokeColorWithColor(offscreenContext, color.CGColor)
-        CGContextStrokePath(offscreenContext)
+    func addPathSegment(_ pathSegment: CGPath, color: UIColor) {
+        offscreenContext?.addPath(pathSegment)
+        offscreenContext?.setStrokeColor(color.cgColor)
+        offscreenContext?.strokePath()
     }
 
     private func addLineSegmentBasedOnUpdatedPoints() {
-        let pathSegment = CGPathRef.smoothedPathSegment(points: points)
+        let pathSegment = CGPath.smoothedPathSegment(points: points)
 
         // draw the segment into the context
 
         addPathSegment(pathSegment, color: currentColor)
 
-        let pathBoundingRect = CGPathGetPathBoundingBox(pathSegment)
+        let pathBoundingRect = pathSegment.boundingBoxOfPath
 
         let insetPathBoundingRect = pathBoundingRect.insetBy(dx: -brushDiameter, dy: -brushDiameter)
         currentDirtyRect = currentDirtyRect.union(insetPathBoundingRect)
@@ -171,28 +171,27 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     // Saving & Loading
 
-    func snapshot(orientation orientation: UIInterfaceOrientation) -> UIImage {
+    func snapshot(_ orientation: UIInterfaceOrientation) -> UIImage {
         let (imageOrientation, rotation) = orientation.imageRotation
 
-        let cacheCGImage = CGBitmapContextCreateImage(offscreenContext)!
-        let unrotatedImage = UIImage(CGImage: cacheCGImage, scale: UIScreen.mainScreen().scale, orientation: imageOrientation)
+        let cacheCGImage = offscreenContext?.makeImage()!
+        let unrotatedImage = UIImage(cgImage: cacheCGImage!, scale: UIScreen.main.scale, orientation: imageOrientation)
         let rotatedImage = unrotatedImage.imageRotatedByRadians(rotation)
         return rotatedImage
     }
 
-    func getSnapshotImage(interfaceOrientation interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            let image = self.snapshot(interfaceOrientation)
 
-            let image = self.snapshot(orientation: interfaceOrientation)
-
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 completion(image)
             }
         }
     }
 
     func persistImageInBackground() {
-        let image = self.snapshot(orientation: .Portrait)
+        let image = self.snapshot(.portrait)
         ImageIO.persistImageInBackground(image, contextScale: contextScale, contextSize: contextSize)
     }
 
@@ -206,7 +205,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 }
 
 extension DrawingViewModel: RecordingDelegate {
-    @objc func recordingStatusChanged(recording: Bool) {
+    @objc func recordingStatusChanged(_ recording: Bool) {
         if recording {
             delegate?.start()
         } else {
@@ -214,7 +213,7 @@ extension DrawingViewModel: RecordingDelegate {
         }
     }
 
-    @objc func motionUpdatesStatusChanged(updates: Bool) {
+    @objc func motionUpdatesStatusChanged(_ updates: Bool) {
         if updates {
             startMotionUpdates()
         } else {
@@ -224,7 +223,7 @@ extension DrawingViewModel: RecordingDelegate {
 }
 
 extension DrawingViewModel: RootColorManagerDelegate {
-    func colorManagerPicked(colorManager: ColorManager) {
+    func colorManagerPicked(_ colorManager: ColorManager) {
         var newManager = colorManager
         newManager.maxRadius = maxRadius
         self.colorManager = newManager
@@ -233,7 +232,7 @@ extension DrawingViewModel: RootColorManagerDelegate {
 
 extension DrawingViewModel { // Coordinate conversions
 
-    private func convertViewPointToContextCoordinates(point: CGPoint) -> CGPoint {
+    private func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
 
         guard let view = view else { fatalError() }
 
@@ -263,9 +262,9 @@ extension DrawingViewModel { // Coordinate conversions
         return newPoint
     }
 
-    func convertContextRectToViewCoordinates(rect: CGRect) -> CGRect {
+    func convertContextRectToViewCoordinates(_ rect: CGRect) -> CGRect {
 
-        guard !CGRectEqualToRect(rect, CGRect.null) else { return CGRect.null }
+        guard !rect.equalTo(CGRect.null) else { return CGRect.null }
         guard let view = view else { fatalError() }
 
         // 1. Get the size of the context in self coordinates
@@ -283,7 +282,7 @@ extension DrawingViewModel { // Coordinate conversions
         )
 
         // 3. Scale the rect by the context scale factor
-        let scaledRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(contextScaleFactor, contextScaleFactor))
+        let scaledRect = rect.applying(CGAffineTransform(scaleX: contextScaleFactor, y: contextScaleFactor))
 
         // 4. Shift the rect by negative the half the difference in width and height
         let offsetRect = scaledRect.offsetBy(dx: -difference.width / 2.0, dy: -difference.height / 2.0)
@@ -304,13 +303,13 @@ private extension DrawingViewModel { // Context configuration
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        let context = CGBitmapContextCreate(nil,
-            Int(contextSize.width * screenScale),
-            Int(contextSize.height * screenScale),
-            bitsPerComponent,
-            bitmapBytesPerRow,
-            colorSpace,
-            CGImageAlphaInfo.NoneSkipFirst.rawValue)
+        let context = CGContext(data: nil,
+            width: Int(contextSize.width * screenScale),
+            height: Int(contextSize.height * screenScale),
+            bitsPerComponent: bitsPerComponent,
+            bytesPerRow: bitmapBytesPerRow,
+            space: colorSpace,
+            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
 
         if context == nil {
             assertionFailure("Problem creating context")
@@ -320,10 +319,10 @@ private extension DrawingViewModel { // Context configuration
         offscreenContext = context
 
         // http://stackoverflow.com/questions/10867767/how-to-create-a-cgbitmapcontext-which-works-for-retina-display-and-not-wasting-s
-        CGContextScaleCTM(offscreenContext, screenScale, screenScale)
+        offscreenContext?.scaleBy(x: screenScale, y: screenScale)
 
-        CGContextSetLineCap(offscreenContext, .Round)
-        CGContextSetLineWidth(offscreenContext, brushDiameter)
+        offscreenContext?.setLineCap(.round)
+        offscreenContext?.setLineWidth(brushDiameter)
 
         clear()
 
@@ -333,15 +332,15 @@ private extension DrawingViewModel { // Context configuration
 
 extension DrawingViewModel { // Core Motion
     func startMotionUpdates() {
-        if motionManager.gyroAvailable {
-            if motionManager.magnetometerAvailable {
-                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryCorrectedZVertical)
+        if motionManager.isGyroAvailable {
+            if motionManager.isMagnetometerAvailable {
+                motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
             } else {
-                motionManager.startDeviceMotionUpdatesUsingReferenceFrame(.XArbitraryZVertical)
+                motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical)
             }
 
             if updateTimer == nil {
-                updateTimer = NSTimer.scheduledTimerWithTimeInterval(kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
+                updateTimer = Timer.scheduledTimer(timeInterval: kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
             }
         }
     }

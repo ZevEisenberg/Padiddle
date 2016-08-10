@@ -8,8 +8,7 @@
 
 import CoreGraphics.CGBase
 
-let π = CGFloat(M_PI)
-let twoPi = 2.0 * π
+let twoPi = CGFloat(2.0 * .pi)
 let bytesPerPixel: size_t = 4
 let bitsPerComponent: size_t = 8
 
@@ -22,7 +21,7 @@ extension CGFloat {
 
     var reasonableValue: CGFloat {
         get {
-            if self.closeEnough(0) {
+            if self.closeEnough(to: 0) {
                 return 0
             } else {
                 return self
@@ -31,6 +30,6 @@ extension CGFloat {
     }
 
     var degrees: CGFloat {
-        return self * 180 / π
+        return self * 180.0 / .pi
     }
 }

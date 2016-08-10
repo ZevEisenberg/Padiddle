@@ -11,12 +11,12 @@ import UIKit.UIImage
 
 protocol ToolbarViewModelToolbarDelegate:
 class {
-    func setToolbarVisible(visible: Bool, animated: Bool)
+    func setToolbarVisible(_ visible: Bool, animated: Bool)
 }
 
 protocol ToolbarViewModelColorDelegate:
 class {
-    func colorManagerPicked(colorManager: ColorManager)
+    func colorManagerPicked(_ colorManager: ColorManager)
 }
 
 class ToolbarViewModel {
@@ -42,19 +42,19 @@ class ToolbarViewModel {
         rootViewModel.clearTapped()
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
         rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 }
 
 extension ToolbarViewModel: RecordingDelegate {
-    @objc func recordingStatusChanged(recording: Bool) {
+    @objc func recordingStatusChanged(_ recording: Bool) {
         toolbarDelegate?.setToolbarVisible(!recording, animated: true)
     }
 }
 
 extension ToolbarViewModel: ColorPickerViewModelDelegate {
-    func colorManagerPicked(colorManager: ColorManager) {
+    func colorManagerPicked(_ colorManager: ColorManager) {
         colorDelegate?.colorManagerPicked(colorManager)
     }
 }

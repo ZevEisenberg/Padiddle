@@ -11,7 +11,7 @@ import Foundation
 struct Defaults {
 
     static var snapshotMode: Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey(snapshotKey)
+        return UserDefaults.standard.bool(forKey: snapshotKey)
     }
 
     static var colorPickerSelection: Int {
@@ -19,11 +19,11 @@ struct Defaults {
             if snapshotMode {
                 return snapshotPersistedIndex
             } else {
-                return (NSUserDefaults().objectForKey(colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
+                return (UserDefaults().object(forKey: colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
             }
         }
         set(newSelection) {
-            NSUserDefaults().setInteger(newSelection, forKey: colorPickerPersistentIndexKey)
+            UserDefaults().set(newSelection, forKey: colorPickerPersistentIndexKey)
         }
     }
 

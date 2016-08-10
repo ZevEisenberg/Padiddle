@@ -9,23 +9,23 @@
 import UIKit.UIColor
 
 enum ColorMode {
-    case ThetaIncreasing
-    case ThetaIncreasingAndDecreasing
-    case VelocityOut
-    case VelocityIn
-    case Manual(CGFloat)
+    case thetaIncreasing
+    case thetaIncreasingAndDecreasing
+    case velocityOut
+    case velocityIn
+    case manual(CGFloat)
 }
 
 enum ColorModel {
-    case HSV(h: ColorMode, s: ColorMode, v: ColorMode)
-    case RGB(r: ColorMode, g: ColorMode, b: ColorMode)
+    case hsv(h: ColorMode, s: ColorMode, v: ColorMode)
+    case rgb(r: ColorMode, g: ColorMode, b: ColorMode)
 }
 
 struct ColorManager {
     var radius: CGFloat = 0
     var theta: CGFloat = 0 {
         didSet {
-            theta = theta % twoPi
+            theta = theta.truncatingRemainder(dividingBy: twoPi)
         }
     }
 
@@ -44,15 +44,15 @@ struct ColorManager {
         self.title = title
     }
 
-    private static func color(colorModel colorModel: ColorModel, radius: CGFloat, maxRadius: CGFloat, theta: CGFloat) -> UIColor {
+    private static func color(colorModel: ColorModel, radius: CGFloat, maxRadius: CGFloat, theta: CGFloat) -> UIColor {
         let color: UIColor
         switch colorModel {
-        case let .HSV(hMode, sMode, vMode):
+        case let .hsv(hMode, sMode, vMode):
             let h = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: hMode)
             let s = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: sMode)
             let v = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: vMode)
             color = UIColor(hue: h, saturation: s, brightness: v, alpha: 1)
-        case let .RGB(rMode, gMode, bMode):
+        case let .rgb(rMode, gMode, bMode):
             let r = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: rMode)
             let g = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: gMode)
             let b = channelValue(radius, maxRadius: maxRadius, theta: theta, colorMode: bMode)
@@ -62,30 +62,30 @@ struct ColorManager {
         return color
     }
 
-    private static func channelValue(radius: CGFloat, maxRadius: CGFloat, theta: CGFloat, colorMode: ColorMode) -> CGFloat {
+    private static func channelValue(_ radius: CGFloat, maxRadius: CGFloat, theta: CGFloat, colorMode: ColorMode) -> CGFloat {
         let channelValue: CGFloat
         switch colorMode {
-        case .ThetaIncreasing:
+        case .thetaIncreasing:
             channelValue = theta / twoPi
 
-        case .ThetaIncreasingAndDecreasing:
+        case .thetaIncreasingAndDecreasing:
             var value: CGFloat
-            if theta > π {
+            if theta > .pi {
                 value = twoPi - theta
             } else {
                 value = theta
             }
-            channelValue = value / π
+            channelValue = value / .pi
 
-        case .VelocityOut:
+        case .velocityOut:
             assert(maxRadius > 0)
             channelValue = radius / maxRadius
 
-        case .VelocityIn:
+        case .velocityIn:
             assert(maxRadius > 0)
             channelValue = 1 - (radius / maxRadius)
 
-        case let .Manual(value):
+        case let .manual(value):
             channelValue = value
         }
 

@@ -11,17 +11,17 @@ import UIKit.UIImage
 
 struct HelpViewModel {
     init() {
-        let success = NSURLProtocol.registerClass(HelpImageProtocol)
+        let success = URLProtocol.registerClass(HelpImageProtocol.self.self)
         assert(success)
     }
 
     lazy var html: String = {
-        guard let filePath = NSBundle.mainBundle().pathForResource("help", ofType: "html") else {
+        guard let filePath = Bundle.main.path(forResource: "help", ofType: "html") else {
             fatalError("Couldn't find help HTML file")
         }
 
         do {
-            let htmlString = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            let htmlString = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
             let filledHMTLString = HelpViewModel.populateHTMLString(htmlString)
             return filledHMTLString as String
         } catch let error {
@@ -30,37 +30,37 @@ struct HelpViewModel {
         }
     }()
 
-    static private func populateHTMLString(htmlString: String) -> String {
+    static private func populateHTMLString(_ htmlString: String) -> String {
 
         var newString = ""
 
         // Device Name
-        guard let deviceNameRange = htmlString.rangeOfString("^deviceName^") else { fatalError() }
+        guard let deviceNameRange = htmlString.range(of: "^deviceName^") else { fatalError() }
 
         let deviceName = UIDevice.padDeviceName
 
-        newString = htmlString.stringByReplacingCharactersInRange(deviceNameRange, withString: deviceName as String)
+        newString = htmlString.replacingCharacters(in: deviceNameRange, with: deviceName as String)
 
         // Device Image
-        guard let deviceImageRange = newString.rangeOfString("^deviceImage^") else { fatalError() }
+        guard let deviceImageRange = newString.range(of: "^deviceImage^") else { fatalError() }
 
-        newString = newString.stringByReplacingCharactersInRange(deviceImageRange, withString: deviceName as String)
+        newString = newString.replacingCharacters(in: deviceImageRange, with: deviceName as String)
 
         // Device Image Width
         guard let deviceImage = Asset(rawValue: deviceName)?.image else { fatalError() }
 
         let nativeWidth = deviceImage.size.width
 
-        guard let imageWidthRange = newString.rangeOfString("^maxDeviceImageWidthPoints^") else { fatalError() }
-        newString = newString.stringByReplacingCharactersInRange(imageWidthRange, withString: String(nativeWidth))
+        guard let imageWidthRange = newString.range(of: "^maxDeviceImageWidthPoints^") else { fatalError() }
+        newString = newString.replacingCharacters(in: imageWidthRange, with: String(nativeWidth))
 
         // Version Number
-        guard let versionRange = newString.rangeOfString("^version^", options: .BackwardsSearch),
-        versionString = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"],
-            buildString = NSBundle.mainBundle().infoDictionary?[String(kCFBundleVersionKey)] else { fatalError() }
+        guard let versionRange = newString.range(of: "^version^", options: .backwards),
+        let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"],
+            let buildString = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] else { fatalError() }
 
         let combinedString = "\(versionString) (\(buildString))"
-        newString = newString.stringByReplacingCharactersInRange(versionRange, withString: combinedString)
+        newString = newString.replacingCharacters(in: versionRange, with: combinedString)
 
         return newString
     }

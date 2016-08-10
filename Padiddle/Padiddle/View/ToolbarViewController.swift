@@ -18,12 +18,12 @@ class ToolbarViewController: UIViewController {
 
     private let recordButtonBack = UIImageView("recordButtonBack")
     private let toolbarStackView = UIStackView("toolbarStackView")
-    private let clearButton = UIButton(type: .Custom, "clearButton")
-    private let colorButton = UIButton(type: .Custom, "colorButton")
+    private let clearButton = UIButton(type: .custom, "clearButton")
+    private let colorButton = UIButton(type: .custom, "colorButton")
     private let recordButtonPlaceholder = UIView("recordButtonPlaceholder")
-    private let recordButton = UIButton(type: .Custom, "recordButton")
-    private let shareButton = UIButton(type: .Custom, "shareButton")
-    private let helpButton = UIButton(type: .Custom, "helpButton")
+    private let recordButton = UIButton(type: .custom, "recordButton")
+    private let shareButton = UIButton(type: .custom, "shareButton")
+    private let helpButton = UIButton(type: .custom, "helpButton")
 
     private var toolbarBottomConstraint: NSLayoutConstraint!
     private var toolbarTopConstraint: NSLayoutConstraint!
@@ -42,7 +42,7 @@ extension Layout {
 
         configureViews()
 
-        updateColorButton(colorManager: (viewModel?.colorPickerViewModel?.selectedColorManager)!)
+        updateColorButton((viewModel?.colorPickerViewModel?.selectedColorManager)!)
     }
 
     private func configureViews() {
@@ -69,7 +69,7 @@ extension Layout {
         toolbarView.horizontalAnchors == view.horizontalAnchors ~ UILayoutPriorityDefaultHigh
 
         toolbarTopConstraint = (toolbarView.topAnchor == bottomLayoutGuide.topAnchor)
-        toolbarTopConstraint.active = false // so it doesn't conflict with toolbarBottomConstraint
+        toolbarTopConstraint.isActive = false // so it doesn't conflict with toolbarBottomConstraint
 
         toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
 
@@ -82,9 +82,9 @@ extension Layout {
 
         // Stack View
         view.addSubview(toolbarStackView)
-        toolbarStackView.axis = .Horizontal
-        toolbarStackView.alignment = .Fill
-        toolbarStackView.distribution = .Fill
+        toolbarStackView.axis = .horizontal
+        toolbarStackView.alignment = .fill
+        toolbarStackView.distribution = .fill
         toolbarStackView.spacing = 0
 
         toolbarStackView.edgeAnchors == toolbarView.edgeAnchors
@@ -113,23 +113,23 @@ extension Layout {
             recordButtonPlaceholder.heightAnchor == recordButtonPlaceholderSuperview.heightAnchor
         }
 
-        clearButton.setImage(UIImage(asset: .TrashButton), forState: .Normal)
-        clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), forControlEvents: .TouchUpInside)
+        clearButton.setImage(UIImage(asset: .TrashButton), for: .normal)
+        clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), for: .touchUpInside)
 
         // image is dynamic
-        colorButton.addTarget(self, action: #selector(ToolbarViewController.colorTapped), forControlEvents: .TouchUpInside)
+        colorButton.addTarget(self, action: #selector(ToolbarViewController.colorTapped), for: .touchUpInside)
 
         recordButtonBack.image = UIImage(asset: .RecordButtonBack)
 
-        recordButton.setImage(UIImage(asset: .RecordButtonFront), forState: .Normal)
-        recordButton.setImage(UIImage(asset: .PauseButton), forState: .Selected)
-        recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), forControlEvents: .TouchUpInside)
+        recordButton.setImage(UIImage(asset: .RecordButtonFront), for: .normal)
+        recordButton.setImage(UIImage(asset: .PauseButton), for: .selected)
+        recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), for: .touchUpInside)
 
-        shareButton.setImage((UIImage(asset: .ShareButton)), forState: .Normal)
-        shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), forControlEvents: .TouchUpInside)
+        shareButton.setImage((UIImage(asset: .ShareButton)), for: .normal)
+        shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), for: .touchUpInside)
 
-        helpButton.setImage(UIImage(asset: .HelpButton), forState: .Normal)
-        helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), forControlEvents: .TouchUpInside)
+        helpButton.setImage(UIImage(asset: .HelpButton), for: .normal)
+        helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), for: .touchUpInside)
 
         let nonRecordButtons: [UIButton] = [
             clearButton,
@@ -144,7 +144,7 @@ extension Layout {
         }
 
         // Make first and last spacer views’ widths equal to each other
-        guard let first = spacerViews.first, last = spacerViews.last else { fatalError() }
+        guard let first = spacerViews.first, let last = spacerViews.last else { fatalError() }
         first.widthAnchor == last.widthAnchor
 
         // Make all other spacer views a fixed width
@@ -170,17 +170,17 @@ typealias ButtonHandlers = ToolbarViewController
 extension ButtonHandlers {
     func trashTapped() {
         Log.info()
-        let clearAction = UIAlertAction(title: L10n.ClearDrawing.string, style: .Destructive) { _ in
+        let clearAction = UIAlertAction(title: L10n.ClearDrawing.string, style: .destructive) { _ in
             Log.info("Clear Drawing tapped")
             self.viewModel?.clearTapped()
         }
-        let cancelAction = UIAlertAction(title: L10n.Cancel.string, style: .Cancel) { _ in Log.info("Clear Drawing canceled") }
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let cancelAction = UIAlertAction(title: L10n.Cancel.string, style: .cancel) { _ in Log.info("Clear Drawing canceled") }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(clearAction)
         alert.addAction(cancelAction)
-        alert.modalPresentationStyle = .Popover
+        alert.modalPresentationStyle = .popover
 
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         configurePopover(viewController: alert, sourceView: clearButton)
     }
 
@@ -190,23 +190,23 @@ extension ButtonHandlers {
 
         let colorPickerViewController = ColorPickerViewController(viewModel: (viewModel?.colorPickerViewModel)!, delegate: self)
 
-        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             viewControllerToShow = colorPickerViewController
-            viewControllerToShow.modalPresentationStyle = .Popover
+            viewControllerToShow.modalPresentationStyle = .popover
         } else {
             let navigationController = UINavigationController(rootViewController: colorPickerViewController)
             setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: #selector(ToolbarViewController.dismissModal), doneSelector: nil)
             viewControllerToShow = navigationController
-            viewControllerToShow.modalPresentationStyle = .FormSheet
+            viewControllerToShow.modalPresentationStyle = .formSheet
         }
 
-        presentViewController(viewControllerToShow, animated: true, completion: nil)
+        present(viewControllerToShow, animated: true, completion: nil)
         configurePopover(viewController: viewControllerToShow, sourceView: colorButton)
     }
 
     func recordTapped() {
-        Log.info("new recording status: \(!recordButton.selected)")
-        recordButton.selected = !recordButton.selected
+        Log.info("new recording status: \(!recordButton.isSelected)")
+        recordButton.isSelected = !recordButton.isSelected
 
         viewModel?.recordButtonTapped()
     }
@@ -218,10 +218,10 @@ extension ButtonHandlers {
 
         // Prevent the user from doing stuff while we are generating the snapshot
 
-        toolbarStackView.userInteractionEnabled = false
-        recordButton.userInteractionEnabled = false
+        toolbarStackView.isUserInteractionEnabled = false
+        recordButton.isUserInteractionEnabled = false
 
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicator.color = UIColor(named: .AppTint)
         activityIndicator.startAnimating()
 
@@ -231,16 +231,16 @@ extension ButtonHandlers {
         activityIndicator.centerYAnchor == shareButton.centerYAnchor
 
         // Dismiss any other modals that may be visible
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
 
         // We are going to run this whether or not we get an image back
-        let restoreShareButton: UIViewController -> Void = { presentedViewController in
+        let restoreShareButton: (UIViewController) -> Void = { presentedViewController in
             self.shareButton.alpha = 1
             activityIndicator.stopAnimating()
             activityIndicator.removeFromSuperview()
 
-            self.toolbarStackView.userInteractionEnabled = true
-            self.recordButton.userInteractionEnabled = true
+            self.toolbarStackView.isUserInteractionEnabled = true
+            self.recordButton.isUserInteractionEnabled = true
 
             guard let popoverController = presentedViewController.popoverPresentationController else { return }
             popoverController.sourceView = self.shareButton
@@ -248,15 +248,15 @@ extension ButtonHandlers {
         }
 
         // Get the snapshot image async
-        let interfaceOrientation = UIApplication.sharedApplication().statusBarOrientation
+        let interfaceOrientation = UIApplication.shared.statusBarOrientation
         viewModel.getSnapshotImage(interfaceOrientation) { image in
 
-            assert(NSThread.isMainThread())
+            assert(Thread.isMainThread)
 
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact]
-            activityViewController.modalPresentationStyle = .Popover
-            activityViewController.completionWithItemsHandler = { (activityType: String?, completed: Bool, returnedItems: [AnyObject]?, activityError: NSError?) in
+            activityViewController.modalPresentationStyle = .popover
+            activityViewController.completionWithItemsHandler = { (activityType: String?, completed: Bool, returnedItems: [AnyObject]?, activityError: Error?) in
                 if completed {
                     Log.info("shared via \(activityType ?? "unknown sharing type")")
                 } else {
@@ -264,7 +264,7 @@ extension ButtonHandlers {
                 }
             }
 
-            self.presentViewController(activityViewController, animated: true, completion: {
+            self.present(activityViewController, animated: true, completion: {
                 restoreShareButton(activityViewController)
             })
             self.configurePopover(viewController: activityViewController, sourceView: activityIndicator)
@@ -274,41 +274,41 @@ extension ButtonHandlers {
     func helpTapped() {
         Log.info()
         let helpViewController = HelpViewController()
-        helpViewController.modalPresentationStyle = .Popover
+        helpViewController.modalPresentationStyle = .popover
 
         let viewControllerToShow: UIViewController
 
-        if traitCollection.horizontalSizeClass == .Regular && traitCollection.verticalSizeClass == .Regular {
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             viewControllerToShow = helpViewController
-            viewControllerToShow.modalPresentationStyle = .Popover
+            viewControllerToShow.modalPresentationStyle = .popover
         } else {
             let navigationController = UINavigationController(rootViewController: helpViewController)
             setUpNavigationItem(helpViewController.navigationItem, cancelSelector: nil, doneSelector: #selector(ToolbarViewController.dismissModal))
             viewControllerToShow = navigationController
-            viewControllerToShow.modalPresentationStyle = .FormSheet
+            viewControllerToShow.modalPresentationStyle = .formSheet
         }
 
-        self.presentViewController(viewControllerToShow, animated: true, completion: nil)
+        self.present(viewControllerToShow, animated: true, completion: nil)
         configurePopover(viewController: viewControllerToShow, sourceView: helpButton)
     }
 }
 
 extension ToolbarViewController: ColorPickerDelegate {
-    func colorPicked(color: ColorManager) {
-        updateColorButton(colorManager: color)
-        dismissViewControllerAnimated(true, completion: nil)
+    func colorPicked(_ color: ColorManager) {
+        updateColorButton(color)
+        dismiss(animated: true, completion: nil)
         Log.info(color)
     }
 }
 
 extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
-    func setToolbarVisible(visible: Bool, animated: Bool) {
+    func setToolbarVisible(_ visible: Bool, animated: Bool) {
         if toolbarVisible != visible {
             toolbarVisible = visible
-            updateToolbarConstraints(toolbarVisible: visible)
+            updateToolbarConstraints(visible)
 
             let duration = animated ? toolbarAnimationDuration : 0.0
-            UIView.animateWithDuration(duration) {
+            UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
             }
         }
@@ -319,56 +319,56 @@ private extension ToolbarViewController {
 
     @objc func dismissModal() {
         Log.info()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
-    func setUpNavigationItem(navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
+    func setUpNavigationItem(_ navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
 
         if let cancelSelector = cancelSelector {
-            let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelSelector)
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: cancelSelector)
             cancelButton.accessibilityIdentifier = "cancelButton"
             navigationItem.leftBarButtonItem = cancelButton
         }
 
         if let doneSelector = doneSelector {
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: doneSelector)
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: doneSelector)
             doneButton.accessibilityIdentifier = "doneButton"
             navigationItem.rightBarButtonItem = doneButton
         }
     }
 
-    func updateColorButton(colorManager colorManager: ColorManager) {
+    func updateColorButton(_ colorManager: ColorManager) {
         let imageSize = 36
         let model = SpiralModel(
             colorManager: colorManager,
             size: CGSize(width: imageSize, height: imageSize),
             startRadius: 0,
             spacePerLoop: 0.7,
-            thetaRange: 0...(2.0 * π * 4.0),
-            thetaStep: π / 16.0,
+            thetaRange: 0...(2.0 * .pi * 4.0),
+            thetaStep: .pi / 16.0,
             lineWidth: 2.3)
 
         let image = SpiralImageMaker.image(spiralModel: model)
 
-        colorButton.setImage(image, forState: .Normal)
+        colorButton.setImage(image, for: .normal)
         HelpImageProtocol.colorButtonImage = image
     }
 
-    func updateToolbarConstraints(toolbarVisible toolbarVisible: Bool) {
+    func updateToolbarConstraints(_ toolbarVisible: Bool) {
         if toolbarVisible {
-            toolbarTopConstraint.active = false
-            toolbarBottomConstraint.active = true
+            toolbarTopConstraint.isActive = false
+            toolbarBottomConstraint.isActive = true
         } else {
-            toolbarBottomConstraint.active = false
-            toolbarTopConstraint.active = true
+            toolbarBottomConstraint.isActive = false
+            toolbarTopConstraint.isActive = true
         }
     }
 
-    func configurePopover(viewController viewController: UIViewController, sourceView: UIView) {
+    func configurePopover(viewController: UIViewController, sourceView: UIView) {
         guard let popoverController = viewController.popoverPresentationController else { return }
         popoverController.sourceView = sourceView
         popoverController.sourceRect = sourceView.bounds
-        popoverController.permittedArrowDirections = .Down
+        popoverController.permittedArrowDirections = .down
         popoverController.passthroughViews = self.passthroughViews
     }
 }

@@ -8,9 +8,9 @@
 
 import CoreGraphics.CGPath
 
-extension CGPathRef {
+extension CGPath {
     // point smoothing from http://www.effectiveui.com/blog/2011/12/02/how-to-build-a-simple-painting-app-for-ios/
-    class func smoothedPathSegment(points points: [CGPoint]) -> CGPathRef {
+    class func smoothedPathSegment(points: [CGPoint]) -> CGPath {
         assert(points.count == 4)
 
         let p0 = points[0]
@@ -46,18 +46,20 @@ extension CGPathRef {
             y: c2.y + (c3.y - c2.y) * k2)
 
         let smoothValue = CGFloat(0.5)
-        let ctrl1 = CGPoint(
-            x: m1.x + (c2.x - m1.x) * smoothValue + p1.x - m1.x,
-            y: m1.y + (c2.y - m1.y) * smoothValue + p1.y - m1.y
-        )
-        let ctrl2 = CGPoint(
-            x: m2.x + (c2.x - m2.x) * smoothValue + p2.x - m2.x,
-            y: m2.y + (c2.y - m2.y) * smoothValue + p2.y - m2.y
-        )
+        let ctrl1: CGPoint = {
+            let x = m1.x + (c2.x - m1.x) * smoothValue + p1.x - m1.x
+            let y = m1.y + (c2.y - m1.y) * smoothValue + p1.y - m1.y
+            return CGPoint(x: x, y: y)
+        }()
+        let ctrl2: CGPoint = {
+            let x = m2.x + (c2.x - m2.x) * smoothValue + p2.x - m2.x
+            let y = m2.y + (c2.y - m2.y) * smoothValue + p2.y - m2.y
+            return CGPoint(x: x, y: y)
+        }()
 
-        let pathSegment = CGPathCreateMutable()
-        CGPathMoveToPoint(pathSegment, nil, points[1].x, points[1].y)
-        CGPathAddCurveToPoint(pathSegment, nil, ctrl1.x, ctrl1.y, ctrl2.x, ctrl2.y, points[2].x, points[2].y)
+        let pathSegment = CGMutablePath()
+        pathSegment.moveTo(nil, x: points[1].x, y: points[1].y)
+        pathSegment.addCurve(nil, cp1x: ctrl1.x, cp1y: ctrl1.y, cp2x: ctrl2.x, cp2y: ctrl2.y, endingAtX: points[2].x, y: points[2].y)
 
         return pathSegment
     }

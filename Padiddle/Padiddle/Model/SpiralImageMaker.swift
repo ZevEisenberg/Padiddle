@@ -13,13 +13,13 @@ struct SpiralModel {
     let size: CGSize
     let startRadius: CGFloat
     let spacePerLoop: CGFloat
-    let thetaRange: ClosedInterval<CGFloat>
+    let thetaRange: ClosedRange<CGFloat>
     let thetaStep: CGFloat
     let lineWidth: CGFloat
 }
 
 struct SpiralImageMaker {
-    static func image(spiralModel spiralModel: SpiralModel) -> UIImage {
+    static func image(spiralModel: SpiralModel) -> UIImage {
 
         let size = spiralModel.size
         let startRadius = spiralModel.startRadius
@@ -41,12 +41,12 @@ struct SpiralImageMaker {
 
         let path = UIBezierPath()
         path.lineWidth = lineWidth
-        path.lineCapStyle = .Square
-        path.lineJoinStyle = .Round
+        path.lineCapStyle = .square
+        path.lineJoinStyle = .round
 
-        var oldTheta = thetaRange.start
-        var newTheta = thetaRange.start
-        mutableColorManager.theta = thetaRange.start
+        var oldTheta = thetaRange.lowerBound
+        var newTheta = thetaRange.lowerBound
+        mutableColorManager.theta = thetaRange.lowerBound
         mutableColorManager.radius = a
 
         var oldR = a + (b * oldTheta)
@@ -55,8 +55,8 @@ struct SpiralImageMaker {
         var oldPoint = CGPoint.zero
         var newPoint = CGPoint.zero
 
-        var oldSlope = CGFloat.max
-        var newSlope = CGFloat.min
+        var oldSlope = CGFloat.greatestFiniteMagnitude
+        var newSlope = CGFloat.leastNormalMagnitude
 
         // move to the initial point outside the loop, because we do it
         // only the first time
@@ -64,9 +64,9 @@ struct SpiralImageMaker {
         newPoint.y = center.y + (oldR * sin(oldTheta))
 
         var firstSlope = true
-        while oldTheta < (thetaRange.end - thetaStep) {
+        while oldTheta < (thetaRange.upperBound - thetaStep) {
             path.removeAllPoints()
-            path.moveToPoint(newPoint)
+            path.move(to: newPoint)
 
             oldTheta = newTheta
             newTheta += thetaStep
@@ -106,13 +106,13 @@ struct SpiralImageMaker {
             controlPoint.x += center.x
             controlPoint.y += center.y
 
-            path.addQuadCurveToPoint(newPoint, controlPoint: controlPoint)
+            path.addQuadCurve(to: newPoint, controlPoint: controlPoint)
 
             let color = mutableColorManager.currentColor
             color.setStroke()
 
-            if !(oldTheta < (thetaRange.end - thetaStep)) {
-                path.lineCapStyle = .Round
+            if !(oldTheta < (thetaRange.upperBound - thetaStep)) {
+                path.lineCapStyle = .round
             }
             path.stroke()
         }
@@ -120,6 +120,6 @@ struct SpiralImageMaker {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return image
+        return image!
     }
 }

@@ -10,8 +10,8 @@ import UIKit
 
 extension UIDevice {
     class var gyroMaxValue: CGFloat {
-        switch currentDevice().userInterfaceIdiom {
-        case .Pad:
+        switch current.userInterfaceIdiom {
+        case .pad:
             return 22
         default:
             return 25
@@ -19,16 +19,16 @@ extension UIDevice {
     }
 
     class var padDeviceName: String {
-        var deviceName = currentDevice().model
+        var deviceName = current.model
 
 
         if runningOnSimulator {
-            let range = deviceName.rangeOfString("simulator",
-                options: [.AnchoredSearch, .BackwardsSearch, .CaseInsensitiveSearch]
+            let range = deviceName.range(of: "simulator",
+                options: [.anchored, .backwards, .caseInsensitive]
             )
 
             if range != nil {
-                if currentDevice().userInterfaceIdiom == .Pad {
+                if current.userInterfaceIdiom == .pad {
                     deviceName = "iPad"
                 } else {
                     deviceName = "iPhone"

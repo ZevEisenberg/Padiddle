@@ -11,14 +11,14 @@ import UIKit.UIApplication
 
 @objc protocol RecordingDelegate:
 class {
-    func recordingStatusChanged(recording: Bool)
-    optional func motionUpdatesStatusChanged(updates: Bool)
-    optional func persistImageInBackground()
+    func recordingStatusChanged(_ recording: Bool)
+    @objc optional func motionUpdatesStatusChanged(_ updates: Bool)
+    @objc optional func persistImageInBackground()
 }
 
 protocol RootColorManagerDelegate:
 class {
-    func colorManagerPicked(colorManager: ColorManager)
+    func colorManagerPicked(_ colorManager: ColorManager)
 }
 
 class RootViewModel {
@@ -52,11 +52,11 @@ class RootViewModel {
         }
     }
 
-    func addRecordingDelegate(delegate: RecordingDelegate) {
+    func addRecordingDelegate(_ delegate: RecordingDelegate) {
         recordingDelegates.append(Weak(value: delegate))
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
         guard let drawingViewController = drawingViewController else { fatalError() }
         drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
@@ -67,7 +67,7 @@ class RootViewModel {
 }
 
 extension RootViewModel: ToolbarViewModelColorDelegate {
-    func colorManagerPicked(colorManager: ColorManager) {
+    func colorManagerPicked(_ colorManager: ColorManager) {
         rootColorManagerDelegate?.colorManagerPicked(colorManager)
     }
 }

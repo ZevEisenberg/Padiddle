@@ -8,7 +8,7 @@
 
 import Anchorage
 
-let backgroundColorNormal = UIColor.clearColor()
+let backgroundColorNormal = UIColor.clear
 let backgroundColorHighlighted = UIColor(white:0.85, alpha:1)
 let borderColor = UIColor(white:0.85, alpha:1)
 
@@ -39,19 +39,19 @@ class PickerCell: UICollectionViewCell {
 
         super.init(frame: frame)
 
-        imageView.contentMode = .Center
+        imageView.contentMode = .center
         imageView.clipsToBounds = true
 
         titleLabel.textColor = textColor
-        titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleHeadline)
         titleLabel.numberOfLines = 0 // in case we are even in a situation where we need to wrap lines
 
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
 
         contentView.layer.cornerRadius = 5
-        contentView.layer.borderColor = borderColor.CGColor
+        contentView.layer.borderColor = borderColor.cgColor
 
         // Layout
 
@@ -75,9 +75,9 @@ class PickerCell: UICollectionViewCell {
         contentView.layer.borderWidth = 0
     }
 
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            if selected {
+            if isSelected {
                 //--------------------------------------------------
                 // Use the appTintColor here, instead of our own
                 // view’s tintColor, because we aren’t necessarily
@@ -93,16 +93,16 @@ class PickerCell: UICollectionViewCell {
         }
     }
 
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if highlighted {
+            if isHighlighted {
                 contentView.backgroundColor = backgroundColorHighlighted
-                contentView.layer.borderColor = highlightedTrimColor.CGColor
+                contentView.layer.borderColor = highlightedTrimColor.cgColor
                 contentView.layer.borderWidth = borderWidth
                 titleLabel.textColor = highlightedTextColor
             } else {
                 contentView.backgroundColor = backgroundColorNormal
-                contentView.layer.borderColor = borderColor.CGColor
+                contentView.layer.borderColor = borderColor.cgColor
                 contentView.layer.borderWidth = 0.0
                 titleLabel.textColor = textColor
             }

@@ -10,7 +10,7 @@ import UIKit
 
 class DrawingView: UIView, DrawingViewBoundsVendor {
     private var needsErase = true
-    private let screenScale = UIScreen.mainScreen().scale
+    private let screenScale = UIScreen.main.scale
 
     private var displayLink: CADisplayLink?
 
@@ -43,7 +43,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
         viewModel.view = self
 
         displayLink = CADisplayLink(target: self, selector: #selector(DrawingView.displayLinkUpdated))
-        displayLink?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        displayLink?.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,11 +51,11 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
     }
 
     func startDrawing() {
-        displayLink?.paused = false
+        displayLink?.isPaused = false
     }
 
     func stopDrawing() {
-        displayLink?.paused = true
+        displayLink?.isPaused = true
     }
 
     func clear() {
@@ -63,27 +63,27 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
         setNeedsDisplay()
     }
 
-    func addPoint(point: CGPoint) {
+    func addPoint(_ point: CGPoint) {
         viewModel.addPoint(point)
     }
 
-    func restartAtPoint(point: CGPoint) {
+    func restartAtPoint(_ point: CGPoint) {
         viewModel.restartAtPoint(point)
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             viewModel.drawInto(context, dirtyRect: rect)
         }
     }
 
-    func setInitialImage(image: UIImage) {
+    func setInitialImage(_ image: UIImage) {
         viewModel.setInitialImage(image)
     }
 }
 
 private extension DrawingView {
     @objc func displayLinkUpdated() { // marked @objc so it can be looked up by selector
-        setNeedsDisplayInRect(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
+        setNeedsDisplay(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
     }
 }

@@ -18,12 +18,12 @@ struct Log {
         #endif
     }()
 
-    private static func log(object: Any?, title: String, _ fileName: String, _ functionName: String, _ line: Int) {
-        let objectName = NSURL(fileURLWithPath: fileName).lastPathComponent ?? "Unknown Object"
+    private static func log(_ object: Any?, title: String, _ fileName: String, _ functionName: String, _ line: Int) {
+        let objectName = URL(fileURLWithPath: fileName).lastPathComponent ?? "Unknown Object"
 
         var objectDebugDescription: String = ""
         if object != nil {
-            debugPrint(object!, toStream: &objectDebugDescription)
+            debugPrint(object!, to: &objectDebugDescription)
         }
 
         let preambleString = title + objectName + ": " + functionName + "(\(line))"
@@ -40,19 +40,19 @@ struct Log {
         }
     }
 
-    static func error(object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
+    static func error(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
         log(object, title: "ERROR-> ", fileName, functionName, line)
     }
 
-    static func warning(object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
+    static func warning(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
         log(object, title: "WARNING-> ", fileName, functionName, line)
     }
 
-    static func info(object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
+    static func info(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
         log(object, title:"Info-> ", fileName, functionName, line)
     }
 
-    static func debug(object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
+    static func debug(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
         if isDebugging {
             log(object, title:"Debug-> ", fileName, functionName, line)
         }

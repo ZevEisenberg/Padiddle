@@ -10,18 +10,18 @@ import UIKit.UIImage
 
 struct ImageIO {
 
-    static func persistImageInBackground(image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
+    static func persistImageInBackground(_ image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
         if !Defaults.snapshotMode { // no-op in screenshot mode
-            let app = UIApplication.sharedApplication()
+            let app = UIApplication.shared
 
-            backgroundSaveTask = app.beginBackgroundTaskWithExpirationHandler {
+            backgroundSaveTask = app.beginBackgroundTask {
                 if let task = self.backgroundSaveTask {
                     app.endBackgroundTask(task)
                     self.backgroundSaveTask = UIBackgroundTaskInvalid
                 }
             }
 
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            DispatchQueue.global(qos: .default).async {
                 defer {
                     if let task = self.backgroundSaveTask {
                         app.endBackgroundTask(task)
@@ -37,7 +37,7 @@ struct ImageIO {
                 let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
                 do {
-                    try imageData.writeToURL(imageURL, options: [.DataWritingAtomic])
+                    try imageData.write(to: imageURL, options: [.atomic])
                 } catch let error {
                     Log.error("Error writing to file: \(error)")
                 }
@@ -45,10 +45,10 @@ struct ImageIO {
         }
     }
 
-    static func loadPersistedImage(contextScale contextScale: CGFloat, contextSize: CGSize, completion: UIImage? -> Void) {
+    static func loadPersistedImage(contextScale: CGFloat, contextSize: CGSize, completion: (UIImage?) -> Void) {
         let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
-        if let imageData = NSData(contentsOfURL: imageURL) {
+        if let imageData = try? Data(contentsOf: imageURL) {
 
             let image = loadPersistedImageData(imageData, contextScale: contextScale)
             completion(image)
@@ -69,31 +69,31 @@ private extension ImageIO {
 
     static var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
-    static func rotationForInterfaceOrientation(interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
+    static func rotationForInterfaceOrientation(_ interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
 
         let rotation: CGFloat
         let imageOrientaion: UIImageOrientation
 
         switch interfaceOrientation {
-        case .LandscapeLeft:
-            rotation = -π / 2.0
-            imageOrientaion = .Right
-        case .LandscapeRight:
-            rotation = π / 2.0
-            imageOrientaion = .Left
-        case .PortraitUpsideDown:
-            rotation = π
-            imageOrientaion = .Down
-        case .Portrait, .Unknown:
+        case .landscapeLeft:
+            rotation = -.pi / 2.0
+            imageOrientaion = .right
+        case .landscapeRight:
+            rotation = .pi / 2.0
+            imageOrientaion = .left
+        case .portraitUpsideDown:
+            rotation = .pi
+            imageOrientaion = .down
+        case .portrait, .unknown:
             rotation = 0
-            imageOrientaion = .Up
+            imageOrientaion = .up
         }
 
         return (imageOrientaion, rotation)
     }
 
 
-    static func urlForPersistedImage(contextScale: CGFloat, contextSize: CGSize) -> NSURL {
+    static func urlForPersistedImage(_ contextScale: CGFloat, contextSize: CGSize) -> URL {
         var scaledContextSize = contextSize
         scaledContextSize.width *= contextScale
         scaledContextSize.height *= contextScale
@@ -101,28 +101,28 @@ private extension ImageIO {
         let imageName = NSString(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height) as String
 
         guard !Defaults.snapshotMode else {
-            return NSBundle.mainBundle().URLForResource(imageName, withExtension:persistedImageExtension)!
+            return Bundle.main.url(forResource: imageName, withExtension: persistedImageExtension)!
         }
 
-        let paths = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 
         let documentsURL = paths.first!
 
-        let path = documentsURL.path!
-        if !NSFileManager.defaultManager().fileExistsAtPath(path) {
+        let path = documentsURL.path
+        if !FileManager.default.fileExists(atPath: path) {
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
             } catch let error {
                 Log.error("Error creating direcotry at path \(path): \(error)")
             }
         }
 
-        let fullURL = documentsURL.URLByAppendingPathComponent(imageName).URLByAppendingPathExtension(persistedImageExtension)
+        let fullURL = documentsURL.appendingPathComponent(imageName).appendingPathExtension(persistedImageExtension)
 
         return fullURL
     }
 
-    static func loadPersistedImageData(imageData: NSData, contextScale: CGFloat) -> UIImage? {
+    static func loadPersistedImageData(_ imageData: Data, contextScale: CGFloat) -> UIImage? {
         guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
             Log.error("Couldn't create image from data on disk")
             return nil

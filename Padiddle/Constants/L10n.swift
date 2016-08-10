@@ -43,43 +43,43 @@ extension L10n: CustomStringConvertible {
   var string: String {
     switch self {
       case .About:
-        return L10n.tr("about")
+        return L10n.tr(key: "about")
       case .Cancel:
-        return L10n.tr("cancel")
+        return L10n.tr(key: "cancel")
       case .ClearDrawing:
-        return L10n.tr("clearDrawing")
+        return L10n.tr(key: "clearDrawing")
       case .Colors:
-        return L10n.tr("colors")
+        return L10n.tr(key: "colors")
       case .ColorsAutumn:
-        return L10n.tr("colors.autumn")
+        return L10n.tr(key: "colors.autumn")
       case .ColorsBlackWidow:
-        return L10n.tr("colors.blackWidow")
+        return L10n.tr(key: "colors.blackWidow")
       case .ColorsClassic:
-        return L10n.tr("colors.classic")
+        return L10n.tr(key: "colors.classic")
       case .Colors3D:
-        return L10n.tr("colors.3D")
+        return L10n.tr(key: "colors.3D")
       case .ColorsFilmNoir:
-        return L10n.tr("colors.filmNoir")
+        return L10n.tr(key: "colors.filmNoir")
       case .ColorsMerlin:
-        return L10n.tr("colors.merlin")
+        return L10n.tr(key: "colors.merlin")
       case .ColorsMonsters:
-        return L10n.tr("colors.monsters")
+        return L10n.tr(key: "colors.monsters")
       case .ColorsPastels:
-        return L10n.tr("colors.pastels")
+        return L10n.tr(key: "colors.pastels")
       case .ColorsRegolith:
-        return L10n.tr("colors.regolith")
+        return L10n.tr(key: "colors.regolith")
       case .ColorsSepia:
-        return L10n.tr("colors.sepia")
+        return L10n.tr(key: "colors.sepia")
       case .ColorsTangerine:
-        return L10n.tr("colors.tangerine")
+        return L10n.tr(key: "colors.tangerine")
       case .ColorsWatercolor:
-        return L10n.tr("colors.watercolor")
+        return L10n.tr(key: "colors.watercolor")
     }
   }
 
-  private static func tr(key: String, _ args: CVarArgType...) -> String {
+  private static func tr(key: String, _ args: CVarArg...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
+    return String(format: format, locale: NSLocale.current, arguments: args)
   }
 }
 

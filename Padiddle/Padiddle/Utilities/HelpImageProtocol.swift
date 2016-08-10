@@ -9,25 +9,24 @@
 import Foundation
 import UIKit.UIImage
 
-class HelpImageProtocol: NSURLProtocol {
+class HelpImageProtocol: URLProtocol {
 
     static var colorButtonImage: UIImage?
 
-    override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        return request.URL?.pathExtension == "asset"
+    override class func canInit(with request: URLRequest) -> Bool {
+        return request.url?.pathExtension == "asset"
     }
 
-    override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
 
     override func startLoading() {
-        guard let client = client, url = request.URL else { return }
+        guard let client = client, let url = request.url else { return }
 
-        guard let lastPathComponent = request.URL?.lastPathComponent
-            where lastPathComponent.characters.count > 0 else { return }
+        guard let lastPathComponent = request.url?.lastPathComponent, lastPathComponent.characters.count > 0 else { return }
 
-        let imageName = (lastPathComponent as NSString).stringByDeletingPathExtension
+        let imageName = (lastPathComponent as NSString).deletingPathExtension
 
         var image: UIImage?
         switch imageName {
@@ -39,19 +38,19 @@ class HelpImageProtocol: NSURLProtocol {
             image = UIImage(named: imageName)
         }
 
-        guard let yesImage = image, imageData = UIImagePNGRepresentation(yesImage) else { return }
+        guard let yesImage = image, let imageData = UIImagePNGRepresentation(yesImage) else { return }
 
         let headers = ["Content-Type" : "image/png"]
 
-        guard let response = NSHTTPURLResponse(
-            URL: url,
+        guard let response = HTTPURLResponse(
+            url: url,
             statusCode: 200,
-            HTTPVersion: "HTTP/1.1",
+            httpVersion: "HTTP/1.1",
             headerFields: headers) else { return }
 
-        client.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .AllowedInMemoryOnly)
+        client.urlProtocol(self, didReceive: response, cacheStoragePolicy: .allowedInMemoryOnly)
 
-        client.URLProtocol(self, didLoadData: imageData)
+        client.urlProtocol(self, didLoad: imageData)
     }
 
     override func stopLoading() {

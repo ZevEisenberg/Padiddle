@@ -4,15 +4,25 @@ PODS:
   - SwiftGen (2.0.0)
 
 DEPENDENCIES:
-  - Anchorage
+  - Anchorage (from `git@github.com:Raizlabs/Anchorage.git`, commit `da947d7c8c554de48fb9404a91ea4b26cfb1e7f9`)
   - SimulatorStatusMagic
   - SwiftGen
+
+EXTERNAL SOURCES:
+  Anchorage:
+    :commit: da947d7c8c554de48fb9404a91ea4b26cfb1e7f9
+    :git: git@github.com:Raizlabs/Anchorage.git
+
+CHECKOUT OPTIONS:
+  Anchorage:
+    :commit: da947d7c8c554de48fb9404a91ea4b26cfb1e7f9
+    :git: git@github.com:Raizlabs/Anchorage.git
 
 SPEC CHECKSUMS:
   Anchorage: 3fb9d1ca397ac68b7ce9857792660a0d683f2e11
   SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
   SwiftGen: 67c900e9f1db8168612f2df843ec20a66783a8e5
 
-PODFILE CHECKSUM: 237890861f73d35353bf7e161240810e6d92555d
+PODFILE CHECKSUM: bfb599ba7eb57daab0ca9266657d4762ae8729e2
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.beta.1

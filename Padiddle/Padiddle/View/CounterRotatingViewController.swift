@@ -11,31 +11,31 @@ import Anchorage
 extension UIInterfaceOrientation: CustomStringConvertible {
     public var description: String {
         switch self {
-        case Unknown:
+        case .unknown:
             return "Unknown"
-        case Portrait:
+        case .portrait:
             return "Portrait"
-        case PortraitUpsideDown:
+        case .portraitUpsideDown:
             return "PortraitUpsideDown"
-        case LandscapeLeft:
+        case .landscapeLeft:
             return "LandscapeLeft"
-        case LandscapeRight:
+        case .landscapeRight:
             return "LandscapeRight"
         }
     }
 }
 
-func transformForStatusBarOrientation(statusBarOrientation: UIInterfaceOrientation) -> CGAffineTransform {
+func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrientation) -> CGAffineTransform {
     let newTransform: CGAffineTransform
     switch statusBarOrientation {
-    case .Portrait, .Unknown:
-        newTransform = CGAffineTransformIdentity
-    case .PortraitUpsideDown:
-        newTransform = CGAffineTransformMakeRotation(π)
-    case .LandscapeLeft:
-        newTransform = CGAffineTransformMakeRotation(π / 2)
-    case .LandscapeRight:
-        newTransform = CGAffineTransformMakeRotation(-π / 2)
+    case .portrait, .unknown:
+        newTransform = CGAffineTransform.identity
+    case .portraitUpsideDown:
+        newTransform = CGAffineTransform(rotationAngle: .pi)
+    case .landscapeLeft:
+        newTransform = CGAffineTransform(rotationAngle: .pi / 2)
+    case .landscapeRight:
+        newTransform = CGAffineTransform(rotationAngle: -.pi / 2)
     }
     return newTransform
 }
@@ -53,35 +53,35 @@ class CounterRotatingViewController: UIViewController {
         counterRotatingView.centerXAnchor == view.centerXAnchor
         counterRotatingView.centerYAnchor == view.centerYAnchor
 
-        counterRotatingView.transform = transformForStatusBarOrientation(UIApplication.sharedApplication().statusBarOrientation)
+        counterRotatingView.transform = transformForStatusBarOrientation(UIApplication.shared.statusBarOrientation)
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 
         // amount of rotation relative to previous status bar orientation
-        let targetTransform = coordinator.targetTransform()
+        let targetTransform = coordinator.targetTransform
 
         // status bar orientation right before this rotation occurred
-        let statusBarTransform = transformForStatusBarOrientation(UIApplication.sharedApplication().statusBarOrientation)
+        let statusBarTransform = transformForStatusBarOrientation(UIApplication.shared.statusBarOrientation)
 
-        let newTransform = CGAffineTransformConcat(CGAffineTransformInvert(targetTransform), statusBarTransform)
+        let newTransform = targetTransform.inverted().concatenating(statusBarTransform)
 
         let oldAngle = counterRotatingView.transform.angle.reasonableValue
         let newAngle = newTransform.angle.reasonableValue
         let delta = newAngle - oldAngle
 
-        let duration = coordinator.transitionDuration()
+        let duration = coordinator.transitionDuration
 
         if rotationLocked {
             UIView.setAnimationsEnabled(false)
         }
 
-        UIView.animateKeyframesWithDuration(
-            duration,
+        UIView.animateKeyframes(
+            withDuration: duration,
             delay: 0,
             options: UIViewKeyframeAnimationOptions(),
             animations: {
-                UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5) {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
 
                     // The midpoint of the two-step rotation animation
                     var average = (oldAngle + newAngle) / 2
@@ -93,14 +93,14 @@ class CounterRotatingViewController: UIViewController {
                     //     1. if the delta is +180° (+π rad)
                     //     2. if the delta is ±270° (±3π/2 rad)
                     // In both cases, we subtract 180° (π rad) so it will take the shortest path.
-                    if delta.closeEnough(π) || abs(delta).closeEnough(3 * π / 2) {
-                        average -= π
+                    if delta.closeEnough(to: .pi) || abs(delta).closeEnough(to: 3 * .pi / 2) {
+                        average -= .pi
                     }
 
-                    self.counterRotatingView.transform = CGAffineTransformMakeRotation(average.reasonableValue)
+                    self.counterRotatingView.transform = CGAffineTransform(rotationAngle: average.reasonableValue)
                 }
 
-                UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5) {
+                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
                     self.counterRotatingView.transform = newTransform
                 }
 
@@ -108,10 +108,11 @@ class CounterRotatingViewController: UIViewController {
             completion: nil
         )
 
-        coordinator.animateAlongsideTransition(nil, completion: { _ in
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
             if self.rotationLocked {
                 UIView.setAnimationsEnabled(true)
             }
         })
     }
+
 }

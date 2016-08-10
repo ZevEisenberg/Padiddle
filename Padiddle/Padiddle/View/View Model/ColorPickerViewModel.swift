@@ -11,7 +11,7 @@ import CoreGraphics.CGBase
 
 protocol ColorPickerViewModelDelegate:
 class {
-    func colorManagerPicked(colorManager: ColorManager)
+    func colorManagerPicked(_ colorManager: ColorManager)
 }
 
 class ColorPickerViewModel {
@@ -36,7 +36,7 @@ class ColorPickerViewModel {
         return colorsToPick[selectedIndex]
     }
 
-    func indexPathsForItemsOnPageWithIndexPath(indexPath: NSIndexPath) -> [NSIndexPath] {
+    func indexPathsForItemsOnPageWithIndexPath(_ indexPath: IndexPath) -> [IndexPath] {
         //--------------------------------------------------
         // The layout doesn’t exist yet, so we can’t query
         // its properties, so we use the same information
@@ -44,24 +44,24 @@ class ColorPickerViewModel {
         //--------------------------------------------------
         let itemsPerPage = colsPortrait * rowsPortrait
 
-        let page = indexPath.item / itemsPerPage
+        let page = (indexPath as IndexPath).item / itemsPerPage
 
-        var indexPaths = [NSIndexPath]()
+        var indexPaths = [IndexPath]()
 
         for item in 0..<itemsPerPage {
-            indexPaths.append(NSIndexPath(forItem: (itemsPerPage * page) + item, inSection: 0))
+            indexPaths.append(IndexPath(item: (itemsPerPage * page) + item, section: 0))
         }
         return indexPaths
     }
 
-    func imageForColorManager(colorManager: ColorManager) -> UIImage {
+    func imageForColorManager(_ colorManager: ColorManager) -> UIImage {
         let model = SpiralModel(
             colorManager: colorManager,
             size: CGSize(width: 86, height: 86),
             startRadius: 0,
             spacePerLoop: 1.5,
-            thetaRange: 0...(2.0 * π * 4.0),
-            thetaStep: π / 32.0,
+            thetaRange: 0...(2.0 * .pi * 4.0),
+            thetaStep: .pi / 32.0,
             lineWidth: 4.9)
 
         let image = SpiralImageMaker.image(spiralModel: model)
@@ -72,87 +72,87 @@ class ColorPickerViewModel {
 extension ColorPickerViewModel {
     var colorsToPick: [ColorManager] {
         return [ColorManager(
-            colorModel: .HSV(
-                h: .ThetaIncreasing,
-                s: .Manual(1.0),
-                v: .VelocityIn),
+            colorModel: .hsv(
+                h: .thetaIncreasing,
+                s: .manual(1.0),
+                v: .velocityIn),
             title: L10n.ColorsClassic.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .Manual(30.0 / 360.0),
-                    s: .Manual(0.2),
-                    v: .ThetaIncreasingAndDecreasing),
+                colorModel: .hsv(
+                    h: .manual(30.0 / 360.0),
+                    s: .manual(0.2),
+                    v: .thetaIncreasingAndDecreasing),
                 title: L10n.ColorsSepia.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .Manual(0.0),
-                    s: .Manual(1.0),
-                    v: .VelocityIn),
+                colorModel: .hsv(
+                    h: .manual(0.0),
+                    s: .manual(1.0),
+                    v: .velocityIn),
                 title: L10n.ColorsBlackWidow.string),
 
             ColorManager(
-                colorModel: .RGB(
-                    r: .VelocityOut,
-                    g: .Manual(0.45),
-                    b: .Manual(0.0)),
+                colorModel: .rgb(
+                    r: .velocityOut,
+                    g: .manual(0.45),
+                    b: .manual(0.0)),
                 title: L10n.ColorsAutumn.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .Manual(30.0 / 360.0),
-                    s: .VelocityIn,
-                    v: .Manual(1.0)),
+                colorModel: .hsv(
+                    h: .manual(30.0 / 360.0),
+                    s: .velocityIn,
+                    v: .manual(1.0)),
                 title: L10n.ColorsTangerine.string),
 
             ColorManager(
-                colorModel: .RGB(
-                    r: .ThetaIncreasingAndDecreasing,
-                    g: .ThetaIncreasing,
-                    b: .ThetaIncreasing),
+                colorModel: .rgb(
+                    r: .thetaIncreasingAndDecreasing,
+                    g: .thetaIncreasing,
+                    b: .thetaIncreasing),
                 title: L10n.Colors3D.string),
 
             ColorManager(
-                colorModel: .RGB(
-                    r: .ThetaIncreasingAndDecreasing,
-                    g: .VelocityIn,
-                    b: .ThetaIncreasing),
+                colorModel: .rgb(
+                    r: .thetaIncreasingAndDecreasing,
+                    g: .velocityIn,
+                    b: .thetaIncreasing),
                 title: L10n.ColorsWatercolor.string),
 
             ColorManager(
-                colorModel: .RGB(
-                    r: .VelocityIn,
-                    g: .VelocityOut,
-                    b: .VelocityIn),
+                colorModel: .rgb(
+                    r: .velocityIn,
+                    g: .velocityOut,
+                    b: .velocityIn),
                 title: L10n.ColorsMonsters.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .ThetaIncreasingAndDecreasing,
-                    s: .Manual(0.33),
-                    v: .VelocityOut),
+                colorModel: .hsv(
+                    h: .thetaIncreasingAndDecreasing,
+                    s: .manual(0.33),
+                    v: .velocityOut),
                 title: L10n.ColorsPastels.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .VelocityIn,
-                    s: .VelocityOut,
-                    v: .ThetaIncreasingAndDecreasing),
+                colorModel: .hsv(
+                    h: .velocityIn,
+                    s: .velocityOut,
+                    v: .thetaIncreasingAndDecreasing),
                 title: L10n.ColorsMerlin.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .Manual(0.0),
-                    s: .Manual(0.0),
-                    v: .VelocityOut),
+                colorModel: .hsv(
+                    h: .manual(0.0),
+                    s: .manual(0.0),
+                    v: .velocityOut),
                 title: L10n.ColorsRegolith.string),
 
             ColorManager(
-                colorModel: .HSV(
-                    h: .Manual(0.0),
-                    s: .Manual(0.0),
-                    v: .ThetaIncreasingAndDecreasing),
+                colorModel: .hsv(
+                    h: .manual(0.0),
+                    s: .manual(0.0),
+                    v: .thetaIncreasingAndDecreasing),
                 title: L10n.ColorsFilmNoir.string),
         ]
     }

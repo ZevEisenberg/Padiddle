@@ -28,129 +28,167 @@
 
 import UIKit
 
-public protocol AnchorType {}
-extension NSLayoutAnchor : AnchorType {}
+public protocol LayoutAnchorType {}
+extension NSLayoutDimension : LayoutAnchorType {}
+extension NSLayoutXAxisAnchor : LayoutAnchorType {}
+extension NSLayoutYAxisAnchor : LayoutAnchorType {}
 
 // MARK: - Equality Constraints
 
 infix operator == {
-associativity none
-precedence 130
+    associativity none
+    precedence 130
 }
 
-public func == (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintEqualToConstant(rhs))
+@discardableResult public func == (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalToConstant: rhs))
 }
 
-public func == (lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintEqualToAnchor(rhs))
+@discardableResult public func == (lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs))
 }
 
-public func == (lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintEqualToAnchor(rhs))
+@discardableResult public func == (lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs))
 }
 
-public func == (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintEqualToAnchor(rhs))
+@discardableResult public func == (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs))
 }
 
-public func == <T: NSLayoutAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintEqualToAnchor(rhs.anchor, constant: rhs.constant), withPriority: rhs.priority)
+@discardableResult public func == <T: NSLayoutDimension>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
 }
 
-public func == (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
+@discardableResult public func == <T: NSLayoutXAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+
+@discardableResult public func == <T: NSLayoutYAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(equalTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+
+@discardableResult public func == (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
     if let anchor = rhs.anchor {
-        return activateConstraint(lhs.constraintEqualToAnchor(anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(equalTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
     }
     else {
-        return activateConstraint(lhs.constraintEqualToConstant(rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(equalToConstant: rhs.constant), withPriority: rhs.priority)
     }
 }
 
-public func == (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
+@discardableResult public func == (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
     return lhs.activeConstraintsEqualToEdges(rhs)
 }
 
-public func == (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
+@discardableResult public func == (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
     return lhs.activeConstraintsEqualToEdges(rhs.anchor, constant: rhs.constant, priority: rhs.priority)
 }
 
 // MARK: - Inequality Constraints
 
-public func <= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintLessThanOrEqualToConstant(rhs))
+@discardableResult public func <= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualToConstant: rhs))
 }
 
-public func <= <T: NSLayoutAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintLessThanOrEqualToAnchor(rhs))
+@discardableResult public func <= <T: NSLayoutDimension>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs))
+}
+@discardableResult public func <= <T: NSLayoutXAxisAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs))
+}
+@discardableResult public func <= <T: NSLayoutYAxisAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs))
 }
 
-public func <= <T: NSLayoutAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintLessThanOrEqualToAnchor(rhs.anchor, constant: rhs.constant), withPriority: rhs.priority)
+@discardableResult public func <= <T: NSLayoutDimension>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+@discardableResult public func <= <T: NSLayoutXAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+@discardableResult public func <= <T: NSLayoutYAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(lessThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
 }
 
-public func <= (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
+@discardableResult public func <= (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
     if let anchor = rhs.anchor {
-        return activateConstraint(lhs.constraintLessThanOrEqualToAnchor(anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(lessThanOrEqualTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
     }
     else {
-        return activateConstraint(lhs.constraintLessThanOrEqualToConstant(rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(lessThanOrEqualToConstant: rhs.constant), withPriority: rhs.priority)
     }
 }
 
-public func <= (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
+@discardableResult public func <= (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
     return lhs.activeConstraintsLessThanOrEqualToEdges(rhs)
 }
 
-public func <= (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
+@discardableResult public func <= (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
     return lhs.activeConstraintsLessThanOrEqualToEdges(rhs.anchor, constant: rhs.constant, priority: rhs.priority)
 }
 
-public func >= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintGreaterThanOrEqualToConstant(rhs))
+@discardableResult public func >= (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualToConstant: rhs))
 }
 
-public func >=<T: NSLayoutAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintGreaterThanOrEqualToAnchor(rhs))
+@discardableResult public func >=<T: NSLayoutDimension>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs))
 }
 
-public func >= <T: NSLayoutAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
-    return activateConstraint(lhs.constraintGreaterThanOrEqualToAnchor(rhs.anchor, constant: rhs.constant), withPriority: rhs.priority)
+@discardableResult public func >=<T: NSLayoutXAxisAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs))
 }
 
-public func >= (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
+@discardableResult public func >=<T: NSLayoutYAxisAnchor>(lhs: T, rhs: T) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs))
+}
+
+@discardableResult public func >= <T: NSLayoutDimension>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+
+@discardableResult public func >= <T: NSLayoutXAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+
+@discardableResult public func >= <T: NSLayoutYAxisAnchor>(lhs: T, rhs: LayoutExpression<T>) -> NSLayoutConstraint {
+    return activateConstraint(lhs.constraint(greaterThanOrEqualTo: rhs.anchor!, constant: rhs.constant), withPriority: rhs.priority)
+}
+
+@discardableResult public func >= (lhs: NSLayoutDimension, rhs: LayoutExpression<NSLayoutDimension>) -> NSLayoutConstraint {
     if let anchor = rhs.anchor {
-        return activateConstraint(lhs.constraintGreaterThanOrEqualToAnchor(anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(greaterThanOrEqualTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant), withPriority: rhs.priority)
     }
     else {
-        return activateConstraint(lhs.constraintGreaterThanOrEqualToConstant(rhs.constant), withPriority: rhs.priority)
+        return activateConstraint(lhs.constraint(greaterThanOrEqualToConstant: rhs.constant), withPriority: rhs.priority)
     }
 }
 
-public func >= (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
+@discardableResult public func >= (lhs: EdgeAnchors, rhs: EdgeAnchors) -> EdgeConstraints {
     return lhs.activeConstraintsGreaterThanOrEqualToEdges(rhs)
 }
 
-public func >= (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
+@discardableResult public func >= (lhs: EdgeAnchors, rhs: LayoutExpression<EdgeAnchors>) -> EdgeConstraints {
     return lhs.activeConstraintsGreaterThanOrEqualToEdges(rhs.anchor, constant: rhs.constant, priority: rhs.priority)
 }
 
 // MARK: - Priority
 
 infix operator ~ {
-associativity none
-precedence 135
+    associativity none
+    precedence 135
 }
 
-public func ~ (lhs: CGFloat, rhs: UILayoutPriority) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func ~ (lhs: CGFloat, rhs: UILayoutPriority) -> LayoutExpression<NSLayoutDimension> {
     return LayoutExpression(constant: lhs, priority: rhs)
 }
 
-public func ~ <T: AnchorType>(lhs: T, rhs: UILayoutPriority) -> LayoutExpression<T> {
+@discardableResult public func ~ <T: LayoutAnchorType>(lhs: T, rhs: UILayoutPriority) -> LayoutExpression<T> {
     return LayoutExpression(anchor: lhs, priority: rhs)
 }
 
-public func ~ <T: AnchorType>(lhs: LayoutExpression<T>, rhs: UILayoutPriority) -> LayoutExpression<T> {
+@discardableResult public func ~ <T: LayoutAnchorType>(lhs: LayoutExpression<T>, rhs: UILayoutPriority) -> LayoutExpression<T> {
     var expr = lhs
     expr.priority = rhs
     return expr
@@ -158,77 +196,77 @@ public func ~ <T: AnchorType>(lhs: LayoutExpression<T>, rhs: UILayoutPriority) -
 
 // MARK: Layout Expressions
 
-public func * (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func * (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
     return LayoutExpression(anchor: lhs, multiplier: rhs)
 }
 
-public func * (lhs: CGFloat, rhs: NSLayoutDimension) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func * (lhs: CGFloat, rhs: NSLayoutDimension) -> LayoutExpression<NSLayoutDimension> {
     return LayoutExpression(anchor: rhs, multiplier: lhs)
 }
 
-public func * (lhs: LayoutExpression<NSLayoutDimension>, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func * (lhs: LayoutExpression<NSLayoutDimension>, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
     var expr = lhs
     expr.multiplier *= rhs
     return expr
 }
 
-public func * (lhs: CGFloat, rhs: LayoutExpression<NSLayoutDimension>) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func * (lhs: CGFloat, rhs: LayoutExpression<NSLayoutDimension>) -> LayoutExpression<NSLayoutDimension> {
     var expr = rhs
     expr.multiplier *= lhs
     return expr
 }
 
-public func / (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func / (lhs: NSLayoutDimension, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
     return LayoutExpression(anchor: lhs, multiplier: 1.0 / rhs)
 }
 
-public func / (lhs: LayoutExpression<NSLayoutDimension>, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
+@discardableResult public func / (lhs: LayoutExpression<NSLayoutDimension>, rhs: CGFloat) -> LayoutExpression<NSLayoutDimension> {
     var expr = lhs
     expr.multiplier /= rhs
     return expr
 }
 
-public func + <T: AnchorType>(lhs: T, rhs: CGFloat) -> LayoutExpression<T> {
+@discardableResult public func + <T: LayoutAnchorType>(lhs: T, rhs: CGFloat) -> LayoutExpression<T> {
     return LayoutExpression(anchor: lhs, constant: rhs)
 }
 
-public func + <T: AnchorType>(lhs: CGFloat, rhs: T) -> LayoutExpression<T> {
+@discardableResult public func + <T: LayoutAnchorType>(lhs: CGFloat, rhs: T) -> LayoutExpression<T> {
     return LayoutExpression(anchor: rhs, constant: lhs)
 }
 
-public func + <T: AnchorType>(lhs: LayoutExpression<T>, rhs: CGFloat) -> LayoutExpression<T> {
+@discardableResult public func + <T: LayoutAnchorType>(lhs: LayoutExpression<T>, rhs: CGFloat) -> LayoutExpression<T> {
     var expr = lhs
     expr.constant += rhs
     return expr
 }
 
-public func + <T: AnchorType>(lhs: CGFloat, rhs: LayoutExpression<T>) -> LayoutExpression<T> {
+@discardableResult public func + <T: LayoutAnchorType>(lhs: CGFloat, rhs: LayoutExpression<T>) -> LayoutExpression<T> {
     var expr = rhs
     expr.constant += lhs
     return expr
 }
 
-public func - <T: AnchorType>(lhs: T, rhs: CGFloat) -> LayoutExpression<T> {
+@discardableResult public func - <T: LayoutAnchorType>(lhs: T, rhs: CGFloat) -> LayoutExpression<T> {
     return LayoutExpression(anchor: lhs, constant: -rhs)
 }
 
-public func - <T: AnchorType>(lhs: CGFloat, rhs: T) -> LayoutExpression<T> {
+@discardableResult public func - <T: LayoutAnchorType>(lhs: CGFloat, rhs: T) -> LayoutExpression<T> {
     return LayoutExpression(anchor: rhs, constant: -lhs)
 }
 
-public func - <T: AnchorType>(lhs: LayoutExpression<T>, rhs: CGFloat) -> LayoutExpression<T> {
+@discardableResult public func - <T: LayoutAnchorType>(lhs: LayoutExpression<T>, rhs: CGFloat) -> LayoutExpression<T> {
     var expr = lhs
     expr.constant -= rhs
     return expr
 }
 
-public func - <T: AnchorType>(lhs: CGFloat, rhs: LayoutExpression<T>) -> LayoutExpression<T> {
+@discardableResult public func - <T: LayoutAnchorType>(lhs: CGFloat, rhs: LayoutExpression<T>) -> LayoutExpression<T> {
     var expr = rhs
     expr.constant -= lhs
     return expr
 }
 
-public struct LayoutExpression<T : AnchorType> {
+public struct LayoutExpression<T : LayoutAnchorType> {
 
     private var anchor: T?
     private var constant: CGFloat
@@ -292,27 +330,26 @@ extension UILayoutGuide: EdgeAnchorsProvider {
 
 private enum LayoutEdge {
 
-    case Top, Leading, Bottom, Trailing
-
-    static let Horizontal = [Leading, Trailing]
-    static let Vertical = [Top, Bottom]
-    static let All = [Top, Leading, Bottom, Trailing]
+    case top, leading, bottom, trailing
+    static let Horizontal = [leading, trailing]
+    static let Vertical = [top, bottom]
+    static let All = [top, leading, bottom, trailing]
 
     var axis: UILayoutConstraintAxis {
         switch self {
-        case .Top, .Bottom:
-            return .Vertical
-        case .Leading, .Trailing:
-            return .Horizontal
+        case .top, .bottom:
+            return .vertical
+        case.leading, .trailing:
+            return .horizontal
         }
     }
 
-    func transformConstant(c: CGFloat) -> CGFloat {
+    func transform(constant: CGFloat) -> CGFloat {
         switch self {
-        case .Top, .Leading:
-            return c
-        case .Bottom, .Trailing:
-            return -c
+        case .top, .leading:
+            return constant
+        case .bottom, .trailing:
+            return -constant
         }
     }
 
@@ -320,7 +357,7 @@ private enum LayoutEdge {
 
 // MARK: - EdgeAnchors
 
-public struct EdgeAnchors: AnchorType {
+public struct EdgeAnchors: LayoutAnchorType {
 
     private var top: NSLayoutYAxisAnchor
     private var leading: NSLayoutXAxisAnchor
@@ -336,55 +373,55 @@ public struct EdgeAnchors: AnchorType {
         self.trailing = trailing
     }
 
-    private func filter(filter: [LayoutEdge]) -> EdgeAnchors {
+    private func filter(_ filter: [LayoutEdge]) -> EdgeAnchors {
         var filteredAnchors = self
         filteredAnchors.includedEdges = includedEdges.filter { filter.contains($0) }
 
         return filteredAnchors
     }
 
-    public func activeConstraintsEqualToEdges(anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
+    public func activeConstraintsEqualToEdges(_ anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
         return constraintsForAnchors(anchor, constant: c, priority: priority, builder: ConstraintBuilder(horizontal: ==, vertical: ==))
     }
 
-    public func activeConstraintsLessThanOrEqualToEdges(anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
+    public func activeConstraintsLessThanOrEqualToEdges(_ anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
         var constraintBuilder = ConstraintBuilder(horizontal: <=, vertical: <=)
 
-        if includedEdges.contains(.Leading) && includedEdges.indexOf(.Trailing) == anchor?.includedEdges.indexOf(.Trailing) {
+        if includedEdges.contains(.leading) && includedEdges.index(of: .trailing) == anchor?.includedEdges.index(of: .trailing) {
             constraintBuilder.trailing = (>=)
         }
 
-        if includedEdges.contains(.Top) && includedEdges.indexOf(.Bottom) == anchor?.includedEdges.indexOf(.Bottom) {
+        if includedEdges.contains(.top) && includedEdges.index(of: .bottom) == anchor?.includedEdges.index(of: .bottom) {
             constraintBuilder.bottom = (>=)
         }
 
         return constraintsForAnchors(anchor, constant: c, priority: priority, builder: constraintBuilder)
     }
 
-    public func activeConstraintsGreaterThanOrEqualToEdges(anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
+    public func activeConstraintsGreaterThanOrEqualToEdges(_ anchor: EdgeAnchors?, constant c: CGFloat = 0.0, priority: UILayoutPriority = UILayoutPriorityRequired) -> EdgeConstraints {
         var constraintBuilder = ConstraintBuilder(horizontal: >=, vertical: >=)
 
-        if includedEdges.contains(.Leading) && includedEdges.indexOf(.Trailing) == anchor?.includedEdges.indexOf(.Trailing) {
+        if includedEdges.contains(.leading) && includedEdges.index(of: .trailing) == anchor?.includedEdges.index(of: .trailing) {
             constraintBuilder.trailing = (<=)
         }
 
-        if includedEdges.contains(.Top) && includedEdges.indexOf(.Bottom) == anchor?.includedEdges.indexOf(.Bottom) {
+        if includedEdges.contains(.top) && includedEdges.index(of: .bottom) == anchor?.includedEdges.index(of: .bottom) {
             constraintBuilder.bottom = (<=)
         }
 
         return constraintsForAnchors(anchor, constant: c, priority: priority, builder: constraintBuilder)
     }
 
-    private subscript (edge: LayoutEdge) -> NSLayoutAnchor {
+    private subscript (edge: LayoutEdge) -> LayoutAnchorType {
         switch edge {
-        case .Top:      return top
-        case .Leading:  return leading
-        case .Bottom:   return bottom
-        case .Trailing: return trailing
+        case .top:      return top
+        case .leading:  return leading
+        case .bottom:   return bottom
+        case .trailing: return trailing
         }
     }
 
-    private func constraintsForAnchors(anchors: EdgeAnchors?, constant c: CGFloat, priority: UILayoutPriority, builder: ConstraintBuilder) -> EdgeConstraints {
+    private func constraintsForAnchors(_ anchors: EdgeAnchors?, constant c: CGFloat, priority: UILayoutPriority, builder: ConstraintBuilder) -> EdgeConstraints {
         guard let anchors = anchors else {
             preconditionFailure("Encountered nil edge anchors, indicating internal inconsistency of this API.")
         }
@@ -396,17 +433,17 @@ public struct EdgeAnchors: AnchorType {
                 switch (self[edge], anchors[otherEdge]) {
 
                 case let (x as NSLayoutXAxisAnchor, otherX as NSLayoutXAxisAnchor):
-                    let expression = (otherX + edge.transformConstant(c)) ~ priority
+                    let expression = (otherX + edge.transform(constant: c)) ~ priority
                     return builder.horizontalBuilderForEdge(edge)(x, expression)
 
                 case let (y as NSLayoutYAxisAnchor, otherY as NSLayoutYAxisAnchor):
-                    let expression = (otherY + edge.transformConstant(c)) ~ priority
+                    let expression = (otherY + edge.transform(constant: c)) ~ priority
                     return builder.verticalBuilderForEdge(edge)(y, expression)
 
                 default:
                     preconditionFailure("Layout axis of constrained anchors must match.")
                 }
-                }()
+            }()
         }
 
         return edgeConstraints
@@ -438,19 +475,19 @@ public struct EdgeConstraints {
     private subscript (edge: LayoutEdge) -> NSLayoutConstraint? {
         get {
             switch edge {
-            case .Top:      return top
-            case .Leading:  return leading
-            case .Bottom:   return bottom
-            case .Trailing: return trailing
+            case .top:      return top
+            case .leading:  return leading
+            case .bottom:   return bottom
+            case .trailing: return trailing
             }
         }
 
         set {
             switch edge {
-            case .Top:      top = newValue
-            case .Leading:  leading = newValue
-            case .Bottom:   bottom = newValue
-            case .Trailing: trailing = newValue
+            case .top:      top = newValue
+            case .leading:  leading = newValue
+            case .bottom:   bottom = newValue
+            case .trailing: trailing = newValue
             }
         }
     }
@@ -476,28 +513,28 @@ private struct ConstraintBuilder {
         trailing = horizontal
     }
 
-    func horizontalBuilderForEdge(edge: LayoutEdge) -> Horizontal {
-        assert(edge.axis == .Horizontal)
-        return (edge == .Leading) ? leading : trailing
+    func horizontalBuilderForEdge(_ edge: LayoutEdge) -> Horizontal {
+        assert(edge.axis == .horizontal)
+        return (edge == .leading) ? leading : trailing
     }
 
-    func verticalBuilderForEdge(edge: LayoutEdge) -> Vertical {
-        assert(edge.axis == .Vertical)
-        return (edge == .Top) ? top : bottom
+    func verticalBuilderForEdge(_ edge: LayoutEdge) -> Vertical {
+        assert(edge.axis == .vertical)
+        return (edge == .top) ? top : bottom
     }
 
 }
 
 // MARK: - Constraint Activation
 
-private func activateConstraint(constraint: NSLayoutConstraint, withPriority priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
+private func activateConstraint(_ constraint: NSLayoutConstraint, withPriority priority: UILayoutPriority = UILayoutPriorityRequired) -> NSLayoutConstraint {
     // Only disable autoresizing constraints on the LHS item, which is the one definitely intended to be governed by Auto Layout
     if let first = constraint.firstItem as? UIView {
         first.translatesAutoresizingMaskIntoConstraints = false
     }
     
     constraint.priority = priority
-    constraint.active = true
+    constraint.isActive = true
     
     return constraint
 }

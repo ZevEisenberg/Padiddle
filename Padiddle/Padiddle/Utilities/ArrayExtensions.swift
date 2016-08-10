@@ -8,9 +8,9 @@
 
 extension Array where Element : Equatable {
     // Remove first collection element that is equal to the given `object`:
-    mutating func remove(object: Element) {
-        if let index = indexOf(object) {
-            removeAtIndex(index)
+    mutating func remove(_ object: Element) {
+        if let index = index(of: object) {
+            self.remove(at: index)
         }
     }
 }
@@ -26,7 +26,7 @@ extension Array {
         assert(largerArray.count == smallerArray.count + 1, "Arrays must differ in count by exactly 1, but they have counts \(largerArray.count) and \(smallerArray.count)")
 
         var newArray = [Element]()
-        for (index, smallArrayElement) in smallerArray.enumerate() {
+        for (index, smallArrayElement) in smallerArray.enumerated() {
             let largeArrayElement = largerArray[index]
             newArray.append(largeArrayElement)
             newArray.append(smallArrayElement)

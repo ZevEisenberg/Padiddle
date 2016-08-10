@@ -14,7 +14,7 @@ class ViewTests: XCTestCase {
         let view = UIView("foobar")
         XCTAssertEqual(view.accessibilityIdentifier, "foobar")
 
-        let button = UIButton(type: .System, "foobar")
+        let button = UIButton(type: .system, "foobar")
         XCTAssertEqual(button.accessibilityIdentifier, "foobar")
     }
 

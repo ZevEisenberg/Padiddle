@@ -31,24 +31,24 @@ class DrawingViewController: CounterRotatingViewController {
 
         viewModel.delegate = self
 
-        view.backgroundColor = .whiteColor()
+        view.backgroundColor = .white
         view.accessibilityIdentifier = "drawing view controller view"
 
         counterRotatingView.addSubview(drawingView)
 
-        drawingView.widthAnchor == UIScreen.mainScreen().longestSide
-        drawingView.heightAnchor == UIScreen.mainScreen().longestSide
+        drawingView.widthAnchor == UIScreen.main.longestSide
+        drawingView.heightAnchor == UIScreen.main.longestSide
         drawingView.centerXAnchor == counterRotatingView.centerXAnchor
         drawingView.centerYAnchor == counterRotatingView.centerYAnchor
 
         let nibDiameter = 12.0
-        let borderWidth: CGFloat = (UIScreen.mainScreen().scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
+        let borderWidth: CGFloat = (UIScreen.main.scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
 
-        nib.image = UIImage.ellipseImageWithColor(
-            color: .blackColor(),
+        nib.image = UIImage.ellipseImage(
+            color: .black,
             size: CGSize(width: nibDiameter, height: nibDiameter),
             borderWidth: borderWidth,
-            borderColor: .whiteColor())
+            borderColor: .white)
         nib.sizeToFit()
 
         drawingView.addSubview(nib)
@@ -65,13 +65,13 @@ class DrawingViewController: CounterRotatingViewController {
         viewModel.loadPersistedImage()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         viewModel.startMotionUpdates()
     }
 
-    func getSnapshotImage(interfaceOrientation interfaceOrientation: UIInterfaceOrientation, completion: UIImage -> Void) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
         viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
 
@@ -94,7 +94,7 @@ extension DrawingViewController: DrawingViewModelDelegate {
         viewModel.persistImageInBackground()
     }
 
-    func drawingViewModelUpdatedLocation(newLocation: CGPoint) {
+    func drawingViewModelUpdatedLocation(_ newLocation: CGPoint) {
         nib.center = newLocation.screenPixelsIntegral
 
         if viewModel.isUpdating {

@@ -22,11 +22,11 @@ class ColorPickerLayout: UICollectionViewLayout {
         }
     }
     private let pageInsets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-    private var layoutInfo = [NSIndexPath: UICollectionViewLayoutAttributes]()
+    private var layoutInfo = [IndexPath: UICollectionViewLayoutAttributes]()
 
     var numberOfPages: Int {
         let itemsPerPage = numberOfColumns * numberOfRows
-        let numberOfItems = collectionView!.numberOfItemsInSection(0)
+        let numberOfItems = collectionView!.numberOfItems(inSection: 0)
         var pageCount = numberOfItems / itemsPerPage
         if numberOfItems % itemsPerPage != 0 {
             pageCount += 1
@@ -34,23 +34,23 @@ class ColorPickerLayout: UICollectionViewLayout {
         return pageCount
     }
 
-    override func prepareLayout() {
-        var cellLayoutInfo = [NSIndexPath: UICollectionViewLayoutAttributes]()
+    override func prepare() {
+        var cellLayoutInfo = [IndexPath: UICollectionViewLayoutAttributes]()
 
-        if let sectionCount = collectionView?.numberOfSections() {
-            var indexPath: NSIndexPath?
+        if let sectionCount = collectionView?.numberOfSections {
+            var indexPath: IndexPath?
 
             for section in 0..<sectionCount {
-                if let itemCount = collectionView?.numberOfItemsInSection(section) {
+                if let itemCount = collectionView?.numberOfItems(inSection: section) {
 
                     for item in 0..<itemCount {
-                        indexPath = NSIndexPath(forItem: item, inSection: section)
+                        indexPath = IndexPath(item: item, section: section)
 
                         guard let definiteIndexPath = indexPath else {
                             fatalError()
                         }
 
-                        let itemAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: definiteIndexPath)
+                        let itemAttributes = UICollectionViewLayoutAttributes(forCellWith: definiteIndexPath)
                         itemAttributes.frame = frameForItemAtIndexPath(definiteIndexPath)
 
                         cellLayoutInfo[definiteIndexPath] = itemAttributes
@@ -62,7 +62,7 @@ class ColorPickerLayout: UICollectionViewLayout {
         }
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var allAtributes = [UICollectionViewLayoutAttributes]()
 
         for (_, attributes) in layoutInfo {
@@ -74,11 +74,11 @@ class ColorPickerLayout: UICollectionViewLayout {
         return allAtributes
     }
 
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return layoutInfo[indexPath]
     }
 
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else {
             return CGSize.zero
         }
@@ -92,15 +92,15 @@ class ColorPickerLayout: UICollectionViewLayout {
 }
 
 private extension ColorPickerLayout {
-    func frameForItemAtIndexPath(indexPath: NSIndexPath) -> CGRect {
+    func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
 
         guard let collectionView = collectionView else {
             return CGRect.zero
         }
 
         let itemsPerPage = numberOfColumns * numberOfRows
-        let page = indexPath.item / itemsPerPage
-        let indexRelativeToThisPage = indexPath.item % itemsPerPage
+        let page = (indexPath as IndexPath).item / itemsPerPage
+        let indexRelativeToThisPage = (indexPath as IndexPath).item % itemsPerPage
 
         let column = indexRelativeToThisPage % numberOfColumns
         let row    = indexRelativeToThisPage / numberOfColumns

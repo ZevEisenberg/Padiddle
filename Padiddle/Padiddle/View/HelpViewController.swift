@@ -20,53 +20,52 @@ class HelpViewController: UIViewController {
 
         title = L10n.About.string
 
-        webView.backgroundColor = .whiteColor()
+        webView.backgroundColor = .white
         webView.delegate = self
         view.addSubview(webView)
         webView.verticalAnchors == view.layoutMarginsGuide.verticalAnchors
         webView.horizontalAnchors == view.horizontalAnchors
         webView.loadHTMLString(viewModel.html, baseURL: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.accessibilityIdentifier = "about padiddle"
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         webView.scrollView.flashScrollIndicators()
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animateAlongsideTransition(nil, completion: { _ in
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
             self.webView.scrollView.flashScrollIndicators()
         })
     }
 
-    func typeSizeChanged(note: NSNotification) {
+    func typeSizeChanged(_ note: NSNotification) {
         webView.loadHTMLString(viewModel.html, baseURL: nil)
     }
 }
 
 extension HelpViewController: UIWebViewDelegate {
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         webView.scrollView.flashScrollIndicators()
     }
 
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         switch navigationType {
-        case .LinkClicked:
-            if let url = request.URL {
-                UIApplication.sharedApplication().openURL(url)
+        case .linkClicked:
+            if let url = request.url {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
             return false
-        case .Other, .Reload:
+        case .other, .reload:
             return true
         default:
             fatalError("Unexpected navigation type \(navigationType)")
