@@ -10,7 +10,7 @@ import XCTest
 
 class Screenshots: XCTestCase {
 
-    lazy var iPhone = UIDevice.currentDevice().userInterfaceIdiom == .Phone
+    lazy var iPhone = UIDevice.current.userInterfaceIdiom == .phone
 
     override func setUp() {
         super.setUp()
@@ -20,15 +20,15 @@ class Screenshots: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
 
         let app = XCUIApplication()
-        setupSnapshot(app)
+        setupSnapshot(app: app)
         app.launch()
 
-        XCUIDevice.sharedDevice().orientation = .Portrait
+        XCUIDevice.shared().orientation = .portrait
     }
 
     func testTakeScreenshots() {
 
-        snapshot("1")
+        snapshot(name: "1")
 
         let app = XCUIApplication()
 
@@ -36,7 +36,7 @@ class Screenshots: XCTestCase {
         XCTAssertTrue(helpButton.exists)
         helpButton.tap()
 
-        snapshot("2")
+        snapshot(name: "2")
 
         if iPhone {
             let navBar = app.navigationBars["about padiddle"]
@@ -52,7 +52,7 @@ class Screenshots: XCTestCase {
 
         app.buttons["color button"].tap()
 
-        snapshot("3")
+        snapshot(name: "3")
     }
 
 }
