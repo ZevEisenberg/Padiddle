@@ -22,11 +22,11 @@ class ColorPickerViewController: UIViewController {
 
     weak var delegate: ColorPickerDelegate?
 
-    private let collectionView: UICollectionView
-    private let pageControl: UIPageControl
-    private let layout: ColorPickerLayout
-    private let viewModel: ColorPickerViewModel
-    private var currentSelection = IndexPath(item: 0, section: 0) {
+    fileprivate let collectionView: UICollectionView
+    fileprivate let pageControl: UIPageControl
+    fileprivate let layout: ColorPickerLayout
+    fileprivate let viewModel: ColorPickerViewModel
+    fileprivate var currentSelection = IndexPath(item: 0, section: 0) {
         didSet {
             scrollToPageWithCellAtIndexPath(currentSelection)
         }

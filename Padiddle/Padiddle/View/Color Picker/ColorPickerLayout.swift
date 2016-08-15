@@ -21,8 +21,8 @@ class ColorPickerLayout: UICollectionViewLayout {
             invalidateLayout()
         }
     }
-    private let pageInsets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-    private var layoutInfo = [IndexPath: UICollectionViewLayoutAttributes]()
+    fileprivate let pageInsets = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+    fileprivate var layoutInfo = [IndexPath: UICollectionViewLayoutAttributes]()
 
     var numberOfPages: Int {
         let itemsPerPage = numberOfColumns * numberOfRows

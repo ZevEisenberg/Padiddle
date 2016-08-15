@@ -56,7 +56,7 @@ class RootViewModel {
         recordingDelegates.append(Weak(value: delegate))
     }
 
-    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
+    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
         guard let drawingViewController = drawingViewController else { fatalError() }
         drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }

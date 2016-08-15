@@ -3,7 +3,7 @@ use_frameworks!
 
 target 'Padiddle' do  
   pod 'SwiftGen'
-  pod 'Anchorage', :git => 'git@github.com:Raizlabs/Anchorage.git', :commit => 'da947d7c8c554de48fb9404a91ea4b26cfb1e7f9'
+  pod 'Anchorage', :git => 'git@github.com:Raizlabs/Anchorage.git', :commit => '11ae636b97ba83163b49addd679d11aaf312eabd'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
 end
 

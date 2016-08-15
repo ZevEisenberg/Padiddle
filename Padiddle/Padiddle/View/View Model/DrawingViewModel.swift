@@ -27,24 +27,24 @@ protocol DrawingViewBoundsVendor: class {
 class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
-    private var smoothing = true
+    fileprivate var smoothing = true
 
-    private let brushDiameter: CGFloat = 12
+    fileprivate let brushDiameter: CGFloat = 12
 
     weak var delegate: DrawingViewModelDelegate?
     weak var view: DrawingViewBoundsVendor?
 
-    private var colorManager: ColorManager?
+    fileprivate var colorManager: ColorManager?
 
-    private let motionManager = CMMotionManager()
+    fileprivate let motionManager = CMMotionManager()
 
-    private let maxRadius: CGFloat
+    fileprivate let maxRadius: CGFloat
 
-    private var updateTimer: Timer?
+    fileprivate var updateTimer: Timer?
 
-    private var offscreenContext: CGContext?
+    fileprivate var offscreenContext: CGContext?
 
-    private let contextSize: CGSize
+    fileprivate let contextSize: CGSize
 
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
@@ -59,9 +59,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private var points = Array(repeating: CGPoint.zero, count: 4)
 
-    private let screenScale = UIScreen.main.scale
+    fileprivate let screenScale = UIScreen.main.scale
 
-    lazy private var contextScaleFactor: CGFloat = {
+    lazy fileprivate var contextScaleFactor: CGFloat = {
         // The context image is scaled as Aspect Fill, so the larger dimension
         // of the bounds is the limiting factor
         let maxDimension = max(self.contextSize.width, self.contextSize.height)
@@ -136,7 +136,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
             width: contextSize.width * contextScaleFactor,
             height: contextSize.height * contextScaleFactor
         )
-        context.draw(in: drawingRect, image: offscreenImage!)
+        context.draw(offscreenImage!, in: drawingRect)
 
         if debugging {
             context.setStrokeColor(UIColor.green.cgColor)
@@ -147,7 +147,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     func setInitialImage(_ image: UIImage) {
         let rect = CGRect(origin: CGPoint.zero, size: contextSize)
-        offscreenContext?.draw(in: rect, image: image.cgImage!)
+        offscreenContext?.draw(image.cgImage!, in: rect)
     }
 
     func addPathSegment(_ pathSegment: CGPath, color: UIColor) {
@@ -180,7 +180,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return rotatedImage
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
         DispatchQueue.global(qos: .default).async {
             let image = self.snapshot(interfaceOrientation)
 
@@ -232,7 +232,7 @@ extension DrawingViewModel: RootColorManagerDelegate {
 
 extension DrawingViewModel { // Coordinate conversions
 
-    private func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
+    fileprivate func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
 
         guard let view = view else { fatalError() }
 

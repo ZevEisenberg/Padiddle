@@ -18,7 +18,7 @@ extension UIImage {
         let currentContext = UIGraphicsGetCurrentContext()
 
         // Add ellipse for masking
-        currentContext?.addEllipse(inRect: insetRect)
+        currentContext?.addEllipse(in: insetRect)
 
         // Save the graphics state so we can undo the clip to draw the stroke
         currentContext?.saveGState()
@@ -82,7 +82,7 @@ extension UIImage {
             height: rotatedSize.height)
 
         context?.scaleBy(x: 1.0, y: -1.0)
-        context?.draw(in: imageRect, image: self.cgImage!)
+        context?.draw(self.cgImage!, in: imageRect)
 
         let newImage = context?.makeImage()!
 
@@ -146,7 +146,7 @@ extension UIImage {
             y: -size.height * scale / 2,
             width: size.width * scale,
             height: size.height * scale)
-        bitmap?.draw(in: drawRect, image: self.cgImage!)
+        bitmap?.draw(self.cgImage!, in: drawRect)
 
         let newImage = bitmap?.makeImage()!
 

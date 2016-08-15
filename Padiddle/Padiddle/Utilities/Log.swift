@@ -19,7 +19,7 @@ struct Log {
     }()
 
     private static func log(_ object: Any?, title: String, _ fileName: String, _ functionName: String, _ line: Int) {
-        let objectName = URL(fileURLWithPath: fileName).lastPathComponent ?? "Unknown Object"
+        let objectName = URL(fileURLWithPath: fileName).lastPathComponent
 
         var objectDebugDescription: String = ""
         if object != nil {

@@ -36,7 +36,7 @@ struct ColorManager {
     var title: String
 
     var currentColor: UIColor {
-        return self.dynamicType.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
+        return ColorManager.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
     }
 
     init(colorModel: ColorModel, title: String) {

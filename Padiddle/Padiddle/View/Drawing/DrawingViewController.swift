@@ -12,9 +12,9 @@ let showDebugLabel = false
 
 class DrawingViewController: CounterRotatingViewController {
 
-    private let viewModel: DrawingViewModel
-    private let drawingView: DrawingView
-    private let nib = UIImageView()
+    fileprivate let viewModel: DrawingViewModel
+    fileprivate let drawingView: DrawingView
+    fileprivate let nib = UIImageView()
 
     init(viewModel: DrawingViewModel) {
         self.viewModel = viewModel
@@ -71,7 +71,7 @@ class DrawingViewController: CounterRotatingViewController {
         viewModel.startMotionUpdates()
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: (UIImage) -> Void) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
         viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
 

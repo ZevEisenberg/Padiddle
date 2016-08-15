@@ -44,7 +44,7 @@ class PickerCell: UICollectionViewCell {
 
         titleLabel.textColor = textColor
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleHeadline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.numberOfLines = 0 // in case we are even in a situation where we need to wrap lines
 
         contentView.addSubview(imageView)

@@ -58,8 +58,8 @@ extension CGPath {
         }()
 
         let pathSegment = CGMutablePath()
-        pathSegment.moveTo(nil, x: points[1].x, y: points[1].y)
-        pathSegment.addCurve(nil, cp1x: ctrl1.x, cp1y: ctrl1.y, cp2x: ctrl2.x, cp2y: ctrl2.y, endingAtX: points[2].x, y: points[2].y)
+        pathSegment.move(to: points[1])
+        pathSegment.addCurve(to: ctrl1, control1: ctrl2, control2: points[2])
 
         return pathSegment
     }

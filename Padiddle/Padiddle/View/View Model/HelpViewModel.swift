@@ -52,7 +52,7 @@ struct HelpViewModel {
         let nativeWidth = deviceImage.size.width
 
         guard let imageWidthRange = newString.range(of: "^maxDeviceImageWidthPoints^") else { fatalError() }
-        newString = newString.replacingCharacters(in: imageWidthRange, with: String(nativeWidth))
+        newString = newString.replacingCharacters(in: imageWidthRange, with: String(describing: nativeWidth))
 
         // Version Number
         guard let versionRange = newString.range(of: "^version^", options: .backwards),

@@ -10,25 +10,25 @@ import Anchorage
 
 class ToolbarViewController: UIViewController {
 
-    private let toolbarAnimationDuration = 0.3
+    fileprivate let toolbarAnimationDuration = 0.3
 
     var viewModel: ToolbarViewModel?
 
-    private var toolbarVisible: Bool = true
+    fileprivate var toolbarVisible: Bool = true
 
-    private let recordButtonBack = UIImageView("recordButtonBack")
-    private let toolbarStackView = UIStackView("toolbarStackView")
-    private let clearButton = UIButton(type: .custom, "clearButton")
-    private let colorButton = UIButton(type: .custom, "colorButton")
-    private let recordButtonPlaceholder = UIView("recordButtonPlaceholder")
-    private let recordButton = UIButton(type: .custom, "recordButton")
-    private let shareButton = UIButton(type: .custom, "shareButton")
-    private let helpButton = UIButton(type: .custom, "helpButton")
+    fileprivate let recordButtonBack = UIImageView("recordButtonBack")
+    fileprivate let toolbarStackView = UIStackView("toolbarStackView")
+    fileprivate let clearButton = UIButton(type: .custom, "clearButton")
+    fileprivate let colorButton = UIButton(type: .custom, "colorButton")
+    fileprivate let recordButtonPlaceholder = UIView("recordButtonPlaceholder")
+    fileprivate let recordButton = UIButton(type: .custom, "recordButton")
+    fileprivate let shareButton = UIButton(type: .custom, "shareButton")
+    fileprivate let helpButton = UIButton(type: .custom, "helpButton")
 
-    private var toolbarBottomConstraint: NSLayoutConstraint!
-    private var toolbarTopConstraint: NSLayoutConstraint!
+    fileprivate var toolbarBottomConstraint: NSLayoutConstraint!
+    fileprivate var toolbarTopConstraint: NSLayoutConstraint!
 
-    private var passthroughViews: [UIView] {
+    fileprivate var passthroughViews: [UIView] {
         return [toolbarStackView, recordButton]
     }
 }
@@ -254,11 +254,15 @@ extension ButtonHandlers {
             assert(Thread.isMainThread)
 
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact]
+            activityViewController.excludedActivityTypes = [.assignToContact]
             activityViewController.modalPresentationStyle = .popover
-            activityViewController.completionWithItemsHandler = { (activityType: String?, completed: Bool, returnedItems: [AnyObject]?, activityError: Error?) in
+            activityViewController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
                 if completed {
-                    Log.info("shared via \(activityType ?? "unknown sharing type")")
+                    if let activityType = activityType {
+                        Log.info("shared via \(activityType)")
+                    } else {
+                        Log.info("shared via unknown sharing type")
+                    }
                 } else {
                     Log.info("Canceled sharing")
                 }
