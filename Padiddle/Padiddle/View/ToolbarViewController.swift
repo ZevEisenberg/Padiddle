@@ -300,7 +300,9 @@ extension ButtonHandlers {
 extension ToolbarViewController: ColorPickerDelegate {
     func colorPicked(_ color: ColorManager) {
         updateColorButton(color)
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            self.popColor()
+        })
         Log.info(color)
     }
 }
@@ -324,6 +326,33 @@ private extension ToolbarViewController {
     @objc func dismissModal() {
         Log.info()
         dismiss(animated: true, completion: nil)
+    }
+
+    func popColor() {
+        let duration: TimeInterval = 0.3
+        let midpointFraction = 0.4
+        let scale: CGFloat = 0.8
+        UIView.animateKeyframes(
+            withDuration: duration,
+            delay: 0.0,
+            options: .allowUserInteraction,
+            animations: {
+                UIView.addKeyframe(
+                    withRelativeStartTime: 0.0,
+                    relativeDuration: midpointFraction,
+                    animations: {
+                        self.colorButton.transform = self.colorButton.transform.scaledBy(x: scale, y: scale)
+                    }
+                )
+                UIView.addKeyframe(
+                    withRelativeStartTime: midpointFraction,
+                    relativeDuration: 1.0 - midpointFraction,
+                    animations: {
+                        self.colorButton.transform = .identity
+                    }
+                )
+            }
+        )
     }
 
     func setUpNavigationItem(_ navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
