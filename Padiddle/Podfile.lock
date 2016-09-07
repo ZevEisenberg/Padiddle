@@ -1,7 +1,7 @@
 PODS:
   - Anchorage (2.0.0)
-  - SimulatorStatusMagic (1.8)
-  - SwiftGen (2.0.0)
+  - SimulatorStatusMagic (1.9)
+  - SwiftGen (3.0.0)
 
 DEPENDENCIES:
   - Anchorage (from `git@github.com:Raizlabs/Anchorage.git`, commit `94cf07a8b1678781252699f9271700fab0a4e671`)
@@ -20,8 +20,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Anchorage: 3fb9d1ca397ac68b7ce9857792660a0d683f2e11
-  SimulatorStatusMagic: 4dbf0faa0208e9ac0d56cea06eaa5f7a5f3d02fb
-  SwiftGen: 67c900e9f1db8168612f2df843ec20a66783a8e5
+  SimulatorStatusMagic: 4db65b11c095bbb3abd966a4ae8ee0f11789e8e0
+  SwiftGen: f679cd0ed4173a5da3b01efd0da23542bf82f6ab
 
 PODFILE CHECKSUM: ccdf187ab7a7ba04b0aad633e5132e9febd1dd4a
 

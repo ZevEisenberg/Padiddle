@@ -11,7 +11,7 @@ Modify the iOS Simulator so that it has a perfect status bar, then run your app 
 
 * Clone this repository.
 * Open SimulatorStatusMagic.xcodeproj with Xcode 6 (or above).
-* Run the app target `SimulatorStatusMagic` on whichever simulator type you would like to modify, it works with every device.
+* Run the app target `SimulatorStatusMagic` (not `SimulatorStatusMagiciOS`) on whichever simulator type you would like to modify (it works with every device).
 * Once the app launches, press the only button on the screen :)
 * That's it, you're done! Now just run your app and take screenshots.
 
@@ -21,21 +21,27 @@ Run the app again and click "Restore Default Status Bar". Resetting the iOS Simu
 
 ### I have a script to take my screenshots, can I automate this?
 
-Yes! SimulatorStatusMagic is also available through [CocoaPods](http://cocoapods.org). To install, simply add the following line to your Podfile:
+Yes! SimulatorStatusMagic is available via [CocoaPods](http://cocoapods.org), [Carthage](https://github.com/Carthage/Carthage) and as a standalone source release. [Installation instructions](https://github.com/shinydevelopment/SimulatorStatusMagic/blob/master/INSTALLATION.md) are available for each method.
 
-```ruby
-pod 'SimulatorStatusMagic', :configurations => ['Debug']
-```
+It is recommended to only include `SDStatusBarManager` in your debug configuration so that the code is never included in release builds. Then, when you want to apply a perfect status bar, call `[[SDStatusBarManager sharedInstance] enableOverrides]`. To restore the standard status bar, call `[[SDStatusBarManager sharedInstance] disableOverrides]`.
 
-We recommend only including `SDStatusBarManager` in your debug configuration so that this code is never included in release builds.
+### What about automation of the sample app?
 
-When you want to apply a perfect status bar, call `[[SDStatusBarManager sharedInstance] enableOverrides]`. To restore the standard status bar, call `[[SDStatusBarManager sharedInstance] disableOverrides]`.
+If you'd prefer to automate the app itself to automatically enable or disable the overrides, this can be done with environment variables.
 
-If you are not using CocoaPods, SimulatorStatusMagic can also be included as a dynamic framework by following steps: 
+Run with:
 
-* Run the target `SimulatorStatusMagicUniversalFramework` which generates a universal framework for both device and simulator. 
-* Drag and drop the generated framework into your project. 
-* Import the framework using `@import SimulatorStatusMagiciOS;` in any file you may want to use it in.
+````
+SIMULATOR_STATUS_MAGIC_OVERRIDES = enable
+````
+
+or
+
+````
+SIMULATOR_STATUS_MAGIC_OVERRIDES = enable
+````
+
+The overrides will be automatically enabled or disabled on launch.
 
 ### Does this work on device?
 
@@ -43,7 +49,7 @@ No. The status bar server is blocked on devices. However, [this post contains mo
 
 ### How does this work?
 
-Until we have a little time to document this better, [the source code contains everything you need to know](https://github.com/shinydevelopment/SimulatorStatusMagic/blob/master/SDStatusBarManager/SDStatusBarManager.m) :)
+The best idea is to check [the source code](https://github.com/shinydevelopment/SimulatorStatusMagic/blob/master/SDStatusBarManager/SDStatusBarManager.m) which should get you started with how it works :)
 
 ## Contributing
 
@@ -52,4 +58,4 @@ We'd love contributions and even have some suggestions for things that might nee
 * Found a bug? If you report it with a pull request attached then you get a gold star :)
 * ~~Non-English language support. We'd love it to work with more languages.~~ Now works with every language!
 
-However, the scope of this project is intentionally limited. We're not planning to add options to this to allow ultimate customisation of the status bar. It's intended to do just one job really well, change the status bar to match [Apple's marketing materials](http://www.apple.com/ios/). Things like custom time text or custom carrier text are probably out of scope.
+However, the scope of this project is intentionally limited. We're not planning to add options to this to allow ultimate customisation of the status bar. It's intended to do just one job really well, change the status bar to match [Apple's marketing materials](http://www.apple.com/ios/). Things like custom carrier text are probably out of scope.

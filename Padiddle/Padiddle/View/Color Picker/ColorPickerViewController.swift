@@ -51,8 +51,8 @@ class ColorPickerViewController: UIViewController {
 
         pageControl.numberOfPages = layout.numberOfPages
         pageControl.isExclusiveTouch = true
-        pageControl.pageIndicatorTintColor = UIColor(named: .PageIndicator)
-        pageControl.currentPageIndicatorTintColor = UIColor(named: .PageIndicatorCurrentPage)
+        pageControl.pageIndicatorTintColor = UIColor(named: .pageIndicator)
+        pageControl.currentPageIndicatorTintColor = UIColor(named: .pageIndicatorCurrentPage)
         pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), for: .valueChanged)
 
         title = L10n.Colors.string

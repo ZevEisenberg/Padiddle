@@ -23,6 +23,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>0171EB6A67CF8FC0FF2FC849C887C570</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SimulatorStatusMagic-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0225DFEB676CAE76EE59164A23B04D86</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -37,7 +50,7 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>0249A31E0D58C34A29D56B9D4D9717FF</key>
+		<key>041BEBE23655382481D34BA9A4C00E01</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -46,26 +59,39 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>SDStatusBarOverriderPost8_3.m</string>
+			<string>SDStatusBarOverriderPost9_0.m</string>
 			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost8_3.m</string>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost9_0.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0D52390D2286A29748F55BC223C17B26</key>
+		<key>080F1BC7D3997057AF40D7A218068AC8</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>4EB20BB0B668F52155D8B112A9980ACE</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SDStatusBarOverrider.h</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverrider.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>0C0DA1E1B5D3541E8CC7276DE7C3BA61</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6148AC687FDC02CB15D8918014A2AC25</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>0D552CFF7F9A4FA9EA8351E36B2BBE67</key>
 		<dict>
@@ -77,40 +103,6 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-Padiddle-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0FA017A23665EA846441C590A3C034F1</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>622106249800FED6703CB56770BA62DC</string>
-				<string>42A5C45F2374D9A9C88B528CFC4C87B2</string>
-				<string>3DB15C1DB4990D6B2171BF94F581CF4F</string>
-				<string>C67FC48060F9888C944D589975F3BC46</string>
-				<string>AEB365E5678DB3202BD40C98A6C389B6</string>
-				<string>48DAFCD3EF0A83ED08F7B93C520F3743</string>
-				<string>7C5387C221F67290982870172279469E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>12551928120A110FD55FE726A24D5469</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B4EFFE8FDD8A94F7DDE5D985C5F9AF85</string>
-				<string>E6D460474B7E8CCF0781003D42FDCC7E</string>
-				<string>9C2EBB1975F807B9EC87DEBF3AFC4787</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -221,21 +213,6 @@
 			<key>targetProxy</key>
 			<string>45FFEE3B45BE93F4A5690515E1624B25</string>
 		</dict>
-		<key>16E210146839677260381D07F69BD3D6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SDStatusBarOverriderPost9_3.h</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost9_3.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>18A23C588048397992153BC939B9184E</key>
 		<dict>
 			<key>isa</key>
@@ -247,33 +224,12 @@
 			<key>targetProxy</key>
 			<string>3B31FBBB7C8246B2D3A8575A4BFFB3C6</string>
 		</dict>
-		<key>1A34123D2A369284E8ABB1C861193650</key>
+		<key>1DE7A01E8CE2D82A107C3961646FA559</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>3C06AEF12272E972DBE0CC52CCFC5F11</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Anchorage-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1C4A237383A5496BD51062BAB4511B15</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SDStatusBarOverriderPost8_3.h</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost8_3.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>1E45D84BE95D655584F79055CA0B5823</key>
 		<dict>
@@ -299,10 +255,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1F29A56FCBE27F748F50BF8ABFB96C45</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost10_0.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost10_0.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>203FFAB6375B699088CE063F03578E44</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>9920B6DD9C96A82170DE57EE7BBFB6FC</string>
+			<string>8CE26D7F36CEFD8328816DEA0E18BD33</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=appletvos*]</key>
@@ -365,19 +336,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>206C85A5623EAFDA2830663D75E246D6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>212B06DF28E5BDB19E9F15D604C931F6</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -397,21 +355,6 @@
 			<string>5494131186E09B7BA0098E98569CC6E3</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>24EC05CC5A3B7C99C01FF68CC03D6ACF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SDStatusBarManager.h</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarManager.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>27ABCF5CD46857986029DAC9D97C04CC</key>
 		<dict>
@@ -439,6 +382,13 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>2A43A2D3F898A7AACCCB12A49F435907</key>
+		<dict>
+			<key>fileRef</key>
+			<string>041BEBE23655382481D34BA9A4C00E01</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>2B3D774044B4923045981D31BC212722</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -454,6 +404,19 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>2D0A4CB7BDB52986F6B9CD524497D595</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -468,10 +431,30 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>2DBC722245AD8D18450EACEA1FF7BD93</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Anchorage-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2DE4854318AA104227AA1A55DB5B8091</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9F8EDB19E3D777D0B60046346D6FAE66</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>2F5B53AB038C9F77CD7AD53EFF0DB084</key>
 		<dict>
 			<key>fileRef</key>
-			<string>85E930145F527AB2C4CC3E215469A46C</string>
+			<string>9643FDD146D4632EBF3542E019C3B7F9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -522,6 +505,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>3A611BC073A3DB6C266E1D6F170A53BF</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>SwiftGen</string>
+			<key>path</key>
+			<string>SwiftGen</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3B31FBBB7C8246B2D3A8575A4BFFB3C6</key>
 		<dict>
 			<key>containerPortal</key>
@@ -534,6 +530,21 @@
 			<string>BBEF86E952B5D295933F5C3054B9A59F</string>
 			<key>remoteInfo</key>
 			<string>SimulatorStatusMagic</string>
+		</dict>
+		<key>3C06AEF12272E972DBE0CC52CCFC5F11</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost8_3.m</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost8_3.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3C8C87FD0700FBB2AE176E02314329D3</key>
 		<dict>
@@ -559,19 +570,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3DB15C1DB4990D6B2171BF94F581CF4F</key>
+		<key>3C9E601C609BF1A082D5976BE9631009</key>
 		<dict>
-			<key>fileRef</key>
-			<string>1C4A237383A5496BD51062BAB4511B15</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost9_3.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost9_3.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3EBB6CCF1ED3FE1404997C78B6A54D55</key>
 		<dict>
@@ -579,20 +591,6 @@
 			<string>A2A6FF208CEC4C2861F1E9D42D651453</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>42A5C45F2374D9A9C88B528CFC4C87B2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>0D52390D2286A29748F55BC223C17B26</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>433CD3331B6C3787F473C941B61FC68F</key>
 		<dict>
@@ -604,6 +602,21 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>455005E1F7E998A9936A3483736F5E60</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost9_3.m</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost9_3.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -620,10 +633,10 @@
 			<key>remoteInfo</key>
 			<string>Anchorage</string>
 		</dict>
-		<key>48DAFCD3EF0A83ED08F7B93C520F3743</key>
+		<key>4849B2CCB6D01E2528BAB78FA782E7B1</key>
 		<dict>
 			<key>fileRef</key>
-			<string>82265B2315277E698D9C0026BF372A33</string>
+			<string>1F29A56FCBE27F748F50BF8ABFB96C45</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -667,6 +680,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>4EB20BB0B668F52155D8B112A9980ACE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost8_3.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost8_3.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>50B49F3E8B3A2EE309A7E5283453BCD5</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -696,20 +724,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>50CBB17F4440AD2844D01B1E89F6433C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DD5ECED00EC8C43A7008B96930A2C2F2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>52FC999666EA32BEFE1E8747E3F5B481</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B08B13B417E98D00F5F985FDDE695DE6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>5494131186E09B7BA0098E98569CC6E3</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -726,9 +740,23 @@
 		<key>56A1ABCA626E01AA5C1D1664889121F7</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E27BCC82ACE3D2E431216BA534CAD95E</string>
+			<string>FC0FCC1C9D22BC910547D8387E333402</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>57CAC52191E5F2D8ED5DA12C7F7A5239</key>
+		<dict>
+			<key>fileRef</key>
+			<string>789E6CC01660E3140D6B5C3CEFC86C15</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>58AE2136465C748CD770A86BEA7BD45A</key>
 		<dict>
@@ -780,23 +808,33 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>5F7D576AFD6A3DF04BC71C7F873EB92E</key>
+		<key>6073708B61174CC59CDCF2C2B2833269</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>CC25BA436F7DEB6381B4ABEF2FEA4EA3</string>
-				<string>6E4BC2EB4EFE33C4348A11240B7637D1</string>
-				<string>AEE37B2D19313DE5731E544F94B251B2</string>
-				<string>6437D99AA50AD34FD6BC1538D194372F</string>
-				<string>52FC999666EA32BEFE1E8747E3F5B481</string>
-				<string>50CBB17F4440AD2844D01B1E89F6433C</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarManager.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarManager.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>60E2FDAEA5FFB8B257197C95FEDACBFD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>60E361197D55E6CD31F2601D8CBD523B</key>
 		<dict>
@@ -811,19 +849,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>622106249800FED6703CB56770BA62DC</key>
+		<key>6148AC687FDC02CB15D8918014A2AC25</key>
 		<dict>
-			<key>fileRef</key>
-			<string>24EC05CC5A3B7C99C01FF68CC03D6ACF</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SimulatorStatusMagic-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>62C3275813B3C403081E8D0325B8D541</key>
 		<dict>
@@ -851,13 +888,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6437D99AA50AD34FD6BC1538D194372F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>88043A87182B7DC8348415844CFF4DA6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>65F639FED46CD665D70A1C8A5F516AD0</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -874,7 +904,7 @@
 		<key>69B343591CC7576C63A244A589DAA4FE</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>79CBDF4CA42AA6F54902B2AEF9359917</string>
+			<string>754202B1CC95C4F9B4E552A8708D8CB0</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=appletvos*]</key>
@@ -1015,25 +1045,26 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>6D3279B8B5DC7C562AC42A55E4BDD4E1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SimulatorStatusMagic-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6E4BC2EB4EFE33C4348A11240B7637D1</key>
+		<key>6C0A7533E57DA8C714EDB86C0D971748</key>
 		<dict>
 			<key>fileRef</key>
-			<string>0249A31E0D58C34A29D56B9D4D9717FF</string>
+			<string>455005E1F7E998A9936A3483736F5E60</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F41C383F645F3B369CB7E7EC1D7CE1A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CF1E58185A16D5B0354D4FA03FEE9478</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>6FE6918BFFB3CF0141295CB6A9EE51CF</key>
 		<dict>
@@ -1183,20 +1214,12 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>71CB0ED74019CF3CA3AD15E8DF587127</key>
+		<key>71E81C6403C7888E1C453C7E7DF4F631</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>94B46FCA5EEF132DD27E346C1CF8A37F</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SDStatusBarOverriderPost9_0.h</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost9_0.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>728013929351FFDE9EA8D55C1E6DC484</key>
 		<dict>
@@ -1211,20 +1234,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>76C4F6823FCE04DE36F836156ABCC2F5</key>
+		<key>75025D98C632D6026A3B331548E30816</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>6073708B61174CC59CDCF2C2B2833269</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>79CBDF4CA42AA6F54902B2AEF9359917</key>
+		<key>754202B1CC95C4F9B4E552A8708D8CB0</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1237,19 +1261,40 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7C5387C221F67290982870172279469E</key>
+		<key>771846A4D29EE82C7283DB79BB5BA931</key>
 		<dict>
 			<key>fileRef</key>
-			<string>8D3E91BA7BE59E12F1D81D481F1B28E0</string>
+			<string>A3F1B9E88096E8D391F24B458BB9D4EC</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+		</dict>
+		<key>789E6CC01660E3140D6B5C3CEFC86C15</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost9_0.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost9_0.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7BA4D7E18E4A986547D15AF5A8ADE90A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SimulatorStatusMagic-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
@@ -1257,7 +1302,7 @@
 			<array>
 				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
 				<string>433CD3331B6C3787F473C941B61FC68F</string>
-				<string>12551928120A110FD55FE726A24D5469</string>
+				<string>FF49FA8E9E38912B7036DEFC5A5B9BF0</string>
 				<string>AC19199FC140246C56CBFF1D4D3037F4</string>
 				<string>980B1B45AF03713F609D6CE0447C6274</string>
 			</array>
@@ -1266,61 +1311,76 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7EDA64E5BB05C2F62F26CC6936A6D950</key>
+		<key>8583EE1D3670C5E62DE8307714DBC825</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>6073708B61174CC59CDCF2C2B2833269</string>
+				<string>A3F1B9E88096E8D391F24B458BB9D4EC</string>
+				<string>AAC992BB59A2C6048535F90C062F6AA1</string>
+				<string>1F29A56FCBE27F748F50BF8ABFB96C45</string>
+				<string>94B46FCA5EEF132DD27E346C1CF8A37F</string>
+				<string>4EB20BB0B668F52155D8B112A9980ACE</string>
+				<string>3C06AEF12272E972DBE0CC52CCFC5F11</string>
+				<string>789E6CC01660E3140D6B5C3CEFC86C15</string>
+				<string>041BEBE23655382481D34BA9A4C00E01</string>
+				<string>3C9E601C609BF1A082D5976BE9631009</string>
+				<string>455005E1F7E998A9936A3483736F5E60</string>
+				<string>CF1E58185A16D5B0354D4FA03FEE9478</string>
+				<string>9F8EDB19E3D777D0B60046346D6FAE66</string>
+				<string>F36177307B0548E2BC4738A7C08B50CB</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Anchorage-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>82265B2315277E698D9C0026BF372A33</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>SDStatusBarOverriderPre8_3.h</string>
+			<string>SimulatorStatusMagic</string>
 			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPre8_3.h</string>
+			<string>SimulatorStatusMagic</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>85E930145F527AB2C4CC3E215469A46C</key>
+		<key>85F8F6AC4C41D41B99B14793FEACE147</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>9643FDD146D4632EBF3542E019C3B7F9</string>
+				<string>8729875E4BA8D6866F0818EEE5618105</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>Anchorage.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>88043A87182B7DC8348415844CFF4DA6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>SDStatusBarOverriderPost9_3.m</string>
+			<string>Anchorage</string>
 			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost9_3.m</string>
+			<string>Anchorage</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8729875E4BA8D6866F0818EEE5618105</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B5753D30DB781F2F6112352C542760CD</string>
+				<string>754202B1CC95C4F9B4E552A8708D8CB0</string>
+				<string>FC0FCC1C9D22BC910547D8387E333402</string>
+				<string>FF3C6CC5733209B2A3D8BC4D1E6B8EE6</string>
+				<string>2DBC722245AD8D18450EACEA1FF7BD93</string>
+				<string>60E2FDAEA5FFB8B257197C95FEDACBFD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/Anchorage</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8AE6D3FF48357C9D3D2D6F77C333F1E4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0171EB6A67CF8FC0FF2FC849C887C570</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>8B35EAA4224F59AC4EE2155CFD7405FD</key>
 		<dict>
@@ -1329,16 +1389,16 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>8D3E91BA7BE59E12F1D81D481F1B28E0</key>
+		<key>8CE26D7F36CEFD8328816DEA0E18BD33</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>SimulatorStatusMagic-umbrella.h</string>
+			<string>SimulatorStatusMagic.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1399,6 +1459,21 @@
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
 			<string>Pods-PadiddleUITests-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>94B46FCA5EEF132DD27E346C1CF8A37F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPost10_0.m</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPost10_0.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1489,6 +1564,19 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>9643FDD146D4632EBF3542E019C3B7F9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Anchorage.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>980B1B45AF03713F609D6CE0447C6274</key>
 		<dict>
 			<key>children</key>
@@ -1504,19 +1592,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9920B6DD9C96A82170DE57EE7BBFB6FC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>SimulatorStatusMagic.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>992A9056EE3E9F88837B1BBAB764006A</key>
 		<dict>
 			<key>fileRef</key>
@@ -1527,7 +1602,7 @@
 		<key>9A1F451F8595BE1A76044240472C1E24</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>9920B6DD9C96A82170DE57EE7BBFB6FC</string>
+			<string>8CE26D7F36CEFD8328816DEA0E18BD33</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=appletvos*]</key>
@@ -1603,34 +1678,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9C2EBB1975F807B9EC87DEBF3AFC4787</key>
-		<dict>
-			<key>children</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SwiftGen</string>
-			<key>path</key>
-			<string>SwiftGen</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9CA9BB01A5721A0F00A9914A3B92F12E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>SDStatusBarOverriderPost9_0.m</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPost9_0.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>9E4E98CA09AE202CB5B9C93A084C99F5</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1641,6 +1688,21 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-PadiddleTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9F8EDB19E3D777D0B60046346D6FAE66</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPre8_3.m</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPre8_3.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1691,6 +1753,35 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
+		<key>A3C01FD3815400109FC89355E1677589</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AAC992BB59A2C6048535F90C062F6AA1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A3F1B9E88096E8D391F24B458BB9D4EC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SDStatusBarManager.m</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarManager.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>A7CDBFF4A4EF83BD1EEE0C2900BD3FF8</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1701,6 +1792,21 @@
 			<string>sourcecode.c.h</string>
 			<key>path</key>
 			<string>Pods-PadiddleUITests-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AAC992BB59A2C6048535F90C062F6AA1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverrider.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverrider.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1734,26 +1840,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>AEB365E5678DB3202BD40C98A6C389B6</key>
+		<key>AF42EF465C4B258E127396CCE1D437B8</key>
 		<dict>
-			<key>fileRef</key>
-			<string>16E210146839677260381D07F69BD3D6</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>AEE37B2D19313DE5731E544F94B251B2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9CA9BB01A5721A0F00A9914A3B92F12E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>SimulatorStatusMagic.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>AFE6595483881BB4645887753CBFAC5B</key>
 		<dict>
@@ -1829,21 +1925,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>B08B13B417E98D00F5F985FDDE695DE6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>SDStatusBarOverriderPre8_3.m</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarOverriderPre8_3.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>B11D1BF15D9D7B3543B344C66EE5F3B7</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -1866,19 +1947,14 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>B4EFFE8FDD8A94F7DDE5D985C5F9AF85</key>
+		<key>B5753D30DB781F2F6112352C542760CD</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>85E930145F527AB2C4CC3E215469A46C</string>
-				<string>BA2B1CE2283E0A597DCE2224EB3246F6</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Anchorage</string>
+			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>Anchorage</string>
+			<string>Anchorage.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1895,35 +1971,15 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>BA2B1CE2283E0A597DCE2224EB3246F6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>C700C0B21D2D3FA1B10765C9FDCBAFBE</string>
-				<string>79CBDF4CA42AA6F54902B2AEF9359917</string>
-				<string>E27BCC82ACE3D2E431216BA534CAD95E</string>
-				<string>1A34123D2A369284E8ABB1C861193650</string>
-				<string>7EDA64E5BB05C2F62F26CC6936A6D950</string>
-				<string>76C4F6823FCE04DE36F836156ABCC2F5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/Anchorage</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>BBEF86E952B5D295933F5C3054B9A59F</key>
 		<dict>
 			<key>buildConfigurationList</key>
 			<string>12737C6255902089491113FD5026DE93</string>
 			<key>buildPhases</key>
 			<array>
-				<string>5F7D576AFD6A3DF04BC71C7F873EB92E</string>
+				<string>F3A744EC19D790B95348723480F56EF9</string>
 				<string>0225DFEB676CAE76EE59164A23B04D86</string>
-				<string>0FA017A23665EA846441C590A3C034F1</string>
+				<string>C899009537EDFF33DCE8F87B16987C21</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -1943,7 +1999,7 @@
 		<key>BC7328EED54EA596659142AD778756C3</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>79CBDF4CA42AA6F54902B2AEF9359917</string>
+			<string>754202B1CC95C4F9B4E552A8708D8CB0</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=appletvos*]</key>
@@ -2006,21 +2062,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>BD3EAD999205C770C651A010EB323DBE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>SDStatusBarManager.m</string>
-			<key>path</key>
-			<string>SDStatusBarManager/SDStatusBarManager.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>BEACD300317E1E53890EB3B9E00A4D3C</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -2073,31 +2114,6 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>C67FC48060F9888C944D589975F3BC46</key>
-		<dict>
-			<key>fileRef</key>
-			<string>71CB0ED74019CF3CA3AD15E8DF587127</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>C700C0B21D2D3FA1B10765C9FDCBAFBE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Anchorage.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>C89810010B2682192E3FCE4E7D5A50FC</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -2112,6 +2128,26 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>C899009537EDFF33DCE8F87B16987C21</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>75025D98C632D6026A3B331548E30816</string>
+				<string>A3C01FD3815400109FC89355E1677589</string>
+				<string>4849B2CCB6D01E2528BAB78FA782E7B1</string>
+				<string>080F1BC7D3997057AF40D7A218068AC8</string>
+				<string>57CAC52191E5F2D8ED5DA12C7F7A5239</string>
+				<string>EA09524875812960C92627D80C6D6566</string>
+				<string>6F41C383F645F3B369CB7E7EC1D7CE1A</string>
+				<string>0C0DA1E1B5D3541E8CC7276DE7C3BA61</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>C9DE7E78DE6D0E32FDDEC2DA888F03A4</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -2124,13 +2160,6 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>CC25BA436F7DEB6381B4ABEF2FEA4EA3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BD3EAD999205C770C651A010EB323DBE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>CD6EB7A42809C49902EBD8C84C12338C</key>
 		<dict>
@@ -2151,6 +2180,21 @@
 			<string>60E361197D55E6CD31F2601D8CBD523B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>CF1E58185A16D5B0354D4FA03FEE9478</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SDStatusBarOverriderPre8_3.h</string>
+			<key>path</key>
+			<string>SDStatusBarManager/SDStatusBarOverriderPre8_3.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CF6AF00FEBE4EB3A5B8250400E7BA236</key>
 		<dict>
@@ -2234,26 +2278,6 @@
 				<string>BBEF86E952B5D295933F5C3054B9A59F</string>
 			</array>
 		</dict>
-		<key>D943950DABD5B0CA418FCCCF9AE7B010</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>206C85A5623EAFDA2830663D75E246D6</string>
-				<string>E6668AB8912E25CD48E4929B571CFA49</string>
-				<string>9920B6DD9C96A82170DE57EE7BBFB6FC</string>
-				<string>DD5ECED00EC8C43A7008B96930A2C2F2</string>
-				<string>6D3279B8B5DC7C562AC42A55E4BDD4E1</string>
-				<string>8D3E91BA7BE59E12F1D81D481F1B28E0</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/SimulatorStatusMagic</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>DC1181DEEE5DD45316AFD48E9D0EC1D4</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2264,19 +2288,6 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-PadiddleUITests-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DD5ECED00EC8C43A7008B96930A2C2F2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SimulatorStatusMagic-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2306,19 +2317,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E27BCC82ACE3D2E431216BA534CAD95E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Anchorage-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>E2AE847771AB682EF6C4E11E40CA5ACC</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2329,43 +2327,6 @@
 			<string>text.plist.xml</string>
 			<key>path</key>
 			<string>Pods-Padiddle-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E6668AB8912E25CD48E4929B571CFA49</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SimulatorStatusMagic.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E6D460474B7E8CCF0781003D42FDCC7E</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>24EC05CC5A3B7C99C01FF68CC03D6ACF</string>
-				<string>BD3EAD999205C770C651A010EB323DBE</string>
-				<string>0D52390D2286A29748F55BC223C17B26</string>
-				<string>1C4A237383A5496BD51062BAB4511B15</string>
-				<string>0249A31E0D58C34A29D56B9D4D9717FF</string>
-				<string>71CB0ED74019CF3CA3AD15E8DF587127</string>
-				<string>9CA9BB01A5721A0F00A9914A3B92F12E</string>
-				<string>16E210146839677260381D07F69BD3D6</string>
-				<string>88043A87182B7DC8348415844CFF4DA6</string>
-				<string>82265B2315277E698D9C0026BF372A33</string>
-				<string>B08B13B417E98D00F5F985FDDE695DE6</string>
-				<string>D943950DABD5B0CA418FCCCF9AE7B010</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SimulatorStatusMagic</string>
-			<key>path</key>
-			<string>SimulatorStatusMagic</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2493,10 +2454,24 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
+		<key>EA09524875812960C92627D80C6D6566</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3C9E601C609BF1A082D5976BE9631009</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>ECE0D70499400E4C57A3A75591E3801C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>7EDA64E5BB05C2F62F26CC6936A6D950</string>
+			<string>2DBC722245AD8D18450EACEA1FF7BD93</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2625,6 +2600,45 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>F36177307B0548E2BC4738A7C08B50CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2D0A4CB7BDB52986F6B9CD524497D595</string>
+				<string>AF42EF465C4B258E127396CCE1D437B8</string>
+				<string>8CE26D7F36CEFD8328816DEA0E18BD33</string>
+				<string>0171EB6A67CF8FC0FF2FC849C887C570</string>
+				<string>7BA4D7E18E4A986547D15AF5A8ADE90A</string>
+				<string>6148AC687FDC02CB15D8918014A2AC25</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/SimulatorStatusMagic</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F3A744EC19D790B95348723480F56EF9</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>771846A4D29EE82C7283DB79BB5BA931</string>
+				<string>71E81C6403C7888E1C453C7E7DF4F631</string>
+				<string>1DE7A01E8CE2D82A107C3961646FA559</string>
+				<string>2A43A2D3F898A7AACCCB12A49F435907</string>
+				<string>6C0A7533E57DA8C714EDB86C0D971748</string>
+				<string>2DE4854318AA104227AA1A55DB5B8091</string>
+				<string>8AE6D3FF48357C9D3D2D6F77C333F1E4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>F67258414F17415C4C56D37B208F24F3</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -2737,6 +2751,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>FC0FCC1C9D22BC910547D8387E333402</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Anchorage-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>FD50D7C2E384BB1D09B5F15F6DD3160B</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -2751,6 +2778,34 @@
 			<string>Pods-PadiddleUITests.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>FF3C6CC5733209B2A3D8BC4D1E6B8EE6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Anchorage-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FF49FA8E9E38912B7036DEFC5A5B9BF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>85F8F6AC4C41D41B99B14793FEACE147</string>
+				<string>8583EE1D3670C5E62DE8307714DBC825</string>
+				<string>3A611BC073A3DB6C266E1D6F170A53BF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

@@ -100,8 +100,8 @@ extension UIImage {
     }
 
     class func recordButtonImage() -> UIImage {
-        let backgroundImage = UIImage(asset: .RecordButtonBack)
-        let foregroundImage = UIImage(asset: .RecordButtonFront)
+        let backgroundImage = UIImage(asset: .recordButtonBack)
+        let foregroundImage = UIImage(asset: .recordButtonFront)
 
         let contextSize = CGSize.max((foregroundImage?.size)!, (backgroundImage?.size)!)
         UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)

@@ -19,30 +19,32 @@ extension Color {
   }
 }
 
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 enum ColorName {
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#007aff"></span>
   /// Alpha: 100% <br/> (0x007affff)
-  case AppTint
+  case appTint
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#999999"></span>
   /// Alpha: 100% <br/> (0x999999ff)
-  case PageIndicator
+  case pageIndicator
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#323232"></span>
   /// Alpha: 100% <br/> (0x323232ff)
-  case PageIndicatorCurrentPage
+  case pageIndicatorCurrentPage
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
   /// Alpha: 100% <br/> (0xffffffff)
-  case Toolbar
+  case toolbar
   /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#adadad"></span>
   /// Alpha: 100% <br/> (0xadadadff)
-  case ToolbarHairline
+  case toolbarHairline
 
   var rgbaValue: UInt32 {
     switch self {
-    case .AppTint: return 0x007affff
-    case .PageIndicator: return 0x999999ff
-    case .PageIndicatorCurrentPage: return 0x323232ff
-    case .Toolbar: return 0xffffffff
-    case .ToolbarHairline: return 0xadadadff
+    case .appTint: return 0x007affff
+    case .pageIndicator: return 0x999999ff
+    case .pageIndicatorCurrentPage: return 0x323232ff
+    case .toolbar: return 0xffffffff
+    case .toolbarHairline: return 0xadadadff
     }
   }
 
@@ -50,6 +52,7 @@ enum ColorName {
     return Color(named: self)
   }
 }
+// swiftlint:enable type_body_length
 
 extension Color {
   convenience init(named name: ColorName) {

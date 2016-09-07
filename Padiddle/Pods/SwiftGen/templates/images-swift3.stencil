@@ -13,7 +13,7 @@
 // swiftlint:disable type_body_length
 enum {{enumName}}: String {
   {% for image in images %}
-  case {{image|swiftIdentifier}} = "{{image}}"
+  case {{image|swiftIdentifier|snakeToCamelCase|lowerFirstWord}} = "{{image}}"
   {% endfor %}
 
   var image: Image {

@@ -33,25 +33,39 @@ extension StoryboardSceneType where Self: RawRepresentable, Self.RawValue == Str
 protocol StoryboardSegueType: RawRepresentable { }
 
 extension UIViewController {
-  func performSegue<S: StoryboardSegueType where S.RawValue == String>(segue: S, sender: AnyObject? = nil) {
+  func performSegue<S: StoryboardSegueType>(segue: S, sender: AnyObject? = nil) where S.RawValue == String {
     performSegue(withIdentifier: segue.rawValue, sender: sender)
   }
 }
 
 {# This is where the generation begins, this code depends on what you have in your Storyboards #}
 {% if storyboards %}
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
+
 struct {{sceneEnumName}} {
   {% for storyboard in storyboards %}
   {% set storyboardName %}{{storyboard.name|swiftIdentifier}}{% endset %}
   {% if storyboard.scenes %}
   enum {{storyboardName}}: String, StoryboardSceneType {
     static let storyboardName = "{{storyboard.name}}"
+    {% if storyboard.initialScene %}{% ifnot storyboard.initialScene.isBaseViewController %}
+    {% set initialSceneClass %}{% if storyboard.initialScene.customClass %}{{storyboard.initialScene.customClass}}{% else %}UI{{storyboard.initialScene.baseType}}{% endif %}{% endset %}
+
+    static func initialViewController() -> {{initialSceneClass}} {
+      guard let vc = storyboard().instantiateInitialViewController() as? {{initialSceneClass}} else {
+        fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
+      }
+      return vc
+    }
+    {% endif %}{% endif %}
     {% for scene in storyboard.scenes %}
-    {% set sceneID %}{{scene.identifier|swiftIdentifier}}{% endset %}
+    {% set sceneID %}{{scene.identifier|swiftIdentifier|snakeToCamelCase|lowerFirstWord}}{% endset %}
 
     case {{sceneID}}Scene = "{{scene.identifier}}"
+    {% ifnot scene.isBaseViewController %}
     {% if scene.customClass %}
-    static func instantiate{{sceneID|snakeToCamelCase}}() -> {{scene.customClass}} {
+    static func instantiate{{sceneID|titlecase}}() -> {{scene.customClass}} {
       guard let vc = {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.viewController() as? {{scene.customClass}}
       else {
         fatalError("ViewController '{{scene.identifier}}' is not of the expected class {{scene.customClass}}.")
@@ -59,7 +73,16 @@ struct {{sceneEnumName}} {
       return vc
     }
     {% else %}
-    static func instantiate{{sceneID|snakeToCamelCase}}() -> UIViewController {
+    static func instantiate{{sceneID|titlecase}}() -> UI{{scene.baseType}} {
+      guard let vc = {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.viewController() as? UI{{scene.baseType}}
+      else {
+        fatalError("ViewController '{{scene.identifier}}' is not of the expected class UI{{scene.baseType}}.")
+      }
+      return vc
+    }
+    {% endif %}
+    {% else %}
+    static func instantiate{{sceneID|titlecase}}() -> UIViewController {
       return {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.viewController()
     }
     {% endif %}
@@ -68,6 +91,16 @@ struct {{sceneEnumName}} {
   {% else %}
   enum {{storyboardName}}: StoryboardSceneType {
     static let storyboardName = "{{storyboard.name}}"
+    {% if storyboard.initialScene %}{% ifnot storyboard.initialScene.isBaseViewController %}
+    {% set initialSceneClass %}{% if storyboard.initialScene.customClass %}{{storyboard.initialScene.customClass}}{% else %}UI{{storyboard.initialScene.baseType}}{% endif %}{% endset %}
+
+    static func initialViewController() -> {{initialSceneClass}} {
+      guard let vc = storyboard().instantiateInitialViewController() as? {{initialSceneClass}} else {
+        fatalError("Failed to instantiate initialViewController for \(self.storyboardName)")
+      }
+      return vc
+    }
+    {% endif %}{% endif %}
   }
   {% endif %}
   {% endfor %}
@@ -77,7 +110,7 @@ struct {{segueEnumName}} {
   {% for storyboard in storyboards %}{% if storyboard.segues %}
   enum {{storyboard.name|swiftIdentifier}}: String, StoryboardSegueType {
     {% for segue in storyboard.segues %}
-    case {{segue.identifier|swiftIdentifier}} = "{{segue.identifier}}"
+    case {{segue.identifier|swiftIdentifier|snakeToCamelCase|lowerFirstWord}} = "{{segue.identifier}}"
     {% endfor %}
   }
   {% endif %}{% endfor %}

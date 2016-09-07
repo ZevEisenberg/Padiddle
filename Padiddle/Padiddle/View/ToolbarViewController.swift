@@ -58,11 +58,11 @@ extension Layout {
         }()
 
         // Record Button Back View
-        recordButtonBack.image = UIImage(asset: .RecordButtonBack)
+        recordButtonBack.image = UIImage(asset: .recordButtonBack)
         view.addSubview(recordButtonBack)
 
         // Toolbar
-        toolbarView.backgroundColor = UIColor(named: .Toolbar)
+        toolbarView.backgroundColor = UIColor(named: .toolbar)
         view.addSubview(toolbarView)
         toolbarView.heightAnchor == 44
 
@@ -73,7 +73,7 @@ extension Layout {
 
         toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
 
-        toolbarHairline.backgroundColor = UIColor(named: .ToolbarHairline)
+        toolbarHairline.backgroundColor = UIColor(named: .toolbarHairline)
         toolbarView.addSubview(toolbarHairline)
 
         toolbarHairline.heightAnchor == 1
@@ -113,22 +113,22 @@ extension Layout {
             recordButtonPlaceholder.heightAnchor == recordButtonPlaceholderSuperview.heightAnchor
         }
 
-        clearButton.setImage(UIImage(asset: .TrashButton), for: .normal)
+        clearButton.setImage(UIImage(asset: .trashButton), for: .normal)
         clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), for: .touchUpInside)
 
         // image is dynamic
         colorButton.addTarget(self, action: #selector(ToolbarViewController.colorTapped), for: .touchUpInside)
 
-        recordButtonBack.image = UIImage(asset: .RecordButtonBack)
+        recordButtonBack.image = UIImage(asset: .recordButtonBack)
 
-        recordButton.setImage(UIImage(asset: .RecordButtonFront), for: .normal)
-        recordButton.setImage(UIImage(asset: .PauseButton), for: .selected)
+        recordButton.setImage(UIImage(asset: .recordButtonFront), for: .normal)
+        recordButton.setImage(UIImage(asset: .pauseButton), for: .selected)
         recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), for: .touchUpInside)
 
-        shareButton.setImage((UIImage(asset: .ShareButton)), for: .normal)
+        shareButton.setImage((UIImage(asset: .shareButton)), for: .normal)
         shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), for: .touchUpInside)
 
-        helpButton.setImage(UIImage(asset: .HelpButton), for: .normal)
+        helpButton.setImage(UIImage(asset: .helpButton), for: .normal)
         helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), for: .touchUpInside)
 
         let nonRecordButtons: [UIButton] = [
@@ -222,7 +222,7 @@ extension ButtonHandlers {
         recordButton.isUserInteractionEnabled = false
 
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.color = UIColor(named: .AppTint)
+        activityIndicator.color = UIColor(named: .appTint)
         activityIndicator.startAnimating()
 
         shareButton.alpha = 0

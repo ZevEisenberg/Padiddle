@@ -3,15 +3,12 @@
 {% if strings %}
 import Foundation
 
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
 enum {{enumName}} {
   {% for string in strings %}
   /// {{string.translation}}
   case {{string.key|swiftIdentifier|snakeToCamelCase}}{% if string.params %}({{string.params.types|join}}){% endif %}
   {% endfor %}
 }
-// swiftlint:enable type_body_length
 
 extension {{enumName}}: CustomStringConvertible {
   var description: String { return self.string }
@@ -21,17 +18,18 @@ extension {{enumName}}: CustomStringConvertible {
       {% for string in strings %}
       {% if string.params %}
       case .{{string.key|swiftIdentifier|snakeToCamelCase}}({{string.params.declarations|join}}):
-        return {{enumName}}.tr("{{string.key}}", {{string.params.names|join}})
+        let format = NSLocalizedString("{{string.key}}", comment: "")
+        return {{enumName}}.tr(format, {{string.params.names|join}})
       {% else %}
       case .{{string.key|swiftIdentifier|snakeToCamelCase}}:
-        return {{enumName}}.tr("{{string.key}}")
+        let format = NSLocalizedString("{{string.key}}", comment: "")
+        return {{enumName}}.tr(format)
       {% endif %}
       {% endfor %}
     }
   }
 
-  private static func tr(key: String, _ args: CVarArgType...) -> String {
-    let format = NSLocalizedString(key, comment: "")
+  private static func tr(format: String, _ args: CVarArgType...) -> String {
     return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
   }
 }
