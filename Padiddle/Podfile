@@ -1,22 +1,25 @@
 platform :ios, '10.0'
-use_frameworks!
+  use_frameworks!
 
+  # Pods for Padiddle
 target 'Padiddle' do  
   pod 'SwiftGen'
   pod 'Anchorage', :git => 'git@github.com:Raizlabs/Anchorage.git', :commit => '94cf07a8b1678781252699f9271700fab0a4e671'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
-end
 
-target 'PadiddleTests' do
+  target 'PadiddleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
-end
-
-target 'PadiddleUITests' do
+  target 'PadiddleUITests' do
+    inherit! :search_paths
+    # Pods for UI testing
+  end
 
 end
 
 post_install do | installer |
-
   # Specify Swift version for pods per https://github.com/CocoaPods/CocoaPods/issues/5521#issuecomment-226328062
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
