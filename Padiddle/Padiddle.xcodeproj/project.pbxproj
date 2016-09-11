@@ -492,6 +492,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 2KJHM26Y46;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					CD193CCC1BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
@@ -1044,6 +1045,8 @@
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
@@ -1060,6 +1063,8 @@
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = Padiddle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
