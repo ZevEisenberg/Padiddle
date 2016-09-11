@@ -87,7 +87,8 @@ struct SpiralImageMaker {
             if firstSlope {
                 oldSlope = (b * sin(oldTheta) + aPlusBTheta * cos(oldTheta)) / (b * cos(oldTheta) - aPlusBTheta * sin(oldTheta))
                 firstSlope = false
-            } else {
+            }
+            else {
                 oldSlope = newSlope
             }
             newSlope = (b * sin(newTheta) + aPlusBTheta * cos(newTheta)) / (b * cos(newTheta) - aPlusBTheta * sin(newTheta))
@@ -99,7 +100,8 @@ struct SpiralImageMaker {
 
             if let intersection = CGPoint.lineIntersection(m1: oldSlope, b1: oldIntercept, m2: newSlope, b2: newIntercept) {
                 controlPoint = intersection
-            } else {
+            }
+            else {
                 fatalError("lines are parallel")
             }
 

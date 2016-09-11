@@ -38,7 +38,8 @@ struct ImageIO {
 
                 do {
                     try imageData.write(to: imageURL, options: [.atomic])
-                } catch let error {
+                }
+                catch let error {
                     Log.error("Error writing to file: \(error)")
                 }
             }
@@ -62,7 +63,8 @@ private extension ImageIO {
     static let persistedImageName: String = {
         if Defaults.snapshotMode {
             return "ScreenshotPersistedImage"
-        } else {
+        }
+        else {
             return "PadiddlePersistedImage"
         }
     }()
@@ -112,7 +114,8 @@ private extension ImageIO {
         if !FileManager.default.fileExists(atPath: path) {
             do {
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
-            } catch let error {
+            }
+            catch let error {
                 Log.error("Error creating direcotry at path \(path): \(error)")
             }
         }

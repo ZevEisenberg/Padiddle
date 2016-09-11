@@ -18,7 +18,8 @@ struct Defaults {
         get {
             if snapshotMode {
                 return snapshotPersistedIndex
-            } else {
+            }
+            else {
                 return (UserDefaults().object(forKey: colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
             }
         }

@@ -30,7 +30,8 @@ extension UIDevice {
             if range != nil {
                 if current.userInterfaceIdiom == .pad {
                     deviceName = "iPad"
-                } else {
+                }
+                else {
                     deviceName = "iPhone"
                 }
             }

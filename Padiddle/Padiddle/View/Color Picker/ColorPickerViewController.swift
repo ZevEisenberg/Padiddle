@@ -141,7 +141,8 @@ private extension ColorPickerViewController {
         if traitCollection.verticalSizeClass == .regular {
             layout.numberOfColumns = colsPortrait
             layout.numberOfRows = rowsPortrait
-        } else {
+        }
+        else {
             layout.numberOfColumns = colsLandscape
             layout.numberOfRows = rowsLandscape
         }

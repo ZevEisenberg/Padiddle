@@ -32,7 +32,8 @@ struct Log {
             if object != nil {
                 print(objectDebugDescription)
             }
-        } else {
+        }
+        else {
             print(preambleString)
             if object != nil {
                 print(objectDebugDescription)

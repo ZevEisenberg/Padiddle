@@ -23,7 +23,8 @@ extension CGFloat {
         get {
             if self.closeEnough(to: 0) {
                 return 0
-            } else {
+            }
+            else {
                 return self
             }
         }

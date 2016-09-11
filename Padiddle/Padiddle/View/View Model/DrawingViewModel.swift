@@ -208,7 +208,8 @@ extension DrawingViewModel: RecordingDelegate {
     @objc func recordingStatusChanged(_ recording: Bool) {
         if recording {
             delegate?.start()
-        } else {
+        }
+        else {
             delegate?.pause()
         }
     }
@@ -216,7 +217,8 @@ extension DrawingViewModel: RecordingDelegate {
     @objc func motionUpdatesStatusChanged(_ updates: Bool) {
         if updates {
             startMotionUpdates()
-        } else {
+        }
+        else {
             stopMotionUpdates()
         }
     }
@@ -335,7 +337,8 @@ extension DrawingViewModel { // Core Motion
         if motionManager.isGyroAvailable {
             if motionManager.isMagnetometerAvailable {
                 motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
-            } else {
+            }
+            else {
                 motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical)
             }
 

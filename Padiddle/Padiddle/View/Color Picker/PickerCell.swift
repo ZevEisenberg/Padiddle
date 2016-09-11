@@ -86,7 +86,8 @@ class PickerCell: UICollectionViewCell {
                 //--------------------------------------------------
                 contentView.layer.borderWidth = borderWidth
                 titleLabel.textColor = UIColor(named: .appTint)
-            } else {
+            }
+            else {
                 contentView.layer.borderWidth = 0
                 titleLabel.textColor = textColor
             }
@@ -100,7 +101,8 @@ class PickerCell: UICollectionViewCell {
                 contentView.layer.borderColor = highlightedTrimColor.cgColor
                 contentView.layer.borderWidth = borderWidth
                 titleLabel.textColor = highlightedTextColor
-            } else {
+            }
+            else {
                 contentView.backgroundColor = backgroundColorNormal
                 contentView.layer.borderColor = borderColor.cgColor
                 contentView.layer.borderWidth = 0.0

@@ -19,3 +19,6 @@ excluded: # paths to ignore during linting. overridden by `included`.
 file_length:
   warning: 450
   error: 500
+
+statement_position:
+  statement_mode: uncuddled_else

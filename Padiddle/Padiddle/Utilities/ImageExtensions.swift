@@ -58,7 +58,8 @@ extension UIImage {
         var rotatedSize: CGSize
         if radians == .pi || radians == 0 {
             rotatedSize = self.size
-        } else {
+        }
+        else {
             rotatedSize = CGSize(width: size.height, height: size.width)
         }
 

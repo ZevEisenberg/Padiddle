@@ -44,7 +44,8 @@ class Screenshots: XCTestCase {
             let doneButton = navBar.buttons["done button"]
             XCTAssertTrue(doneButton.exists)
             doneButton.tap()
-        } else {
+        }
+        else {
             let dismissRegion = XCUIApplication().otherElements["PopoverDismissRegion"]
             XCTAssertTrue(dismissRegion.exists)
             dismissRegion.tap()

@@ -101,7 +101,8 @@ extension DrawingViewController: DrawingViewModelDelegate {
             if viewModel.needToMoveNibToNewStartLocation {
                 viewModel.needToMoveNibToNewStartLocation = false
                 drawingView.restartAtPoint(newLocation)
-            } else {
+            }
+            else {
                 drawingView.addPoint(newLocation)
             }
         }

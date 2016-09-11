@@ -193,7 +193,8 @@ extension ButtonHandlers {
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             viewControllerToShow = colorPickerViewController
             viewControllerToShow.modalPresentationStyle = .popover
-        } else {
+        }
+        else {
             let navigationController = UINavigationController(rootViewController: colorPickerViewController)
             setUpNavigationItem(colorPickerViewController.navigationItem, cancelSelector: #selector(ToolbarViewController.dismissModal), doneSelector: nil)
             viewControllerToShow = navigationController
@@ -260,10 +261,12 @@ extension ButtonHandlers {
                 if completed {
                     if let activityType = activityType {
                         Log.info("shared via \(activityType)")
-                    } else {
+                    }
+                    else {
                         Log.info("shared via unknown sharing type")
                     }
-                } else {
+                }
+                else {
                     Log.info("Canceled sharing")
                 }
             }
@@ -285,7 +288,8 @@ extension ButtonHandlers {
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             viewControllerToShow = helpViewController
             viewControllerToShow.modalPresentationStyle = .popover
-        } else {
+        }
+        else {
             let navigationController = UINavigationController(rootViewController: helpViewController)
             setUpNavigationItem(helpViewController.navigationItem, cancelSelector: nil, doneSelector: #selector(ToolbarViewController.dismissModal))
             viewControllerToShow = navigationController
@@ -391,7 +395,8 @@ private extension ToolbarViewController {
         if toolbarVisible {
             toolbarTopConstraint.isActive = false
             toolbarBottomConstraint.isActive = true
-        } else {
+        }
+        else {
             toolbarBottomConstraint.isActive = false
             toolbarTopConstraint.isActive = true
         }
