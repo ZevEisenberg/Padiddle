@@ -304,10 +304,17 @@ extension ButtonHandlers {
 extension ToolbarViewController: ColorPickerDelegate {
     func colorPicked(_ color: ColorManager) {
         updateColorButton(color)
-        dismiss(animated: true, completion: {
+
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             self.popColor()
-        })
-        Log.info(color)
+            dismiss(animated: true, completion: nil)
+        }
+        else {
+            dismiss(animated: true, completion: {
+                self.popColor()
+            })
+        }
+        Log.info("picked color: \(color)")
     }
 }
 
@@ -333,27 +340,30 @@ private extension ToolbarViewController {
     }
 
     func popColor() {
-        let duration: TimeInterval = 0.3
-        let midpointFraction = 0.4
-        let scale: CGFloat = 0.8
-        UIView.animateKeyframes(
-            withDuration: duration,
+        let pushDuration: TimeInterval = 0.15
+        let popDuration: TimeInterval = 0.7
+        let damping: CGFloat = 0.3
+        let scale: CGFloat = 1.2
+        let initialSpringVelocity: CGFloat = 10.0
+
+        UIView.animate(
+            withDuration: pushDuration,
             delay: 0.0,
-            options: .allowUserInteraction,
+            options: [.allowUserInteraction, .curveEaseOut],
             animations: {
-                UIView.addKeyframe(
-                    withRelativeStartTime: 0.0,
-                    relativeDuration: midpointFraction,
-                    animations: {
-                        self.colorButton.transform = self.colorButton.transform.scaledBy(x: scale, y: scale)
-                    }
-                )
-                UIView.addKeyframe(
-                    withRelativeStartTime: midpointFraction,
-                    relativeDuration: 1.0 - midpointFraction,
+                self.colorButton.transform = self.colorButton.transform.scaledBy(x: scale, y: scale)
+            },
+            completion: { _ in
+                UIView.animate(
+                    withDuration: popDuration,
+                    delay: 0.0,
+                    usingSpringWithDamping: damping,
+                    initialSpringVelocity: initialSpringVelocity,
+                    options: .allowUserInteraction,
                     animations: {
                         self.colorButton.transform = .identity
-                    }
+                    },
+                    completion:nil
                 )
             }
         )
