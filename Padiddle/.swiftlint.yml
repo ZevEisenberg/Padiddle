@@ -8,7 +8,6 @@ disabled_rules: # rule identifiers to exclude from running
   # - type_body_length
   # - type_name
   - variable_name
-  - conditional_binding_cascade # re-enable once SwiftLint gets it right for Swift 3?
 included: # paths to include during linting. `--path` is ignored if present. takes precendence over `excluded`.
   # - Source
 excluded: # paths to ignore during linting. overridden by `included`.
