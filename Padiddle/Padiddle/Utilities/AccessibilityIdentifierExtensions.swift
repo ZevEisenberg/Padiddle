@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
 
-    convenience init(_ accessibilityIdentifier: String) {
+    convenience init(axId accessibilityIdentifier: String) {
         self.init()
         self.accessibilityIdentifier = accessibilityIdentifier
     }
@@ -19,7 +19,7 @@ extension UIView {
 
 extension UIButton {
 
-    public convenience init(type buttonType: UIButtonType, _ accessibilityIdentifier: String) {
+    public convenience init(type buttonType: UIButtonType, axId accessibilityIdentifier: String) {
         self.init(type: buttonType)
         self.accessibilityIdentifier = accessibilityIdentifier
     }

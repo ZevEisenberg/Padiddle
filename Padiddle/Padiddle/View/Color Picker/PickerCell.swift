@@ -34,8 +34,8 @@ class PickerCell: UICollectionViewCell {
     let titleLabel: UILabel
 
     override init(frame: CGRect) {
-        imageView = UIImageView("imageView")
-        titleLabel = UILabel("titleLabel")
+        imageView = UIImageView(axId: "imageView")
+        titleLabel = UILabel(axId: "titleLabel")
 
         super.init(frame: frame)
 

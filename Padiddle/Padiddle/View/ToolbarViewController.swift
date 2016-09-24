@@ -16,14 +16,14 @@ class ToolbarViewController: UIViewController {
 
     fileprivate var toolbarVisible: Bool = true
 
-    fileprivate let recordButtonBack = UIImageView("recordButtonBack")
-    fileprivate let toolbarStackView = UIStackView("toolbarStackView")
-    fileprivate let clearButton = UIButton(type: .custom, "clearButton")
-    fileprivate let colorButton = UIButton(type: .custom, "colorButton")
-    fileprivate let recordButtonPlaceholder = UIView("recordButtonPlaceholder")
-    fileprivate let recordButton = UIButton(type: .custom, "recordButton")
-    fileprivate let shareButton = UIButton(type: .custom, "shareButton")
-    fileprivate let helpButton = UIButton(type: .custom, "helpButton")
+    fileprivate let recordButtonBack = UIImageView(axId: "recordButtonBack")
+    fileprivate let toolbarStackView = UIStackView(axId: "toolbarStackView")
+    fileprivate let clearButton = UIButton(type: .custom, axId: "clearButton")
+    fileprivate let colorButton = UIButton(type: .custom, axId: "colorButton")
+    fileprivate let recordButtonPlaceholder = UIView(axId: "recordButtonPlaceholder")
+    fileprivate let recordButton = UIButton(type: .custom, axId: "recordButton")
+    fileprivate let shareButton = UIButton(type: .custom, axId: "shareButton")
+    fileprivate let helpButton = UIButton(type: .custom, axId: "helpButton")
 
     fileprivate var toolbarBottomConstraint: NSLayoutConstraint!
     fileprivate var toolbarTopConstraint: NSLayoutConstraint!
@@ -47,12 +47,12 @@ extension Layout {
 
     private func configureViews() {
 
-        let toolbarView = UIView("toolbarView")
-        let toolbarHairline = UIView("toolbarHairline")
+        let toolbarView = UIView(axId: "toolbarView")
+        let toolbarHairline = UIView(axId: "toolbarHairline")
         let spacerViews: [UIView] = {
             var spacers = [UIView]()
             for i in 0..<6 {
-                spacers.append(UIView("spacer\(i)"))
+                spacers.append(UIView(axId: "spacer\(i)"))
             }
             return spacers
         }()
