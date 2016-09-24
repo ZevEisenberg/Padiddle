@@ -14,6 +14,7 @@ excluded: # paths to ignore during linting. overridden by `included`.
   - Carthage
   - Pods
   - Constants
+  - Screenshots/SnapshotHelper.swift
 
 file_length:
   warning: 450

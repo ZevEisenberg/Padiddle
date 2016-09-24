@@ -20,13 +20,6 @@ target 'Padiddle' do
 end
 
 post_install do | installer |
-  # Specify Swift version for pods per https://github.com/CocoaPods/CocoaPods/issues/5521#issuecomment-226328062
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
-    end
-  end
-
   require 'fileutils'
   FileUtils.cp_r('Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle-acknowledgements.plist', 'Padiddle/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end

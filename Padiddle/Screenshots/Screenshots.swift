@@ -20,7 +20,7 @@ class Screenshots: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
 
         let app = XCUIApplication()
-        setupSnapshot(app: app)
+        setupSnapshot(app)
         app.launch()
 
         XCUIDevice.shared().orientation = .portrait
@@ -28,20 +28,20 @@ class Screenshots: XCTestCase {
 
     func testTakeScreenshots() {
 
-        snapshot(name: "1")
+        snapshot("1")
 
         let app = XCUIApplication()
 
-        let helpButton = app.buttons["help button"]
+        let helpButton = app.buttons["helpButton"]
         XCTAssertTrue(helpButton.exists)
         helpButton.tap()
 
-        snapshot(name: "2")
+        snapshot("2")
 
         if iPhone {
             let navBar = app.navigationBars["about padiddle"]
             XCTAssertTrue(navBar.exists)
-            let doneButton = navBar.buttons["done button"]
+            let doneButton = navBar.buttons["doneButton"]
             XCTAssertTrue(doneButton.exists)
             doneButton.tap()
         }
@@ -51,9 +51,9 @@ class Screenshots: XCTestCase {
             dismissRegion.tap()
         }
 
-        app.buttons["color button"].tap()
+        app.buttons["colorButton"].tap()
 
-        snapshot(name: "3")
+        snapshot("3")
     }
 
 }
