@@ -51,9 +51,11 @@ class HelpViewController: UIViewController {
     func typeSizeChanged(_ note: NSNotification) {
         webView.loadHTMLString(viewModel.html, baseURL: nil)
     }
+
 }
 
 extension HelpViewController: UIWebViewDelegate {
+
     func webViewDidFinishLoad(_ webView: UIWebView) {
         webView.scrollView.flashScrollIndicators()
     }
