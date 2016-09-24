@@ -37,15 +37,19 @@ class HelpViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        webView.scrollView.flashScrollIndicators()
+        if !Defaults.snapshotMode {
+            webView.scrollView.flashScrollIndicators()
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animate(alongsideTransition: nil, completion: { _ in
-            self.webView.scrollView.flashScrollIndicators()
-        })
+        if !Defaults.snapshotMode {
+            coordinator.animate(alongsideTransition: nil, completion: { _ in
+                self.webView.scrollView.flashScrollIndicators()
+            })
+        }
     }
 
     func typeSizeChanged(_ note: NSNotification) {
@@ -57,7 +61,9 @@ class HelpViewController: UIViewController {
 extension HelpViewController: UIWebViewDelegate {
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.scrollView.flashScrollIndicators()
+        if !Defaults.snapshotMode {
+            webView.scrollView.flashScrollIndicators()
+        }
     }
 
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
