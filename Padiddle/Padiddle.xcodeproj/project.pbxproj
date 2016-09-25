@@ -740,7 +740,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $FASTLANE_SNAPSHOT == 1 ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
+			shellScript = "if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
 		};
 		CDDA9DD61C530FDA00D9EF19 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
