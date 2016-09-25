@@ -44,7 +44,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     fileprivate var offscreenContext: CGContext?
 
-    fileprivate let contextSize: CGSize
+    fileprivate let contextSize = CGSize(width: 1024.0, height: 1024.0)
 
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
@@ -85,12 +85,6 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     required init(maxRadius: CGFloat) {
         assert(maxRadius > 0)
         self.maxRadius = maxRadius
-        let minContextSize: CGFloat = 1024.0
-        let sideLength = max(minContextSize, maxRadius)
-        contextSize = CGSize(
-            width: sideLength,
-            height: sideLength
-        )
         motionManager.deviceMotionUpdateInterval = kMotionManagerUpdateInterval
     }
 

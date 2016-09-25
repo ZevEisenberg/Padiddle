@@ -73,6 +73,8 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
     override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
+            context.setFillColor(UIColor.white.cgColor)
+            context.fill(rect)
             viewModel.drawInto(context, dirtyRect: rect)
         }
     }
