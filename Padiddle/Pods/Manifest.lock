@@ -1,6 +1,6 @@
 PODS:
   - Anchorage (2.0.0)
-  - SimulatorStatusMagic (1.9)
+  - SimulatorStatusMagic (1.9.1)
   - SwiftGen (3.0.0)
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Anchorage: 3fb9d1ca397ac68b7ce9857792660a0d683f2e11
-  SimulatorStatusMagic: 4db65b11c095bbb3abd966a4ae8ee0f11789e8e0
+  SimulatorStatusMagic: 0dcd69449f292fa12ab33d39bc3348b4a156da9a
   SwiftGen: f679cd0ed4173a5da3b01efd0da23542bf82f6ab
 
 PODFILE CHECKSUM: a6a029e4de2e5222e80c1f2d0425ecc5fcf4eb00
