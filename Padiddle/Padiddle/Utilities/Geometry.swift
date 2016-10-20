@@ -92,7 +92,7 @@ extension UIInterfaceOrientation {
 
         switch self {
         case .landscapeLeft:
-            rotation = -.pi / 2.0
+            rotation = -CGFloat.pi / 2.0
             imageOrientaion = .right
         case .landscapeRight:
             rotation = .pi / 2.0
