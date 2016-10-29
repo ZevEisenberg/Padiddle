@@ -4,7 +4,7 @@ platform :ios, '10.0'
   # Pods for Padiddle
 target 'Padiddle' do  
   pod 'SwiftGen'
-  pod 'Anchorage', :git => 'git@github.com:Raizlabs/Anchorage.git', :commit => '94cf07a8b1678781252699f9271700fab0a4e671'
+  pod 'Anchorage'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
 
   target 'PadiddleTests' do
