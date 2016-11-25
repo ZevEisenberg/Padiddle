@@ -4,6 +4,8 @@
 import Foundation
 
 // swiftlint:disable file_length
+// swiftlint:disable line_length
+
 // swiftlint:disable type_body_length
 enum {{enumName}} {
   {% for string in strings %}
@@ -36,7 +38,7 @@ extension {{enumName}}: CustomStringConvertible {
   }
 }
 
-func tr(key: {{enumName}}) -> String {
+func tr(_ key: {{enumName}}) -> String {
   return key.string
 }
 {% else %}

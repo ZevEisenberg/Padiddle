@@ -3,6 +3,8 @@
 import Foundation
 
 // swiftlint:disable file_length
+// swiftlint:disable line_length
+
 // swiftlint:disable type_body_length
 enum L10n {
   /// About Padiddle
@@ -13,14 +15,14 @@ enum L10n {
   case clearDrawing
   /// Colors
   case colors
+  /// 3-D
+  case colors3D
   /// Autumn
   case colorsAutumn
   /// Black Widow
   case colorsBlackWidow
   /// Classic
   case colorsClassic
-  /// 3-D
-  case colors3D
   /// Film Noir
   case colorsFilmNoir
   /// Merlin
@@ -53,14 +55,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "clearDrawing")
       case .colors:
         return L10n.tr(key: "colors")
+      case .colors3D:
+        return L10n.tr(key: "colors.3D")
       case .colorsAutumn:
         return L10n.tr(key: "colors.autumn")
       case .colorsBlackWidow:
         return L10n.tr(key: "colors.blackWidow")
       case .colorsClassic:
         return L10n.tr(key: "colors.classic")
-      case .colors3D:
-        return L10n.tr(key: "colors.3D")
       case .colorsFilmNoir:
         return L10n.tr(key: "colors.filmNoir")
       case .colorsMerlin:
@@ -86,6 +88,6 @@ extension L10n: CustomStringConvertible {
   }
 }
 
-func tr(key: L10n) -> String {
+func tr(_ key: L10n) -> String {
   return key.string
 }

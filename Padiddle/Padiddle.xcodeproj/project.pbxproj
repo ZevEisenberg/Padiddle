@@ -754,7 +754,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/Base.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR\" --template swift3 --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --template swift3 --output \"$PROJECT_DIR/Constants/Colors.swift\"\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --template swift3 --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/Base.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" images \"$PROJECT_DIR/Padiddle/Assets.xcassets\" --template swift3 --output \"$PROJECT_DIR/Constants/Images.swift\"\n        \"${SWIFTGEN_BINARY}\" colors \"$PROJECT_DIR/Constants/colors.txt\" --template swift3 --output \"$PROJECT_DIR/Constants/Colors.swift\"\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --template swift3 --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
 		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
