@@ -94,7 +94,6 @@ private extension ImageIO {
         return (imageOrientaion, rotation)
     }
 
-
     static func urlForPersistedImage(_ contextScale: CGFloat, contextSize: CGSize) -> URL {
         var scaledContextSize = contextSize
         scaledContextSize.width *= contextScale

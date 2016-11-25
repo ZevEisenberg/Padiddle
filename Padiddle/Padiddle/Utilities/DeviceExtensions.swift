@@ -21,7 +21,6 @@ extension UIDevice {
     class var padDeviceName: String {
         var deviceName = current.model
 
-
         if runningOnSimulator {
             let range = deviceName.range(of: "simulator",
                 options: [.anchored, .backwards, .caseInsensitive]
