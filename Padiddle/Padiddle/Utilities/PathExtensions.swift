@@ -45,7 +45,7 @@ extension CGPath {
             x: c2.x + (c3.x - c2.x) * k2,
             y: c2.y + (c3.y - c2.y) * k2)
 
-        let smoothValue = CGFloat(0.5)
+        let smoothValue = CGFloat(1.0)
         let ctrl1: CGPoint = {
             let x = m1.x + (c2.x - m1.x) * smoothValue + p1.x - m1.x
             let y = m1.y + (c2.y - m1.y) * smoothValue + p1.y - m1.y
