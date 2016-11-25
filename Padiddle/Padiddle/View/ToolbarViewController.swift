@@ -170,11 +170,11 @@ typealias ButtonHandlers = ToolbarViewController
 extension ButtonHandlers {
     func trashTapped() {
         Log.info()
-        let clearAction = UIAlertAction(title: L10n.ClearDrawing.string, style: .destructive) { _ in
+        let clearAction = UIAlertAction(title: L10n.clearDrawing.string, style: .destructive) { _ in
             Log.info("Clear Drawing tapped")
             self.viewModel?.clearTapped()
         }
-        let cancelAction = UIAlertAction(title: L10n.Cancel.string, style: .cancel) { _ in Log.info("Clear Drawing canceled") }
+        let cancelAction = UIAlertAction(title: L10n.cancel.string, style: .cancel) { _ in Log.info("Clear Drawing canceled") }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(clearAction)
         alert.addAction(cancelAction)

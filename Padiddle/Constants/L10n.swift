@@ -2,84 +2,87 @@
 
 import Foundation
 
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 enum L10n {
   /// About Padiddle
-  case About
+  case about
   /// Cancel
-  case Cancel
+  case cancel
   /// Clear Drawing
-  case ClearDrawing
+  case clearDrawing
   /// Colors
-  case Colors
+  case colors
   /// Autumn
-  case ColorsAutumn
+  case colorsAutumn
   /// Black Widow
-  case ColorsBlackWidow
+  case colorsBlackWidow
   /// Classic
-  case ColorsClassic
+  case colorsClassic
   /// 3-D
-  case Colors3D
+  case colors3D
   /// Film Noir
-  case ColorsFilmNoir
+  case colorsFilmNoir
   /// Merlin
-  case ColorsMerlin
+  case colorsMerlin
   /// Monsters
-  case ColorsMonsters
+  case colorsMonsters
   /// Pastels
-  case ColorsPastels
+  case colorsPastels
   /// Regolith
-  case ColorsRegolith
+  case colorsRegolith
   /// Sepia
-  case ColorsSepia
+  case colorsSepia
   /// Tangerine
-  case ColorsTangerine
+  case colorsTangerine
   /// Watercolor
-  case ColorsWatercolor
+  case colorsWatercolor
 }
+// swiftlint:enable type_body_length
 
 extension L10n: CustomStringConvertible {
   var description: String { return self.string }
 
   var string: String {
     switch self {
-      case .About:
+      case .about:
         return L10n.tr(key: "about")
-      case .Cancel:
+      case .cancel:
         return L10n.tr(key: "cancel")
-      case .ClearDrawing:
+      case .clearDrawing:
         return L10n.tr(key: "clearDrawing")
-      case .Colors:
+      case .colors:
         return L10n.tr(key: "colors")
-      case .ColorsAutumn:
+      case .colorsAutumn:
         return L10n.tr(key: "colors.autumn")
-      case .ColorsBlackWidow:
+      case .colorsBlackWidow:
         return L10n.tr(key: "colors.blackWidow")
-      case .ColorsClassic:
+      case .colorsClassic:
         return L10n.tr(key: "colors.classic")
-      case .Colors3D:
+      case .colors3D:
         return L10n.tr(key: "colors.3D")
-      case .ColorsFilmNoir:
+      case .colorsFilmNoir:
         return L10n.tr(key: "colors.filmNoir")
-      case .ColorsMerlin:
+      case .colorsMerlin:
         return L10n.tr(key: "colors.merlin")
-      case .ColorsMonsters:
+      case .colorsMonsters:
         return L10n.tr(key: "colors.monsters")
-      case .ColorsPastels:
+      case .colorsPastels:
         return L10n.tr(key: "colors.pastels")
-      case .ColorsRegolith:
+      case .colorsRegolith:
         return L10n.tr(key: "colors.regolith")
-      case .ColorsSepia:
+      case .colorsSepia:
         return L10n.tr(key: "colors.sepia")
-      case .ColorsTangerine:
+      case .colorsTangerine:
         return L10n.tr(key: "colors.tangerine")
-      case .ColorsWatercolor:
+      case .colorsWatercolor:
         return L10n.tr(key: "colors.watercolor")
     }
   }
 
   private static func tr(key: String, _ args: CVarArg...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, locale: NSLocale.current, arguments: args)
+    return String(format: format, locale: Locale.current, arguments: args)
   }
 }
 

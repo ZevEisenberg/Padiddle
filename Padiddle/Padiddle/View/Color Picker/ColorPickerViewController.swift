@@ -55,7 +55,7 @@ class ColorPickerViewController: UIViewController {
         pageControl.currentPageIndicatorTintColor = UIColor(named: .pageIndicatorCurrentPage)
         pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), for: .valueChanged)
 
-        title = L10n.Colors.string
+        title = L10n.colors.string
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -18,7 +18,7 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = L10n.About.string
+        title = L10n.about.string
 
         webView.backgroundColor = .white
         webView.delegate = self
