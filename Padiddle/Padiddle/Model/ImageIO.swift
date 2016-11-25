@@ -99,7 +99,7 @@ private extension ImageIO {
         scaledContextSize.width *= contextScale
         scaledContextSize.height *= contextScale
 
-        let imageName = NSString(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height) as String
+        let imageName = String(format: "%@-%.0f×%.0f", persistedImageName, scaledContextSize.width, scaledContextSize.height)
 
         guard !Defaults.snapshotMode else {
             return Bundle.main.url(forResource: imageName, withExtension: persistedImageExtension)!

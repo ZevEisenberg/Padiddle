@@ -151,7 +151,7 @@ private extension ColorPickerViewController {
     func scrollToPageWithCellAtIndexPath(_ indexPath: IndexPath) {
 
         guard collectionView.frame != CGRect.zero else { return }
-        guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath as IndexPath)?.frame else { return }
+        guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame else { return }
 
         let pageWidth = collectionView.frame.width
         viewModel.currentPage = Int(floor(cellFrame.minX / pageWidth))
@@ -181,7 +181,7 @@ extension ColorPickerViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as? PickerCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PickerCell else {
             fatalError()
         }
 
@@ -197,13 +197,13 @@ extension ColorPickerViewController: UICollectionViewDelegate {
         viewModel.selectedIndex = indexPath.item
 
         if var selectedItems = collectionView.indexPathsForSelectedItems {
-            selectedItems.remove(indexPath as IndexPath)
+            selectedItems.remove(indexPath)
             for pathToDeselect in selectedItems {
                 collectionView.deselectItem(at: pathToDeselect, animated: false)
             }
         }
 
-        currentSelection = indexPath as IndexPath
+        currentSelection = indexPath
         delegate?.colorPicked(viewModel.selectedColorManager)
     }
 }

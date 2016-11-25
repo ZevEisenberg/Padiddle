@@ -99,8 +99,8 @@ private extension ColorPickerLayout {
         }
 
         let itemsPerPage = numberOfColumns * numberOfRows
-        let page = (indexPath as IndexPath).item / itemsPerPage
-        let indexRelativeToThisPage = (indexPath as IndexPath).item % itemsPerPage
+        let page = indexPath.item / itemsPerPage
+        let indexRelativeToThisPage = indexPath.item % itemsPerPage
 
         let column = indexRelativeToThisPage % numberOfColumns
         let row    = indexRelativeToThisPage / numberOfColumns

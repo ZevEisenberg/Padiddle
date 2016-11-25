@@ -44,7 +44,7 @@ class ColorPickerViewModel {
         //--------------------------------------------------
         let itemsPerPage = colsPortrait * rowsPortrait
 
-        let page = (indexPath as IndexPath).item / itemsPerPage
+        let page = indexPath.item / itemsPerPage
 
         var indexPaths = [IndexPath]()
 

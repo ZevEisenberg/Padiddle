@@ -23,7 +23,7 @@ struct HelpViewModel {
         do {
             let htmlString = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
             let filledHMTLString = HelpViewModel.populateHTMLString(htmlString)
-            return filledHMTLString as String
+            return filledHMTLString
         }
         catch let error {
             Log.error("failed to read help HTML file: \(error)")
@@ -40,12 +40,12 @@ struct HelpViewModel {
 
         let deviceName = UIDevice.padDeviceName
 
-        newString = htmlString.replacingCharacters(in: deviceNameRange, with: deviceName as String)
+        newString = htmlString.replacingCharacters(in: deviceNameRange, with: deviceName)
 
         // Device Image
         guard let deviceImageRange = newString.range(of: "^deviceImage^") else { fatalError() }
 
-        newString = newString.replacingCharacters(in: deviceImageRange, with: deviceName as String)
+        newString = newString.replacingCharacters(in: deviceImageRange, with: deviceName)
 
         // Device Image Width
         guard let deviceImage = Asset(rawValue: deviceName)?.image else { fatalError() }
