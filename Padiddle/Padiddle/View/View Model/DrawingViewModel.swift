@@ -27,7 +27,6 @@ protocol DrawingViewBoundsVendor: class {
 class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
-    fileprivate var smoothing = true
 
     fileprivate let brushDiameter: CGFloat = 12
 
@@ -96,7 +95,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     func addPoint(_ point: CGPoint) {
         let scaledPoint = convertViewPointToContextCoordinates(point)
         let distance = CGPoint.distanceBetween(points[3], scaledPoint)
-        if distance > 2.25 || !smoothing {
+        if distance > 2.25 {
             points.removeFirst()
             points.append(scaledPoint)
 
