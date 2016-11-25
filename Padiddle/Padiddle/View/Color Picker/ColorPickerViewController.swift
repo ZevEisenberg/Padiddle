@@ -193,7 +193,19 @@ extension ColorPickerViewController: UICollectionViewDataSource {
 }
 
 extension ColorPickerViewController: UICollectionViewDelegate {
+
+    // By default, the collection view allows deselection of selected cells
+    // when they are tapped. To work around this, reselect the cell immediately
+    // and treat it as a selection.
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if indexPath == currentSelection {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+            delegate?.colorPicked(viewModel.selectedColorManager)
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         viewModel.selectedIndex = indexPath.item
 
         if var selectedItems = collectionView.indexPathsForSelectedItems {
