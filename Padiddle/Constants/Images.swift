@@ -14,14 +14,14 @@
 // swiftlint:disable type_body_length
 enum Asset: String {
   case helpButton = "HelpButton"
-  case iPad = "iPad"
-  case iPhone = "iPhone"
   case pauseButton = "PauseButton"
   case recordButtonBack = "RecordButtonBack"
   case recordButtonBlank = "RecordButtonBlank"
   case recordButtonFront = "RecordButtonFront"
   case shareButton = "ShareButton"
   case trashButton = "TrashButton"
+  case iPad = "iPad"
+  case iPhone = "iPhone"
 
   var image: Image {
     return Image(asset: self)

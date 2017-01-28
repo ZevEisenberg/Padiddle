@@ -42,11 +42,16 @@ enum ColorName {
 
   var rgbaValue: UInt32 {
     switch self {
-    case .appTint: return 0x007affff
-    case .pageIndicator: return 0x999999ff
-    case .pageIndicatorCurrentPage: return 0x323232ff
-    case .toolbar: return 0xffffffff
-    case .toolbarHairline: return 0xadadadff
+    case .appTint:
+      return 0x007affff
+    case .pageIndicator:
+      return 0x999999ff
+    case .pageIndicatorCurrentPage:
+      return 0x323232ff
+    case .toolbar:
+      return 0xffffffff
+    case .toolbarHairline:
+      return 0xadadadff
     }
   }
 
