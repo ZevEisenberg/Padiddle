@@ -31,10 +31,10 @@ class PadiddleTests: XCTestCase {
     }
 
     func testCGSizeMax() {
-        let zeroMax = CGSize.max(CGSize.zero, CGSize.zero)
-        XCTAssertEqual(zeroMax, CGSize.zero)
+        let zeroMax = CGSize.max(.zero, .zero)
+        XCTAssertEqual(zeroMax, .zero)
 
-        XCTAssertEqual(CGSize.max(CGSize.zero, CGSize(width: 10, height: 20)), CGSize(width: 10, height: 20))
+        XCTAssertEqual(CGSize.max(.zero, CGSize(width: 10, height: 20)), CGSize(width: 10, height: 20))
 
         XCTAssertEqual(CGSize.max(CGSize(width: 10, height: 20), CGSize(width: 5, height: 30)), CGSize(width: 10, height: 30))
 

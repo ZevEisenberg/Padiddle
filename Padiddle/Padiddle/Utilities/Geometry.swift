@@ -45,8 +45,8 @@ extension CGRect {
     func centerSmallerRect(_ smallerRect: CGRect) -> CGRect {
         assert(smallerRect.width <= self.width)
         assert(smallerRect.height <= self.height)
-        assert(smallerRect.origin == CGPoint.zero)
-        assert(self.origin == CGPoint.zero)
+        assert(smallerRect.origin == .zero)
+        assert(self.origin == .zero)
 
         let newRect = smallerRect.offsetBy(
             dx: (self.width - smallerRect.width) / 2,

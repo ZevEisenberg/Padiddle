@@ -107,7 +107,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     func clear() {
         offscreenContext?.setFillColor(UIColor.white.cgColor)
-        offscreenContext?.fill(CGRect(origin: CGPoint.zero, size: contextSize))
+        offscreenContext?.fill(CGRect(origin: .zero, size: contextSize))
     }
 
     func restartAtPoint(_ point: CGPoint) {
@@ -139,7 +139,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     }
 
     func setInitialImage(_ image: UIImage) {
-        let rect = CGRect(origin: CGPoint.zero, size: contextSize)
+        let rect = CGRect(origin: .zero, size: contextSize)
         offscreenContext?.draw(image.cgImage!, in: rect)
     }
 

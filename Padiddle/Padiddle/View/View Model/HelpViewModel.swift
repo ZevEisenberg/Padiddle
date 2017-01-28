@@ -38,7 +38,7 @@ struct HelpViewModel {
         // Device Name
         guard let deviceNameRange = htmlString.range(of: "^deviceName^") else { fatalError() }
 
-        let deviceName = UIDevice.padDeviceName
+        let deviceName = UIDevice.deviceName
 
         newString = htmlString.replacingCharacters(in: deviceNameRange, with: deviceName)
 
@@ -48,7 +48,7 @@ struct HelpViewModel {
         newString = newString.replacingCharacters(in: deviceImageRange, with: deviceName)
 
         // Device Image Width
-        guard let deviceImage = Asset(rawValue: deviceName)?.image else { fatalError() }
+        let deviceImage = UIDevice.deviceImage
 
         let nativeWidth = deviceImage.size.width
 

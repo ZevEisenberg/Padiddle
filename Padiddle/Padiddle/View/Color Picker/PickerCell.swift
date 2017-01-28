@@ -85,7 +85,7 @@ class PickerCell: UICollectionViewCell {
                 // have the right tintColor.
                 //--------------------------------------------------
                 contentView.layer.borderWidth = borderWidth
-                titleLabel.textColor = UIColor(named: .appTint)
+                titleLabel.textColor = .appTint
             }
             else {
                 contentView.layer.borderWidth = 0

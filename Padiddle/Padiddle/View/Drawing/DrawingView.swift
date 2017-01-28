@@ -38,7 +38,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
         self.viewModel = viewModel
 
-        super.init(frame: CGRect.zero)
+        super.init(frame: .zero)
 
         viewModel.view = self
 

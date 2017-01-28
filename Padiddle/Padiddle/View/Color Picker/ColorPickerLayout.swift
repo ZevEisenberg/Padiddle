@@ -80,7 +80,7 @@ class ColorPickerLayout: UICollectionViewLayout {
 
     override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else {
-            return CGSize.zero
+            return .zero
         }
 
         let height = collectionView.frame.height
@@ -95,7 +95,7 @@ private extension ColorPickerLayout {
     func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
 
         guard let collectionView = collectionView else {
-            return CGRect.zero
+            return .zero
         }
 
         let itemsPerPage = numberOfColumns * numberOfRows

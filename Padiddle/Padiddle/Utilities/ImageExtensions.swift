@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     class func ellipseImage(color: UIColor, size: CGSize, borderWidth: CGFloat, borderColor: UIColor) -> UIImage {
         // Build a rect of appropriate size at origin (1,1)
-        let fullRect = CGRect(origin: CGPoint.zero, size: size)
+        let fullRect = CGRect(origin: .zero, size: size)
         let insetRect = fullRect.insetBy(dx: borderWidth / 2.0, dy: borderWidth / 2.0)
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
@@ -101,22 +101,22 @@ extension UIImage {
     }
 
     class func recordButtonImage() -> UIImage {
-        let backgroundImage = UIImage(asset: .recordButtonBack)
-        let foregroundImage = UIImage(asset: .recordButtonFront)
+        let backgroundImage = #imageLiteral(resourceName: "RecordButtonBack")
+        let foregroundImage = #imageLiteral(resourceName: "RecordButtonFront")
 
-        let contextSize = CGSize.max((foregroundImage?.size)!, (backgroundImage?.size)!)
+        let contextSize = CGSize.max(foregroundImage.size, backgroundImage.size)
         UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)
 
-        let backgroundImageBounds = CGRect(origin: CGPoint.zero, size: (backgroundImage?.size)!)
-        let foregroundImageBounds = CGRect(origin: CGPoint.zero, size: (backgroundImage?.size)!)
+        let backgroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
+        let foregroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
 
-        let contextRect = CGRect(origin: CGPoint.zero, size: contextSize)
+        let contextRect = CGRect(origin: .zero, size: contextSize)
 
         let backgroundImageFrame = contextRect.centerSmallerRect(backgroundImageBounds)
         let foregroundImageFrame = contextRect.centerSmallerRect(foregroundImageBounds)
 
-        backgroundImage?.draw(in: backgroundImageFrame)
-        foregroundImage?.draw(in: foregroundImageFrame)
+        backgroundImage.draw(in: backgroundImageFrame)
+        foregroundImage.draw(in: foregroundImageFrame)
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

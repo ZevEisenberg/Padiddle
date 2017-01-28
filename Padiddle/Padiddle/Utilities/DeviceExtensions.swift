@@ -18,7 +18,8 @@ extension UIDevice {
         }
     }
 
-    class var padDeviceName: String {
+    @nonobjc
+    class var deviceName: String {
         var deviceName = current.model
 
         if runningOnSimulator {
@@ -37,6 +38,15 @@ extension UIDevice {
         }
 
         return deviceName
+    }
+
+    @nonobjc
+    class var deviceImage: UIImage {
+        switch deviceName {
+        case "iPad": return #imageLiteral(resourceName: "iPad")
+        case "iPhone": return #imageLiteral(resourceName: "iPhone")
+        default: fatalError("Should only get one or the other")
+        }
     }
 
     private class var runningOnSimulator: Bool {

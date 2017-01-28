@@ -37,7 +37,7 @@ class ColorPickerViewController: UIViewController {
         self.delegate = delegate
         layout = ColorPickerLayout()
 
-        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         pageControl = UIPageControl()
 
         super.init(nibName: nil, bundle: nil)
@@ -51,8 +51,8 @@ class ColorPickerViewController: UIViewController {
 
         pageControl.numberOfPages = layout.numberOfPages
         pageControl.isExclusiveTouch = true
-        pageControl.pageIndicatorTintColor = UIColor(named: .pageIndicator)
-        pageControl.currentPageIndicatorTintColor = UIColor(named: .pageIndicatorCurrentPage)
+        pageControl.pageIndicatorTintColor = .pageIndicator
+        pageControl.currentPageIndicatorTintColor = .pageIndicatorCurrentPage
         pageControl.addTarget(self, action: #selector(ColorPickerViewController.pageControlChanged), for: .valueChanged)
 
         title = L10n.colors.string
@@ -150,7 +150,7 @@ private extension ColorPickerViewController {
 
     func scrollToPageWithCellAtIndexPath(_ indexPath: IndexPath) {
 
-        guard collectionView.frame != CGRect.zero else { return }
+        guard collectionView.frame != .zero else { return }
         guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame else { return }
 
         let pageWidth = collectionView.frame.width
