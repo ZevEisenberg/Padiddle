@@ -6,6 +6,7 @@ target 'Padiddle' do
   pod 'SwiftGen'
   pod 'Anchorage'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
+  pod 'SwiftLint'
 
   target 'PadiddleTests' do
     inherit! :search_paths

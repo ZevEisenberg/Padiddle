@@ -103,7 +103,7 @@ private extension ColorPickerLayout {
         let indexRelativeToThisPage = indexPath.item % itemsPerPage
 
         let column = indexRelativeToThisPage % numberOfColumns
-        let row    = indexRelativeToThisPage / numberOfColumns
+        let row = indexRelativeToThisPage / numberOfColumns
 
         let spaceForColumns = (
             collectionView.frame.width -

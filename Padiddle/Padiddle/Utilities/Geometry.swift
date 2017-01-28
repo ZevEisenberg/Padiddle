@@ -79,9 +79,7 @@ extension CGPoint {
 
 extension CGAffineTransform {
     var angle: CGFloat {
-        get {
-            return atan2(b, a)
-        }
+        return atan2(b, a)
     }
 }
 

@@ -40,7 +40,7 @@ class HelpImageProtocol: URLProtocol {
 
         guard let yesImage = image, let imageData = UIImagePNGRepresentation(yesImage) else { return }
 
-        let headers = ["Content-Type" : "image/png"]
+        let headers = ["Content-Type": "image/png"]
 
         guard let response = HTTPURLResponse(
             url: url,

@@ -20,14 +20,7 @@ extension CGFloat {
     }
 
     var reasonableValue: CGFloat {
-        get {
-            if self.closeEnough(to: 0) {
-                return 0
-            }
-            else {
-                return self
-            }
-        }
+        return self.closeEnough(to: 0) ? 0 : self
     }
 
     var degrees: CGFloat {
