@@ -1,6 +1,6 @@
 PODS:
   - Anchorage (4.0.0)
-  - SimulatorStatusMagic (1.9.2)
+  - SimulatorStatusMagic (1.9.3)
   - SwiftGen (4.1.0)
   - SwiftLint (0.16.1)
 
@@ -12,7 +12,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Anchorage: fe50dca4e20846b8cb15c859d26fec5132b41577
-  SimulatorStatusMagic: f6cf062b0e5a2df6f000bb0f98d1ae6977c8dbc1
+  SimulatorStatusMagic: 4703d78db62ff6419d889c8b2ed4ec38f9bba501
   SwiftGen: d29fd8b7aa52092411d415fb09d0abd3d79ea1a5
   SwiftLint: b8b683208cc09640898f16318a7a452274e91f61
 
