@@ -1,11 +1,15 @@
 // Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
 
+{% macro className scene %}{% if scene.customClass %}{% if scene.customModule %}{{scene.customModule}}.{% endif %}{{scene.customClass}}{% else %}NS{{scene.baseType}}{% endif %}{% endmacro %}
 import Foundation
 import Cocoa
 {% for module in modules %}
+{% if module != env.PRODUCT_MODULE_NAME and module != param.module %}
 import {{module}}
+{% endif %}
 {% endfor %}
 
+{% if storyboards %}
 // swiftlint:disable file_length
 // swiftlint:disable line_length
 // swiftlint:disable type_body_length
@@ -17,7 +21,7 @@ protocol StoryboardSceneType {
 
 extension StoryboardSceneType {
   static func storyboard() -> NSStoryboard {
-    return NSStoryboard(name: self.storyboardName, bundle: nil)
+    return NSStoryboard(name: self.storyboardName, bundle: NSBundle(forClass: BundleToken.self))
   }
 
   static func initialController() -> AnyObject {
@@ -53,10 +57,9 @@ extension NSViewController {
 }
 
 {# This is where the generation begins, this code depends on what you have in your Storyboards #}
-{% if storyboards %}
-struct {{sceneEnumName}} {
+enum {{sceneEnumName}} {
   {% for storyboard in storyboards %}
-  {% set storyboardName %}{{storyboard.name|swiftIdentifier}}{% endset %}
+  {% set storyboardName %}{{storyboard.name|swiftIdentifier|escapeReservedKeywords}}{% endset %}
   {% if storyboard.scenes %}
   enum {{storyboardName}}: String, StoryboardSceneType {
     static let storyboardName = "{{storyboard.name}}"
@@ -64,23 +67,14 @@ struct {{sceneEnumName}} {
     {% set sceneID %}{{scene.identifier|swiftIdentifier}}{% endset %}
 
     case {{sceneID}}Scene = "{{scene.identifier}}"
-    {% if scene.customClass %}
-    static func instantiate{{sceneID|snakeToCamelCase}}() -> {% if scene.customModule %}{{scene.customModule}}.{% endif %}{{scene.customClass}} {
-      guard let vc = {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.controller() as? {% if scene.customModule %}{{scene.customModule}}.{% endif %}{{scene.customClass}}
+    {% set sceneClass %}{% call className scene %}{% endset %}
+    static func instantiate{{sceneID|snakeToCamelCase}}() -> {{sceneClass}} {
+      guard let vc = {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.controller() as? {{sceneClass}}
       else {
-        fatalError("ViewController '{{scene.identifier}}' is not of the expected class {% if scene.customModule %}{{scene.customModule}}.{% endif %}{{scene.customClass}}.")
+        fatalError("ViewController '{{scene.identifier}}' is not of the expected class {{sceneClass}}.")
       }
       return vc
     }
-    {% else %}
-    static func instantiate{{sceneID|snakeToCamelCase}}() -> NS{{scene.baseType}} {
-      guard let vc = {{sceneEnumName}}.{{storyboardName}}.{{sceneID}}Scene.controller() as? NS{{scene.baseType}}
-      else {
-        fatalError("ViewController '{{scene.identifier}}' is not of the expected class NS{{scene.baseType}}.")
-      }
-      return vc
-    }
-    {% endif %}
     {% endfor %}
   }
   {% else %}
@@ -91,15 +85,18 @@ struct {{sceneEnumName}} {
   {% endfor %}
 }
 
-struct {{segueEnumName}} {
+enum {{segueEnumName}} {
   {% for storyboard in storyboards %}{% if storyboard.segues %}
-  enum {{storyboard.name|swiftIdentifier}}: String, StoryboardSegueType {
+  enum {{storyboard.name|swiftIdentifier|escapeReservedKeywords}}: String, StoryboardSegueType {
     {% for segue in storyboard.segues %}
-    case {{segue.identifier|swiftIdentifier}} = "{{segue.identifier}}"
+    {% set segueID %}{{segue.identifier|swiftIdentifier}}{% endset %}
+    case {{segueID|escapeReservedKeywords}}{% if segueID != segue.identifier %} = "{{segue.identifier}}"{% endif %}
     {% endfor %}
   }
   {% endif %}{% endfor %}
 }
+
+private final class BundleToken {}
 {% else %}
 // No storyboard found
 {% endif %}

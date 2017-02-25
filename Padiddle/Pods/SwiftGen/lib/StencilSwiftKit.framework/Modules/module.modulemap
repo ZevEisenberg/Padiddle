@@ -1,0 +1,10 @@
+framework module StencilSwiftKit {
+  umbrella header "StencilSwiftKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module StencilSwiftKit.Swift {
+    header "StencilSwiftKit-Swift.h"
+}

@@ -1,0 +1,10 @@
+framework module SwiftGenKit {
+  umbrella header "SwiftGenKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module SwiftGenKit.Swift {
+    header "SwiftGenKit-Swift.h"
+}

@@ -4,30 +4,44 @@
 import Foundation
 
 // swiftlint:disable line_length
+{% macro recursiveBlock strings %}
+  {% for string in strings.strings %}
+  /// {{string.translation}}
+  case {{string.key|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join}}){% endif %}
+  {% endfor %}
+  {% for subenum in strings.subenums %}
+  {% call recursiveBlock subenum %}
+  {% endfor %}
+{% endmacro %}
 
 enum {{enumName}} {
-  {% for string in strings %}
-  /// {{string.translation}}
-  case {{string.key|swiftIdentifier|snakeToCamelCase}}{% if string.params %}({{string.params.types|join}}){% endif %}
-  {% endfor %}
+  {% call recursiveBlock structuredStrings %}
 }
 
+{% macro parametersBlock params %}{% for type in params.types %}let p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro argumentsBlock params %}{% for type in params.types %}p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro recursiveBlock strings %}
+      {% for string in strings.strings %}
+      {% if string.params %}
+      case .{{string.key|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}({% call parametersBlock string.params %}):
+        let format = NSLocalizedString("{{string.key}}", bundle: NSBundle(forClass: BundleToken.self), comment: "")
+        return {{enumName}}.tr(format, {% call argumentsBlock string.params %})
+      {% else %}
+      case .{{string.key|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}:
+        let format = NSLocalizedString("{{string.key}}", bundle: NSBundle(forClass: BundleToken.self), comment: "")
+        return {{enumName}}.tr(format)
+      {% endif %}
+      {% endfor %}
+      {% for subenum in strings.subenums %}
+      {% call recursiveBlock subenum %}
+      {% endfor %}
+{% endmacro %}
 extension {{enumName}}: CustomStringConvertible {
   var description: String { return self.string }
 
   var string: String {
     switch self {
-      {% for string in strings %}
-      {% if string.params %}
-      case .{{string.key|swiftIdentifier|snakeToCamelCase}}({{string.params.declarations|join}}):
-        let format = NSLocalizedString("{{string.key}}", comment: "")
-        return {{enumName}}.tr(format, {{string.params.names|join}})
-      {% else %}
-      case .{{string.key|swiftIdentifier|snakeToCamelCase}}:
-        let format = NSLocalizedString("{{string.key}}", comment: "")
-        return {{enumName}}.tr(format)
-      {% endif %}
-      {% endfor %}
+      {% call recursiveBlock structuredStrings %}
     }
   }
 
@@ -39,6 +53,8 @@ extension {{enumName}}: CustomStringConvertible {
 func tr(key: {{enumName}}) -> String {
   return key.string
 }
+
+private final class BundleToken {}
 {% else %}
 // No string found
 {% endif %}

@@ -11,24 +11,47 @@
 
 // swiftlint:disable file_length
 // swiftlint:disable line_length
+{% macro recursiveBlock images %}
+  {% for image in images %}
+  {% if not image.items %}
+  case {{image.value|swiftIdentifier|escapeReservedKeywords}} = "{{image.value}}"
+  {% else %}
+  {% call recursiveBlock image.items %}
+  {% endif %}
+  {% endfor %}
+{% endmacro %}
 
 // swiftlint:disable type_body_length
 enum {{enumName}}: String {
-  {% for image in images %}
-  case {{image|swiftIdentifier}} = "{{image}}"
+  {% for catalog in catalogs %}
+  {% call recursiveBlock catalog.assets %}
   {% endfor %}
 
   var image: Image {
-    return Image(asset: self)
+    let bundle = NSBundle(forClass: BundleToken.self)
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    let image = Image(named: rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
+    #elseif os(OSX)
+    let image = bundle.imageForResource(rawValue)
+    #endif
+    guard let result = image else { fatalError("Unable to load image \(rawValue).") }
+    return result
   }
 }
 // swiftlint:enable type_body_length
 
 extension Image {
   convenience init!(asset: {{enumName}}) {
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    let bundle = NSBundle(forClass: BundleToken.self)
+    self.init(named: asset.rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
+    #elseif os(OSX)
     self.init(named: asset.rawValue)
+    #endif
   }
 }
+
+private final class BundleToken {}
 {% else %}
 // No image found
 {% endif %}

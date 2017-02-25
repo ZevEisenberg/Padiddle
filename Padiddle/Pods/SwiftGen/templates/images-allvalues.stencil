@@ -11,28 +11,62 @@
 
 // swiftlint:disable file_length
 // swiftlint:disable line_length
+{% macro recursiveCaseBlock images %}
+  {% for image in images %}
+  {% if not image.items %}
+  case {{image.value|swiftIdentifier|escapeReservedKeywords}} = "{{image.value}}"
+  {% else %}
+  {% call recursiveCaseBlock image.items %}
+  {% endif %}
+  {% endfor %}
+{% endmacro %}
+{% macro recursiveValueBlock images isLast %}
+  {% for image in images %}
+  {% if not image.items %}
+    {{image.value|swiftIdentifier|escapeReservedKeywords}}{% if not forloop.last or not isLast %},{% endif %}
+  {% else %}
+    {% call recursiveValueBlock image.items forloop.last %}
+  {% endif %}
+  {% endfor %}
+{% endmacro %}
 
 // swiftlint:disable type_body_length
 enum {{enumName}}: String {
-  {% for image in images %}
-  case {{image|swiftIdentifier}} = "{{image}}"
+  {% for catalog in catalogs %}
+  {% call recursiveCaseBlock catalog.assets %}
   {% endfor %}
 
-  static let allValues = [{% for image in images %}
-    {{image|swiftIdentifier}}{% if not forloop.last %},{% endif %}
-  {% endfor %}]
+  static let allValues = [
+    {% for catalog in catalogs %}
+    {% call recursiveValueBlock catalog.assets false %}
+    {% endfor %}
+  ]
 
   var image: Image {
-    return Image(asset: self)
+    let bundle = NSBundle(forClass: BundleToken.self)
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    let image = Image(named: rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
+    #elseif os(OSX)
+    let image = bundle.imageForResource(rawValue)
+    #endif
+    guard let result = image else { fatalError("Unable to load image \(rawValue).") }
+    return result
   }
 }
 // swiftlint:enable type_body_length
 
 extension Image {
   convenience init!(asset: {{enumName}}) {
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    let bundle = NSBundle(forClass: BundleToken.self)
+    self.init(named: asset.rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
+    #elseif os(OSX)
     self.init(named: asset.rawValue)
+    #endif
   }
 }
+
+private final class BundleToken {}
 {% else %}
 // No image found
 {% endif %}
