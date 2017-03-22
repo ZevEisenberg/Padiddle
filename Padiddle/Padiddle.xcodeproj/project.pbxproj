@@ -413,7 +413,7 @@
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
 				CD118DBF1BA4E7C800668DB6 /* Build Number */,
-				7ACF44EE1BD1B64500CE7FB2 /* Swiftlint */,
+				7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */,
 				A77514DFBBBC9E4B6E0FC363 /* [CP] Embed Pods Frameworks */,
 				9AA03E83AAB5F6722AF7B50B /* [CP] Copy Pods Resources */,
 				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
@@ -624,19 +624,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7ACF44EE1BD1B64500CE7FB2 /* Swiftlint */ = {
+		7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Swiftlint;
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
 		};
 		9AA03E83AAB5F6722AF7B50B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
