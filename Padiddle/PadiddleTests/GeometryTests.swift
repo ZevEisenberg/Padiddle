@@ -6,8 +6,8 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import XCTest
 @testable import Padiddle
+import XCTest
 
 let accuracy = 0.00001
 

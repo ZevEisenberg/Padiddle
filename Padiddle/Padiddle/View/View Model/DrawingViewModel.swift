@@ -6,8 +6,8 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
 import CoreMotion
+import UIKit
 
 private let debugging = false
 

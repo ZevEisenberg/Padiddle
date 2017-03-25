@@ -6,13 +6,10 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import UIKit
-
-import Fabric
-
 #if DEBUG
     import SimulatorStatusMagic
-#endif
+    #endif
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

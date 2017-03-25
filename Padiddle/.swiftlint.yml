@@ -7,6 +7,7 @@ disabled_rules: # rule identifiers to exclude from running
 enabled_rules:
   - vertical_whitespace
   - operator_usage_whitespace
+  - sorted_imports
 
 excluded:
   - Carthage
