@@ -66,7 +66,7 @@ extension Layout {
         view.addSubview(toolbarView)
         toolbarView.heightAnchor == 44
 
-        toolbarView.horizontalAnchors == view.horizontalAnchors ~ UILayoutPriorityDefaultHigh
+        toolbarView.horizontalAnchors == view.horizontalAnchors ~ .high
 
         toolbarTopConstraint = (toolbarView.topAnchor == bottomLayoutGuide.topAnchor)
         toolbarTopConstraint.isActive = false // so it doesn't conflict with toolbarBottomConstraint
