@@ -37,13 +37,6 @@ class ArrayTests: XCTestCase {
         XCTAssertEqual([Int]().zip(almostSameLengthArray: [1]), [1])
     }
 
-    func testTupleEquality() {
-        XCTAssertTrue((0, 0) == (0, 0))
-        XCTAssertTrue((1, 2) == (1, 2))
-        XCTAssertFalse((1, 2) == (2, 3))
-        XCTAssertFalse((1, 2) == (2, 1))
-    }
-
     func testDoublets() {
         let empty = [Int]()
         XCTAssertNil(empty.doublets)
@@ -64,13 +57,8 @@ class ArrayTests: XCTestCase {
         let zipped = zip(doublets, exemplar)
 
         for pair in zipped {
-            XCTAssertTrue(pair.0 == pair.1)
-            XCTAssertEqual(pair.0.0, pair.1.0)
-            XCTAssertEqual(pair.0.1, pair.1.1)
+            XCTAssertEqual(pair.0, pair.1)
         }
     }
-}
 
-func == <T: Equatable> (tuple1: (T, T), tuple2: (T, T)) -> Bool {
-    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
 }
