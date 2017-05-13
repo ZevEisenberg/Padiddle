@@ -13,8 +13,7 @@ let rowsPortrait = 3
 let colsLandscape = 3
 let rowsLandscape = 2
 
-protocol ColorPickerDelegate:
-class {
+protocol ColorPickerDelegate: class {
     func colorPicked(_ color: ColorManager)
 }
 
@@ -134,9 +133,11 @@ class ColorPickerViewController: UIViewController {
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
         collectionView.setContentOffset(scrollTo, animated: true)
     }
+
 }
 
 private extension ColorPickerViewController {
+
     func adjustColumnsAndRows(_ traitCollection: UITraitCollection) {
         if traitCollection.verticalSizeClass == .regular {
             layout.numberOfColumns = colsPortrait
@@ -149,7 +150,6 @@ private extension ColorPickerViewController {
     }
 
     func scrollToPageWithCell(at indexPath: IndexPath) {
-
         guard collectionView.frame != .zero else { return }
         guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame else { return }
 
@@ -165,17 +165,21 @@ private extension ColorPickerViewController {
         let selectedIndex = viewModel.selectedIndex
         currentSelection = IndexPath(item: selectedIndex, section: 0)
     }
+
 }
 
 extension ColorPickerViewController: UIScrollViewDelegate {
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.width
         viewModel.currentPage = Int(floor(collectionView.contentOffset.x / pageWidth))
         pageControl.currentPage = viewModel.currentPage
     }
+
 }
 
 extension ColorPickerViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.colorsToPick.count
     }
@@ -190,6 +194,7 @@ extension ColorPickerViewController: UICollectionViewDataSource {
         cell.image = viewModel.imageForColorManager(viewModel.colorsToPick[indexPath.item])
         return cell
     }
+
 }
 
 extension ColorPickerViewController: UICollectionViewDelegate {
@@ -218,4 +223,5 @@ extension ColorPickerViewController: UICollectionViewDelegate {
         currentSelection = indexPath
         delegate?.colorPicked(viewModel.selectedColorManager)
     }
+
 }
