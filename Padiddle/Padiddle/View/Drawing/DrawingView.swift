@@ -17,24 +17,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
     fileprivate var viewModel: DrawingViewModel
 
-    var isUpdating: Bool {
-        get {
-            return viewModel.isUpdating
-        }
-        set {
-            viewModel.isUpdating = newValue
-        }
-    }
-
-    var needToMoveNibToNewStartLocation: Bool {
-        get {
-            return viewModel.needToMoveNibToNewStartLocation
-        }
-        set {
-            viewModel.needToMoveNibToNewStartLocation = newValue
-        }
-    }
-
     init(viewModel: DrawingViewModel) {
 
         self.viewModel = viewModel
