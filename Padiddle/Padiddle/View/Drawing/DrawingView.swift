@@ -87,5 +87,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 private extension DrawingView {
     @objc func displayLinkUpdated() { // marked @objc so it can be looked up by selector
         setNeedsDisplay(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
+        viewModel.nullifyDirtyRect()
     }
 }
