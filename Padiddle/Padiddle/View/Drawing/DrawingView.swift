@@ -9,9 +9,9 @@
 import UIKit
 
 class DrawingView: UIView, DrawingViewBoundsVendor {
-    fileprivate var needsErase = true
-    fileprivate let screenScale = UIScreen.main.scale
 
+    private var needsErase = true
+    private let screenScale = UIScreen.main.scale
 
     fileprivate var displayLink: CADisplayLink?
 
