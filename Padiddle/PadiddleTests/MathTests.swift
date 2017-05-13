@@ -33,4 +33,5 @@ class MathTests: XCTestCase {
         XCTAssertEqualWithAccuracy(twoPi.degrees, 360, accuracy: ε)
         XCTAssertEqualWithAccuracy((CGFloat.pi / 3.0).degrees, 60, accuracy: ε)
     }
+
 }

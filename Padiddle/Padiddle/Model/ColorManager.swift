@@ -9,19 +9,24 @@
 import UIKit.UIColor
 
 enum ColorMode {
+
     case thetaIncreasing
     case thetaIncreasingAndDecreasing
     case velocityOut
     case velocityIn
     case manual(CGFloat)
+
 }
 
 enum ColorModel {
+
     case hsv(h: ColorMode, s: ColorMode, v: ColorMode)
     case rgb(r: ColorMode, g: ColorMode, b: ColorMode)
+
 }
 
 struct ColorManager {
+
     var radius: CGFloat = 0
     var theta: CGFloat = 0 {
         didSet {
@@ -92,4 +97,5 @@ struct ColorManager {
 
         return channelValue
     }
+
 }

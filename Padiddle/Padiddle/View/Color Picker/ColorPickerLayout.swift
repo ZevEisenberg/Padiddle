@@ -11,6 +11,7 @@ import UIKit
 private let spacing: CGFloat = 10
 
 class ColorPickerLayout: UICollectionViewLayout {
+
     var numberOfColumns: Int = 2 {
         didSet {
             invalidateLayout()
@@ -89,9 +90,11 @@ class ColorPickerLayout: UICollectionViewLayout {
 
         return CGSize(width: width, height: height)
     }
+
 }
 
 private extension ColorPickerLayout {
+
     func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
 
         guard let collectionView = collectionView else {
@@ -131,4 +134,5 @@ private extension ColorPickerLayout {
         let frame = CGRect(x: originX, y: originY, width: floor(columnWidth), height: floor(rowHeight))
         return frame
     }
+
 }

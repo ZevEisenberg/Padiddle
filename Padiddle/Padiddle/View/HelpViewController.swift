@@ -79,4 +79,5 @@ extension HelpViewController: UIWebViewDelegate {
             fatalError("Unexpected navigation type \(navigationType)")
         }
     }
+
 }

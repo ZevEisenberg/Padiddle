@@ -7,6 +7,7 @@
 //
 
 class Weak<T: AnyObject>: CustomStringConvertible {
+
     weak var value: T?
     init(value: T) {
         self.value = value
@@ -20,4 +21,5 @@ class Weak<T: AnyObject>: CustomStringConvertible {
             return "Weak(nil)"
         }
     }
+
 }

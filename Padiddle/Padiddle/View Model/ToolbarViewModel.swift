@@ -9,17 +9,20 @@
 import Foundation
 import UIKit.UIImage
 
-protocol ToolbarViewModelToolbarDelegate:
-class {
+protocol ToolbarViewModelToolbarDelegate: class {
+
     func setToolbarVisible(_ visible: Bool, animated: Bool)
+
 }
 
-protocol ToolbarViewModelColorDelegate:
-class {
+protocol ToolbarViewModelColorDelegate: class {
+
     func colorManagerPicked(_ colorManager: ColorManager)
+
 }
 
 class ToolbarViewModel {
+
     var colorPickerViewModel: ColorPickerViewModel?
 
     let rootViewModel: RootViewModel
@@ -45,16 +48,21 @@ class ToolbarViewModel {
     func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
         rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
     }
+
 }
 
 extension ToolbarViewModel: RecordingDelegate {
+
     @objc func recordingStatusChanged(_ recording: Bool) {
         toolbarDelegate?.setToolbarVisible(!recording, animated: true)
     }
+
 }
 
 extension ToolbarViewModel: ColorPickerViewModelDelegate {
+
     func colorManagerPicked(_ colorManager: ColorManager) {
         colorDelegate?.colorManagerPicked(colorManager)
     }
+
 }

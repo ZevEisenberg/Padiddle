@@ -58,4 +58,5 @@ struct Log {
             log(object, title: "Debug-> ", fileName, functionName, line)
         }
     }
+
 }

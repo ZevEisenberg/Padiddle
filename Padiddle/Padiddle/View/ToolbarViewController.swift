@@ -35,6 +35,7 @@ class ToolbarViewController: UIViewController {
 
 private typealias Layout = ToolbarViewController
 extension Layout {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -164,10 +165,12 @@ extension Layout {
             recordButton.centerXAnchor == recordButtonSuperview.centerXAnchor
         }
     }
+
 }
 
 typealias ButtonHandlers = ToolbarViewController
 extension ButtonHandlers {
+
     func trashTapped() {
         Log.info()
         let clearAction = UIAlertAction(title: L10n.clearDrawing.string, style: .destructive) { _ in
@@ -299,9 +302,11 @@ extension ButtonHandlers {
         self.present(viewControllerToShow, animated: true, completion: nil)
         configurePopover(viewController: viewControllerToShow, sourceView: helpButton)
     }
+
 }
 
 extension ToolbarViewController: ColorPickerDelegate {
+
     func colorPicked(_ color: ColorManager) {
         updateColorButton(color)
 
@@ -316,9 +321,11 @@ extension ToolbarViewController: ColorPickerDelegate {
         }
         Log.info("picked color: \(color)")
     }
+
 }
 
 extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
+
     func setToolbarVisible(_ visible: Bool, animated: Bool) {
         if toolbarVisible != visible {
             toolbarVisible = visible
@@ -330,6 +337,7 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
             }
         }
     }
+
 }
 
 private extension ToolbarViewController {
@@ -419,4 +427,5 @@ private extension ToolbarViewController {
         popoverController.permittedArrowDirections = .down
         popoverController.passthroughViews = self.passthroughViews
     }
+
 }

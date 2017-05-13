@@ -15,16 +15,21 @@ let kMotionManagerUpdateInterval: TimeInterval = 1.0 / 120.0
 let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
 
 protocol DrawingViewModelDelegate: class {
+
     func start()
     func pause()
     func drawingViewModelUpdatedLocation(_ newLocation: CGPoint)
+
 }
 
 protocol DrawingViewBoundsVendor: class {
+
     var bounds: CGRect { get }
+
 }
 
 class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
+
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
 
@@ -195,9 +200,11 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
             }
         }
     }
+
 }
 
 extension DrawingViewModel: RecordingDelegate {
+
     @objc func recordingStatusChanged(_ recording: Bool) {
         if recording {
             delegate?.start()
@@ -215,14 +222,17 @@ extension DrawingViewModel: RecordingDelegate {
             stopMotionUpdates()
         }
     }
+
 }
 
 extension DrawingViewModel: RootColorManagerDelegate {
+
     func colorManagerPicked(_ colorManager: ColorManager) {
         var newManager = colorManager
         newManager.maxRadius = maxRadius
         self.colorManager = newManager
     }
+
 }
 
 extension DrawingViewModel { // Coordinate conversions
@@ -284,9 +294,13 @@ extension DrawingViewModel { // Coordinate conversions
 
         return offsetRect
     }
+
 }
 
-private extension DrawingViewModel { // Context configuration
+// MARK: Context configuration
+
+private extension DrawingViewModel {
+
     func configureOffscreenContext() -> Bool {
         let bitmapBytesPerRow: Int
 
@@ -325,7 +339,10 @@ private extension DrawingViewModel { // Context configuration
     }
 }
 
-extension DrawingViewModel { // Core Motion
+// MARK: Core Motion
+
+extension DrawingViewModel {
+
     func startMotionUpdates() {
         if motionManager.isGyroAvailable {
             if motionManager.isMagnetometerAvailable {
@@ -362,4 +379,5 @@ extension DrawingViewModel { // Core Motion
             delegate?.drawingViewModelUpdatedLocation(CGPoint(x: x, y: y))
         }
     }
+
 }

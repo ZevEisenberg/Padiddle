@@ -55,9 +55,11 @@ struct ImageIO {
             completion(image)
         }
     }
+
 }
 
 private extension ImageIO {
+
     static let persistedImageExtension = "png"
 
     static let persistedImageName: String = {
@@ -132,4 +134,5 @@ private extension ImageIO {
 
         return image
     }
+
 }

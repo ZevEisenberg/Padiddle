@@ -9,6 +9,7 @@
 import Anchorage
 
 extension UIInterfaceOrientation: CustomStringConvertible {
+
     public var description: String {
         switch self {
         case .unknown:
@@ -23,6 +24,7 @@ extension UIInterfaceOrientation: CustomStringConvertible {
             return "LandscapeRight"
         }
     }
+
 }
 
 func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrientation) -> CGAffineTransform {

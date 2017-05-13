@@ -56,4 +56,5 @@ class HelpImageProtocol: URLProtocol {
     override func stopLoading() {
         // We send all the data at once, so there is nothing to do here.
     }
+
 }

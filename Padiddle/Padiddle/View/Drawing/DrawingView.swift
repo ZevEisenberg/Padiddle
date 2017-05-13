@@ -12,6 +12,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
     fileprivate var needsErase = true
     fileprivate let screenScale = UIScreen.main.scale
 
+
     fileprivate var displayLink: CADisplayLink?
 
     fileprivate var viewModel: DrawingViewModel
@@ -82,11 +83,14 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
     func setInitialImage(_ image: UIImage) {
         viewModel.setInitialImage(image)
     }
+
 }
 
 private extension DrawingView {
+
     @objc func displayLinkUpdated() { // marked @objc so it can be looked up by selector
         setNeedsDisplay(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
         viewModel.nullifyDirtyRect()
     }
+
 }

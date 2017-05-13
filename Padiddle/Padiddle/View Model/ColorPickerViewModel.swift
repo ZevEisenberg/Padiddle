@@ -9,12 +9,14 @@
 import CoreGraphics.CGBase
 import UIKit
 
-protocol ColorPickerViewModelDelegate:
-class {
+protocol ColorPickerViewModelDelegate: class {
+
     func colorManagerPicked(_ colorManager: ColorManager)
+
 }
 
 class ColorPickerViewModel {
+
     weak var delegate: ColorPickerViewModelDelegate?
 
     init(delegate: ColorPickerViewModelDelegate) {
@@ -67,9 +69,11 @@ class ColorPickerViewModel {
         let image = SpiralImageMaker.image(spiralModel: model)
         return image
     }
+
 }
 
 extension ColorPickerViewModel {
+
     var colorsToPick: [ColorManager] {
         return [ColorManager(
             colorModel: .hsv(
@@ -156,4 +160,5 @@ extension ColorPickerViewModel {
                 title: L10n.colorsFilmNoir.string),
         ]
     }
+
 }

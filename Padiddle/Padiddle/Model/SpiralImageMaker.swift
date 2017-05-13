@@ -9,6 +9,7 @@
 import UIKit
 
 struct SpiralModel {
+
     let colorManager: ColorManager
     let size: CGSize
     let startRadius: CGFloat
@@ -16,9 +17,11 @@ struct SpiralModel {
     let thetaRange: ClosedRange<CGFloat>
     let thetaStep: CGFloat
     let lineWidth: CGFloat
+
 }
 
 struct SpiralImageMaker {
+
     static func image(spiralModel: SpiralModel) -> UIImage {
 
         let size = spiralModel.size
@@ -124,4 +127,5 @@ struct SpiralImageMaker {
 
         return image!
     }
+
 }

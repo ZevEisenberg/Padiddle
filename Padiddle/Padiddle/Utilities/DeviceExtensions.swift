@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIDevice {
+
     class var gyroMaxValue: CGFloat {
         switch current.userInterfaceIdiom {
         case .pad:
@@ -18,8 +19,7 @@ extension UIDevice {
         }
     }
 
-    @nonobjc
-    class var deviceName: String {
+    @nonobjc class var deviceName: String {
         var deviceName = current.model
 
         if runningOnSimulator {
@@ -40,8 +40,7 @@ extension UIDevice {
         return deviceName
     }
 
-    @nonobjc
-    class var deviceImage: UIImage {
+    @nonobjc class var deviceImage: UIImage {
         switch deviceName {
         case "iPad": return #imageLiteral(resourceName: "iPad")
         case "iPhone": return #imageLiteral(resourceName: "iPhone")
@@ -52,4 +51,5 @@ extension UIDevice {
     private class var runningOnSimulator: Bool {
         return TARGET_OS_SIMULATOR != 0
     }
+
 }

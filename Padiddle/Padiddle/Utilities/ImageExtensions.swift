@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIImage {
+
     class func ellipseImage(color: UIColor, size: CGSize, borderWidth: CGFloat, borderColor: UIColor) -> UIImage {
         // Build a rect of appropriate size at origin (1,1)
         let fullRect = CGRect(origin: .zero, size: size)
@@ -124,7 +125,6 @@ extension UIImage {
     }
 
     private func imageScaledBy(_ scaleVector: CGVector) -> UIImage {
-
         let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
@@ -171,4 +171,5 @@ extension UIImage {
 
         return context
     }
+
 }

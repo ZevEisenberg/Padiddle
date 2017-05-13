@@ -19,6 +19,7 @@ let highlightedTrimColor = UIColor(white: 0.65, alpha: 1.0)
 let borderWidth = CGFloat(2)
 
 class PickerCell: UICollectionViewCell {
+
     var image: UIImage? {
         didSet {
             imageView.image = image
@@ -110,4 +111,5 @@ class PickerCell: UICollectionViewCell {
             }
         }
     }
+
 }

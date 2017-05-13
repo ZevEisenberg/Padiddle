@@ -13,6 +13,7 @@ let bytesPerPixel: size_t = 4
 let bitsPerComponent: size_t = 8
 
 extension CGFloat {
+
     func closeEnough(to: CGFloat) -> Bool {
         let epsilon = CGFloat(0.0001)
         let closeEnough = fabs(self - to) < epsilon
@@ -26,4 +27,5 @@ extension CGFloat {
     var degrees: CGFloat {
         return self * 180.0 / .pi
     }
+
 }

@@ -30,7 +30,6 @@ class PadiddleUITests: XCTestCase {
     }
 
     func testToolbarStaysHiddenWhileRotating() {
-
         let app = XCUIApplication()
 
         let window = app.windows.element(boundBy: 0)

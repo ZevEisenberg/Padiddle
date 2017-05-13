@@ -49,4 +49,5 @@ class RootViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+
 }

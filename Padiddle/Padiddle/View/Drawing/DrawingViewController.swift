@@ -78,9 +78,11 @@ class DrawingViewController: CounterRotatingViewController {
     func clearTapped() {
         drawingView.clear()
     }
+
 }
 
 extension DrawingViewController: DrawingViewModelDelegate {
+
     func start() {
         viewModel.isUpdating = true
         drawingView.startDrawing()
@@ -107,4 +109,5 @@ extension DrawingViewController: DrawingViewModelDelegate {
             }
         }
     }
+
 }

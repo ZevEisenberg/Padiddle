@@ -10,6 +10,7 @@ import Foundation
 import UIKit.UIImage
 
 struct HelpViewModel {
+
     init() {
         let success = URLProtocol.registerClass(HelpImageProtocol.self.self)
         assert(success)
@@ -65,4 +66,5 @@ struct HelpViewModel {
 
         return newString
     }
+
 }
