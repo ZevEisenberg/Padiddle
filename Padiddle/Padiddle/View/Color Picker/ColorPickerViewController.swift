@@ -21,7 +21,6 @@ class ColorPickerViewController: UIViewController {
 
     enum ScrollPositionUpdateMode {
         case never
-        case ifNeeded
         case always
     }
 
@@ -36,15 +35,10 @@ class ColorPickerViewController: UIViewController {
     fileprivate var pendingIndexPathToSelectAfterLayout: IndexPath?
 
     fileprivate func updateCurrentSelection(_ indexPath: IndexPath, updateScrollPosition: ScrollPositionUpdateMode) {
-        let wereDifferent = (indexPath != currentSelection)
         currentSelection = indexPath
 
         switch updateScrollPosition {
         case .never: break
-        case .ifNeeded:
-            if wereDifferent {
-                scrollToPageWithCell(at: currentSelection)
-            }
         case .always:
             scrollToPageWithCell(at: currentSelection)
         }
