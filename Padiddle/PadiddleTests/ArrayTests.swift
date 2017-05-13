@@ -37,28 +37,4 @@ class ArrayTests: XCTestCase {
         XCTAssertEqual([Int]().zip(almostSameLengthArray: [1]), [1])
     }
 
-    func testDoublets() {
-        let empty = [Int]()
-        XCTAssertNil(empty.doublets)
-        let one = [1]
-        XCTAssertNil(one.doublets)
-
-        let array = ["a", "b", "c", "d", "e"]
-        let doublets = array.doublets!
-        XCTAssertNotNil(doublets)
-
-        let exemplar = [
-            ("a", "b"),
-            ("b", "c"),
-            ("c", "d"),
-            ("d", "e"),
-        ]
-
-        let zipped = zip(doublets, exemplar)
-
-        for pair in zipped {
-            XCTAssertEqual(pair.0, pair.1)
-        }
-    }
-
 }

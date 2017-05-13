@@ -38,14 +38,4 @@ extension Array {
         return newArray
     }
 
-    var doublets: [(Element, Element)]? {
-        guard count >= 2 else { return nil }
-
-        var output: [(Element, Element)] = []
-        for i in 1..<count {
-            output.append((self[i - 1], self[i]))
-        }
-
-        return output
-    }
 }

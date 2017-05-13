@@ -139,8 +139,8 @@ extension Layout {
         ]
 
         // make buttons equal width to each other
-        for buttonDoublet in nonRecordButtons.doublets! {
-            buttonDoublet.0.widthAnchor == buttonDoublet.1.widthAnchor
+        for (left, right) in zip(nonRecordButtons, nonRecordButtons.dropFirst()) {
+            left.widthAnchor == right.widthAnchor
         }
 
         // Make first and last spacer views’ widths equal to each other
