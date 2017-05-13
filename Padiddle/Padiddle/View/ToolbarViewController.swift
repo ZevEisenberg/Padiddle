@@ -101,7 +101,7 @@ extension Layout {
             helpButton,
         ]
 
-        let stackSubViews = spacerViews.zip(almostSameLengthArray: buttons)
+        let stackSubViews = spacerViews.interleave(with: buttons)
 
         stackSubViews.forEach {
             toolbarStackView.addArrangedSubview($0)

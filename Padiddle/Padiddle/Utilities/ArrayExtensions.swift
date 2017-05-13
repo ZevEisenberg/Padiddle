@@ -16,7 +16,7 @@ extension Array where Element : Equatable {
 }
 
 extension Array {
-    func zip(almostSameLengthArray otherArray: [Element]) -> [Element] {
+    func interleave(with otherArray: [Element]) -> [Element] {
         let selfCount = count
         let otherCount = otherArray.count
         let selfIsBigger = selfCount > otherCount

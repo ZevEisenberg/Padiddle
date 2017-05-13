@@ -26,15 +26,15 @@ class ArrayTests: XCTestCase {
         XCTAssertEqual(a3, [3, 4, 5])
     }
 
-    func testZippingArraysOfAlmostTheSameLength() {
+    func testInterleavingArrays() {
         let long = ["a", "b", "c", "d", "e"]
         let short = ["1", "2", "3", "4"]
 
-        XCTAssertEqual(long.zip(almostSameLengthArray: short), ["a", "1", "b", "2", "c", "3", "d", "4", "e"])
-        XCTAssertEqual(short.zip(almostSameLengthArray: long), ["a", "1", "b", "2", "c", "3", "d", "4", "e"])
+        XCTAssertEqual(long.interleave(with: short), ["a", "1", "b", "2", "c", "3", "d", "4", "e"])
+        XCTAssertEqual(short.interleave(with: long), ["a", "1", "b", "2", "c", "3", "d", "4", "e"])
 
-        XCTAssertEqual([1].zip(almostSameLengthArray: [Int]()), [1])
-        XCTAssertEqual([Int]().zip(almostSameLengthArray: [1]), [1])
+        XCTAssertEqual([1].interleave(with: [Int]()), [1])
+        XCTAssertEqual([Int]().interleave(with: [1]), [1])
     }
 
 }
