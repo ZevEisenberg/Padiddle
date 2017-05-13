@@ -19,14 +19,33 @@ protocol ColorPickerDelegate: class {
 
 class ColorPickerViewController: UIViewController {
 
+    enum ScrollPositionUpdateMode {
+        case never
+        case ifNeeded
+        case always
+    }
+
     weak var delegate: ColorPickerDelegate?
 
     fileprivate let collectionView: UICollectionView
     fileprivate let pageControl: UIPageControl
     fileprivate let layout: ColorPickerLayout
     fileprivate let viewModel: ColorPickerViewModel
-    fileprivate var currentSelection = IndexPath(item: 0, section: 0) {
-        didSet {
+
+    private(set) fileprivate var currentSelection = IndexPath(item: 0, section: 0)
+    fileprivate var pendingIndexPathToSelectAfterLayout: IndexPath?
+
+    fileprivate func updateCurrentSelection(_ indexPath: IndexPath, updateScrollPosition: ScrollPositionUpdateMode) {
+        let wereDifferent = (indexPath != currentSelection)
+        currentSelection = indexPath
+
+        switch updateScrollPosition {
+        case .never: break
+        case .ifNeeded:
+            if wereDifferent {
+                scrollToPageWithCell(at: currentSelection)
+            }
+        case .always:
             scrollToPageWithCell(at: currentSelection)
         }
     }
@@ -87,7 +106,10 @@ class ColorPickerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        restoreSelection()
+        if let pendingIndexPath = pendingIndexPathToSelectAfterLayout {
+            updateCurrentSelection(pendingIndexPath, updateScrollPosition: .always)
+            pendingIndexPathToSelectAfterLayout = nil
+        }
 
         // Restore the previous selection in the collection view
         collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
@@ -104,16 +126,10 @@ class ColorPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        restoreSelection()
-
         let restoredIndex = viewModel.selectedIndex
-        currentSelection = IndexPath(item: restoredIndex, section: 0)
+        pendingIndexPathToSelectAfterLayout = IndexPath(item: restoredIndex, section: 0)
 
         adjustColumnsAndRows(traitCollection)
-
-        collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
-
-        scrollToPageWithCell(at: currentSelection)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -159,11 +175,6 @@ private extension ColorPickerViewController {
 
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
         collectionView.setContentOffset(scrollTo, animated: false)
-    }
-
-    func restoreSelection() {
-        let selectedIndex = viewModel.selectedIndex
-        currentSelection = IndexPath(item: selectedIndex, section: 0)
     }
 
 }
@@ -220,7 +231,7 @@ extension ColorPickerViewController: UICollectionViewDelegate {
             }
         }
 
-        currentSelection = indexPath
+        updateCurrentSelection(indexPath, updateScrollPosition: .always)
         delegate?.colorPicked(viewModel.selectedColorManager)
     }
 
