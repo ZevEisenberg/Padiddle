@@ -122,7 +122,7 @@
 		CD20258A1D1A35A90002C2A0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD20258B1D1A35AD0002C2A0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CD2AD6041C56F00F00910FFE /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
-		CD4010641D333A1D0004F411 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CD4010641D333A1D0004F411 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD4010651D333A1D0004F411 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/help.html; sourceTree = "<group>"; };
 		CD4010661D333A1D0004F411 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CD42370C1BAB54EB0000E395 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ColorPickerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -151,9 +151,9 @@
 		CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceExtensions.swift; sourceTree = "<group>"; };
 		CDBF24361BC5F56600A0785C /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewModel.swift; sourceTree = "<group>"; };
-		CDDA9DC81C53005E00D9EF19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		CDDA9DCA1C53007700D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		CDDA9DCB1C53007C00D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		CDDA9DC81C53005E00D9EF19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CDDA9DCA1C53007700D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		CDDA9DCB1C53007C00D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		CDDA9DCD1C5300CD00D9EF19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/help.html; sourceTree = "<group>"; };
 		CDDA9DD01C5300FF00D9EF19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/help.html; sourceTree = "<group>"; };
 		CDDA9DD21C53011000D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/help.html"; sourceTree = "<group>"; };
@@ -227,9 +227,9 @@
 		CD114B6F1CB80066001BBF75 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				CD114B721CB80066001BBF75 /* Info.plist */,
 				CD114B701CB80066001BBF75 /* Screenshots.swift */,
 				CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */,
-				CD114B721CB80066001BBF75 /* Info.plist */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -237,13 +237,13 @@
 		CD193CB01BA4891500203B44 = {
 			isa = PBXGroup;
 			children = (
+				55D90D88AE3C18FC488B6956 /* Frameworks */,
 				CD193CBB1BA4891500203B44 /* Padiddle */,
 				CD193CD01BA4891500203B44 /* PadiddleTests */,
 				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
-				CD114B6F1CB80066001BBF75 /* Screenshots */,
-				CD193CBA1BA4891500203B44 /* Products */,
 				75432E97D1126247F315B74C /* Pods */,
-				55D90D88AE3C18FC488B6956 /* Frameworks */,
+				CD193CBA1BA4891500203B44 /* Products */,
+				CD114B6F1CB80066001BBF75 /* Screenshots */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,18 +261,18 @@
 		CD193CBB1BA4891500203B44 /* Padiddle */ = {
 			isa = PBXGroup;
 			children = (
-				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
+				CDDA9DD71C5310C100D9EF19 /* Constants */,
 				CDA035E71BA8AED50023F290 /* Model */,
+				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
 				CDA035E01BA8AEAA0023F290 /* View */,
 				CD42370E1BAB6F2D0000E395 /* View Model */,
-				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
-				CDDA9DD71C5310C100D9EF19 /* Constants */,
+				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
-				CD703CFC1D3346C200221364 /* Settings.bundle */,
-				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
-				CDDA9DCC1C5300CD00D9EF19 /* help.html */,
-				CD2025841D1A2DC70002C2A0 /* Localizable.strings */,
 				CD193CC81BA4891500203B44 /* Info.plist */,
+				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
+				CD2025841D1A2DC70002C2A0 /* Localizable.strings */,
+				CD703CFC1D3346C200221364 /* Settings.bundle */,
+				CDDA9DCC1C5300CD00D9EF19 /* help.html */,
 			);
 			path = Padiddle;
 			sourceTree = "<group>";
@@ -280,11 +280,11 @@
 		CD193CD01BA4891500203B44 /* PadiddleTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
 				CD2AD6041C56F00F00910FFE /* ArrayTests.swift */,
+				CD193CD11BA4891500203B44 /* GeometryTests.swift */,
+				CD193CD31BA4891500203B44 /* Info.plist */,
 				7ACE6A141C83966C001F7062 /* MathTests.swift */,
 				CD7C27521D20BAC800F3E924 /* ViewTests.swift */,
-				CD193CD31BA4891500203B44 /* Info.plist */,
 			);
 			path = PadiddleTests;
 			sourceTree = "<group>";
@@ -292,8 +292,8 @@
 		CD193CDB1BA4891500203B44 /* PadiddleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */,
 				CD193CDE1BA4891500203B44 /* Info.plist */,
+				CD193CDC1BA4891500203B44 /* PadiddleUITests.swift */,
 			);
 			path = PadiddleUITests;
 			sourceTree = "<group>";
@@ -311,30 +311,29 @@
 		CD42370E1BAB6F2D0000E395 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */,
 				CD42370F1BAB6F3E0000E395 /* ColorPickerViewModel.swift */,
 				CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */,
-				7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */,
 				CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */,
+				7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */,
+				CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */,
 			);
-			name = "View Model";
-			path = "View/View Model";
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		CD5D4EFF1BACA0FE00D4AABB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
-				CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */,
-				CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */,
-				CDBF24361BC5F56600A0785C /* ImageExtensions.swift */,
-				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
-				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
-				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
-				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
-				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
-				CD1317C91C8B6F6D0018D720 /* Log.swift */,
 				CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */,
+				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
+				CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */,
+				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
+				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
+				CDBF24361BC5F56600A0785C /* ImageExtensions.swift */,
+				CD1317C91C8B6F6D0018D720 /* Log.swift */,
+				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
+				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
+				CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */,
+				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -342,12 +341,12 @@
 		CDA035E01BA8AEAA0023F290 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */,
+				CD42370B1BAB54CE0000E395 /* Color Picker */,
 				CDBF242D1BC5DCE900A0785C /* Drawing */,
+				CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */,
+				CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */,
 				CDA035E21BA8AEAA0023F290 /* RootViewController.swift */,
 				CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */,
-				CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */,
-				CD42370B1BAB54CE0000E395 /* Color Picker */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,8 +356,8 @@
 			children = (
 				CDA035E81BA8B02D0023F290 /* ColorManager.swift */,
 				CD5D4EFC1BAC867D00D4AABB /* Defaults.swift */,
-				CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */,
 				CDE071321C55BDFE00BB5D6A /* ImageIO.swift */,
+				CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,11 +374,10 @@
 		CDDA9DD71C5310C100D9EF19 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CDBB16861C6F19F600B7E0A2 /* UIColor+Extensions.swift */,
 				CD2025821D1A2DAD0002C2A0 /* L10n.swift */,
+				CDBB16861C6F19F600B7E0A2 /* UIColor+Extensions.swift */,
 			);
-			name = Constants;
-			path = ../Constants;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -751,7 +749,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/Base.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --template swift3 --output \"$PROJECT_DIR/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
+			shellScript = "SWIFTGEN_BINARY=\"$PODS_ROOT/SwiftGen/bin/swiftgen\"\nSTRINGS_FILE_PATH=\"$PROJECT_DIR/Padiddle/Base.lproj/Localizable.strings\"\n\nif which \"${SWIFTGEN_BINARY}\" >/dev/null; then\n    if [[ ${CONFIGURATION} = \"Debug\" ]]; then\n        \"${SWIFTGEN_BINARY}\" strings --enumName L10n \"${STRINGS_FILE_PATH}\" --template swift3 --output \"$PROJECT_DIR/Padiddle/Constants/L10n.swift\"\n    fi\nelse\n    echo \"SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen\"\nfi";
 		};
 		E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -883,23 +881,25 @@
 			children = (
 				CD193CC61BA4891500203B44 /* Base */,
 				CDDA9DC81C53005E00D9EF19 /* fr */,
+				CD4010641D333A1D0004F411 /* it */,
 				CDDA9DCA1C53007700D9EF19 /* zh-Hans */,
 				CDDA9DCB1C53007C00D9EF19 /* zh-Hant */,
-				CD4010641D333A1D0004F411 /* it */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		CD2025841D1A2DC70002C2A0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				CD92FB001D1B7A6700AE86FB /* Base */,
 				CD2025891D1A35A00002C2A0 /* fr */,
+				CD4010661D333A1D0004F411 /* it */,
 				CD20258A1D1A35A90002C2A0 /* zh-Hans */,
 				CD20258B1D1A35AD0002C2A0 /* zh-Hant */,
-				CD92FB001D1B7A6700AE86FB /* Base */,
-				CD4010661D333A1D0004F411 /* it */,
 			);
 			name = Localizable.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		CDDA9DCC1C5300CD00D9EF19 /* help.html */ = {
@@ -907,11 +907,12 @@
 			children = (
 				CDDA9DCD1C5300CD00D9EF19 /* Base */,
 				CDDA9DD01C5300FF00D9EF19 /* fr */,
+				CD4010651D333A1D0004F411 /* it */,
 				CDDA9DD21C53011000D9EF19 /* zh-Hans */,
 				CDDA9DD31C53011100D9EF19 /* zh-Hant */,
-				CD4010651D333A1D0004F411 /* it */,
 			);
 			name = help.html;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
