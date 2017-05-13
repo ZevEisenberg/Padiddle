@@ -28,7 +28,7 @@ class ColorPickerViewController: UIViewController {
     fileprivate let viewModel: ColorPickerViewModel
     fileprivate var currentSelection = IndexPath(item: 0, section: 0) {
         didSet {
-            scrollToPageWithCellAtIndexPath(currentSelection)
+            scrollToPageWithCell(at: currentSelection)
         }
     }
 
@@ -114,7 +114,7 @@ class ColorPickerViewController: UIViewController {
 
         collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
 
-        scrollToPageWithCellAtIndexPath(currentSelection)
+        scrollToPageWithCell(at: currentSelection)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -124,7 +124,7 @@ class ColorPickerViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        scrollToPageWithCellAtIndexPath(currentSelection)
+        scrollToPageWithCell(at: currentSelection)
     }
 
     // MARK: Action Handlers
@@ -148,7 +148,7 @@ private extension ColorPickerViewController {
         }
     }
 
-    func scrollToPageWithCellAtIndexPath(_ indexPath: IndexPath) {
+    func scrollToPageWithCell(at indexPath: IndexPath) {
 
         guard collectionView.frame != .zero else { return }
         guard let cellFrame = collectionView.layoutAttributesForItem(at: indexPath)?.frame else { return }
