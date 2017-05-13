@@ -112,7 +112,7 @@ class ColorPickerViewController: UIViewController {
 
         adjustColumnsAndRows(traitCollection)
 
-        collectionView.selectItem(at: currentSelection, animated:false, scrollPosition: [])
+        collectionView.selectItem(at: currentSelection, animated: false, scrollPosition: [])
 
         scrollToPageWithCellAtIndexPath(currentSelection)
     }
@@ -132,7 +132,7 @@ class ColorPickerViewController: UIViewController {
     func pageControlChanged() {
         let pageWidth = collectionView.frame.width
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
-        collectionView.setContentOffset(scrollTo, animated:true)
+        collectionView.setContentOffset(scrollTo, animated: true)
     }
 }
 
@@ -158,7 +158,7 @@ private extension ColorPickerViewController {
         pageControl.currentPage = viewModel.currentPage
 
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
-        collectionView.setContentOffset(scrollTo, animated:false)
+        collectionView.setContentOffset(scrollTo, animated: false)
     }
 
     func restoreSelection() {

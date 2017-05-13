@@ -50,12 +50,12 @@ struct Log {
     }
 
     static func info(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
-        log(object, title:"Info-> ", fileName, functionName, line)
+        log(object, title: "Info-> ", fileName, functionName, line)
     }
 
     static func debug(_ object: Any? = nil, _ fileName: String = #file, _ functionName: String = #function, _ line: Int = #line) {
         if isDebugging {
-            log(object, title:"Debug-> ", fileName, functionName, line)
+            log(object, title: "Debug-> ", fileName, functionName, line)
         }
     }
 }

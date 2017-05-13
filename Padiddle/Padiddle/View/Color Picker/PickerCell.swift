@@ -9,12 +9,12 @@
 import Anchorage
 
 let backgroundColorNormal = UIColor.clear
-let backgroundColorHighlighted = UIColor(white:0.85, alpha:1)
-let borderColor = UIColor(white:0.85, alpha:1)
+let backgroundColorHighlighted = UIColor(white: 0.85, alpha: 1)
+let borderColor = UIColor(white: 0.85, alpha: 1)
 
-let textColor = UIColor(white:0.5, alpha:1)
-let highlightedTextColor = UIColor(white:0.4, alpha:1)
-let highlightedTrimColor = UIColor(white:0.65, alpha:1.0)
+let textColor = UIColor(white: 0.5, alpha: 1)
+let highlightedTextColor = UIColor(white: 0.4, alpha: 1)
+let highlightedTrimColor = UIColor(white: 0.65, alpha: 1.0)
 
 let borderWidth = CGFloat(2)
 

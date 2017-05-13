@@ -363,7 +363,7 @@ private extension ToolbarViewController {
                     animations: {
                         self.colorButton.transform = .identity
                     },
-                    completion:nil
+                    completion: nil
                 )
             }
         )
