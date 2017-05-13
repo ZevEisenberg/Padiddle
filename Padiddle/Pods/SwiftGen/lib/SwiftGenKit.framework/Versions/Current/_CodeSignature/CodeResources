@@ -6,75 +6,20 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		GbxPwFvfdxWBNf6FU9UyxrJdQcs=
+		LScac8WD4/8Bv0TtoeoEZ4cn2+I=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/SwiftGenKit-Swift.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			h7+oDVNiYPuQPOsb7l6i5fyTV1g=
-			</data>
-			<key>hash2</key>
-			<data>
-			zB/ctdLYLeF/cMyxmpE/ZRwkt+ZdoOORNcVoNIrnzZ8=
-			</data>
-		</dict>
-		<key>Headers/SwiftGenKit-umbrella.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			IiKvK/dD5qonB/fAlvo9owIq0WQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			EKTtNTe6faXWyeAXJzVxvcoc1M2jHKWSgbG93k3DEvA=
-			</data>
-		</dict>
-		<key>Modules/SwiftGenKit.swiftmodule/x86_64.swiftdoc</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			87BIYrnSw0QMeaNe75Zsxy24qRA=
-			</data>
-			<key>hash2</key>
-			<data>
-			K516YeSmTjJPscA0+43l3sv8t0K8md7S1ug+Nhi6260=
-			</data>
-		</dict>
-		<key>Modules/SwiftGenKit.swiftmodule/x86_64.swiftmodule</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			mSS7VA5dmPUBeXPB505CaS0JOL8=
-			</data>
-			<key>hash2</key>
-			<data>
-			IokRQiE/Xazs/cQz+Gp0kYhYftiT2HY/IaL96VsH0sg=
-			</data>
-		</dict>
-		<key>Modules/module.modulemap</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			rTTNYkqQ7ppw1dh1GIH38W97c/A=
-			</data>
-			<key>hash2</key>
-			<data>
-			5RWgd1SHOt3MhA5X14jrCgylhkrqFnlngj0BBZO8xwA=
-			</data>
-		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			GbxPwFvfdxWBNf6FU9UyxrJdQcs=
+			LScac8WD4/8Bv0TtoeoEZ4cn2+I=
 			</data>
 			<key>hash2</key>
 			<data>
-			i34Igx9END6cNSPX2BX/65Axa8FR4s6PNx0YQ1az1wY=
+			K7jJ1mtVPeisMy6gnQAW+WoA9nQDa9qXmNihiVp4Alw=
 			</data>
 		</dict>
 	</dict>

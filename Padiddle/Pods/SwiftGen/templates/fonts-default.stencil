@@ -1,4 +1,4 @@
-// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
+// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
 {% if families %}
 #if os(iOS) || os(tvOS) || os(watchOS)
@@ -11,6 +11,7 @@
 
 // swiftlint:disable file_length
 // swiftlint:disable line_length
+// swiftlint:disable conditional_returns_on_newline
 
 protocol FontConvertible {
   func font(size: CGFloat) -> Font!
@@ -50,11 +51,11 @@ extension Font {
   }
 }
 
-enum {{enumName}} {
+enum {{param.enumName|default:"FontFamily"}} {
   {% for family in families %}
   enum {{family.name|swiftIdentifier|snakeToCamelCaseNoPrefix|escapeReservedKeywords}}: String, FontConvertible {
     {% for font in family.fonts %}
-    case {{font.style|swiftIdentifier|snakeToCamelCaseNoPrefix|escapeReservedKeywords}} = "{{font.fontName}}"
+    case {{font.style|swiftIdentifier|snakeToCamelCaseNoPrefix|escapeReservedKeywords}} = "{{font.name}}"
     {% endfor %}
   }
   {% endfor %}

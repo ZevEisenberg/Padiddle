@@ -1,4 +1,4 @@
-// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
+// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
 {% if images %}
 #if os(iOS) || os(tvOS) || os(watchOS)
@@ -31,6 +31,7 @@
 {% endmacro %}
 
 // swiftlint:disable type_body_length
+{% set enumName %}{{param.enumName|default:"Asset"}}{% endset %}
 enum {{enumName}}: String {
   {% for catalog in catalogs %}
   {% call recursiveCaseBlock catalog.assets %}
@@ -44,10 +45,12 @@ enum {{enumName}}: String {
 
   var image: Image {
     let bundle = NSBundle(forClass: BundleToken.self)
-    #if os(iOS) || os(tvOS) || os(watchOS)
+    #if os(iOS) || os(tvOS)
     let image = Image(named: rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
     #elseif os(OSX)
     let image = bundle.imageForResource(rawValue)
+    #elseif os(watchOS)
+    let image = Image(named: rawValue)
     #endif
     guard let result = image else { fatalError("Unable to load image \(rawValue).") }
     return result
@@ -57,10 +60,10 @@ enum {{enumName}}: String {
 
 extension Image {
   convenience init!(asset: {{enumName}}) {
-    #if os(iOS) || os(tvOS) || os(watchOS)
+    #if os(iOS) || os(tvOS)
     let bundle = NSBundle(forClass: BundleToken.self)
     self.init(named: asset.rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)
-    #elseif os(OSX)
+    #elseif os(OSX) || os(watchOS)
     self.init(named: asset.rawValue)
     #endif
   }

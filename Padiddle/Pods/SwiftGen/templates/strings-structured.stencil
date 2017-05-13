@@ -1,6 +1,6 @@
-// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
+// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
-{% if structuredStrings %}
+{% if tables.first.levels %}
 import Foundation
 
 // swiftlint:disable file_length
@@ -9,45 +9,46 @@ import Foundation
 // swiftlint:disable type_body_length
 // swiftlint:disable nesting
 
+{% set enumName %}{{param.enumName|default:"L10n"}}{% endset %}
 enum {{enumName}} {
-{% macro enumBlock strings sp %}
-{{sp}}  {% for string in strings.strings %}
+{% macro enumBlock item sp %}
+{{sp}}  {% for string in item.strings %}
 {{sp}}  /// {{string.translation}}
-{{sp}}  case {{string.keytail|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join}}){% endif %}
+{{sp}}  case {{string.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.types %}({{string.types|join}}){% endif %}
 {{sp}}  {% endfor %}
-{{sp}}  {% for subenum in strings.subenums %}
+{{sp}}  {% for child in item.children %}
 
-{{sp}}  case {{subenum.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}({{subenum.name|swiftIdentifier|snakeToCamelCase}}{{enumName}})
-{{sp}}  enum {{subenum.name|swiftIdentifier|snakeToCamelCase}}{{enumName}} {
+{{sp}}  case {{child.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}({{child.name|swiftIdentifier|snakeToCamelCase}}{{enumName}})
+{{sp}}  enum {{child.name|swiftIdentifier|snakeToCamelCase}}{{enumName}} {
 {{sp}}    {% set sp2 %}{{sp}}  {% endset %}
-{{sp}}    {% call enumBlock subenum sp2 %}
+{{sp}}    {% call enumBlock child sp2 %}
 {{sp}}  }
 {{sp}}  {% endfor %}
 {% endmacro %}
-  {% call enumBlock structuredStrings sp %}
+  {% call enumBlock tables.first.levels sp %}
 }
 
 extension {{enumName}}: CustomStringConvertible {
-{% macro parametersBlock params %}{% for type in params.types %}let p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
-{% macro argumentsBlock params %}{% for type in params.types %}p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
-{% macro extensionBlock strings sp keySuffix %}
-{{sp}}  {% for string in strings.strings %}
-{{sp}}  {% if string.params %}
-{{sp}}  case .{{string.keytail|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}({% call parametersBlock string.params %}):
-{{sp}}    return {{enumName}}.tr("{{string.key}}", {% call argumentsBlock string.params %})
+{% macro parametersBlock types %}{% for type in types %}let p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro argumentsBlock types %}{% for type in types %}p{{forloop.counter}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro extensionBlock item sp keySuffix %}
+{{sp}}  {% for string in item.strings %}
+{{sp}}  {% if string.types %}
+{{sp}}  case .{{string.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}({% call parametersBlock string.types %}):
+{{sp}}    return {{enumName}}.tr("{{string.key}}", {% call argumentsBlock string.types %})
 {{sp}}  {% else %}
-{{sp}}  case .{{string.keytail|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}:
+{{sp}}  case .{{string.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}:
 {{sp}}    return {{enumName}}.tr("{{string.key}}")
 {{sp}}  {% endif %}
 {{sp}}  {% endfor %}
-{{sp}}  {% for subenum in strings.subenums %}
-{{sp}}  {% set subkey %}levelSub{{keySuffix}}Key{{subenum.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% endset %}
-{{sp}}  case .{{subenum.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}(let {{subkey}}):
+{{sp}}  {% for child in item.children %}
+{{sp}}  {% set subkey %}levelSub{{keySuffix}}Key{{child.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% endset %}
+{{sp}}  case .{{child.name|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}(let {{subkey}}):
 
 {{sp}}    switch {{subkey}} {
 {{sp}}    {% set sp2 %}{{sp}}    {% endset %}
 {{sp}}    {% set keySuffix %}{{keySuffix}}Sub{% endset %}
-{{sp}}    {% call extensionBlock subenum sp2 keySuffix %}
+{{sp}}    {% call extensionBlock child sp2 keySuffix %}
 {{sp}}    }
 {{sp}}  {% endfor %}
 {% endmacro %}
@@ -55,7 +56,7 @@ extension {{enumName}}: CustomStringConvertible {
 
   var string: String {
     switch self {
-      {% call extensionBlock structuredStrings "    " keySuffix %}
+      {% call extensionBlock tables.first.levels "    " keySuffix %}
     }
   }
 

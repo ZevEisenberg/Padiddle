@@ -1,12 +1,10 @@
-// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
+// Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
 {% macro className scene %}{% if scene.customClass %}{% if scene.customModule %}{{scene.customModule}}.{% endif %}{{scene.customClass}}{% else %}NS{{scene.baseType}}{% endif %}{% endmacro %}
 import Foundation
 import Cocoa
-{% for module in modules %}
-{% if module != env.PRODUCT_MODULE_NAME and module != param.module %}
+{% for module in modules where module != env.PRODUCT_MODULE_NAME and module != param.module %}
 import {{module}}
-{% endif %}
 {% endfor %}
 
 {% if storyboards %}
@@ -57,6 +55,7 @@ extension NSViewController {
 }
 
 {# This is where the generation begins, this code depends on what you have in your Storyboards #}
+{% set sceneEnumName %}{{param.sceneEnumName|default:"StoryboardScene"}}{% endset %}
 enum {{sceneEnumName}} {
   {% for storyboard in storyboards %}
   {% set storyboardName %}{{storyboard.name|swiftIdentifier|escapeReservedKeywords}}{% endset %}
@@ -85,15 +84,15 @@ enum {{sceneEnumName}} {
   {% endfor %}
 }
 
-enum {{segueEnumName}} {
-  {% for storyboard in storyboards %}{% if storyboard.segues %}
+enum {{param.segueEnumName|default:"StoryboardSegue"}} {
+  {% for storyboard in storyboards where storyboard.segues %}
   enum {{storyboard.name|swiftIdentifier|escapeReservedKeywords}}: String, StoryboardSegueType {
     {% for segue in storyboard.segues %}
     {% set segueID %}{{segue.identifier|swiftIdentifier}}{% endset %}
     case {{segueID|escapeReservedKeywords}}{% if segueID != segue.identifier %} = "{{segue.identifier}}"{% endif %}
     {% endfor %}
   }
-  {% endif %}{% endfor %}
+  {% endfor %}
 }
 
 private final class BundleToken {}
