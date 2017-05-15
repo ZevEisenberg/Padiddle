@@ -40,6 +40,7 @@
 		CD7C27501D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
 		CD7C27511D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
 		CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C27521D20BAC800F3E924 /* ViewTests.swift */; };
+		CD8B3E3B1EC7A0AE006A0C85 /* TutorialCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B3E3A1EC7A0AE006A0C85 /* TutorialCoordinator.swift */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
@@ -136,6 +137,7 @@
 		CD703CFC1D3346C200221364 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifierExtensions.swift; sourceTree = "<group>"; };
 		CD7C27521D20BAC800F3E924 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		CD8B3E3A1EC7A0AE006A0C85 /* TutorialCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCoordinator.swift; sourceTree = "<group>"; };
 		CD92FB001D1B7A6700AE86FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDA035E21BA8AEAA0023F290 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToolbarViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -261,6 +263,7 @@
 		CD193CBB1BA4891500203B44 /* Padiddle */ = {
 			isa = PBXGroup;
 			children = (
+				CD8B3E391EC7A09C006A0C85 /* Application */,
 				CDDA9DD71C5310C100D9EF19 /* Constants */,
 				CDA035E71BA8AED50023F290 /* Model */,
 				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
@@ -336,6 +339,15 @@
 				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CD8B3E391EC7A09C006A0C85 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CD8B3E3A1EC7A0AE006A0C85 /* TutorialCoordinator.swift */,
+			);
+			name = Application;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		CDA035E01BA8AEAA0023F290 /* View */ = {
@@ -798,6 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */,
+				CD8B3E3B1EC7A0AE006A0C85 /* TutorialCoordinator.swift in Sources */,
 				7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */,
 				CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */,

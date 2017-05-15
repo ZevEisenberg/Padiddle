@@ -14,6 +14,8 @@ class ToolbarViewController: UIViewController {
 
     var viewModel: ToolbarViewModel?
 
+    fileprivate var tutorialCoordinator: TutorialCoordinator!
+
     fileprivate var toolbarVisible: Bool = true
 
     fileprivate let recordButtonBack = UIImageView(axId: "recordButtonBack")
@@ -31,10 +33,32 @@ class ToolbarViewController: UIViewController {
     fileprivate var passthroughViews: [UIView] {
         return [toolbarStackView, recordButton]
     }
+
+    fileprivate let recordPromptLabel = { (label: UILabel) -> UILabel in
+        label.text = "Start by tapping the Record button"
+        return label
+    }(UILabel())
+
+    fileprivate let spinPromptLabel = { (label: UILabel) -> UILabel in
+        label.text = "Spin me right round!"
+        return label
+    }(UILabel())
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+
+        tutorialCoordinator = TutorialCoordinator(delegate: self)
+    }
+
+    @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
 
-private typealias Layout = ToolbarViewController
-extension Layout {
+// MARK: - Layout
+
+extension ToolbarViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +68,8 @@ extension Layout {
         configureViews()
 
         updateColorButton((viewModel?.colorPickerViewModel?.selectedColorManager)!)
+
+        tutorialCoordinator.start()
     }
 
     private func configureViews() {
@@ -164,12 +190,23 @@ extension Layout {
         if let recordButtonSuperview = recordButton.superview {
             recordButton.centerXAnchor == recordButtonSuperview.centerXAnchor
         }
+
+        // Placeholder
+        view.addSubview(recordPromptLabel)
+        view.addSubview(spinPromptLabel)
+
+        recordPromptLabel.centerAnchors == view.centerAnchors
+        spinPromptLabel.centerAnchors == view.centerAnchors
+
+        recordPromptLabel.isHidden = true
+        spinPromptLabel.isHidden = true
     }
 
 }
 
-typealias ButtonHandlers = ToolbarViewController
-extension ButtonHandlers {
+// MARK: - Button Handlers
+
+extension ToolbarViewController {
 
     func trashTapped() {
         Log.info()
@@ -213,6 +250,7 @@ extension ButtonHandlers {
         recordButton.isSelected = !recordButton.isSelected
 
         viewModel?.recordButtonTapped()
+        tutorialCoordinator.recordButtonTapped()
     }
 
     func shareTapped() {
@@ -305,6 +343,8 @@ extension ButtonHandlers {
 
 }
 
+// MARK: - ColorPickerDelegate
+
 extension ToolbarViewController: ColorPickerDelegate {
 
     func colorPicked(_ color: ColorManager) {
@@ -324,6 +364,8 @@ extension ToolbarViewController: ColorPickerDelegate {
 
 }
 
+// MARK: - ToolbarViewModelToolbarDelegate
+
 extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
 
     func setToolbarVisible(_ visible: Bool, animated: Bool) {
@@ -336,6 +378,26 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+
+}
+
+extension ToolbarViewController: TutorialCoordinatorDelegate {
+
+    func showRecordPrompt() {
+        recordPromptLabel.isHidden = false
+    }
+
+    func hideRecordPrompt() {
+        recordPromptLabel.isHidden = true
+    }
+
+    func showSpinPrompt() {
+        spinPromptLabel.isHidden = false
+    }
+
+    func hideSpinPrompt() {
+        spinPromptLabel.isHidden = true
     }
 
 }
