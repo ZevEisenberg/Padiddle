@@ -6,12 +6,10 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-import CoreMotion
 import UIKit
 
 private let debugging = false
 
-let kMotionManagerUpdateInterval: TimeInterval = 1.0 / 120.0
 let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
 
 protocol DrawingViewModelDelegate: class {
@@ -40,7 +38,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     fileprivate var colorManager: ColorManager?
 
-    fileprivate let motionManager = CMMotionManager()
+    fileprivate let spinManager: SpinManager
 
     fileprivate let maxRadius: CGFloat
 
@@ -86,15 +84,14 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return colorManager.currentColor
     }
 
-    required init(maxRadius: CGFloat) {
+    required init(maxRadius: CGFloat, spinManager: SpinManager) {
         assert(maxRadius > 0)
         self.maxRadius = maxRadius
-        motionManager.deviceMotionUpdateInterval = kMotionManagerUpdateInterval
-    }
-
-    func configure() {
+        self.spinManager = spinManager
+        super.init()
         let success = configureOffscreenContext()
         assert(success, "Problem creating bitmap context")
+
     }
 
     func addPoint(_ point: CGPoint) {
@@ -344,27 +341,19 @@ private extension DrawingViewModel {
 extension DrawingViewModel {
 
     func startMotionUpdates() {
-        if motionManager.isGyroAvailable {
-            if motionManager.isMagnetometerAvailable {
-                motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
-            }
-            else {
-                motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical)
-            }
-
-            if updateTimer == nil {
-                updateTimer = Timer.scheduledTimer(timeInterval: kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
-            }
+        spinManager.startMotionUpdates()
+        if updateTimer == nil {
+            updateTimer = Timer.scheduledTimer(timeInterval: kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
         }
     }
 
     func stopMotionUpdates() {
         updateTimer?.invalidate()
-        motionManager.stopDeviceMotionUpdates()
+        spinManager.stopMotionUpdates()
     }
 
     func timerFired() {
-        if let deviceMotion = motionManager.deviceMotion {
+        if let deviceMotion = spinManager.deviceMotion {
 
             let zRotation = deviceMotion.rotationRate.z
             let radius = maxRadius / UIDevice.gyroMaxValue * CGFloat(fabs(zRotation))

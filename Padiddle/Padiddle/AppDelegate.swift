@@ -19,12 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var toolbarViewController: ToolbarViewController?
     var rootViewModel: RootViewModel?
 
+    // Private Properties
+
+    private let spinManager = SpinManager()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         toolbarViewController = ToolbarViewController()
 
-        let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.main.longestSide)
-        drawingViewModel.configure()
+        let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.main.longestSide, spinManager: spinManager)
 
         rootViewModel = RootViewModel(rootColorManagerDelegate: drawingViewModel)
 
