@@ -46,7 +46,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     fileprivate var updateTimer: Timer?
 
-    fileprivate var offscreenContext: CGContext?
+    fileprivate var offscreenContext: CGContext!
 
     fileprivate let contextSize = CGSize(width: 1024.0, height: 1024.0)
 
@@ -111,8 +111,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     // MARK: Drawing
 
     func clear() {
-        offscreenContext?.setFillColor(UIColor.white.cgColor)
-        offscreenContext?.fill(CGRect(origin: .zero, size: contextSize))
+        offscreenContext.setFillColor(UIColor.white.cgColor)
+        offscreenContext.fill(CGRect(origin: .zero, size: contextSize))
     }
 
     func restartAtPoint(_ point: CGPoint) {
@@ -123,7 +123,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     func drawInto(_ context: CGContext, dirtyRect: CGRect) {
         guard let view = view else { fatalError() }
-        let offscreenImage = offscreenContext?.makeImage()
+        let offscreenImage = offscreenContext.makeImage()
         let offset = CGSize(
             width: contextSize.width * contextScaleFactor - view.bounds.width,
             height: contextSize.height * contextScaleFactor - view.bounds.height
@@ -145,13 +145,13 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     func setInitialImage(_ image: UIImage) {
         let rect = CGRect(origin: .zero, size: contextSize)
-        offscreenContext?.draw(image.cgImage!, in: rect)
+        offscreenContext.draw(image.cgImage!, in: rect)
     }
 
     func addPathSegment(_ pathSegment: CGPath, color: UIColor) {
-        offscreenContext?.addPath(pathSegment)
-        offscreenContext?.setStrokeColor(color.cgColor)
-        offscreenContext?.strokePath()
+        offscreenContext.addPath(pathSegment)
+        offscreenContext.setStrokeColor(color.cgColor)
+        offscreenContext.strokePath()
     }
 
     private func addLineSegmentBasedOnUpdatedPoints() {
@@ -172,8 +172,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     func snapshot(_ orientation: UIInterfaceOrientation) -> UIImage {
         let (imageOrientation, rotation) = orientation.imageRotation
 
-        let cacheCGImage = offscreenContext?.makeImage()!
-        let unrotatedImage = UIImage(cgImage: cacheCGImage!, scale: UIScreen.main.scale, orientation: imageOrientation)
+        let cacheCGImage = offscreenContext.makeImage()!
+        let unrotatedImage = UIImage(cgImage: cacheCGImage, scale: UIScreen.main.scale, orientation: imageOrientation)
         let rotatedImage = unrotatedImage.imageRotatedByRadians(rotation)
         return rotatedImage
     }
