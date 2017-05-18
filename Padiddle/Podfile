@@ -3,9 +3,9 @@ platform :ios, '10.0'
 
   # Pods for Padiddle
 target 'Padiddle' do  
-  pod 'SwiftGen'
   pod 'Anchorage'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
+  pod 'SwiftGen'
   pod 'SwiftLint'
 
   target 'PadiddleTests' do
