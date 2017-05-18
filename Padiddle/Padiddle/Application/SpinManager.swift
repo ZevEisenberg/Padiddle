@@ -9,8 +9,6 @@
 import CoreMotion
 import Foundation
 
-let kMotionManagerUpdateInterval: TimeInterval = 1.0 / 120.0
-
 class SpinManager: NSObject {
 
     // Public Properties
