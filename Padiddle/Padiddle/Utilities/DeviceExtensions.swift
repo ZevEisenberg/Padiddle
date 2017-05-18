@@ -43,8 +43,8 @@ extension UIDevice {
     @nonobjc class var deviceImage: UIImage {
         switch deviceName {
         case "iPad": return #imageLiteral(resourceName: "iPad")
-        case "iPhone": return #imageLiteral(resourceName: "iPhone")
-        default: fatalError("Should only get one or the other")
+        case "iPhone", "iPod touch": return #imageLiteral(resourceName: "iPhone")
+        default: fatalError("Should only get one or the other, but device name was \(deviceName)")
         }
     }
 
