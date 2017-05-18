@@ -19,7 +19,7 @@ protocol SufficientSpinDelegate: class {
 
 }
 
-class SpinManager: UIResponder {
+final class SpinManager: UIResponder {
 
     // Public Properties
 
