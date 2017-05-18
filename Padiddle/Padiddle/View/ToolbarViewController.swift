@@ -44,14 +44,18 @@ class ToolbarViewController: UIViewController {
         return label
     }(UILabel())
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init(spinManager: SpinManager) {
         super.init(nibName: nil, bundle: nil)
 
-        tutorialCoordinator = TutorialCoordinator(delegate: self)
+        tutorialCoordinator = TutorialCoordinator(delegate: self, spinManager: spinManager)
     }
 
     @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @available(*, unavailable) required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        fatalError("\(#function) has not been implemented")
     }
 
 }

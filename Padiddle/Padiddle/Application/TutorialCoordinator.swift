@@ -61,6 +61,7 @@ final class TutorialCoordinator {
 
             case (.waitToShowRecordPrompt, .waitToShowSpinPrompt):
                 startTimer(timeout: Constants.waitForSpinTimeout)
+                spinManager.startMonitoringForSufficientSpin()
 
             case (.promptForRecord, .disabled):
                 delegate?.hideRecordPrompt()
@@ -68,6 +69,7 @@ final class TutorialCoordinator {
             case (.promptForRecord, .waitToShowSpinPrompt):
                 delegate?.hideRecordPrompt()
                 startTimer(timeout: Constants.waitForSpinTimeout)
+                spinManager.startMonitoringForSufficientSpin()
 
             case (.waitToShowSpinPrompt, .disabled):
                 // nothing more to do
@@ -78,6 +80,7 @@ final class TutorialCoordinator {
 
             case (.promptForSpin, .disabled):
                 delegate?.hideSpinPrompt()
+                spinManager.stopMonitoringForSufficientSpin()
 
             case (.disabled, .waitToShowSpinPrompt):
                 startTimer(timeout: Constants.waitForSpinTimeout)
@@ -89,11 +92,14 @@ final class TutorialCoordinator {
     }
 
     private weak var delegate: TutorialCoordinatorDelegate!
+    var spinManager: SpinManager
 
     fileprivate var timer: Timer?
 
-    init(delegate: TutorialCoordinatorDelegate) {
+    init(delegate: TutorialCoordinatorDelegate, spinManager: SpinManager) {
         self.delegate = delegate
+        self.spinManager = spinManager
+        self.spinManager.sufficientSpinDelegate = self
     }
 
 }
@@ -129,9 +135,28 @@ private extension TutorialCoordinator {
         case .waitToShowSpinPrompt:
             state = .promptForSpin
         case .disabled:
-            break // no harm done
+            // nothing to do
+            break
         default:
             fatalError("Timer finished in invalid state: \(state)")
+        }
+    }
+
+}
+
+// MARK: SufficientSpinDelegate
+
+extension TutorialCoordinator: SufficientSpinDelegate {
+
+    func spunEnough() {
+        switch state {
+        case .waitToShowSpinPrompt, .promptForSpin:
+            state = .disabled
+        case .disabled:
+            // nothing to do
+            break
+        default:
+            fatalError("Sufficient spin came back in unhandled state: \(state)")
         }
     }
 

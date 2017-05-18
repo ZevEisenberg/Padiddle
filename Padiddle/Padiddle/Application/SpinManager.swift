@@ -7,11 +7,23 @@
 //
 
 import CoreMotion
-import Foundation
+import UIKit
 
-class SpinManager: NSObject {
+protocol SufficientSpinDelegate: class {
+
+    /// After you call `startMonitoringForSufficientSpin()`, this method may be called
+    /// on the delegate no more than one time at some point in the future. Subsequent
+    /// calls to `startMonitoringForSufficientSpin()` will reset the spin counter,
+    /// even if the previous request to monitor for sufficient spin has not yet been fulfilled.
+    func spunEnough()
+
+}
+
+class SpinManager: UIResponder {
 
     // Public Properties
+
+    weak var sufficientSpinDelegate: SufficientSpinDelegate?
 
     var deviceMotion: CMDeviceMotion? {
         return motionManager.deviceMotion
@@ -24,6 +36,10 @@ class SpinManager: NSObject {
         manager.deviceMotionUpdateInterval = 1.0 / 120.0
         return manager
     }()
+
+    fileprivate var isMonitoringForSufficientSpin = false
+
+    fileprivate var sufficientSpinTimer: Timer?
 
 }
 
@@ -43,6 +59,64 @@ extension SpinManager {
 
     func stopMotionUpdates() {
         motionManager.stopDeviceMotionUpdates()
+    }
+
+    func startMonitoringForSufficientSpin() {
+        if UIDevice.isSimulator {
+            let result = becomeFirstResponder()
+            print("become first responder:", result)
+        }
+
+        isMonitoringForSufficientSpin = true
+
+        let timer = Timer(fireAt: Date(), interval: 1.0 / 60.0, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+        sufficientSpinTimer = timer
+        RunLoop.main.add(timer, forMode: .commonModes)
+    }
+
+    func stopMonitoringForSufficientSpin() {
+        if UIDevice.isSimulator {
+            resignFirstResponder()
+        }
+
+        isMonitoringForSufficientSpin = false
+        sufficientSpinTimer?.invalidate()
+        sufficientSpinTimer = nil
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        return UIDevice.isSimulator
+    }
+
+    override var next: UIResponder? {
+        return UIDevice.isSimulator ? UIApplication.shared.keyWindow : nil
+    }
+
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if UIDevice.isSimulator && motion == .motionShake {
+            // can't spin the simulator, so shake to to simulate it
+            respondToSufficientMotion()
+        }
+    }
+
+}
+
+private extension SpinManager {
+
+    @objc func timerFired() {
+        if isMonitoringForSufficientSpin,
+            let motion = motionManager.deviceMotion,
+            abs(motion.rotationRate.z) > .pi
+                || abs(motion.attitude.yaw) > .pi / 2 {
+            respondToSufficientMotion()
+        }
+    }
+
+    func respondToSufficientMotion() {
+        isMonitoringForSufficientSpin = false
+        sufficientSpinTimer?.invalidate()
+        sufficientSpinTimer = nil
+        sufficientSpinDelegate?.spunEnough()
     }
 
 }
