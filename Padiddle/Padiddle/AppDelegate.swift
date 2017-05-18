@@ -8,7 +8,7 @@
 
 #if DEBUG
     import SimulatorStatusMagic
-    #endif
+#endif
 import UIKit
 
 @UIApplicationMain
