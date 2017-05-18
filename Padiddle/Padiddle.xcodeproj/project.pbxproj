@@ -38,6 +38,7 @@
 		CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */; };
 		CD703CFD1D3346C200221364 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD703CFC1D3346C200221364 /* Settings.bundle */; };
 		CD7519841ECD271D00B49272 /* SpinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7519831ECD271D00B49272 /* SpinManager.swift */; };
+		CD7519871ECD3F0D00B49272 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7519861ECD3F0D00B49272 /* StartHereView.swift */; };
 		CD7C27501D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
 		CD7C27511D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
 		CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C27521D20BAC800F3E924 /* ViewTests.swift */; };
@@ -137,6 +138,7 @@
 		CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SpiralImageMaker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CD703CFC1D3346C200221364 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CD7519831ECD271D00B49272 /* SpinManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinManager.swift; sourceTree = "<group>"; };
+		CD7519861ECD3F0D00B49272 /* StartHereView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartHereView.swift; sourceTree = "<group>"; };
 		CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifierExtensions.swift; sourceTree = "<group>"; };
 		CD7C27521D20BAC800F3E924 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
 		CD8B3E3A1EC7A0AE006A0C85 /* TutorialCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialCoordinator.swift; sourceTree = "<group>"; };
@@ -343,6 +345,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		CD7519851ECD3F0000B49272 /* Tuturial */ = {
+			isa = PBXGroup;
+			children = (
+				CD7519861ECD3F0D00B49272 /* StartHereView.swift */,
+			);
+			name = Tuturial;
+			path = Tuturial;
+			sourceTree = "<group>";
+		};
 		CD8B3E391EC7A09C006A0C85 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +368,7 @@
 			children = (
 				CD42370B1BAB54CE0000E395 /* Color Picker */,
 				CDBF242D1BC5DCE900A0785C /* Drawing */,
+				CD7519851ECD3F0000B49272 /* Tuturial */,
 				CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */,
 				CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */,
 				CDA035E21BA8AEAA0023F290 /* RootViewController.swift */,
@@ -842,6 +854,7 @@
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */,
 				CDE071331C55BDFE00BB5D6A /* ImageIO.swift in Sources */,
+				CD7519871ECD3F0D00B49272 /* StartHereView.swift in Sources */,
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,

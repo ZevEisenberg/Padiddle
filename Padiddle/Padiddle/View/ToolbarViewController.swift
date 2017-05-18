@@ -34,10 +34,7 @@ class ToolbarViewController: UIViewController {
         return [toolbarStackView, recordButton]
     }
 
-    fileprivate let recordPromptLabel = { (label: UILabel) -> UILabel in
-        label.text = "Start by tapping the Record button"
-        return label
-    }(UILabel())
+    fileprivate let recordPrompt = StarthereView()
 
     fileprivate let spinPromptLabel = { (label: UILabel) -> UILabel in
         label.text = "Spin me right round!"
@@ -196,13 +193,15 @@ extension ToolbarViewController {
         }
 
         // Placeholder
-        view.addSubview(recordPromptLabel)
+        view.addSubview(recordPrompt)
         view.addSubview(spinPromptLabel)
 
-        recordPromptLabel.centerAnchors == view.centerAnchors
+        recordPrompt.centerXAnchor == view.centerXAnchor
+        recordPrompt.bottomAnchor == recordButton.topAnchor
+
         spinPromptLabel.centerAnchors == view.centerAnchors
 
-        recordPromptLabel.isHidden = true
+        recordPrompt.isHidden = true
         spinPromptLabel.isHidden = true
     }
 
@@ -389,11 +388,22 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
 extension ToolbarViewController: TutorialCoordinatorDelegate {
 
     func showRecordPrompt() {
-        recordPromptLabel.isHidden = false
+        recordPrompt.alpha = 0.0
+        recordPrompt.isHidden = false
+        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
+            self.recordPrompt.alpha = 1.0
+        }, completion: nil)
+
     }
 
     func hideRecordPrompt() {
-        recordPromptLabel.isHidden = true
+        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
+            self.recordPrompt.alpha = 0.0
+        }, completion: { _ in
+            self.recordPrompt.isHidden = true
+        })
+
+        recordPrompt.isHidden = true
     }
 
     func showSpinPrompt() {
@@ -407,6 +417,12 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
 }
 
 private extension ToolbarViewController {
+
+    enum Constants {
+
+        static let tutorialFadeDuration: TimeInterval = 0.3
+
+    }
 
     @objc func dismissModal() {
         Log.info()

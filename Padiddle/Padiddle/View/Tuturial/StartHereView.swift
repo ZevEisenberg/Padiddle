@@ -1,0 +1,46 @@
+//
+//  StartHereView.swift
+//  Padiddle
+//
+//  Created by Zev Eisenberg on 5/17/17.
+//  Copyright © 2017 Zev Eisenberg. All rights reserved.
+//
+
+import Anchorage
+import UIKit
+
+final class StarthereView: UIView {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        let backgroundImage = #imageLiteral(resourceName: "Start Here Background")
+
+        let backgroundImageView = UIImageView(image: backgroundImage)
+
+        let imageInsets = backgroundImage.capInsets
+
+        let labelInsets = UIEdgeInsets(
+            top: imageInsets.top + 0,
+            left: imageInsets.left + 0,
+            bottom: imageInsets.bottom + 0,
+            right: imageInsets.right + 0
+        )
+
+        let label = UILabel(axId: "startHereLabel")
+
+        addSubview(backgroundImageView)
+        addSubview(label)
+
+        backgroundImageView.edgeAnchors == edgeAnchors
+
+        label.edgeAnchors == edgeAnchors + labelInsets
+
+        widthAnchor == backgroundImage.size.width
+    }
+
+    @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
