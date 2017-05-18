@@ -320,7 +320,7 @@ private extension DrawingViewModel {
             space: colorSpace,
             bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
 
-        if context == nil {
+        guard context != nil else {
             assertionFailure("Problem creating context")
             return false
         }
