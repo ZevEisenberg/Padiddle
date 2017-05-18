@@ -22,7 +22,7 @@ extension UIDevice {
     @nonobjc class var deviceName: String {
         var deviceName = current.model
 
-        if runningOnSimulator {
+        if isSimulator {
             let range = deviceName.range(of: "simulator",
                 options: [.anchored, .backwards, .caseInsensitive]
             )
@@ -48,7 +48,7 @@ extension UIDevice {
         }
     }
 
-    private class var runningOnSimulator: Bool {
+    class var isSimulator: Bool {
         return TARGET_OS_SIMULATOR != 0
     }
 
