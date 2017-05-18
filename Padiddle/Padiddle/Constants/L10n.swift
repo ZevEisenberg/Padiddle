@@ -39,6 +39,8 @@ enum L10n {
   case colorsTangerine
   /// Watercolor
   case colorsWatercolor
+  /// Start Here
+  case tutorialStartHere
 }
 // swiftlint:enable type_body_length
 
@@ -79,6 +81,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "colors.tangerine")
       case .colorsWatercolor:
         return L10n.tr(key: "colors.watercolor")
+      case .tutorialStartHere:
+        return L10n.tr(key: "tutorial.startHere")
     }
   }
 

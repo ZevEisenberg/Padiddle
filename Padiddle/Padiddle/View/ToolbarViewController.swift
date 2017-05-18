@@ -197,7 +197,7 @@ extension ToolbarViewController {
         view.addSubview(spinPromptLabel)
 
         recordPrompt.centerXAnchor == view.centerXAnchor
-        recordPrompt.bottomAnchor == recordButton.topAnchor
+        recordPrompt.bottomAnchor == recordButton.topAnchor + 15
 
         spinPromptLabel.centerAnchors == view.centerAnchors
 
@@ -402,8 +402,6 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
         }, completion: { _ in
             self.recordPrompt.isHidden = true
         })
-
-        recordPrompt.isHidden = true
     }
 
     func showSpinPrompt() {

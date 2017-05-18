@@ -7,6 +7,7 @@
 //
 
 import Anchorage
+import BonMot
 import UIKit
 
 final class StarthereView: UIView {
@@ -22,12 +23,19 @@ final class StarthereView: UIView {
 
         let labelInsets = UIEdgeInsets(
             top: imageInsets.top + 0,
-            left: imageInsets.left + 0,
+            left: imageInsets.left + 30,
             bottom: imageInsets.bottom + 0,
-            right: imageInsets.right + 0
+            right: imageInsets.right + 30
         )
 
         let label = UILabel(axId: "startHereLabel")
+        label.numberOfLines = 0
+        label.attributedText = L10n.tutorialStartHere.string.styled(with: StringStyle([
+            .adapt(.control),
+            .font(UIFont.systemFont(ofSize: 30, weight: UIFontWeightMedium)),
+            .color(.tutorialText),
+            .alignment(.center),
+        ]))
 
         addSubview(backgroundImageView)
         addSubview(label)

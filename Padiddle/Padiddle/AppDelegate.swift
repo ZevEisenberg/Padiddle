@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        UIApplication.shared.enableAdaptiveContentSizeMonitor()
+
         toolbarViewController = ToolbarViewController(spinManager: spinManager)
 
         let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.main.longestSide, spinManager: spinManager)
