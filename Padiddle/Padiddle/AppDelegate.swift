@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var drawingViewController: DrawingViewController?
     var toolbarViewController: ToolbarViewController?
-    var rootViewModel: RootViewModel?
+    var rootViewModel: RootViewModel!
 
     // Private Properties
 
@@ -31,20 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         rootViewModel = RootViewModel(rootColorManagerDelegate: drawingViewModel)
 
-        let toolbarViewModel = ToolbarViewModel(rootViewModel: rootViewModel!, toolbarDelegate: toolbarViewController!, colorDelegate: rootViewModel!)
+        let toolbarViewModel = ToolbarViewModel(rootViewModel: rootViewModel, toolbarDelegate: toolbarViewController!, colorDelegate: rootViewModel)
 
         toolbarViewController?.viewModel = toolbarViewModel
 
-        rootViewModel!.rootColorManagerDelegate = drawingViewModel
+        rootViewModel.rootColorManagerDelegate = drawingViewModel
 
         drawingViewController = DrawingViewController(viewModel: drawingViewModel)
 
-        rootViewModel!.drawingViewController = drawingViewController
+        rootViewModel.drawingViewController = drawingViewController
 
-        rootViewModel!.addRecordingDelegate(toolbarViewModel)
-        rootViewModel!.addRecordingDelegate(drawingViewModel)
+        rootViewModel.addRecordingDelegate(toolbarViewModel)
+        rootViewModel.addRecordingDelegate(drawingViewModel)
 
-        let rootViewController = RootViewController(viewModel: rootViewModel!, pinnedViewController: drawingViewController!, rotatingViewController: toolbarViewController!)
+        let rootViewController = RootViewController(viewModel: rootViewModel, pinnedViewController: drawingViewController!, rotatingViewController: toolbarViewController!)
         rootViewController.view.accessibilityIdentifier = "root view"
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -62,27 +62,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        rootViewModel!.recording = false
+        rootViewModel.recording = false
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        rootViewModel!.recording = false
-        rootViewModel!.persistImageInBackground()
+        rootViewModel.recording = false
+        rootViewModel.persistImageInBackground()
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        rootViewModel!.recording = false
-        rootViewModel!.motionUpdates = true
+        rootViewModel.recording = false
+        rootViewModel.motionUpdates = true
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        rootViewModel!.recording = false
-        rootViewModel!.motionUpdates = true
+        rootViewModel.recording = false
+        rootViewModel.motionUpdates = true
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
