@@ -389,7 +389,6 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
         UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
             self.recordPrompt.alpha = 1.0
         }, completion: nil)
-
     }
 
     func hideRecordPrompt() {
