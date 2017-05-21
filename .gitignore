@@ -10,6 +10,8 @@ Graphics/Export
 
 # deliver temporary files
 */fastlane/Preview.html
+*.ipa
+*.dSYM.zip
 
 # scan temporary files
 */fastlane/test_output
