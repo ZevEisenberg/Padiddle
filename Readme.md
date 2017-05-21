@@ -1,5 +1,7 @@
 # Padiddle
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=578303c5e7755301001ac354&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/578303c5e7755301001ac354/build/latest?branch=master)
+
 An iOS app that lets you draw pictures by spinning your device on your finger. Product page is [here](https://zeveisenberg.com/padiddle).
 
 ### Localization
