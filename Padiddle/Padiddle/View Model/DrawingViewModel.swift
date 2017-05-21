@@ -357,7 +357,9 @@ extension DrawingViewModel {
 
             let zRotation = deviceMotion.rotationRate.z
             let radius = maxRadius / UIDevice.gyroMaxValue * CGFloat(fabs(zRotation))
-            let theta = deviceMotion.attitude.yaw
+
+            // Yaw is on the range [-π...π]. Remap to [0...π]
+            let theta = deviceMotion.attitude.yaw + .pi
 
             let x = radius * CGFloat(cos(theta)) + maxRadius / 2.0
             let y = radius * CGFloat(sin(theta)) + maxRadius / 2.0
