@@ -23,7 +23,7 @@ class ToolbarViewController: UIViewController {
     fileprivate let clearButton = UIButton(type: .custom, axId: "clearButton")
     fileprivate let colorButton = UIButton(type: .custom, axId: "colorButton")
     fileprivate let recordButtonPlaceholder = UIView(axId: "recordButtonPlaceholder")
-    fileprivate let recordButton = UIButton(type: .custom, axId: "recordButton")
+    fileprivate let recordButton = AccessibleToggleButton(type: .custom, axId: "recordButton")
     fileprivate let shareButton = UIButton(type: .custom, axId: "shareButton")
     fileprivate let helpButton = UIButton(type: .custom, axId: "helpButton")
 
@@ -199,6 +199,14 @@ extension ToolbarViewController {
 
         recordPrompt.isHidden = true
         spinPrompt.isHidden = true
+
+        // Accessibility
+
+        clearButton.accessibilityLabel = L10n.buttonsClear.string
+        colorButton.accessibilityLabel = L10n.buttonsColor.string
+        recordButton.accessibilityLabels = (normal: L10n.buttonsRecord.string, selected: L10n.buttonsStop.string)
+        shareButton.accessibilityLabel = L10n.buttonsShare.string
+        helpButton.accessibilityLabel = L10n.buttonsHelp.string
     }
 
 }

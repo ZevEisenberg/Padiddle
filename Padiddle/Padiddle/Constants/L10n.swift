@@ -15,6 +15,18 @@ enum L10n {
   case clearDrawing
   /// Colors
   case colors
+  /// Clear the current drawing
+  case buttonsClear
+  /// Color Settings
+  case buttonsColor
+  /// Help
+  case buttonsHelp
+  /// Start Recording
+  case buttonsRecord
+  /// Share
+  case buttonsShare
+  /// Stop Recording
+  case buttonsStop
   /// 3-D
   case colors3D
   /// Autumn
@@ -59,6 +71,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "clearDrawing")
       case .colors:
         return L10n.tr(key: "colors")
+      case .buttonsClear:
+        return L10n.tr(key: "buttons.clear")
+      case .buttonsColor:
+        return L10n.tr(key: "buttons.color")
+      case .buttonsHelp:
+        return L10n.tr(key: "buttons.help")
+      case .buttonsRecord:
+        return L10n.tr(key: "buttons.record")
+      case .buttonsShare:
+        return L10n.tr(key: "buttons.share")
+      case .buttonsStop:
+        return L10n.tr(key: "buttons.stop")
       case .colors3D:
         return L10n.tr(key: "colors.3D")
       case .colorsAutumn:
