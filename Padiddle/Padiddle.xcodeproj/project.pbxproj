@@ -14,6 +14,7 @@
 		7ACF44F21BD3118300CE7FB2 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44F11BD3118300CE7FB2 /* Weak.swift */; };
 		7AE7217E1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
 		7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE7217D1BD1A8B2001B7791 /* Geometry.swift */; };
+		CD0FD2281ECE6189003C9F49 /* SpinPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FD2271ECE6189003C9F49 /* SpinPromptView.swift */; };
 		CD114B711CB80066001BBF75 /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD114B701CB80066001BBF75 /* Screenshots.swift */; };
 		CD114B791CB8008A001BBF75 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD114B781CB8008A001BBF75 /* SnapshotHelper.swift */; };
 		CD1317CA1C8B6F6D0018D720 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1317C91C8B6F6D0018D720 /* Log.swift */; };
@@ -104,6 +105,7 @@
 		BAB20864C599E558E6CBF932 /* Pods-PadiddleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.release.xcconfig"; sourceTree = "<group>"; };
 		BBAA0AF05DBDDB1D9FE22AE2 /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC9A8884BDBC315CB422B38 /* Pods-PadiddleTests.screenshots.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.screenshots.xcconfig"; path = "Pods/Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.screenshots.xcconfig"; sourceTree = "<group>"; };
+		CD0FD2271ECE6189003C9F49 /* SpinPromptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinPromptView.swift; sourceTree = "<group>"; };
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD114B701CB80066001BBF75 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		CD114B721CB80066001BBF75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,9 +350,9 @@
 		CD7519851ECD3F0000B49272 /* Tuturial */ = {
 			isa = PBXGroup;
 			children = (
+				CD0FD2271ECE6189003C9F49 /* SpinPromptView.swift */,
 				CD7519861ECD3F0D00B49272 /* StartHereView.swift */,
 			);
-			name = Tuturial;
 			path = Tuturial;
 			sourceTree = "<group>";
 		};
@@ -829,6 +831,7 @@
 				CD5D4EFD1BAC867D00D4AABB /* Defaults.swift in Sources */,
 				CD5D4F011BACA10600D4AABB /* ArrayExtensions.swift in Sources */,
 				CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */,
+				CD0FD2281ECE6189003C9F49 /* SpinPromptView.swift in Sources */,
 				CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */,
 				CD1317CA1C8B6F6D0018D720 /* Log.swift in Sources */,
 				CDDA9DC71C52FED200D9EF19 /* HelpViewModel.swift in Sources */,

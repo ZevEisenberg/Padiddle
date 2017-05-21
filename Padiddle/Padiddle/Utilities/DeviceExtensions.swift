@@ -48,6 +48,14 @@ extension UIDevice {
         }
     }
 
+    @nonobjc class var spinPromptImage: UIImage {
+        switch deviceName {
+        case "iPad": return #imageLiteral(resourceName: "iPad Spin Prompt")
+        case "iPhone", "iPod touch": return #imageLiteral(resourceName: "iPhone Spin Prompt")
+        default: fatalError("Should only get one or the other, but device name was \(deviceName)")
+        }
+    }
+
     class var isSimulator: Bool {
         return TARGET_OS_SIMULATOR != 0
     }

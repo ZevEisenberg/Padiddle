@@ -39,6 +39,8 @@ enum L10n {
   case colorsTangerine
   /// Watercolor
   case colorsWatercolor
+  /// Spin to Draw
+  case tutorialSpinPrompt
   /// Start Here
   case tutorialStartHere
 }
@@ -81,6 +83,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "colors.tangerine")
       case .colorsWatercolor:
         return L10n.tr(key: "colors.watercolor")
+      case .tutorialSpinPrompt:
+        return L10n.tr(key: "tutorial.spinPrompt")
       case .tutorialStartHere:
         return L10n.tr(key: "tutorial.startHere")
     }

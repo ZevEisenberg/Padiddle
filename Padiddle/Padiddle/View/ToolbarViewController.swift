@@ -35,11 +35,7 @@ class ToolbarViewController: UIViewController {
     }
 
     fileprivate let recordPrompt = StarthereView()
-
-    fileprivate let spinPromptLabel = { (label: UILabel) -> UILabel in
-        label.text = "Spin me right round!"
-        return label
-    }(UILabel())
+    fileprivate let spinPrompt = SpinPromptView()
 
     init(spinManager: SpinManager) {
         super.init(nibName: nil, bundle: nil)
@@ -194,15 +190,15 @@ extension ToolbarViewController {
 
         // Placeholder
         view.addSubview(recordPrompt)
-        view.addSubview(spinPromptLabel)
+        view.addSubview(spinPrompt)
 
         recordPrompt.centerXAnchor == view.centerXAnchor
         recordPrompt.bottomAnchor == recordButton.topAnchor + 15
 
-        spinPromptLabel.centerAnchors == view.centerAnchors
+        spinPrompt.centerAnchors == view.centerAnchors
 
         recordPrompt.isHidden = true
-        spinPromptLabel.isHidden = true
+        spinPrompt.isHidden = true
     }
 
 }
@@ -405,11 +401,22 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
     }
 
     func showSpinPrompt() {
-        spinPromptLabel.isHidden = false
+        spinPrompt.alpha = 0.0
+        spinPrompt.isHidden = false
+        spinPrompt.startAnimating()
+        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
+            self.spinPrompt.alpha = 1.0
+        }, completion: nil)
+
     }
 
     func hideSpinPrompt() {
-        spinPromptLabel.isHidden = true
+        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
+            self.spinPrompt.alpha = 0.0
+        }, completion: { _ in
+            self.spinPrompt.isHidden = true
+            self.spinPrompt.stopAnimating()
+        })
     }
 
 }
