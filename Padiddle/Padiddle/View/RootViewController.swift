@@ -40,8 +40,7 @@ class RootViewController: UIViewController {
         pinnedViewController.didMove(toParentViewController: self)
         rotatingViewController.didMove(toParentViewController: self)
 
-        pinnedViewController.view.centerXAnchor == view.centerXAnchor
-        pinnedViewController.view.centerYAnchor == view.centerYAnchor
+        pinnedViewController.view.centerAnchors == view.centerAnchors
 
         rotatingViewController.view.edgeAnchors == view.edgeAnchors
     }

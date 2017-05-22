@@ -179,8 +179,7 @@ extension ToolbarViewController {
         view.addSubview(recordButton)
         recordButton.centerXAnchor == recordButtonPlaceholder.centerXAnchor
         recordButton.widthAnchor == recordButtonPlaceholder.widthAnchor
-        recordButton.centerXAnchor == recordButtonBack.centerXAnchor
-        recordButton.centerYAnchor == recordButtonBack.centerYAnchor
+        recordButton.centerAnchors == recordButtonBack.centerAnchors
         recordButton.bottomAnchor == bottomLayoutGuide.topAnchor - 5
         recordButton.widthAnchor == recordButtonBack.widthAnchor
         recordButton.heightAnchor == recordButtonBack.heightAnchor
@@ -276,8 +275,7 @@ extension ToolbarViewController {
 
         shareButton.alpha = 0
         toolbarStackView.addSubview(activityIndicator) // not insertArrangedSubview!
-        activityIndicator.centerXAnchor == shareButton.centerXAnchor
-        activityIndicator.centerYAnchor == shareButton.centerYAnchor
+        activityIndicator.centerAnchors == shareButton.centerAnchors
 
         // Dismiss any other modals that may be visible
         dismiss(animated: true, completion: nil)

@@ -38,8 +38,7 @@ class DrawingViewController: CounterRotatingViewController {
 
         drawingView.widthAnchor == UIScreen.main.longestSide
         drawingView.heightAnchor == UIScreen.main.longestSide
-        drawingView.centerXAnchor == counterRotatingView.centerXAnchor
-        drawingView.centerYAnchor == counterRotatingView.centerYAnchor
+        drawingView.centerAnchors == counterRotatingView.centerAnchors
 
         let nibDiameter = 12.0
         let borderWidth: CGFloat = (UIScreen.main.scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
@@ -58,8 +57,7 @@ class DrawingViewController: CounterRotatingViewController {
             label.text = "Drawing view debug label"
             counterRotatingView.addSubview(label)
 
-            label.centerXAnchor == view.centerXAnchor
-            label.centerYAnchor == view.centerYAnchor
+            label.centerAnchors == view.centerAnchors
         }
 
         viewModel.loadPersistedImage()
