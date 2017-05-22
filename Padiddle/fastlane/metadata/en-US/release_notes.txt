@@ -1,1 +1,0 @@
-Added support for the latest iPod touch models.
