@@ -31,6 +31,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     var isUpdating = false
     var needToMoveNibToNewStartLocation = true
 
+    let contextSize = CGSize(width: 1024.0, height: 1024.0)
+
     fileprivate let brushDiameter: CGFloat = 12
 
     weak var delegate: DrawingViewModelDelegate?
@@ -46,7 +48,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     fileprivate var offscreenContext: CGContext!
 
-    fileprivate let contextSize = CGSize(width: 1024.0, height: 1024.0)
+    fileprivate let screenSize = UIScreen.main.bounds.size
 
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
@@ -292,6 +294,33 @@ extension DrawingViewModel { // Coordinate conversions
         return offsetRect
     }
 
+    func convertContextPointToViewCoordinates(_ point: CGPoint) -> CGPoint {
+
+        guard let view = view else { fatalError() }
+
+        // 1. Get the size of the context in self coordinates
+        let scaledContextSize = CGSize(
+            width: contextSize.width * contextScaleFactor,
+            height: contextSize.height * contextScaleFactor
+        )
+
+        // 2. Get the difference in size between self and the context
+        let boundsSize = view.bounds.size
+
+        let difference = CGSize(
+            width: scaledContextSize.width - boundsSize.width,
+            height: scaledContextSize.height - boundsSize.height
+        )
+
+        // 3. Scale the rect by the context scale factor
+        let scaledPoint = point.applying(CGAffineTransform(scaleX: contextScaleFactor, y: contextScaleFactor))
+
+        // 4. Shift the rect by negative the half the difference in width and height
+        let offsetPoint = scaledPoint.offsetBy(dx: -difference.width / 2.0, dy: -difference.height / 2.0)
+
+        return offsetPoint
+    }
+
 }
 
 // MARK: Context configuration
@@ -361,8 +390,8 @@ extension DrawingViewModel {
             // Yaw is on the range [-π...π]. Remap to [0...π]
             let theta = deviceMotion.attitude.yaw + .pi
 
-            let x = radius * CGFloat(cos(theta)) + maxRadius / 2.0
-            let y = radius * CGFloat(sin(theta)) + maxRadius / 2.0
+            let x = radius * CGFloat(cos(theta)) + contextSize.width / 2.0
+            let y = radius * CGFloat(sin(theta)) + contextSize.height / 2.0
 
             colorManager?.radius = radius
             colorManager?.theta = CGFloat(theta)

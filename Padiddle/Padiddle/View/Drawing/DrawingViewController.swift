@@ -97,15 +97,17 @@ extension DrawingViewController: DrawingViewModelDelegate {
     }
 
     func drawingViewModelUpdatedLocation(_ newLocation: CGPoint) {
-        nib.center = newLocation.screenPixelsIntegral
+        let convertedLocation = viewModel.convertContextPointToViewCoordinates(newLocation)
+
+        nib.center = convertedLocation.screenPixelsIntegral
 
         if viewModel.isUpdating {
             if viewModel.needToMoveNibToNewStartLocation {
                 viewModel.needToMoveNibToNewStartLocation = false
-                drawingView.restartAtPoint(newLocation)
+                drawingView.restartAtPoint(convertedLocation)
             }
             else {
-                drawingView.addPoint(newLocation)
+                drawingView.addPoint(convertedLocation)
             }
         }
     }

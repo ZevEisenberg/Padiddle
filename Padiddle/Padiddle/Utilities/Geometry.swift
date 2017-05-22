@@ -83,6 +83,10 @@ extension CGPoint {
         return CGPoint(x: newX, y: newY)
     }
 
+    func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
+        return CGPoint(x: x + dx, y: y + dy)
+    }
+
 }
 
 extension CGAffineTransform {

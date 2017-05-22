@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         toolbarViewController = ToolbarViewController(spinManager: spinManager)
 
-        let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.main.longestSide, spinManager: spinManager)
+        let drawingViewModel = DrawingViewModel(maxRadius: UIScreen.main.shortestSide, spinManager: spinManager)
 
         rootViewModel = RootViewModel(rootColorManagerDelegate: drawingViewModel)
 
