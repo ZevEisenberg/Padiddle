@@ -739,7 +739,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
 		};
 		CD2AD6031C56EA9D00910FFE /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -753,7 +753,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
