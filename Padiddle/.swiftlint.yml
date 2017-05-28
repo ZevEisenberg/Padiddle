@@ -2,12 +2,13 @@ disabled_rules: # rule identifiers to exclude from running
   - file_length
   - function_body_length
   - line_length
-  - variable_name
+  - identifier_name
 
-enabled_rules:
+opt_in_rules:
   - vertical_whitespace
   - operator_usage_whitespace
   - sorted_imports
+  - implicit_return
 
 excluded:
   - Carthage
