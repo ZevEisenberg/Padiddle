@@ -23,6 +23,7 @@ scheme "Screenshots"
 configuration "Debug"
 
 clear_previous_screenshots true
+erase_simulator true
 
 # Choose which project/workspace to use
 # project "./Project.xcodeproj"
