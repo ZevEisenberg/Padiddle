@@ -66,7 +66,9 @@ extension ToolbarViewController {
 
         updateColorButton((viewModel?.colorPickerViewModel?.selectedColorManager)!)
 
-        tutorialCoordinator.start()
+        if !Defaults.snapshotMode {
+            tutorialCoordinator.start()
+        }
     }
 
     private func configureViews() {
