@@ -9,7 +9,7 @@ devices([
 
 languages([
   "en-US",
-  "fr-Fr",
+  "fr-FR",
   "it",
   "zh-Hans",
   "zh-Hant",
