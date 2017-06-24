@@ -26,6 +26,17 @@ platform :ios do
     scan(scheme: "Padiddle")
   end
 
+  desc "Take screenshots for the website"
+  lane :screenshotsForWebsite do
+    snapshot(
+    devices: ["iPhone 6", "iPad Pro (9.7-inch)"],
+    languages: ["en-US"],
+    scheme: "ScreenshotsForWebsite",
+    output_directory: "fastlane/screenshots_for_website"
+    )
+    frameit
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do

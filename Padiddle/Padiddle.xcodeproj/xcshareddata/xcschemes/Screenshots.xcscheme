@@ -37,6 +37,11 @@
                BlueprintName = "Screenshots"
                ReferencedContainer = "container:Padiddle.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "Screenshots/testTakeLandscapeScreenshotForWebsite()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

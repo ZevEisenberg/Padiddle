@@ -35,6 +35,11 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
+### ios screenshotsForWebsite
+```
+fastlane ios screenshotsForWebsite
+```
+Take screenshots for the website
 ### ios beta
 ```
 fastlane ios beta
