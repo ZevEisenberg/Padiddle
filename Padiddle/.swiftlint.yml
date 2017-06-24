@@ -9,6 +9,7 @@ opt_in_rules:
   - operator_usage_whitespace
   - sorted_imports
   - implicit_return
+  - extension_access_modifier
 
 excluded:
   - Carthage
