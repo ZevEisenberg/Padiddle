@@ -94,10 +94,10 @@ extension ToolbarViewController {
 
         toolbarView.horizontalAnchors == view.horizontalAnchors ~ .high
 
-        toolbarTopConstraint = (toolbarView.topAnchor == bottomLayoutGuide.topAnchor)
+        toolbarTopConstraint = (toolbarView.topAnchor == view.safeAreaLayoutGuide.bottomAnchor)
         toolbarTopConstraint.isActive = false // so it doesn't conflict with toolbarBottomConstraint
 
-        toolbarBottomConstraint = (toolbarView.bottomAnchor == bottomLayoutGuide.topAnchor)
+        toolbarBottomConstraint = (toolbarView.bottomAnchor == view.safeAreaLayoutGuide.bottomAnchor)
 
         toolbarHairline.backgroundColor = .toolbarHairline
         toolbarView.addSubview(toolbarHairline)
@@ -182,7 +182,7 @@ extension ToolbarViewController {
         recordButton.centerXAnchor == recordButtonPlaceholder.centerXAnchor
         recordButton.widthAnchor == recordButtonPlaceholder.widthAnchor
         recordButton.centerAnchors == recordButtonBack.centerAnchors
-        recordButton.bottomAnchor == bottomLayoutGuide.topAnchor - 5
+        recordButton.bottomAnchor == view.safeAreaLayoutGuide.bottomAnchor - 5
         recordButton.widthAnchor == recordButtonBack.widthAnchor
         recordButton.heightAnchor == recordButtonBack.heightAnchor
         if let recordButtonSuperview = recordButton.superview {

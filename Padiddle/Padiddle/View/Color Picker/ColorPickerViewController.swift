@@ -77,7 +77,7 @@ class ColorPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        automaticallyAdjustsScrollViewInsets = false
+        collectionView.contentInsetAdjustmentBehavior = .automatic
 
         collectionView.register(PickerCell.self, forCellWithReuseIdentifier: "cell")
 
@@ -89,9 +89,9 @@ class ColorPickerViewController: UIViewController {
         collectionView.horizontalAnchors == view.horizontalAnchors
         pageControl.horizontalAnchors == view.horizontalAnchors
 
-        collectionView.topAnchor == topLayoutGuide.bottomAnchor
+        collectionView.topAnchor == view.safeAreaLayoutGuide.topAnchor
         pageControl.topAnchor == collectionView.bottomAnchor
-        pageControl.bottomAnchor == bottomLayoutGuide.topAnchor
+        pageControl.bottomAnchor == view.safeAreaLayoutGuide.bottomAnchor
 
         // Need to set the scroll view’s content size before we can tell it to scroll.
         collectionView.contentSize = layout.collectionViewContentSize
