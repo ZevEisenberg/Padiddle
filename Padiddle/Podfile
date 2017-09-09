@@ -2,7 +2,7 @@ platform :ios, '10.0'
   use_frameworks!
 
   # Pods for Padiddle
-target 'Padiddle' do  
+target 'Padiddle' do
   pod 'Anchorage'
   pod 'BonMot'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
