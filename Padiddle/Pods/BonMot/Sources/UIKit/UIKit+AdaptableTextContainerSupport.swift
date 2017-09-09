@@ -19,13 +19,8 @@ extension UIApplication {
     /// `AdaptableTextContainer`, which can be a good place to update appearance
     /// proxies and invalidate any hard-wired caches that less responsive code may have.
     public final func enableAdaptiveContentSizeMonitor() {
-        #if swift(>=3.0)
-            let notificationCenter = NotificationCenter.default
-            let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
-        #else
-            let notificationCenter = NSNotificationCenter.defaultCenter()
-            let notificationName = UIContentSizeCategoryDidChangeNotification
-        #endif
+        let notificationCenter = NotificationCenter.default
+        let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
         notificationCenter.addObserver(
             self,
             selector: #selector(UIApplication.bon_notifyContainedAdaptiveContentSizeContainers(fromNotification:)),
@@ -37,8 +32,8 @@ extension UIApplication {
     @objc internal func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
         // First notify the app delegate if it conforms to AdaptableTextContainer.
         if let container = delegate, let traitCollection = container.window??.traitCollection {
-            if container.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
-                container.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
+            if NSObject.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
+                NSObject.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
             }
         }
 
@@ -80,8 +75,8 @@ extension UIView {
         for view in subviews {
             view.notifyContainedAdaptiveContentSizeContainers()
         }
-        if responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
-            perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
+        if NSObject.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
+            NSObject.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
         }
     }
 
