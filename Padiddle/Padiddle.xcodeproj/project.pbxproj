@@ -438,12 +438,12 @@
 			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
 				E8A01669921DB1877014DA1E /* [CP] Check Pods Manifest.lock */,
+				7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */,
 				CDDA9DD61C530FDA00D9EF19 /* SwiftGen */,
 				CD193CB51BA4891500203B44 /* Sources */,
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
 				CD118DBF1BA4E7C800668DB6 /* Build Number */,
-				7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */,
 				A77514DFBBBC9E4B6E0FC363 /* [CP] Embed Pods Frameworks */,
 				9AA03E83AAB5F6722AF7B50B /* [CP] Copy Pods Resources */,
 				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
