@@ -32,7 +32,7 @@ final class StarthereView: UIView {
         label.numberOfLines = 0
         label.attributedText = L10n.tutorialStartHere.string.styled(with: StringStyle([
             .adapt(.control),
-            .font(UIFont.systemFont(ofSize: 30, weight: UIFontWeightMedium)),
+            .font(UIFont.systemFont(ofSize: 30, weight: .medium)),
             .color(.tutorialText),
             .alignment(.center),
         ]))

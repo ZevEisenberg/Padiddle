@@ -138,7 +138,7 @@ class ColorPickerViewController: UIViewController {
 
     // MARK: Action Handlers
 
-    func pageControlChanged() {
+    @objc func pageControlChanged() {
         let pageWidth = collectionView.frame.width
         let scrollTo = CGPoint(x: pageWidth * CGFloat(pageControl.currentPage), y: 0)
         collectionView.setContentOffset(scrollTo, animated: true)

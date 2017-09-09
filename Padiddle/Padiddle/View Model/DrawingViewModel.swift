@@ -381,7 +381,7 @@ extension DrawingViewModel {
         spinManager.stopMotionUpdates()
     }
 
-    func timerFired() {
+    @objc func timerFired() {
         if let deviceMotion = spinManager.deviceMotion {
 
             let zRotation = deviceMotion.rotationRate.z

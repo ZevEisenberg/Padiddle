@@ -23,7 +23,7 @@ class Screenshots: XCTestCase {
         setupSnapshot(app)
         app.launch()
 
-        XCUIDevice.shared().orientation = .portrait
+        XCUIDevice.shared.orientation = .portrait
     }
 
     func testTakeScreenshots() {
@@ -58,11 +58,11 @@ class Screenshots: XCTestCase {
 
     func testTakeLandscapeScreenshotForWebsite() {
         if UIDevice.current.userInterfaceIdiom == .pad {
-            XCUIDevice.shared().orientation = .portrait
+            XCUIDevice.shared.orientation = .portrait
             XCUIApplication().buttons["colorButton"].tap()
         }
         else {
-            XCUIDevice.shared().orientation = .landscapeLeft
+            XCUIDevice.shared.orientation = .landscapeLeft
         }
 
         snapshot("website")

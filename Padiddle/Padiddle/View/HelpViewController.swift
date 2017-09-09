@@ -52,7 +52,7 @@ class HelpViewController: UIViewController {
         }
     }
 
-    func typeSizeChanged(_ note: NSNotification) {
+    @objc func typeSizeChanged(_ note: NSNotification) {
         webView.loadHTMLString(viewModel.html, baseURL: nil)
     }
 

@@ -216,7 +216,7 @@ extension ToolbarViewController {
 
 extension ToolbarViewController {
 
-    func trashTapped() {
+    @objc func trashTapped() {
         Log.info()
         let clearAction = UIAlertAction(title: L10n.clearDrawing.string, style: .destructive) { _ in
             Log.info("Clear Drawing tapped")
@@ -232,7 +232,7 @@ extension ToolbarViewController {
         configurePopover(viewController: alert, sourceView: clearButton)
     }
 
-    func colorTapped() {
+    @objc func colorTapped() {
         Log.info()
         let viewControllerToShow: UIViewController
 
@@ -253,7 +253,7 @@ extension ToolbarViewController {
         configurePopover(viewController: viewControllerToShow, sourceView: colorButton)
     }
 
-    func recordTapped() {
+    @objc func recordTapped() {
         Log.info("new recording status: \(!recordButton.isSelected)")
         recordButton.isSelected = !recordButton.isSelected
 
@@ -261,7 +261,7 @@ extension ToolbarViewController {
         tutorialCoordinator.recordButtonTapped()
     }
 
-    func shareTapped() {
+    @objc func shareTapped() {
         Log.info()
 
         guard let viewModel = viewModel else { fatalError() }
@@ -326,7 +326,7 @@ extension ToolbarViewController {
         }
     }
 
-    func helpTapped() {
+    @objc func helpTapped() {
         Log.info()
         let helpViewController = HelpViewController()
         helpViewController.modalPresentationStyle = .popover
