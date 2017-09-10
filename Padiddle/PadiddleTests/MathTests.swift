@@ -28,10 +28,10 @@ class MathTests: XCTestCase {
 
     func testDegrees() {
         let ε = CGFloat(0.0001)
-        XCTAssertEqualWithAccuracy(CGFloat(0).degrees, 0, accuracy: ε)
-        XCTAssertEqualWithAccuracy(CGFloat.pi.degrees, 180, accuracy: ε)
-        XCTAssertEqualWithAccuracy(twoPi.degrees, 360, accuracy: ε)
-        XCTAssertEqualWithAccuracy((CGFloat.pi / 3.0).degrees, 60, accuracy: ε)
+        XCTAssertEqual(CGFloat(0).degrees, 0, accuracy: ε)
+        XCTAssertEqual(CGFloat.pi.degrees, 180, accuracy: ε)
+        XCTAssertEqual(twoPi.degrees, 360, accuracy: ε)
+        XCTAssertEqual((CGFloat.pi / 3.0).degrees, 60, accuracy: ε)
     }
 
 }

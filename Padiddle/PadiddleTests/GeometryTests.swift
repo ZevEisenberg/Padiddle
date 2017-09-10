@@ -15,19 +15,19 @@ class PadiddleTests: XCTestCase {
 
     func testDistanceBetweenPoints() {
         let p1 = CGPoint.zero
-        XCTAssertEqualWithAccuracy(Double(CGPoint.distanceBetween(p1, p1)), 0.0, accuracy: accuracy)
+        XCTAssertEqual(Double(CGPoint.distanceBetween(p1, p1)), 0.0, accuracy: accuracy)
 
         let p2 = CGPoint(x: 10, y: 10)
         let p3 = CGPoint(x: 13, y: 14)
-        XCTAssertEqualWithAccuracy(Double(CGPoint.distanceBetween(p2, p3)), 5.0, accuracy: accuracy)
+        XCTAssertEqual(Double(CGPoint.distanceBetween(p2, p3)), 5.0, accuracy: accuracy)
 
         let p4 = CGPoint(x: -8, y: -2000)
         let p5 = CGPoint(x: -13, y: -2012)
-        XCTAssertEqualWithAccuracy(Double(CGPoint.distanceBetween(p4, p5)), 13.0, accuracy: accuracy)
+        XCTAssertEqual(Double(CGPoint.distanceBetween(p4, p5)), 13.0, accuracy: accuracy)
 
         let p6 = CGPoint.zero
         let p7 = CGPoint(x: 1, y: Darwin.sqrt(3))
-        XCTAssertEqualWithAccuracy(Double(CGPoint.distanceBetween(p6, p7)), 2.0, accuracy: accuracy)
+        XCTAssertEqual(Double(CGPoint.distanceBetween(p6, p7)), 2.0, accuracy: accuracy)
     }
 
     func testCGSizeMax() {
