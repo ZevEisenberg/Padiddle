@@ -20,7 +20,7 @@ final class SpinPromptView: UIView {
 
         let label = UILabel(axId: "spinPromptLabel")
         label.numberOfLines = 0
-        label.attributedText = L10n.tutorialSpinPrompt.string.styled(with: StringStyle([
+        label.attributedText = L10n.tutorialSpinPrompt.styled(with: StringStyle([
             .adapt(.control),
             .font(UIFont.systemFont(ofSize: 30, weight: .medium)),
             .color(.tutorialText),

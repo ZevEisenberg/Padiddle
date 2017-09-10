@@ -80,84 +80,84 @@ extension ColorPickerViewModel {
                 h: .thetaIncreasing,
                 s: .manual(1.0),
                 v: .velocityIn),
-            title: L10n.colorsClassic.string),
+            title: L10n.colorsClassic),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .manual(30.0 / 360.0),
                     s: .manual(0.2),
                     v: .thetaIncreasingAndDecreasing),
-                title: L10n.colorsSepia.string),
+                title: L10n.colorsSepia),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .manual(0.0),
                     s: .manual(1.0),
                     v: .velocityIn),
-                title: L10n.colorsBlackWidow.string),
+                title: L10n.colorsBlackWidow),
 
             ColorManager(
                 colorModel: .rgb(
                     r: .velocityOut,
                     g: .manual(0.45),
                     b: .manual(0.0)),
-                title: L10n.colorsAutumn.string),
+                title: L10n.colorsAutumn),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .manual(30.0 / 360.0),
                     s: .velocityIn,
                     v: .manual(1.0)),
-                title: L10n.colorsTangerine.string),
+                title: L10n.colorsTangerine),
 
             ColorManager(
                 colorModel: .rgb(
                     r: .thetaIncreasingAndDecreasing,
                     g: .thetaIncreasing,
                     b: .thetaIncreasing),
-                title: L10n.colors3D.string),
+                title: L10n.colors3D),
 
             ColorManager(
                 colorModel: .rgb(
                     r: .thetaIncreasingAndDecreasing,
                     g: .velocityIn,
                     b: .thetaIncreasing),
-                title: L10n.colorsWatercolor.string),
+                title: L10n.colorsWatercolor),
 
             ColorManager(
                 colorModel: .rgb(
                     r: .velocityIn,
                     g: .velocityOut,
                     b: .velocityIn),
-                title: L10n.colorsMonsters.string),
+                title: L10n.colorsMonsters),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .thetaIncreasingAndDecreasing,
                     s: .manual(0.33),
                     v: .velocityOut),
-                title: L10n.colorsPastels.string),
+                title: L10n.colorsPastels),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .velocityIn,
                     s: .velocityOut,
                     v: .thetaIncreasingAndDecreasing),
-                title: L10n.colorsMerlin.string),
+                title: L10n.colorsMerlin),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .manual(0.0),
                     s: .manual(0.0),
                     v: .velocityOut),
-                title: L10n.colorsRegolith.string),
+                title: L10n.colorsRegolith),
 
             ColorManager(
                 colorModel: .hsv(
                     h: .manual(0.0),
                     s: .manual(0.0),
                     v: .thetaIncreasingAndDecreasing),
-                title: L10n.colorsFilmNoir.string),
+                title: L10n.colorsFilmNoir),
         ]
     }
 

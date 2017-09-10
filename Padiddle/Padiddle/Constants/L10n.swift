@@ -3,125 +3,65 @@
 import Foundation
 
 // swiftlint:disable file_length
-// swiftlint:disable line_length
 
-// swiftlint:disable type_body_length
+// swiftlint:disable identifier_name line_length type_body_length
 enum L10n {
   /// About Padiddle
-  case about
+  static let about = L10n.tr("Localizable", "about")
   /// Cancel
-  case cancel
+  static let cancel = L10n.tr("Localizable", "cancel")
   /// Clear Drawing
-  case clearDrawing
+  static let clearDrawing = L10n.tr("Localizable", "clearDrawing")
   /// Colors
-  case colors
+  static let colors = L10n.tr("Localizable", "colors")
   /// Clear the current drawing
-  case buttonsClear
+  static let buttonsClear = L10n.tr("Localizable", "buttons.clear")
   /// Color Settings
-  case buttonsColor
+  static let buttonsColor = L10n.tr("Localizable", "buttons.color")
   /// Help
-  case buttonsHelp
+  static let buttonsHelp = L10n.tr("Localizable", "buttons.help")
   /// Start Recording
-  case buttonsRecord
+  static let buttonsRecord = L10n.tr("Localizable", "buttons.record")
   /// Share
-  case buttonsShare
+  static let buttonsShare = L10n.tr("Localizable", "buttons.share")
   /// Stop Recording
-  case buttonsStop
+  static let buttonsStop = L10n.tr("Localizable", "buttons.stop")
   /// 3-D
-  case colors3D
+  static let colors3D = L10n.tr("Localizable", "colors.3D")
   /// Autumn
-  case colorsAutumn
+  static let colorsAutumn = L10n.tr("Localizable", "colors.autumn")
   /// Black Widow
-  case colorsBlackWidow
+  static let colorsBlackWidow = L10n.tr("Localizable", "colors.blackWidow")
   /// Classic
-  case colorsClassic
+  static let colorsClassic = L10n.tr("Localizable", "colors.classic")
   /// Film Noir
-  case colorsFilmNoir
+  static let colorsFilmNoir = L10n.tr("Localizable", "colors.filmNoir")
   /// Merlin
-  case colorsMerlin
+  static let colorsMerlin = L10n.tr("Localizable", "colors.merlin")
   /// Monsters
-  case colorsMonsters
+  static let colorsMonsters = L10n.tr("Localizable", "colors.monsters")
   /// Pastels
-  case colorsPastels
+  static let colorsPastels = L10n.tr("Localizable", "colors.pastels")
   /// Regolith
-  case colorsRegolith
+  static let colorsRegolith = L10n.tr("Localizable", "colors.regolith")
   /// Sepia
-  case colorsSepia
+  static let colorsSepia = L10n.tr("Localizable", "colors.sepia")
   /// Tangerine
-  case colorsTangerine
+  static let colorsTangerine = L10n.tr("Localizable", "colors.tangerine")
   /// Watercolor
-  case colorsWatercolor
+  static let colorsWatercolor = L10n.tr("Localizable", "colors.watercolor")
   /// Spin to Draw
-  case tutorialSpinPrompt
+  static let tutorialSpinPrompt = L10n.tr("Localizable", "tutorial.spinPrompt")
   /// Start Here
-  case tutorialStartHere
+  static let tutorialStartHere = L10n.tr("Localizable", "tutorial.startHere")
 }
-// swiftlint:enable type_body_length
+// swiftlint:enable identifier_name line_length type_body_length
 
-extension L10n: CustomStringConvertible {
-  var description: String { return self.string }
-
-  var string: String {
-    switch self {
-      case .about:
-        return L10n.tr(key: "about")
-      case .cancel:
-        return L10n.tr(key: "cancel")
-      case .clearDrawing:
-        return L10n.tr(key: "clearDrawing")
-      case .colors:
-        return L10n.tr(key: "colors")
-      case .buttonsClear:
-        return L10n.tr(key: "buttons.clear")
-      case .buttonsColor:
-        return L10n.tr(key: "buttons.color")
-      case .buttonsHelp:
-        return L10n.tr(key: "buttons.help")
-      case .buttonsRecord:
-        return L10n.tr(key: "buttons.record")
-      case .buttonsShare:
-        return L10n.tr(key: "buttons.share")
-      case .buttonsStop:
-        return L10n.tr(key: "buttons.stop")
-      case .colors3D:
-        return L10n.tr(key: "colors.3D")
-      case .colorsAutumn:
-        return L10n.tr(key: "colors.autumn")
-      case .colorsBlackWidow:
-        return L10n.tr(key: "colors.blackWidow")
-      case .colorsClassic:
-        return L10n.tr(key: "colors.classic")
-      case .colorsFilmNoir:
-        return L10n.tr(key: "colors.filmNoir")
-      case .colorsMerlin:
-        return L10n.tr(key: "colors.merlin")
-      case .colorsMonsters:
-        return L10n.tr(key: "colors.monsters")
-      case .colorsPastels:
-        return L10n.tr(key: "colors.pastels")
-      case .colorsRegolith:
-        return L10n.tr(key: "colors.regolith")
-      case .colorsSepia:
-        return L10n.tr(key: "colors.sepia")
-      case .colorsTangerine:
-        return L10n.tr(key: "colors.tangerine")
-      case .colorsWatercolor:
-        return L10n.tr(key: "colors.watercolor")
-      case .tutorialSpinPrompt:
-        return L10n.tr(key: "tutorial.spinPrompt")
-      case .tutorialStartHere:
-        return L10n.tr(key: "tutorial.startHere")
-    }
-  }
-
-  private static func tr(key: String, _ args: CVarArg...) -> String {
-    let format = NSLocalizedString(key, bundle: Bundle(for: BundleToken.self), comment: "")
+extension L10n {
+  private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
+    let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
     return String(format: format, locale: Locale.current, arguments: args)
   }
-}
-
-func tr(_ key: L10n) -> String {
-  return key.string
 }
 
 private final class BundleToken {}
