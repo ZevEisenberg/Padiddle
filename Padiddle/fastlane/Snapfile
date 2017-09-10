@@ -2,9 +2,10 @@
 devices([
   "iPhone 6",
   "iPhone 6 Plus",
-  "iPhone 5",
+  "iPhone 5s",
   "iPad Pro (9.7-inch)",
   "iPad Pro (12.9-inch)",
+  # "iPad Pro (10.5-inch)", # not supported in iTunes Connect
 ])
 
 languages([
