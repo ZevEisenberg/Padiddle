@@ -172,6 +172,8 @@
 		CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageProtocol.swift; sourceTree = "<group>"; };
 		CDE071321C55BDFE00BB5D6A /* ImageIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIO.swift; sourceTree = "<group>"; };
 		CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		DD49E4991F6AF6B500387B7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DD49E49A1F6AF6B500387B7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/help.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +546,7 @@
 				"zh-Hans",
 				"zh-Hant",
 				it,
+				nl,
 			);
 			mainGroup = CD193CB01BA4891500203B44;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
@@ -952,6 +955,7 @@
 				CD4010661D333A1D0004F411 /* it */,
 				CD20258A1D1A35A90002C2A0 /* zh-Hans */,
 				CD20258B1D1A35AD0002C2A0 /* zh-Hant */,
+				DD49E4991F6AF6B500387B7F /* nl */,
 			);
 			name = Localizable.strings;
 			path = .;
@@ -965,6 +969,7 @@
 				CD4010651D333A1D0004F411 /* it */,
 				CDDA9DD21C53011000D9EF19 /* zh-Hans */,
 				CDDA9DD31C53011100D9EF19 /* zh-Hant */,
+				DD49E49A1F6AF6B500387B7F /* nl */,
 			);
 			name = help.html;
 			path = .;
