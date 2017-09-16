@@ -54,6 +54,7 @@ class CounterRotatingViewController: UIViewController {
 
         counterRotatingView.centerXAnchor == view.centerXAnchor
         counterRotatingView.centerYAnchor == view.centerYAnchor
+        counterRotatingView.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
 
         counterRotatingView.transform = transformForStatusBarOrientation(UIApplication.shared.statusBarOrientation)
     }

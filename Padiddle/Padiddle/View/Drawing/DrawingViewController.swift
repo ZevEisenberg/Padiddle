@@ -36,6 +36,8 @@ class DrawingViewController: CounterRotatingViewController {
 
         counterRotatingView.addSubview(drawingView)
 
+        view.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
+
         drawingView.widthAnchor == UIScreen.main.longestSide
         drawingView.heightAnchor == UIScreen.main.longestSide
         drawingView.centerAnchors == counterRotatingView.centerAnchors
