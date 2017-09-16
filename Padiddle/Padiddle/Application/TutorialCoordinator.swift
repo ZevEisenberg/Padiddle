@@ -169,7 +169,7 @@ private extension TutorialCoordinator {
     enum Constants {
 
         static let waitForRecordTimeout: TimeInterval = 5
-        static let waitForSpinTimeout: TimeInterval = 5
+        static let waitForSpinTimeout: TimeInterval = 3
 
     }
 
