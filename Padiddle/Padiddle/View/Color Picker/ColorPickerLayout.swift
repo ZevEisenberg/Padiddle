@@ -112,6 +112,8 @@ private extension ColorPickerLayout {
             collectionView.frame.width -
                 pageInsets.left -
                 pageInsets.right -
+                collectionView.safeAreaInsets.left -
+                collectionView.safeAreaInsets.right -
                 CGFloat(numberOfColumns - 1) * spacing)
         let columnWidth = spaceForColumns / CGFloat(numberOfColumns)
 
@@ -119,16 +121,20 @@ private extension ColorPickerLayout {
             collectionView.frame.height -
                 pageInsets.top -
                 pageInsets.bottom -
+                collectionView.safeAreaInsets.top -
+                collectionView.safeAreaInsets.bottom -
                 CGFloat(numberOfRows - 1) * spacing)
         let rowHeight = spaceForRows / CGFloat(numberOfRows)
 
         let originX = floor(
             pageInsets.left +
+                collectionView.safeAreaInsets.left +
                 (columnWidth + spacing) * CGFloat(column) +
                 CGFloat(page) * collectionView.frame.width)
 
         let originY = floor(
             pageInsets.top +
+                collectionView.safeAreaInsets.top +
                 (rowHeight + spacing) * CGFloat(row))
 
         let frame = CGRect(x: originX, y: originY, width: floor(columnWidth), height: floor(rowHeight))
