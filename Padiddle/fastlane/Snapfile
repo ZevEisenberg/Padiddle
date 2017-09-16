@@ -13,6 +13,7 @@ languages([
   "en-US",
   "fr-FR",
   "it",
+  "nl",
   "zh-Hans",
   "zh-Hant",
 ])
