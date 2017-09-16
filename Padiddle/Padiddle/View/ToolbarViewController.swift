@@ -74,6 +74,7 @@ extension ToolbarViewController {
     private func configureViews() {
 
         let toolbarView = UIView(axId: "toolbarView")
+        let toolbarBottom = UIView(axId: "toolbarBottom") // hangs off the bottom of the toolbar on devices with a Home Indicator instead of a Home Button
         let toolbarHairline = UIView(axId: "toolbarHairline")
         let spacerViews: [UIView] = {
             var spacers = [UIView]()
@@ -89,12 +90,18 @@ extension ToolbarViewController {
 
         // Toolbar
         toolbarView.backgroundColor = .toolbar
+        toolbarBottom.backgroundColor = .toolbar
         view.addSubview(toolbarView)
+        view.addSubview(toolbarBottom)
         toolbarView.heightAnchor == 44
 
         toolbarView.horizontalAnchors == view.horizontalAnchors ~ .high
+        toolbarBottom.horizontalAnchors == toolbarView.horizontalAnchors
+        toolbarView.bottomAnchor == toolbarBottom.topAnchor
+        toolbarBottom.heightAnchor == 0 ~ 1.0 // prevent ambiguous layout when the toolbar is off screen, or on devices with physical home buttons
+        toolbarBottom.bottomAnchor == view.bottomAnchor ~ 2.0 // allowed to break when the toolbar goes off screen
 
-        toolbarTopConstraint = (toolbarView.topAnchor == view.safeAreaLayoutGuide.bottomAnchor)
+        toolbarTopConstraint = (toolbarView.topAnchor == view.bottomAnchor)
         toolbarTopConstraint.isActive = false // so it doesn't conflict with toolbarBottomConstraint
 
         toolbarBottomConstraint = (toolbarView.bottomAnchor == view.safeAreaLayoutGuide.bottomAnchor)
