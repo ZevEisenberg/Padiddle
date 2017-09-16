@@ -23,7 +23,7 @@ class HelpViewController: UIViewController {
         webView.backgroundColor = .white
         webView.delegate = self
         view.addSubview(webView)
-        webView.verticalAnchors == view.layoutMarginsGuide.verticalAnchors
+        webView.verticalAnchors == view.verticalAnchors
         webView.horizontalAnchors == view.horizontalAnchors
         webView.loadHTMLString(viewModel.html, baseURL: nil)
 
