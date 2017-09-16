@@ -8,6 +8,7 @@ An iOS app that lets you draw pictures by spinning your device on your finger. P
 
 The main impetus for open-sourcing Padiddle was to solicit help from the community in localizing the app. It currently supports the following localizations:
 
+- [Dutch](https://github.com/ZevEisenberg/Padiddle/tree/master/Padiddle/Padiddle/nl.lproj)
 - [English](https://github.com/ZevEisenberg/Padiddle/tree/master/Padiddle/Padiddle/Base.lproj) (Base)
 - [French](https://github.com/ZevEisenberg/Padiddle/tree/master/Padiddle/Padiddle/fr.lproj)
 - [Italian](https://github.com/ZevEisenberg/Padiddle/tree/master/Padiddle/Padiddle/it.lproj)
