@@ -59,7 +59,8 @@ platform :ios do
     gym(
     scheme: "Padiddle",
     include_symbols: true,
-    include_bitcode: true
+    include_bitcode: true,
+    export_xcargs: '-allowProvisioningUpdates'
     )
     deliver(force: true)
     # frameit
