@@ -59,7 +59,7 @@ extension SpinPromptView {
         let keyframeAnimation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.transform))
 
         let duration: CFTimeInterval = 2
-        let framesPerSecond = 60.0
+        let framesPerSecond = Double(UIScreen.main.maximumFramesPerSecond)
         let frameCount = duration * framesPerSecond
 
         let frameFractions = stride(from: 0, to: 1.0, by: 1.0 / frameCount)
