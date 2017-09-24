@@ -385,6 +385,10 @@ extension ToolbarViewController: ToolbarViewModelToolbarDelegate {
     func setToolbarVisible(_ visible: Bool, animated: Bool) {
         if toolbarVisible != visible {
             toolbarVisible = visible
+            recordButton.isSelected = !visible
+            if visible {
+                tutorialCoordinator.spunEnough()
+            }
             updateToolbarConstraints(visible)
 
             let duration = animated ? toolbarAnimationDuration : 0.0
