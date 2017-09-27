@@ -24,7 +24,7 @@ class HelpImageProtocol: URLProtocol {
     override func startLoading() {
         guard let client = client, let url = request.url else { return }
 
-        guard let lastPathComponent = request.url?.lastPathComponent, lastPathComponent.characters.count > 0 else { return }
+        guard let lastPathComponent = request.url?.lastPathComponent, lastPathComponent.count > 0 else { return }
 
         let imageName = (lastPathComponent as NSString).deletingPathExtension
 
