@@ -60,7 +60,11 @@ extension {% if isAppKit %}NSSeguePerforming{% else %}UIViewController{% endif %
 {% set sceneEnumName %}{{param.sceneEnumName|default:"StoryboardScene"}}{% endset %}
 {% macro className scene %}{% filter removeNewlines %}
   {% if scene.customClass %}
-    {% if scene.customModule %}{{scene.customModule}}.{% endif %}
+    {% if scene.customModule %}
+      {% if not param.ignoreTargetModule or scene.customModule != env.PRODUCT_MODULE_NAME and scene.customModule != param.module %}
+        {{scene.customModule}}.
+      {% endif %}
+    {% endif %}
     {{scene.customClass}}
   {% else %}
     {{prefix}}{{scene.baseType}}

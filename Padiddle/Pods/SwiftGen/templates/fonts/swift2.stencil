@@ -21,25 +21,25 @@ struct FontConvertible {
   }
 
   func register() {
-    let bundle = NSBundle(forClass: BundleToken.self)
-
-    guard let url = bundle.URLForResource(path, withExtension: nil) else {
-      return
-    }
-
+    guard let url = url else { return }
     var errorRef: Unmanaged<CFError>?
     CTFontManagerRegisterFontsForURL(url as CFURL, .Process, &errorRef)
+  }
+
+  fileprivate var url: NSURL? {
+    let bundle = NSBundle(forClass: BundleToken.self)
+    return bundle.URLForResource(path, withExtension: nil)
   }
 }
 
 extension Font {
   convenience init!(font: FontConvertible, size: CGFloat) {
     #if os(iOS) || os(tvOS) || os(watchOS)
-    if UIFont.fontNamesForFamilyName(font.family).isEmpty {
+    if !UIFont.fontNamesForFamilyName(font.family).contains(font.name) {
       font.register()
     }
     #elseif os(OSX)
-    if NSFontManager.sharedFontManager().availableMembersOfFontFamily(font.family) == nil {
+    if let url = font.url, CTFontManagerGetScopeForURL(url as CFURL) == .None {
       font.register()
     }
     #endif
