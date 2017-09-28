@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BonMot:
-    :commit: 040304805d13a29435ef60525954741c223dffe4
+    :commit: 41b5fa121e874c3815c0c7f5f3c7a433cc0aaf4a
     :git: https://github.com/Raizlabs/BonMot.git
 
 SPEC CHECKSUMS:
