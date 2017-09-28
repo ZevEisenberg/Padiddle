@@ -945,9 +945,9 @@
 				CD92FB001D1B7A6700AE86FB /* Base */,
 				CD2025891D1A35A00002C2A0 /* fr */,
 				CD4010661D333A1D0004F411 /* it */,
+				DD49E4991F6AF6B500387B7F /* nl */,
 				CD20258A1D1A35A90002C2A0 /* zh-Hans */,
 				CD20258B1D1A35AD0002C2A0 /* zh-Hant */,
-				DD49E4991F6AF6B500387B7F /* nl */,
 			);
 			name = Localizable.strings;
 			path = .;
@@ -959,9 +959,9 @@
 				CDDA9DCD1C5300CD00D9EF19 /* Base */,
 				CDDA9DD01C5300FF00D9EF19 /* fr */,
 				CD4010651D333A1D0004F411 /* it */,
+				DD49E49A1F6AF6B500387B7F /* nl */,
 				CDDA9DD21C53011000D9EF19 /* zh-Hans */,
 				CDDA9DD31C53011100D9EF19 /* zh-Hant */,
-				DD49E49A1F6AF6B500387B7F /* nl */,
 			);
 			name = help.html;
 			path = .;
