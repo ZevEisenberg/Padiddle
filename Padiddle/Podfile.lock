@@ -1,40 +1,34 @@
 PODS:
-  - Anchorage (4.0.0)
+  - Anchorage (4.1.0)
   - BonMot (4.3.1)
   - SimulatorStatusMagic (2.0)
   - SwiftGen (5.1.1)
   - SwiftLint (0.22.0)
 
 DEPENDENCIES:
-  - Anchorage (from `https://github.com/Raizlabs/Anchorage.git`, branch `feature/xcode-9`)
+  - Anchorage
   - BonMot (from `https://github.com/Raizlabs/BonMot.git`, branch `feature/xcode-9`)
   - SimulatorStatusMagic
   - SwiftGen
   - SwiftLint
 
 EXTERNAL SOURCES:
-  Anchorage:
-    :branch: feature/xcode-9
-    :git: https://github.com/Raizlabs/Anchorage.git
   BonMot:
     :branch: feature/xcode-9
     :git: https://github.com/Raizlabs/BonMot.git
 
 CHECKOUT OPTIONS:
-  Anchorage:
-    :commit: 3108a3741a4baf56e7669180e6212549a10712e7
-    :git: https://github.com/Raizlabs/Anchorage.git
   BonMot:
     :commit: 040304805d13a29435ef60525954741c223dffe4
     :git: https://github.com/Raizlabs/BonMot.git
 
 SPEC CHECKSUMS:
-  Anchorage: b4ed6555296ae9ee9264def6efd8e7352ea7b893
+  Anchorage: 6c20225cb7f44fdf9609ec99949ee160c803969c
   BonMot: 8e958faa27676990d26d5b83bc853d4a2651f3ea
   SimulatorStatusMagic: c8e958d70e0e0cd2d7cf33bb95014a222ddecf0a
   SwiftGen: daba48311d62361eb204a55e579c3c88dd99327e
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
 
-PODFILE CHECKSUM: 0c5f6460efa8fefeb37bdfa9e29e42a43c9eccab
+PODFILE CHECKSUM: cd2e3ecfa03abf52215a8ddc9313946be119ef42
 
 COCOAPODS: 1.3.1
