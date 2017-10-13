@@ -43,6 +43,15 @@ extension StringStyle {
         /// The pitch of the voice used to read the text aloud. The range is
         /// 0 to 2, where 0 is the lowest, 2 is the highest, and 1 is the default.
         case speakingPitch(Double)
+
+        /// The IPA pronunciation of the given range.
+        case speakingPronunciation(String)
+
+        /// Whether the spoken text is queued behind, or interrupts, existing spoken content.
+        case shouldQueueSpeechAnnouncement(Bool)
+
+        /// The accessibility heading level of the text.
+        case headingLevel(HeadingLevel)
         #endif
 
         case ligatures(Ligatures)
@@ -128,6 +137,15 @@ extension StringStyle {
     /// - Parameter parts: Zero or more `Part`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: Part...) -> StringStyle {
+        return byAdding(parts)
+    }
+
+    /// Derive a new `StringStyle` based on this style, updated with zero or
+    /// more `Part`s.
+    ///
+    /// - Parameter parts: an array of `Part`s
+    /// - Returns: A newly configured `StringStyle`
+    public func byAdding(_ parts: [Part]) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)
@@ -215,6 +233,15 @@ extension StringStyle {
                         return
                     case let .speakingPitch(speakingPitch):
                         self.speakingPitch = speakingPitch
+                        return
+                    case let .speakingPronunciation(speakingPronunciation):
+                        self.speakingPronunciation = speakingPronunciation
+                        return
+                    case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
+                        self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
+                        return
+                    case let .headingLevel(headingLevel):
+                        self.headingLevel = headingLevel
                         return
                     default:
                         break

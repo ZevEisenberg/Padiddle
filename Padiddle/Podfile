@@ -4,7 +4,7 @@ platform :ios, '11.0'
   # Pods for Padiddle
 target 'Padiddle' do
   pod 'Anchorage'
-  pod 'BonMot', :git => 'https://github.com/Raizlabs/BonMot.git', :branch => 'feature/xcode-9'
+  pod 'BonMot'
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
   pod 'SwiftGen'
   pod 'SwiftLint'

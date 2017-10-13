@@ -7,78 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		007D1499E05E902282F03D0B92BE87C2 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98DBE216A7EF4EF97B4940592061FE /* AdaptiveStyleTransformation.swift */; };
+		019F9B097BA1D09683E52F23A04F458A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F0C8C727AB14F11FCCBDA11669616 /* Tab.swift */; };
 		01B88965B5EE4E7200263E83F2101622 /* Pods-PadiddleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5494131186E09B7BA0098E98569CC6E3 /* Pods-PadiddleTests-dummy.m */; };
-		033884EE09B6B9542A920C16200C9A5F /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97778972A1D276C8D9798B67B4D09AB /* Platform.swift */; };
-		08AF421A052AE9D12CE7D8B6F761E4D2 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2853ACB1FFA738BC7AAE49679597DAF0 /* AdaptableTextContainer.swift */; };
-		0E13181BA8A329FADD84AFE53A1098FB /* SDStatusBarOverriderPre8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE1D32D187CFE6F13E20570492201D7 /* SDStatusBarOverriderPre8_3.m */; };
-		204194286421923AF1260708A5AB304A /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5412C22859844EFCCCFACF1E0273698F /* Ligatures.swift */; };
-		21B1CF71DBEED947ED108EE6EE7CCA9A /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E014938389C202240A4376BFFB587C /* Internal.swift */; };
-		3521DAB5D9E0FAC4B355EC526E84EB94 /* BonMot-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D7DE2B5514D9F413AE8E3A57C1608D21 /* BonMot-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36EAE148E375CCF2287392961872B608 /* SDStatusBarOverriderPost8_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A89263E8065E68E73EF6FF9E476530E /* SDStatusBarOverriderPost8_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37EAE5709FBEA77B6EB90DCDC44EAD67 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06BDF5975995CD725E84D83D7BCEAB0 /* Tracking+Adaptive.swift */; };
-		3EB220942A82082BF9B30EC68A321079 /* SDStatusBarManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B766746F8A9B2ED403F67D8BB190721F /* SDStatusBarManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		423B8F6DBC6EF0E73EA14C20CBF3856D /* SDStatusBarOverriderPost9_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F6D6E19A0998DDCF9223CD6C48B73D9 /* SDStatusBarOverriderPost9_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02086E0D2F5CADCD78C61089D419FB3D /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09B38722FBAE16931B27B542F38D0E /* Platform.swift */; };
+		03DBE4D3E047EF41A89AF58701594B89 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F5D4D3A7FDE22B5D2473D08557E7C3 /* NamedStyles.swift */; };
+		057D283A45595F12F7CAEC2A19BB6394 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5EF5A70A115CD5B57A9E73EEC498E /* Compatibility.swift */; };
+		070A393A457682B9AF2D9C2237330DF1 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCE1107A2BBB65C1E20434C2FA37DC /* Special.swift */; };
+		0DC0998C2B1AE7D5CB2E996DD70553B0 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2ED3CF32823E6C790066C0A868190 /* Tab+Adaptive.swift */; };
+		0E13181BA8A329FADD84AFE53A1098FB /* SDStatusBarOverriderPre8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C1B425CC6359618812AF59FEA11C8B /* SDStatusBarOverriderPre8_3.m */; };
+		12BF30A767B5E6D26FBF066FC5691119 /* BonMot-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 96B8723C9EF42A7679BF055A18DF1E1E /* BonMot-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		141432C3E72D5C924BC93037C5D102F3 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A743A7367037047E9C7D422E7B9B9D /* Image+Tinting.swift */; };
+		1F85CF17694433BB1285A1C38724685D /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51902A917408F1C19E533F1795DF40B /* StyleableUIElement.swift */; };
+		1FAFFB28FD488A58C6BFBBDCAFCEECBE /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D48EC95C99F691DB2FF4912A1693EB /* FontInspector.swift */; };
+		21B1CF71DBEED947ED108EE6EE7CCA9A /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2F941865F8B3D11540689BD1A4172 /* Internal.swift */; };
+		36EAE148E375CCF2287392961872B608 /* SDStatusBarOverriderPost8_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BECAE35E2652C5D5381DF11C85C5EE8 /* SDStatusBarOverriderPost8_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		39675E9CF4BA0B80C5D9FFE2D256DC4E /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8F162B4F90BA70812E34D8A7A884F7 /* FontFeatures.swift */; };
+		3EB220942A82082BF9B30EC68A321079 /* SDStatusBarManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 92CC84D40C289C37F5DC8455FF1FB50E /* SDStatusBarManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		423B8F6DBC6EF0E73EA14C20CBF3856D /* SDStatusBarOverriderPost9_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B270F326744847A53F54E0048D5D7E /* SDStatusBarOverriderPost9_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4323589F883877F2B60E27F76DEC3CE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		43D2171DFA7A2FAAC865DD50A9BF210A /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35021C70975748F3981F62216202A701 /* AdaptiveStyleTransformation.swift */; };
-		464D254AC989694BA104DC6BA86E36D9 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E89D80781A564BE40B4EB6421891F4 /* ContextualAlternates.swift */; };
-		46752CDB23147B925D6B3853F9155410 /* SDStatusBarOverriderPost11_0.m in Sources */ = {isa = PBXBuildFile; fileRef = D343EA3DB817CEC49C14B68B80D6F694 /* SDStatusBarOverriderPost11_0.m */; };
+		46752CDB23147B925D6B3853F9155410 /* SDStatusBarOverriderPost11_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 40455D0AEAEB3DBE49EECFD29E55C637 /* SDStatusBarOverriderPost11_0.m */; };
 		47C9BBF8F5CCA2D19F14551A186F6642 /* Pods-PadiddleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF6AF00FEBE4EB3A5B8250400E7BA236 /* Pods-PadiddleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4856C8197A783D2B1D31260625E48219 /* SDStatusBarOverriderPre8_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 2439D74263775BC696C5506782A09A4F /* SDStatusBarOverriderPre8_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4873D4B32BF7979064C38D1E4174CC77 /* EmbeddedTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B6D0B5C55041E5EBB857A8EA6699B /* EmbeddedTransformation.swift */; };
-		503574E497896DBEF75E9AA93DA33AC3 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00C028E7D1222CA65CAE29023D736C6 /* NSAttributedString+Adaptive.swift */; };
-		5256905296BE2AA512948B00D5398D7E /* SDStatusBarOverriderPost9_3.m in Sources */ = {isa = PBXBuildFile; fileRef = DA85D30E4C43642613B2745E2CBBEEFB /* SDStatusBarOverriderPost9_3.m */; };
-		53CE1581CF88235963CABA52F64828CE /* Anchorage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02A5F21F3AAB8A323615F05CCC4DC2B8 /* Anchorage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		57226C0EA7C7A2C08EB8C31AFB3AD925 /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13769C8CDA456C55BA664D3F5CCF01E /* MutableCopying.swift */; };
-		590FB2F3BC57153DDA5AC28A26B0F346 /* SimulatorStatusMagic-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12589EC0BE753C5898AD30B122E7CEBF /* SimulatorStatusMagic-dummy.m */; };
-		5D81BE10AE662883C410B79A31C6FB44 /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616E9C563110A30DCC3984E8976D21C3 /* StylisticAlternates.swift */; };
-		5EEFBE8466A7346132D207DBBDD08C56 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF93AED1476ADCE81D2C3D76562F673 /* Composable.swift */; };
-		61C7776B24C52FFA06C27E21FE77D7F0 /* Compatability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CC84D3412D9A6616D8E9984D05397 /* Compatability.swift */; };
-		66DDDC86E51DE11CE0F66B3BACB206E6 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F1EA246FC16DB01EE46C6BBCD792C /* NamedStyles.swift */; };
-		6BC0D07CD9B17B8EBB59E6093B73E48C /* SDStatusBarOverriderPost11_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAC6DDE3C5DC317B282BF2D3AF36A3F /* SDStatusBarOverriderPost11_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E597B8BB62E3F8EF80F6353C6CDD264 /* SDStatusBarOverrider.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B654984DDA51C2343037B22B4234B63 /* SDStatusBarOverrider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7033E920DEA9E92EF2E122183E29CA04 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA44F0D0D4617FBEC959321558C7B44 /* Transform.swift */; };
-		7B2ED2E76B51CC8A19B6CA6C290C1AFE /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF3D3100326A39890D5A5F6442C3FF8 /* Compatibility.swift */; };
+		4856C8197A783D2B1D31260625E48219 /* SDStatusBarOverriderPre8_3.h in Headers */ = {isa = PBXBuildFile; fileRef = 68918B1F5702D9272266B5ECBD063C21 /* SDStatusBarOverriderPre8_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50C90BDB25ABFA099A2FDE42BCE017B2 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EBA963094480A36B260EFAF0E5921F /* XMLBuilder.swift */; };
+		511119A47FF2F457B7615AB667E81AC3 /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD85A9EF7AE3A71E8A413FB677EA62 /* Ligatures.swift */; };
+		5256905296BE2AA512948B00D5398D7E /* SDStatusBarOverriderPost9_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8557038BAEA962680A8FAC7C100E /* SDStatusBarOverriderPost9_3.m */; };
+		53CE1581CF88235963CABA52F64828CE /* Anchorage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D12F37748533B16019FD451F2CC88D7 /* Anchorage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		558AFB12B35284D94140EE537642F8AE /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3321275891BFA2D57A6752FE3E74A71 /* MutableCopying.swift */; };
+		590FB2F3BC57153DDA5AC28A26B0F346 /* SimulatorStatusMagic-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 608772FA2781C4949E3D48F669D08FD8 /* SimulatorStatusMagic-dummy.m */; };
+		61C7776B24C52FFA06C27E21FE77D7F0 /* Compatability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEDBC3519DFAA06C56D37E111C298F4 /* Compatability.swift */; };
+		625BDC2A45FF816B2CB7ED25E2983829 /* EmbeddedTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012071AEF48A74B771289496ADACA99 /* EmbeddedTransformation.swift */; };
+		6BC0D07CD9B17B8EBB59E6093B73E48C /* SDStatusBarOverriderPost11_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 885F2A7DF2014105C04EFCA2D053F916 /* SDStatusBarOverriderPost11_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E0DC9416CC8DB9B726A5FBA5AC5CF9D /* BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C07FA8209B73082223D9C2BCBA98308 /* BonMot-dummy.m */; };
+		6E597B8BB62E3F8EF80F6353C6CDD264 /* SDStatusBarOverrider.h in Headers */ = {isa = PBXBuildFile; fileRef = 075D9E5C681B2E8E8961AD18D89B0E77 /* SDStatusBarOverrider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		779020EBEE69DE68A567490A1A205B9D /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D16E1CA8CEADD3588AE2EDEDB25845 /* StringStyle.swift */; };
 		7FEFC633EDB873C3F125806DEBF9894E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		801FE87025C05BC11786CA96F21E327E /* SDStatusBarOverriderPost9_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 4851380F06E48D55CD91CAAA298820F6 /* SDStatusBarOverriderPost9_0.m */; };
+		801FE87025C05BC11786CA96F21E327E /* SDStatusBarOverriderPost9_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB7AE141016F6FF8F991B15EAF69BF /* SDStatusBarOverriderPost9_0.m */; };
 		80C07E37AB4298F5DD22F3BCF57760A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */; };
-		81A3965774F5E5D5807FF57B7608D831 /* SDStatusBarOverriderPost10_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 589C7278D98C033566A65E0B0CA55E05 /* SDStatusBarOverriderPost10_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87D1EF27F5D1AA40BBCF28AD1E1CFD12 /* Anchorage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC3715CBA163F51F20C185D2840EA2 /* Anchorage-dummy.m */; };
+		81A3965774F5E5D5807FF57B7608D831 /* SDStatusBarOverriderPost10_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B8FA3A94726AF4672B67DA00B51E9 /* SDStatusBarOverriderPost10_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87D1EF27F5D1AA40BBCF28AD1E1CFD12 /* Anchorage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECF636DB7210F91ADCED0522E8ACEEC /* Anchorage-dummy.m */; };
 		8869A684871D51EFFE507E7D50264332 /* Pods-PadiddleUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 942E0D481D2C44B594EE4057538C7F98 /* Pods-PadiddleUITests-dummy.m */; };
-		9268540E84F353D13B985835485ADDB4 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AE7F150AEB869CF0167480A8A88566 /* UIKit+Helpers.swift */; };
-		9613BB5259559E1211EB118DF51E3EEB /* SDStatusBarOverriderPost9_0.h in Headers */ = {isa = PBXBuildFile; fileRef = FFEABDA6DA5C7E8E34BBCA6002AA2230 /* SDStatusBarOverriderPost9_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DF319363EE4D46F4F7BCD44F7616B56 /* SimulatorStatusMagic-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1157167199C4F08F89E598578982C7 /* SimulatorStatusMagic-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2A9CB90BB0D263036043AF55511FBCC /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD9A207562A97A903071C4EAC4CA042 /* AdaptiveStyle.swift */; };
-		A4D25207CB9DDE2D9C1C15BAAA238105 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE30F688C94277527803D4C2C7B5275C /* Special.swift */; };
-		B23A3586A2B8AE1D7D363248B6859A73 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3376E6BF2873ADD0A9DFA80AA602016E /* NSAttributedString+BonMot.swift */; };
-		B33C22FD593BB93F8951E674E6E4BB67 /* SDStatusBarOverriderPost8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 12C4AB0322E6F2BFF81E62A38126BD11 /* SDStatusBarOverriderPost8_3.m */; };
-		B407BE260E47A573D7A1597EDFE4C5B0 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525043B46D12A4933375702D839792D0 /* UIKit+AdaptableTextContainerSupport.swift */; };
-		B4185AE006CC473DC3E36ECD0328BC8C /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393A212BA45855C8AFE572AD95E95E6 /* TextAlignmentConstraint.swift */; };
-		B496B0983F4AF27808CD1255666C2998 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70AFB76ECD5A82F98DD596198EC1274 /* AttributedStringTransformation.swift */; };
-		B8D7384A4F176ED33EE81726BE9B2D86 /* BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E59F21401DCD15EA4DA160FA071DD4A /* BonMot-dummy.m */; };
-		B9B8F3D8C5FC32778D8B2A53D0B0DFE7 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA05DDB103ACFEF0542649A072DD45 /* Tab+Adaptive.swift */; };
-		BD442C758DB1C9F8F93A4124C7D7E56F /* SDStatusBarOverriderPost10_3.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6E1B3AF513126B2846D26E274D5E52 /* SDStatusBarOverriderPost10_3.m */; };
-		BD493EAB6D0E5A8BB34A4AFA9E71A732 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		C067CB7AAA7E09DA431A55DDAE81062D /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6E85FE9425072BF7314378890BE13E /* FontInspector.swift */; };
-		C5C05930BEA8EDB3C9F167B27CD5B313 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C0B5DA9733E97F0551DBE131F38F1 /* Tab.swift */; };
-		C6A8C7B7B1C1AF4829030CDC3D2E03E0 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA233B98D2DC725C2B7BFAC556EB2595 /* Priority.swift */; };
-		C8DFC4C9943A382D5BF72177A18F6665 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7467FFF29901E506B180980AFA408 /* FontFeatures.swift */; };
-		D5DDABB2785640C3BCE43A06E07E660F /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAD000724D3DC58816D6CFF46C84E1 /* Image+Tinting.swift */; };
-		DB19503A4D96358AD24D0AF8C0B01851 /* SDStatusBarOverriderPost10_3.h in Headers */ = {isa = PBXBuildFile; fileRef = C39DFD2644F814F53A3484CC60270E49 /* SDStatusBarOverriderPost10_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E08C0FCA902837187A8186D716E3F56F /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB4DA3ADD6BB6C0116F20FC634F7610 /* Tracking.swift */; };
-		E0D5ED1D35331DED664FE315E7CD4678 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC143B7F5C58DC04A79524D4BE0A5CC4 /* StyleableUIElement.swift */; };
+		8F86C837B65D43D30FB61AC4DAFDD735 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4D74252D349E453E21F51FC748E124 /* AccessibilityHeadingLevel.swift */; };
+		9215CB0E30DD52427500AC0ADDDD2079 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6FD37E7D6124D2B87A17806CB743BE /* UIKit+AdaptableTextContainerSupport.swift */; };
+		95C1BE8BBD03C528E92A07540EFC6E98 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99168A126609D6A411B91FBD80C42926 /* AdaptiveStyle.swift */; };
+		9613BB5259559E1211EB118DF51E3EEB /* SDStatusBarOverriderPost9_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0E873288EB072C07050F94F38708AF /* SDStatusBarOverriderPost9_0.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		974F6B3E8C0155065E30532B3B661B35 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAFEF0EEEA2D4BD078AA2EA41F2CEF /* Transform.swift */; };
+		9DF319363EE4D46F4F7BCD44F7616B56 /* SimulatorStatusMagic-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 925F53D22BD50E1C12A970C9EEF91CBE /* SimulatorStatusMagic-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F262C5942228D1DB8F28A124216CCF0 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F568249308DFF9C410FE4D2725618F0 /* NSAttributedString+BonMot.swift */; };
+		A3CE101D2FF1432BCC3F41C4E2556D7F /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F25D6B00A0DBD7396B5AA448EBD19 /* AttributedStringTransformation.swift */; };
+		A8EFC05DA9F566ED169145F53D123AC9 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F9C10D3EF24CFC110EC59A5803D311 /* UIKit+Helpers.swift */; };
+		A9F8D6C0FB5197A8E3D2EE8688D8BA39 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7800FFE52C897CDBE40CAF6EBC5334C0 /* ContextualAlternates.swift */; };
+		AA0B04631952772467DEA39F11CA62FA /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB493E2706E76BDCCEC5454922C2A5A5 /* StylisticAlternates.swift */; };
+		B1C98592B5DF149E4972E47390806F4D /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA4AD84A30495B14B170EA88B79AAD /* Tracking.swift */; };
+		B33C22FD593BB93F8951E674E6E4BB67 /* SDStatusBarOverriderPost8_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C64842F3CA82257B9C4B4803903FFDF /* SDStatusBarOverriderPost8_3.m */; };
+		B93D650DAFC86F1F949371D3B1B2EDF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
+		BD442C758DB1C9F8F93A4124C7D7E56F /* SDStatusBarOverriderPost10_3.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BCBC2C2592315A7D9A74D7420D72FB /* SDStatusBarOverriderPost10_3.m */; };
+		C4458CB7BEEA86C8554B4CEFA02B3A31 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35B301C69C3BD5A0C203243885974E /* NSAttributedString+Adaptive.swift */; };
+		C6A8C7B7B1C1AF4829030CDC3D2E03E0 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9AE8780BDDB38FBDD9C0348C05B15C /* Priority.swift */; };
+		C931B535410D2F5A6805BA08EC54CDDE /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C8AE81FA37DE20DFEFB35A7FC1CB2 /* Tracking+Adaptive.swift */; };
+		D0EF097BFC95CDE86C329742AD29F1F7 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DC4E7B34D9F6161FCE7059B8A496CC /* TextAlignmentConstraint.swift */; };
+		D5991AD5FF9851C3CE60D11BC594BADE /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5BAD9406EE87E462812E142A7081B /* AdaptableTextContainer.swift */; };
+		DB19503A4D96358AD24D0AF8C0B01851 /* SDStatusBarOverriderPost10_3.h in Headers */ = {isa = PBXBuildFile; fileRef = A1364A52D495834D096AECD685C8A944 /* SDStatusBarOverriderPost10_3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5D0FA08CC3359667F581B5F053D88FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		EB40223B4195295D6118CF89ADA1838E /* SDStatusBarOverriderPost10_0.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F863E71A25F442AFDFAAB4201393353 /* SDStatusBarOverriderPost10_0.m */; };
-		EFB5DCD8774A8AEE2E24257863A97630 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2811DC47B27414F679C14594F155D3 /* XMLBuilder.swift */; };
-		F005D87D989C4898664D1084A6944EEC /* AnchorGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E644064E68B24A473B19547284EB76C /* AnchorGroupProvider.swift */; };
-		F02492BF8A3E31AEC939B557C93F57A5 /* Anchorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B00360D887AB2B9CBBA406961C0E6C2 /* Anchorage.swift */; };
+		E7821C08F6BE4E80EC0BED82811E59CB /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4A4435ABBEA1B916761AABC7A555A /* Composable.swift */; };
+		EB40223B4195295D6118CF89ADA1838E /* SDStatusBarOverriderPost10_0.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C50BA2313A5CB376F02A2A6C0DDE90 /* SDStatusBarOverriderPost10_0.m */; };
+		EF5C63EAC0DAE6EDFF515AB4C95EE82D /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6E3CCBC518F4D8E8B6A3F297D27235 /* StringStyle+Part.swift */; };
+		F005D87D989C4898664D1084A6944EEC /* AnchorGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7F98AB913CB87ABF559BEAB0762D3 /* AnchorGroupProvider.swift */; };
+		F02492BF8A3E31AEC939B557C93F57A5 /* Anchorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A82E3697798006E613CA1424D66946 /* Anchorage.swift */; };
 		F071577679BE6D241B91512CB5C17EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
 		F0AEA170E13160FAE1F2ECF059132981 /* Pods-PadiddleUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A7CDBFF4A4EF83BD1EEE0C2900BD3FF8 /* Pods-PadiddleUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F1DCDADDB4E6662C6C9B0B8CEF431069 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */; };
-		F846531C5594A24BFB1B51E10460B501 /* SDStatusBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6450ADD3788C13A96C52BDB5F1609F28 /* SDStatusBarManager.m */; };
-		FBAF2DF95909469FC6A651C18CC1780F /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950273629629648C6C0EB446420DC106 /* StringStyle+Part.swift */; };
+		F846531C5594A24BFB1B51E10460B501 /* SDStatusBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1460C8DB7939C4589AA5001626D315B /* SDStatusBarManager.m */; };
 		FD3C0A3E29D0EBC86E1F2CFB195D4B7C /* Pods-Padiddle-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01682EBCA9B9C9B25E521FD4C8E56522 /* Pods-Padiddle-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDF5970686098B2464F272DF5E4C43C4 /* Pods-Padiddle-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E361197D55E6CD31F2601D8CBD523B /* Pods-Padiddle-dummy.m */; };
-		FF6B879CAFE1C94EBA92CD9CB9B16225 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A61925DC369F65300CADCADE9C229B /* StringStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +87,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E70DEB7F17D0BC121A8C77AD351D4307;
+			remoteGlobalIDString = DB742394EFA39863C295FA4D135D01A5;
 			remoteInfo = BonMot;
 		};
 		A1E2EC52E6A27347C0B7B4E782259E6F /* PBXContainerItemProxy */ = {
@@ -106,116 +107,117 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0121A2065B4677114EFAC0E18C732201 /* Anchorage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Anchorage-prefix.pch"; sourceTree = "<group>"; };
 		01682EBCA9B9C9B25E521FD4C8E56522 /* Pods-Padiddle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Padiddle-umbrella.h"; sourceTree = "<group>"; };
-		02A5F21F3AAB8A323615F05CCC4DC2B8 /* Anchorage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Anchorage-umbrella.h"; sourceTree = "<group>"; };
-		03E014938389C202240A4376BFFB587C /* Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Internal.swift; path = Source/Internal.swift; sourceTree = "<group>"; };
-		06C4ADAB9E9F6E6F4B972C35C2780D7E /* SimulatorStatusMagic.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimulatorStatusMagic.xcconfig; sourceTree = "<group>"; };
-		0AAC6DDE3C5DC317B282BF2D3AF36A3F /* SDStatusBarOverriderPost11_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost11_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost11_0.h; sourceTree = "<group>"; };
-		0B5F1EA246FC16DB01EE46C6BBCD792C /* NamedStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NamedStyles.swift; path = Sources/NamedStyles.swift; sourceTree = "<group>"; };
-		0BF93AED1476ADCE81D2C3D76562F673 /* Composable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Composable.swift; path = Sources/Composable.swift; sourceTree = "<group>"; };
+		048AE7EFCC629D1C917FC017C78798F0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		075D9E5C681B2E8E8961AD18D89B0E77 /* SDStatusBarOverrider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverrider.h; path = SDStatusBarManager/SDStatusBarOverrider.h; sourceTree = "<group>"; };
+		0AB4A4435ABBEA1B916761AABC7A555A /* Composable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Composable.swift; path = Sources/Composable.swift; sourceTree = "<group>"; };
+		0BBD85A9EF7AE3A71E8A413FB677EA62 /* Ligatures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ligatures.swift; path = Sources/Ligatures.swift; sourceTree = "<group>"; };
 		0D552CFF7F9A4FA9EA8351E36B2BBE67 /* Pods-Padiddle-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Padiddle-resources.sh"; sourceTree = "<group>"; };
-		0F863E71A25F442AFDFAAB4201393353 /* SDStatusBarOverriderPost10_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost10_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost10_0.m; sourceTree = "<group>"; };
-		0FD9A207562A97A903071C4EAC4CA042 /* AdaptiveStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptiveStyle.swift; path = Sources/UIKit/AdaptiveStyle.swift; sourceTree = "<group>"; };
-		106B6D0B5C55041E5EBB857A8EA6699B /* EmbeddedTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmbeddedTransformation.swift; path = Sources/UIKit/EmbeddedTransformation.swift; sourceTree = "<group>"; };
-		12589EC0BE753C5898AD30B122E7CEBF /* SimulatorStatusMagic-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimulatorStatusMagic-dummy.m"; sourceTree = "<group>"; };
-		12C4AB0322E6F2BFF81E62A38126BD11 /* SDStatusBarOverriderPost8_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost8_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost8_3.m; sourceTree = "<group>"; };
+		0F568249308DFF9C410FE4D2725618F0 /* NSAttributedString+BonMot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+BonMot.swift"; path = "Sources/NSAttributedString+BonMot.swift"; sourceTree = "<group>"; };
+		134E8557038BAEA962680A8FAC7C100E /* SDStatusBarOverriderPost9_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost9_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost9_3.m; sourceTree = "<group>"; };
+		1C8F162B4F90BA70812E34D8A7A884F7 /* FontFeatures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontFeatures.swift; path = Sources/FontFeatures.swift; sourceTree = "<group>"; };
 		1E45D84BE95D655584F79055CA0B5823 /* Pods-PadiddleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PadiddleUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		1E59F21401DCD15EA4DA160FA071DD4A /* BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BonMot-dummy.m"; sourceTree = "<group>"; };
 		1E9C7A3193861412F4FC930219F74AAA /* Pods-Padiddle.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Padiddle.modulemap"; sourceTree = "<group>"; };
 		212B06DF28E5BDB19E9F15D604C931F6 /* Pods-Padiddle-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Padiddle-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2439D74263775BC696C5506782A09A4F /* SDStatusBarOverriderPre8_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPre8_3.h; path = SDStatusBarManager/SDStatusBarOverriderPre8_3.h; sourceTree = "<group>"; };
-		2853ACB1FFA738BC7AAE49679597DAF0 /* AdaptableTextContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptableTextContainer.swift; path = Sources/UIKit/AdaptableTextContainer.swift; sourceTree = "<group>"; };
-		2C5AEA87960079B131580CB1EEF615BD /* BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BonMot.xcconfig; sourceTree = "<group>"; };
-		2E644064E68B24A473B19547284EB76C /* AnchorGroupProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnchorGroupProvider.swift; path = Source/AnchorGroupProvider.swift; sourceTree = "<group>"; };
-		2F1CC84D3412D9A6616D8E9984D05397 /* Compatability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compatability.swift; path = Source/Compatability.swift; sourceTree = "<group>"; };
+		22C52E99C37389D9AD5CBAED0B213985 /* BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BonMot.xcconfig; sourceTree = "<group>"; };
+		26CAFEF0EEEA2D4BD078AA2EA41F2CEF /* Transform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transform.swift; path = Sources/Transform.swift; sourceTree = "<group>"; };
+		26D2ED3CF32823E6C790066C0A868190 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Tab+Adaptive.swift"; path = "Sources/UIKit/Tab+Adaptive.swift"; sourceTree = "<group>"; };
+		28D48EC95C99F691DB2FF4912A1693EB /* FontInspector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontInspector.swift; path = Sources/FontInspector.swift; sourceTree = "<group>"; };
+		2BCC8182D2B42BB13CF120391578BED3 /* Anchorage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Anchorage.modulemap; sourceTree = "<group>"; };
+		2C07FA8209B73082223D9C2BCBA98308 /* BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BonMot-dummy.m"; sourceTree = "<group>"; };
+		2DDB7AE141016F6FF8F991B15EAF69BF /* SDStatusBarOverriderPost9_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost9_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost9_0.m; sourceTree = "<group>"; };
 		31B8D4B496973693C6F8423CB2CBF59E /* Pods-PadiddleUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PadiddleUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		3376E6BF2873ADD0A9DFA80AA602016E /* NSAttributedString+BonMot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+BonMot.swift"; path = "Sources/NSAttributedString+BonMot.swift"; sourceTree = "<group>"; };
-		35021C70975748F3981F62216202A701 /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptiveStyleTransformation.swift; path = Sources/UIKit/AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
-		3A89263E8065E68E73EF6FF9E476530E /* SDStatusBarOverriderPost8_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost8_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost8_3.h; sourceTree = "<group>"; };
-		4851380F06E48D55CD91CAAA298820F6 /* SDStatusBarOverriderPost9_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost9_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost9_0.m; sourceTree = "<group>"; };
-		485A1B57C5E517FFCACC358AECE9D157 /* BonMot.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BonMot.modulemap; sourceTree = "<group>"; };
-		49E89D80781A564BE40B4EB6421891F4 /* ContextualAlternates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContextualAlternates.swift; path = Sources/ContextualAlternates.swift; sourceTree = "<group>"; };
-		4AF3D3100326A39890D5A5F6442C3FF8 /* Compatibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compatibility.swift; path = Sources/Compatibility.swift; sourceTree = "<group>"; };
+		33F5D4D3A7FDE22B5D2473D08557E7C3 /* NamedStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NamedStyles.swift; path = Sources/NamedStyles.swift; sourceTree = "<group>"; };
+		3E2F0C8C727AB14F11FCCBDA11669616 /* Tab.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tab.swift; path = Sources/Tab.swift; sourceTree = "<group>"; };
+		40455D0AEAEB3DBE49EECFD29E55C637 /* SDStatusBarOverriderPost11_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost11_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost11_0.m; sourceTree = "<group>"; };
+		40C1B425CC6359618812AF59FEA11C8B /* SDStatusBarOverriderPre8_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPre8_3.m; path = SDStatusBarManager/SDStatusBarOverriderPre8_3.m; sourceTree = "<group>"; };
+		420B8FA3A94726AF4672B67DA00B51E9 /* SDStatusBarOverriderPost10_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost10_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost10_0.h; sourceTree = "<group>"; };
+		4225EB887A936D0C036CE8C45FCCA9EA /* SimulatorStatusMagic.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimulatorStatusMagic.xcconfig; sourceTree = "<group>"; };
+		4BECAE35E2652C5D5381DF11C85C5EE8 /* SDStatusBarOverriderPost8_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost8_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost8_3.h; sourceTree = "<group>"; };
 		4CA4C333BC14C5075ED251B549D9CDE9 /* Pods-PadiddleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PadiddleTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		4DFAD37CBE9A955D7E6652F2BDDCDBC0 /* SimulatorStatusMagic.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SimulatorStatusMagic.modulemap; sourceTree = "<group>"; };
-		525043B46D12A4933375702D839792D0 /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+AdaptableTextContainerSupport.swift"; path = "Sources/UIKit/UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
-		5393A212BA45855C8AFE572AD95E95E6 /* TextAlignmentConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextAlignmentConstraint.swift; path = Sources/UIKit/TextAlignmentConstraint.swift; sourceTree = "<group>"; };
-		5412C22859844EFCCCFACF1E0273698F /* Ligatures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ligatures.swift; path = Sources/Ligatures.swift; sourceTree = "<group>"; };
+		4F0E873288EB072C07050F94F38708AF /* SDStatusBarOverriderPost9_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost9_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost9_0.h; sourceTree = "<group>"; };
 		5494131186E09B7BA0098E98569CC6E3 /* Pods-PadiddleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PadiddleTests-dummy.m"; sourceTree = "<group>"; };
-		589C7278D98C033566A65E0B0CA55E05 /* SDStatusBarOverriderPost10_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost10_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost10_0.h; sourceTree = "<group>"; };
 		58AE2136465C748CD770A86BEA7BD45A /* Pods-PadiddleUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PadiddleUITests.modulemap"; sourceTree = "<group>"; };
 		5A523FBD3DF1903E9ED8B0E62A1F2261 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF9D470AF129E48DD03716343CB5ED1 /* Pods-PadiddleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PadiddleTests.release.xcconfig"; sourceTree = "<group>"; };
+		5C64842F3CA82257B9C4B4803903FFDF /* SDStatusBarOverriderPost8_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost8_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost8_3.m; sourceTree = "<group>"; };
+		5ECF636DB7210F91ADCED0522E8ACEEC /* Anchorage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Anchorage-dummy.m"; sourceTree = "<group>"; };
+		608772FA2781C4949E3D48F669D08FD8 /* SimulatorStatusMagic-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimulatorStatusMagic-dummy.m"; sourceTree = "<group>"; };
 		60E361197D55E6CD31F2601D8CBD523B /* Pods-Padiddle-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Padiddle-dummy.m"; sourceTree = "<group>"; };
-		616E9C563110A30DCC3984E8976D21C3 /* StylisticAlternates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StylisticAlternates.swift; path = Sources/StylisticAlternates.swift; sourceTree = "<group>"; };
+		61CA4AD84A30495B14B170EA88B79AAD /* Tracking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tracking.swift; path = Sources/Tracking.swift; sourceTree = "<group>"; };
 		62C3275813B3C403081E8D0325B8D541 /* Pods-Padiddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Padiddle.release.xcconfig"; sourceTree = "<group>"; };
 		63A54D186A008F3E378FBD7928ACAAFD /* Pods-PadiddleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PadiddleTests-resources.sh"; sourceTree = "<group>"; };
-		63DA05DDB103ACFEF0542649A072DD45 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Tab+Adaptive.swift"; path = "Sources/UIKit/Tab+Adaptive.swift"; sourceTree = "<group>"; };
-		6450ADD3788C13A96C52BDB5F1609F28 /* SDStatusBarManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarManager.m; path = SDStatusBarManager/SDStatusBarManager.m; sourceTree = "<group>"; };
-		646F1D2C0CF36A87F5F1CC5856EEA177 /* Anchorage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Anchorage.modulemap; sourceTree = "<group>"; };
+		63F9C10D3EF24CFC110EC59A5803D311 /* UIKit+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Helpers.swift"; path = "Sources/UIKit/UIKit+Helpers.swift"; sourceTree = "<group>"; };
 		65F639FED46CD665D70A1C8A5F516AD0 /* Pods-PadiddleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PadiddleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6AA44F0D0D4617FBEC959321558C7B44 /* Transform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transform.swift; path = Sources/Transform.swift; sourceTree = "<group>"; };
-		6B00360D887AB2B9CBBA406961C0E6C2 /* Anchorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Anchorage.swift; path = Source/Anchorage.swift; sourceTree = "<group>"; };
-		6D54793E409433A099870086F063B0C5 /* SimulatorStatusMagic-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimulatorStatusMagic-prefix.pch"; sourceTree = "<group>"; };
+		68918B1F5702D9272266B5ECBD063C21 /* SDStatusBarOverriderPre8_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPre8_3.h; path = SDStatusBarManager/SDStatusBarOverriderPre8_3.h; sourceTree = "<group>"; };
 		7142CD13432142BDFD1000DDDAD50407 /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Padiddle.framework; path = "Pods-Padiddle.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		728013929351FFDE9EA8D55C1E6DC484 /* Pods-Padiddle-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Padiddle-frameworks.sh"; sourceTree = "<group>"; };
-		7A6E85FE9425072BF7314378890BE13E /* FontInspector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontInspector.swift; path = Sources/FontInspector.swift; sourceTree = "<group>"; };
-		7B654984DDA51C2343037B22B4234B63 /* SDStatusBarOverrider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverrider.h; path = SDStatusBarManager/SDStatusBarOverrider.h; sourceTree = "<group>"; };
-		82AE7F150AEB869CF0167480A8A88566 /* UIKit+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Helpers.swift"; path = "Sources/UIKit/UIKit+Helpers.swift"; sourceTree = "<group>"; };
+		72A743A7367037047E9C7D422E7B9B9D /* Image+Tinting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Image+Tinting.swift"; path = "Sources/Image+Tinting.swift"; sourceTree = "<group>"; };
+		74AA1AE4039D141CEAA8214F08C8D3F6 /* BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-prefix.pch"; sourceTree = "<group>"; };
+		7800FFE52C897CDBE40CAF6EBC5334C0 /* ContextualAlternates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContextualAlternates.swift; path = Sources/ContextualAlternates.swift; sourceTree = "<group>"; };
+		78C5C8EF6EC78FDAEF08E8F512D74ADB /* Anchorage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Anchorage.xcconfig; sourceTree = "<group>"; };
+		7979D9F3248BE4CF752B82542F6BD4F0 /* SimulatorStatusMagic-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimulatorStatusMagic-prefix.pch"; sourceTree = "<group>"; };
+		7BEDBC3519DFAA06C56D37E111C298F4 /* Compatability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compatability.swift; path = Source/Compatability.swift; sourceTree = "<group>"; };
+		7D4D74252D349E453E21F51FC748E124 /* AccessibilityHeadingLevel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityHeadingLevel.swift; path = Sources/AccessibilityHeadingLevel.swift; sourceTree = "<group>"; };
+		7DF5BAD9406EE87E462812E142A7081B /* AdaptableTextContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptableTextContainer.swift; path = Sources/UIKit/AdaptableTextContainer.swift; sourceTree = "<group>"; };
+		82B270F326744847A53F54E0048D5D7E /* SDStatusBarOverriderPost9_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost9_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost9_3.h; sourceTree = "<group>"; };
 		848A5FC5519C8E4DE4D214E518D5616C /* Pods_PadiddleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PadiddleUITests.framework; path = "Pods-PadiddleUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85F7467FFF29901E506B180980AFA408 /* FontFeatures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontFeatures.swift; path = Sources/FontFeatures.swift; sourceTree = "<group>"; };
-		8BA475132092AE58E91BC037E159622E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BCC3715CBA163F51F20C185D2840EA2 /* Anchorage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Anchorage-dummy.m"; sourceTree = "<group>"; };
+		885F2A7DF2014105C04EFCA2D053F916 /* SDStatusBarOverriderPost11_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost11_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost11_0.h; sourceTree = "<group>"; };
 		8EEF6A6EC7B603F0643B064AD196E9D1 /* Pods-Padiddle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Padiddle.debug.xcconfig"; sourceTree = "<group>"; };
-		8F6D6E19A0998DDCF9223CD6C48B73D9 /* SDStatusBarOverriderPost9_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost9_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost9_3.h; sourceTree = "<group>"; };
-		922C0B5DA9733E97F0551DBE131F38F1 /* Tab.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tab.swift; path = Sources/Tab.swift; sourceTree = "<group>"; };
+		913C8AE81FA37DE20DFEFB35A7FC1CB2 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Tracking+Adaptive.swift"; path = "Sources/UIKit/Tracking+Adaptive.swift"; sourceTree = "<group>"; };
+		925F53D22BD50E1C12A970C9EEF91CBE /* SimulatorStatusMagic-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimulatorStatusMagic-umbrella.h"; sourceTree = "<group>"; };
+		92CC84D40C289C37F5DC8455FF1FB50E /* SDStatusBarManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarManager.h; path = SDStatusBarManager/SDStatusBarManager.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		942E0D481D2C44B594EE4057538C7F98 /* Pods-PadiddleUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PadiddleUITests-dummy.m"; sourceTree = "<group>"; };
-		950273629629648C6C0EB446420DC106 /* StringStyle+Part.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringStyle+Part.swift"; path = "Sources/StringStyle+Part.swift"; sourceTree = "<group>"; };
+		96B8723C9EF42A7679BF055A18DF1E1E /* BonMot-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-umbrella.h"; sourceTree = "<group>"; };
+		99168A126609D6A411B91FBD80C42926 /* AdaptiveStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptiveStyle.swift; path = Sources/UIKit/AdaptiveStyle.swift; sourceTree = "<group>"; };
 		9A74EDB73AF05F605FCD355C94915360 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A9269D3A7047B5EF85C4F1DDF83E327 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CAC9B8E6498F8105CCAB292C9987AB3 /* SimulatorStatusMagic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SimulatorStatusMagic.framework; path = SimulatorStatusMagic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D12F37748533B16019FD451F2CC88D7 /* Anchorage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Anchorage-umbrella.h"; sourceTree = "<group>"; };
 		9E4E98CA09AE202CB5B9C93A084C99F5 /* Pods-PadiddleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PadiddleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A00C028E7D1222CA65CAE29023D736C6 /* NSAttributedString+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Adaptive.swift"; path = "Sources/UIKit/NSAttributedString+Adaptive.swift"; sourceTree = "<group>"; };
-		A13769C8CDA456C55BA664D3F5CCF01E /* MutableCopying.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MutableCopying.swift; path = Sources/MutableCopying.swift; sourceTree = "<group>"; };
-		A70AFB76ECD5A82F98DD596198EC1274 /* AttributedStringTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AttributedStringTransformation.swift; path = Sources/UIKit/AttributedStringTransformation.swift; sourceTree = "<group>"; };
+		A1364A52D495834D096AECD685C8A944 /* SDStatusBarOverriderPost10_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost10_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost10_3.h; sourceTree = "<group>"; };
+		A1DCE1107A2BBB65C1E20434C2FA37DC /* Special.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Special.swift; path = Sources/Special.swift; sourceTree = "<group>"; };
+		A2BCBC2C2592315A7D9A74D7420D72FB /* SDStatusBarOverriderPost10_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost10_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost10_3.m; sourceTree = "<group>"; };
+		A40F25D6B00A0DBD7396B5AA448EBD19 /* AttributedStringTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AttributedStringTransformation.swift; path = Sources/UIKit/AttributedStringTransformation.swift; sourceTree = "<group>"; };
+		A5DC4E7B34D9F6161FCE7059B8A496CC /* TextAlignmentConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextAlignmentConstraint.swift; path = Sources/UIKit/TextAlignmentConstraint.swift; sourceTree = "<group>"; };
 		A7CDBFF4A4EF83BD1EEE0C2900BD3FF8 /* Pods-PadiddleUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PadiddleUITests-umbrella.h"; sourceTree = "<group>"; };
-		A97778972A1D276C8D9798B67B4D09AB /* Platform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.swift; path = Sources/Platform.swift; sourceTree = "<group>"; };
+		AA98DBE216A7EF4EF97B4940592061FE /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AdaptiveStyleTransformation.swift; path = Sources/UIKit/AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
 		ABD9A0C7107A74856DA3E7AE14CF55EE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC143B7F5C58DC04A79524D4BE0A5CC4 /* StyleableUIElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StyleableUIElement.swift; path = Sources/UIKit/StyleableUIElement.swift; sourceTree = "<group>"; };
-		AC6E1B3AF513126B2846D26E274D5E52 /* SDStatusBarOverriderPost10_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost10_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost10_3.m; sourceTree = "<group>"; };
-		B0127AD75D2A9C762820788711AF851B /* Anchorage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Anchorage-prefix.pch"; sourceTree = "<group>"; };
+		B5C7248B48C825F0D0FC9CCE264A94D9 /* SimulatorStatusMagic.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SimulatorStatusMagic.modulemap; sourceTree = "<group>"; };
 		B6103EE0C0C5C17680AA13CFD4D60A77 /* Pods-PadiddleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PadiddleTests-frameworks.sh"; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B766746F8A9B2ED403F67D8BB190721F /* SDStatusBarManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarManager.h; path = SDStatusBarManager/SDStatusBarManager.h; sourceTree = "<group>"; };
-		BE30F688C94277527803D4C2C7B5275C /* Special.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Special.swift; path = Sources/Special.swift; sourceTree = "<group>"; };
-		C1A61925DC369F65300CADCADE9C229B /* StringStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringStyle.swift; path = Sources/StringStyle.swift; sourceTree = "<group>"; };
-		C33A83B2268834A7483034FBF1117B8B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C39DFD2644F814F53A3484CC60270E49 /* SDStatusBarOverriderPost10_3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost10_3.h; path = SDStatusBarManager/SDStatusBarOverriderPost10_3.h; sourceTree = "<group>"; };
+		BA035729D78F736C4BE5EEFF082F1684 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBC5EF5A70A115CD5B57A9E73EEC498E /* Compatibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compatibility.swift; path = Sources/Compatibility.swift; sourceTree = "<group>"; };
+		BDBA8D9C4827C020850D995AF6F89EC8 /* BonMot.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BonMot.modulemap; sourceTree = "<group>"; };
+		C012071AEF48A74B771289496ADACA99 /* EmbeddedTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmbeddedTransformation.swift; path = Sources/UIKit/EmbeddedTransformation.swift; sourceTree = "<group>"; };
+		C3321275891BFA2D57A6752FE3E74A71 /* MutableCopying.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MutableCopying.swift; path = Sources/MutableCopying.swift; sourceTree = "<group>"; };
+		C51902A917408F1C19E533F1795DF40B /* StyleableUIElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StyleableUIElement.swift; path = Sources/UIKit/StyleableUIElement.swift; sourceTree = "<group>"; };
+		CA6E3CCBC518F4D8E8B6A3F297D27235 /* StringStyle+Part.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringStyle+Part.swift"; path = "Sources/StringStyle+Part.swift"; sourceTree = "<group>"; };
 		CAC945D5CA8E563CCB71A2E1DC6273E9 /* Anchorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Anchorage.framework; path = Anchorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBE1D32D187CFE6F13E20570492201D7 /* SDStatusBarOverriderPre8_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPre8_3.m; path = SDStatusBarManager/SDStatusBarOverriderPre8_3.m; sourceTree = "<group>"; };
-		CF378CF3C0F41B44C1CC7141728ADA93 /* Anchorage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Anchorage.xcconfig; sourceTree = "<group>"; };
+		CC6FD37E7D6124D2B87A17806CB743BE /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+AdaptableTextContainerSupport.swift"; path = "Sources/UIKit/UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
 		CF6AF00FEBE4EB3A5B8250400E7BA236 /* Pods-PadiddleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PadiddleTests-umbrella.h"; sourceTree = "<group>"; };
-		D06BDF5975995CD725E84D83D7BCEAB0 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Tracking+Adaptive.swift"; path = "Sources/UIKit/Tracking+Adaptive.swift"; sourceTree = "<group>"; };
-		D1EAD000724D3DC58816D6CFF46C84E1 /* Image+Tinting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Image+Tinting.swift"; path = "Sources/Image+Tinting.swift"; sourceTree = "<group>"; };
-		D343EA3DB817CEC49C14B68B80D6F694 /* SDStatusBarOverriderPost11_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost11_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost11_0.m; sourceTree = "<group>"; };
+		D1D16E1CA8CEADD3588AE2EDEDB25845 /* StringStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringStyle.swift; path = Sources/StringStyle.swift; sourceTree = "<group>"; };
 		D39AE931F5B08D3DF38F08B95A9E8559 /* Pods-PadiddleUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PadiddleUITests-resources.sh"; sourceTree = "<group>"; };
-		D7DE2B5514D9F413AE8E3A57C1608D21 /* BonMot-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-umbrella.h"; sourceTree = "<group>"; };
 		D88AAE1F92055A60CC2FC970D7D34634 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DA85D30E4C43642613B2745E2CBBEEFB /* SDStatusBarOverriderPost9_3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost9_3.m; path = SDStatusBarManager/SDStatusBarOverriderPost9_3.m; sourceTree = "<group>"; };
+		D9A82E3697798006E613CA1424D66946 /* Anchorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Anchorage.swift; path = Source/Anchorage.swift; sourceTree = "<group>"; };
 		DC1181DEEE5DD45316AFD48E9D0EC1D4 /* Pods-PadiddleUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PadiddleUITests-frameworks.sh"; sourceTree = "<group>"; };
 		DD87E58A6755C047C9D2C84011BE4481 /* Pods-PadiddleUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PadiddleUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DDA9C39D39B7C99F25FE1288A5B217A7 /* Pods-PadiddleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PadiddleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DE177A8B41112051D5A5C74D2251F002 /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PadiddleTests.framework; path = "Pods-PadiddleTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFB4DA3ADD6BB6C0116F20FC634F7610 /* Tracking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tracking.swift; path = Sources/Tracking.swift; sourceTree = "<group>"; };
+		DF09B38722FBAE16931B27B542F38D0E /* Platform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.swift; path = Sources/Platform.swift; sourceTree = "<group>"; };
+		E1460C8DB7939C4589AA5001626D315B /* SDStatusBarManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarManager.m; path = SDStatusBarManager/SDStatusBarManager.m; sourceTree = "<group>"; };
 		E2AE847771AB682EF6C4E11E40CA5ACC /* Pods-Padiddle-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Padiddle-acknowledgements.plist"; sourceTree = "<group>"; };
+		E5A2F941865F8B3D11540689BD1A4172 /* Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Internal.swift; path = Source/Internal.swift; sourceTree = "<group>"; };
+		E5EBA963094480A36B260EFAF0E5921F /* XMLBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XMLBuilder.swift; path = Sources/XMLBuilder.swift; sourceTree = "<group>"; };
 		E93A0A3B30D706781777B4959FF26F17 /* Pods-PadiddleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PadiddleTests.modulemap"; sourceTree = "<group>"; };
-		EC1157167199C4F08F89E598578982C7 /* SimulatorStatusMagic-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimulatorStatusMagic-umbrella.h"; sourceTree = "<group>"; };
-		EEF5312EC2B4C12B5B452E34C568143B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA233B98D2DC725C2B7BFAC556EB2595 /* Priority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Source/Priority.swift; sourceTree = "<group>"; };
-		FA2811DC47B27414F679C14594F155D3 /* XMLBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XMLBuilder.swift; path = Sources/XMLBuilder.swift; sourceTree = "<group>"; };
-		FA547656F0F0E43A2B585D2B7384550D /* BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-prefix.pch"; sourceTree = "<group>"; };
+		ED35B301C69C3BD5A0C203243885974E /* NSAttributedString+Adaptive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Adaptive.swift"; path = "Sources/UIKit/NSAttributedString+Adaptive.swift"; sourceTree = "<group>"; };
+		F4C50BA2313A5CB376F02A2A6C0DDE90 /* SDStatusBarOverriderPost10_0.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDStatusBarOverriderPost10_0.m; path = SDStatusBarManager/SDStatusBarOverriderPost10_0.m; sourceTree = "<group>"; };
+		FB493E2706E76BDCCEC5454922C2A5A5 /* StylisticAlternates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StylisticAlternates.swift; path = Sources/StylisticAlternates.swift; sourceTree = "<group>"; };
+		FBD7F98AB913CB87ABF559BEAB0762D3 /* AnchorGroupProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnchorGroupProvider.swift; path = Source/AnchorGroupProvider.swift; sourceTree = "<group>"; };
+		FC9AE8780BDDB38FBDD9C0348C05B15C /* Priority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Source/Priority.swift; sourceTree = "<group>"; };
 		FE331B4FDAC6FA0004D4006DC032C6C0 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BonMot.framework; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFEABDA6DA5C7E8E34BBCA6002AA2230 /* SDStatusBarOverriderPost9_0.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDStatusBarOverriderPost9_0.h; path = SDStatusBarManager/SDStatusBarOverriderPost9_0.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,11 +246,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4679C1D0C33E0C8FAC9BB9A96C3E4BE4 /* Frameworks */ = {
+		7780247C4E30C064EEB169C5CE1B0963 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD493EAB6D0E5A8BB34A4AFA9E71A732 /* Foundation.framework in Frameworks */,
+				B93D650DAFC86F1F949371D3B1B2EDF6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,32 +273,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03096D6EE5B5DF3416C26B5AD9D0CC0F /* Support Files */ = {
+		081DBA14FD08AAF4EE5AC5245F499C68 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				646F1D2C0CF36A87F5F1CC5856EEA177 /* Anchorage.modulemap */,
-				CF378CF3C0F41B44C1CC7141728ADA93 /* Anchorage.xcconfig */,
-				8BCC3715CBA163F51F20C185D2840EA2 /* Anchorage-dummy.m */,
-				B0127AD75D2A9C762820788711AF851B /* Anchorage-prefix.pch */,
-				02A5F21F3AAB8A323615F05CCC4DC2B8 /* Anchorage-umbrella.h */,
-				EEF5312EC2B4C12B5B452E34C568143B /* Info.plist */,
+				7204F7D9AAE371DCF421364AC3BC8525 /* Anchorage */,
+				A19307552BBD13F5CD90A0BE4BAE20E5 /* BonMot */,
+				2DC161A146977B3FB16D50F486574785 /* SimulatorStatusMagic */,
+				3021E735CC287B270E925D872C71C2A3 /* SwiftGen */,
+				3B03FA5B3D8996E3014F1F4AC17D501B /* SwiftLint */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Anchorage";
-			sourceTree = "<group>";
-		};
-		0368F56DC59CED3743E0BBDEEF634EBF /* Anchorage */ = {
-			isa = PBXGroup;
-			children = (
-				6B00360D887AB2B9CBBA406961C0E6C2 /* Anchorage.swift */,
-				2E644064E68B24A473B19547284EB76C /* AnchorGroupProvider.swift */,
-				2F1CC84D3412D9A6616D8E9984D05397 /* Compatability.swift */,
-				03E014938389C202240A4376BFFB587C /* Internal.swift */,
-				FA233B98D2DC725C2B7BFAC556EB2595 /* Priority.swift */,
-				03096D6EE5B5DF3416C26B5AD9D0CC0F /* Support Files */,
-			);
-			name = Anchorage;
-			path = Anchorage;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		1216A9C01A40DA0D50A3892716EFBAB5 /* Products */ = {
@@ -310,6 +296,48 @@
 				9CAC9B8E6498F8105CCAB292C9987AB3 /* SimulatorStatusMagic.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2DC161A146977B3FB16D50F486574785 /* SimulatorStatusMagic */ = {
+			isa = PBXGroup;
+			children = (
+				92CC84D40C289C37F5DC8455FF1FB50E /* SDStatusBarManager.h */,
+				E1460C8DB7939C4589AA5001626D315B /* SDStatusBarManager.m */,
+				075D9E5C681B2E8E8961AD18D89B0E77 /* SDStatusBarOverrider.h */,
+				420B8FA3A94726AF4672B67DA00B51E9 /* SDStatusBarOverriderPost10_0.h */,
+				F4C50BA2313A5CB376F02A2A6C0DDE90 /* SDStatusBarOverriderPost10_0.m */,
+				A1364A52D495834D096AECD685C8A944 /* SDStatusBarOverriderPost10_3.h */,
+				A2BCBC2C2592315A7D9A74D7420D72FB /* SDStatusBarOverriderPost10_3.m */,
+				885F2A7DF2014105C04EFCA2D053F916 /* SDStatusBarOverriderPost11_0.h */,
+				40455D0AEAEB3DBE49EECFD29E55C637 /* SDStatusBarOverriderPost11_0.m */,
+				4BECAE35E2652C5D5381DF11C85C5EE8 /* SDStatusBarOverriderPost8_3.h */,
+				5C64842F3CA82257B9C4B4803903FFDF /* SDStatusBarOverriderPost8_3.m */,
+				4F0E873288EB072C07050F94F38708AF /* SDStatusBarOverriderPost9_0.h */,
+				2DDB7AE141016F6FF8F991B15EAF69BF /* SDStatusBarOverriderPost9_0.m */,
+				82B270F326744847A53F54E0048D5D7E /* SDStatusBarOverriderPost9_3.h */,
+				134E8557038BAEA962680A8FAC7C100E /* SDStatusBarOverriderPost9_3.m */,
+				68918B1F5702D9272266B5ECBD063C21 /* SDStatusBarOverriderPre8_3.h */,
+				40C1B425CC6359618812AF59FEA11C8B /* SDStatusBarOverriderPre8_3.m */,
+				6EBEAFBE99ADE9093ECD4CD913A580F9 /* Support Files */,
+			);
+			name = SimulatorStatusMagic;
+			path = SimulatorStatusMagic;
+			sourceTree = "<group>";
+		};
+		3021E735CC287B270E925D872C71C2A3 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SwiftGen;
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
+		3B03FA5B3D8996E3014F1F4AC17D501B /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SwiftLint;
+			path = SwiftLint;
 			sourceTree = "<group>";
 		};
 		3C8C87FD0700FBB2AE176E02314329D3 /* Pods-PadiddleTests */ = {
@@ -330,46 +358,6 @@
 			path = "Target Support Files/Pods-PadiddleTests";
 			sourceTree = "<group>";
 		};
-		42674C8C1B40817E455CD118CBF0ED69 /* BonMot */ = {
-			isa = PBXGroup;
-			children = (
-				2853ACB1FFA738BC7AAE49679597DAF0 /* AdaptableTextContainer.swift */,
-				0FD9A207562A97A903071C4EAC4CA042 /* AdaptiveStyle.swift */,
-				35021C70975748F3981F62216202A701 /* AdaptiveStyleTransformation.swift */,
-				A70AFB76ECD5A82F98DD596198EC1274 /* AttributedStringTransformation.swift */,
-				4AF3D3100326A39890D5A5F6442C3FF8 /* Compatibility.swift */,
-				0BF93AED1476ADCE81D2C3D76562F673 /* Composable.swift */,
-				49E89D80781A564BE40B4EB6421891F4 /* ContextualAlternates.swift */,
-				106B6D0B5C55041E5EBB857A8EA6699B /* EmbeddedTransformation.swift */,
-				85F7467FFF29901E506B180980AFA408 /* FontFeatures.swift */,
-				7A6E85FE9425072BF7314378890BE13E /* FontInspector.swift */,
-				D1EAD000724D3DC58816D6CFF46C84E1 /* Image+Tinting.swift */,
-				5412C22859844EFCCCFACF1E0273698F /* Ligatures.swift */,
-				A13769C8CDA456C55BA664D3F5CCF01E /* MutableCopying.swift */,
-				0B5F1EA246FC16DB01EE46C6BBCD792C /* NamedStyles.swift */,
-				A00C028E7D1222CA65CAE29023D736C6 /* NSAttributedString+Adaptive.swift */,
-				3376E6BF2873ADD0A9DFA80AA602016E /* NSAttributedString+BonMot.swift */,
-				A97778972A1D276C8D9798B67B4D09AB /* Platform.swift */,
-				BE30F688C94277527803D4C2C7B5275C /* Special.swift */,
-				C1A61925DC369F65300CADCADE9C229B /* StringStyle.swift */,
-				950273629629648C6C0EB446420DC106 /* StringStyle+Part.swift */,
-				AC143B7F5C58DC04A79524D4BE0A5CC4 /* StyleableUIElement.swift */,
-				616E9C563110A30DCC3984E8976D21C3 /* StylisticAlternates.swift */,
-				922C0B5DA9733E97F0551DBE131F38F1 /* Tab.swift */,
-				63DA05DDB103ACFEF0542649A072DD45 /* Tab+Adaptive.swift */,
-				5393A212BA45855C8AFE572AD95E95E6 /* TextAlignmentConstraint.swift */,
-				DFB4DA3ADD6BB6C0116F20FC634F7610 /* Tracking.swift */,
-				D06BDF5975995CD725E84D83D7BCEAB0 /* Tracking+Adaptive.swift */,
-				6AA44F0D0D4617FBEC959321558C7B44 /* Transform.swift */,
-				525043B46D12A4933375702D839792D0 /* UIKit+AdaptableTextContainerSupport.swift */,
-				82AE7F150AEB869CF0167480A8A88566 /* UIKit+Helpers.swift */,
-				FA2811DC47B27414F679C14594F155D3 /* XMLBuilder.swift */,
-				9B221B105FF79D159A293C98D4D2F5DB /* Support Files */,
-			);
-			name = BonMot;
-			path = BonMot;
-			sourceTree = "<group>";
-		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,46 +375,46 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		4CF12A88CB7EEA70C7F009AF38F31340 /* SwiftLint */ = {
+		684E217D9D315D8204D7B69007231AB4 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BCC8182D2B42BB13CF120391578BED3 /* Anchorage.modulemap */,
+				78C5C8EF6EC78FDAEF08E8F512D74ADB /* Anchorage.xcconfig */,
+				5ECF636DB7210F91ADCED0522E8ACEEC /* Anchorage-dummy.m */,
+				0121A2065B4677114EFAC0E18C732201 /* Anchorage-prefix.pch */,
+				9D12F37748533B16019FD451F2CC88D7 /* Anchorage-umbrella.h */,
+				048AE7EFCC629D1C917FC017C78798F0 /* Info.plist */,
 			);
-			name = SwiftLint;
-			path = SwiftLint;
+			name = "Support Files";
+			path = "../Target Support Files/Anchorage";
 			sourceTree = "<group>";
 		};
-		4FDA55E60F7045657B3F8326B8DBB19C /* SimulatorStatusMagic */ = {
+		6EBEAFBE99ADE9093ECD4CD913A580F9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B766746F8A9B2ED403F67D8BB190721F /* SDStatusBarManager.h */,
-				6450ADD3788C13A96C52BDB5F1609F28 /* SDStatusBarManager.m */,
-				7B654984DDA51C2343037B22B4234B63 /* SDStatusBarOverrider.h */,
-				589C7278D98C033566A65E0B0CA55E05 /* SDStatusBarOverriderPost10_0.h */,
-				0F863E71A25F442AFDFAAB4201393353 /* SDStatusBarOverriderPost10_0.m */,
-				C39DFD2644F814F53A3484CC60270E49 /* SDStatusBarOverriderPost10_3.h */,
-				AC6E1B3AF513126B2846D26E274D5E52 /* SDStatusBarOverriderPost10_3.m */,
-				0AAC6DDE3C5DC317B282BF2D3AF36A3F /* SDStatusBarOverriderPost11_0.h */,
-				D343EA3DB817CEC49C14B68B80D6F694 /* SDStatusBarOverriderPost11_0.m */,
-				3A89263E8065E68E73EF6FF9E476530E /* SDStatusBarOverriderPost8_3.h */,
-				12C4AB0322E6F2BFF81E62A38126BD11 /* SDStatusBarOverriderPost8_3.m */,
-				FFEABDA6DA5C7E8E34BBCA6002AA2230 /* SDStatusBarOverriderPost9_0.h */,
-				4851380F06E48D55CD91CAAA298820F6 /* SDStatusBarOverriderPost9_0.m */,
-				8F6D6E19A0998DDCF9223CD6C48B73D9 /* SDStatusBarOverriderPost9_3.h */,
-				DA85D30E4C43642613B2745E2CBBEEFB /* SDStatusBarOverriderPost9_3.m */,
-				2439D74263775BC696C5506782A09A4F /* SDStatusBarOverriderPre8_3.h */,
-				CBE1D32D187CFE6F13E20570492201D7 /* SDStatusBarOverriderPre8_3.m */,
-				91459C00A453B40707D38B31A80F2929 /* Support Files */,
+				9A9269D3A7047B5EF85C4F1DDF83E327 /* Info.plist */,
+				B5C7248B48C825F0D0FC9CCE264A94D9 /* SimulatorStatusMagic.modulemap */,
+				4225EB887A936D0C036CE8C45FCCA9EA /* SimulatorStatusMagic.xcconfig */,
+				608772FA2781C4949E3D48F669D08FD8 /* SimulatorStatusMagic-dummy.m */,
+				7979D9F3248BE4CF752B82542F6BD4F0 /* SimulatorStatusMagic-prefix.pch */,
+				925F53D22BD50E1C12A970C9EEF91CBE /* SimulatorStatusMagic-umbrella.h */,
 			);
-			name = SimulatorStatusMagic;
-			path = SimulatorStatusMagic;
+			name = "Support Files";
+			path = "../Target Support Files/SimulatorStatusMagic";
 			sourceTree = "<group>";
 		};
-		5DAB3B53AD7136A2B9A68B8D184BC47D /* SwiftGen */ = {
+		7204F7D9AAE371DCF421364AC3BC8525 /* Anchorage */ = {
 			isa = PBXGroup;
 			children = (
+				D9A82E3697798006E613CA1424D66946 /* Anchorage.swift */,
+				FBD7F98AB913CB87ABF559BEAB0762D3 /* AnchorGroupProvider.swift */,
+				7BEDBC3519DFAA06C56D37E111C298F4 /* Compatability.swift */,
+				E5A2F941865F8B3D11540689BD1A4172 /* Internal.swift */,
+				FC9AE8780BDDB38FBDD9C0348C05B15C /* Priority.swift */,
+				684E217D9D315D8204D7B69007231AB4 /* Support Files */,
 			);
-			name = SwiftGen;
-			path = SwiftGen;
+			name = Anchorage;
+			path = Anchorage;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -434,24 +422,10 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				FAE49E9464DA112019D01D0F6AC4C016 /* Pods */,
+				081DBA14FD08AAF4EE5AC5245F499C68 /* Pods */,
 				1216A9C01A40DA0D50A3892716EFBAB5 /* Products */,
 				980B1B45AF03713F609D6CE0447C6274 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		91459C00A453B40707D38B31A80F2929 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8BA475132092AE58E91BC037E159622E /* Info.plist */,
-				4DFAD37CBE9A955D7E6652F2BDDCDBC0 /* SimulatorStatusMagic.modulemap */,
-				06C4ADAB9E9F6E6F4B972C35C2780D7E /* SimulatorStatusMagic.xcconfig */,
-				12589EC0BE753C5898AD30B122E7CEBF /* SimulatorStatusMagic-dummy.m */,
-				6D54793E409433A099870086F063B0C5 /* SimulatorStatusMagic-prefix.pch */,
-				EC1157167199C4F08F89E598578982C7 /* SimulatorStatusMagic-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SimulatorStatusMagic";
 			sourceTree = "<group>";
 		};
 		980B1B45AF03713F609D6CE0447C6274 /* Targets Support Files */ = {
@@ -464,15 +438,56 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9B221B105FF79D159A293C98D4D2F5DB /* Support Files */ = {
+		A19307552BBD13F5CD90A0BE4BAE20E5 /* BonMot */ = {
 			isa = PBXGroup;
 			children = (
-				485A1B57C5E517FFCACC358AECE9D157 /* BonMot.modulemap */,
-				2C5AEA87960079B131580CB1EEF615BD /* BonMot.xcconfig */,
-				1E59F21401DCD15EA4DA160FA071DD4A /* BonMot-dummy.m */,
-				FA547656F0F0E43A2B585D2B7384550D /* BonMot-prefix.pch */,
-				D7DE2B5514D9F413AE8E3A57C1608D21 /* BonMot-umbrella.h */,
-				C33A83B2268834A7483034FBF1117B8B /* Info.plist */,
+				7D4D74252D349E453E21F51FC748E124 /* AccessibilityHeadingLevel.swift */,
+				7DF5BAD9406EE87E462812E142A7081B /* AdaptableTextContainer.swift */,
+				99168A126609D6A411B91FBD80C42926 /* AdaptiveStyle.swift */,
+				AA98DBE216A7EF4EF97B4940592061FE /* AdaptiveStyleTransformation.swift */,
+				A40F25D6B00A0DBD7396B5AA448EBD19 /* AttributedStringTransformation.swift */,
+				BBC5EF5A70A115CD5B57A9E73EEC498E /* Compatibility.swift */,
+				0AB4A4435ABBEA1B916761AABC7A555A /* Composable.swift */,
+				7800FFE52C897CDBE40CAF6EBC5334C0 /* ContextualAlternates.swift */,
+				C012071AEF48A74B771289496ADACA99 /* EmbeddedTransformation.swift */,
+				1C8F162B4F90BA70812E34D8A7A884F7 /* FontFeatures.swift */,
+				28D48EC95C99F691DB2FF4912A1693EB /* FontInspector.swift */,
+				72A743A7367037047E9C7D422E7B9B9D /* Image+Tinting.swift */,
+				0BBD85A9EF7AE3A71E8A413FB677EA62 /* Ligatures.swift */,
+				C3321275891BFA2D57A6752FE3E74A71 /* MutableCopying.swift */,
+				33F5D4D3A7FDE22B5D2473D08557E7C3 /* NamedStyles.swift */,
+				ED35B301C69C3BD5A0C203243885974E /* NSAttributedString+Adaptive.swift */,
+				0F568249308DFF9C410FE4D2725618F0 /* NSAttributedString+BonMot.swift */,
+				DF09B38722FBAE16931B27B542F38D0E /* Platform.swift */,
+				A1DCE1107A2BBB65C1E20434C2FA37DC /* Special.swift */,
+				D1D16E1CA8CEADD3588AE2EDEDB25845 /* StringStyle.swift */,
+				CA6E3CCBC518F4D8E8B6A3F297D27235 /* StringStyle+Part.swift */,
+				C51902A917408F1C19E533F1795DF40B /* StyleableUIElement.swift */,
+				FB493E2706E76BDCCEC5454922C2A5A5 /* StylisticAlternates.swift */,
+				3E2F0C8C727AB14F11FCCBDA11669616 /* Tab.swift */,
+				26D2ED3CF32823E6C790066C0A868190 /* Tab+Adaptive.swift */,
+				A5DC4E7B34D9F6161FCE7059B8A496CC /* TextAlignmentConstraint.swift */,
+				61CA4AD84A30495B14B170EA88B79AAD /* Tracking.swift */,
+				913C8AE81FA37DE20DFEFB35A7FC1CB2 /* Tracking+Adaptive.swift */,
+				26CAFEF0EEEA2D4BD078AA2EA41F2CEF /* Transform.swift */,
+				CC6FD37E7D6124D2B87A17806CB743BE /* UIKit+AdaptableTextContainerSupport.swift */,
+				63F9C10D3EF24CFC110EC59A5803D311 /* UIKit+Helpers.swift */,
+				E5EBA963094480A36B260EFAF0E5921F /* XMLBuilder.swift */,
+				DCDCF39C1C6BAB7A0DB5528EFF2F053F /* Support Files */,
+			);
+			name = BonMot;
+			path = BonMot;
+			sourceTree = "<group>";
+		};
+		DCDCF39C1C6BAB7A0DB5528EFF2F053F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BDBA8D9C4827C020850D995AF6F89EC8 /* BonMot.modulemap */,
+				22C52E99C37389D9AD5CBAED0B213985 /* BonMot.xcconfig */,
+				2C07FA8209B73082223D9C2BCBA98308 /* BonMot-dummy.m */,
+				74AA1AE4039D141CEAA8214F08C8D3F6 /* BonMot-prefix.pch */,
+				96B8723C9EF42A7679BF055A18DF1E1E /* BonMot-umbrella.h */,
+				BA035729D78F736C4BE5EEFF082F1684 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/BonMot";
@@ -514,18 +529,6 @@
 			path = "Target Support Files/Pods-Padiddle";
 			sourceTree = "<group>";
 		};
-		FAE49E9464DA112019D01D0F6AC4C016 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0368F56DC59CED3743E0BBDEEF634EBF /* Anchorage */,
-				42674C8C1B40817E455CD118CBF0ED69 /* BonMot */,
-				4FDA55E60F7045657B3F8326B8DBB19C /* SimulatorStatusMagic */,
-				5DAB3B53AD7136A2B9A68B8D184BC47D /* SwiftGen */,
-				4CF12A88CB7EEA70C7F009AF38F31340 /* SwiftLint */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -553,6 +556,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		880445C865ED5747DB791F4169ECA551 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12BF30A767B5E6D26FBF066FC5691119 /* BonMot-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9DA75EBF89FA6A8ED46C5327336D38BE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,14 +586,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0AEA170E13160FAE1F2ECF059132981 /* Pods-PadiddleUITests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B65F5D45C279A8B2D2F456924EC0A21C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3521DAB5D9E0FAC4B355EC526E84EB94 /* BonMot-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,13 +680,13 @@
 			productReference = 9CAC9B8E6498F8105CCAB292C9987AB3 /* SimulatorStatusMagic.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E70DEB7F17D0BC121A8C77AD351D4307 /* BonMot */ = {
+		DB742394EFA39863C295FA4D135D01A5 /* BonMot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28AFC03A79D02EEFA2C35AB717FDF19B /* Build configuration list for PBXNativeTarget "BonMot" */;
+			buildConfigurationList = 795F078FBB21DB71C6A3C06C8D33CCFD /* Build configuration list for PBXNativeTarget "BonMot" */;
 			buildPhases = (
-				68B2E37F2F1E06F381B55273336F94C9 /* Sources */,
-				4679C1D0C33E0C8FAC9BB9A96C3E4BE4 /* Frameworks */,
-				B65F5D45C279A8B2D2F456924EC0A21C /* Headers */,
+				0D8B622E890E2CB70A6C63473BDDDCFA /* Sources */,
+				7780247C4E30C064EEB169C5CE1B0963 /* Frameworks */,
+				880445C865ED5747DB791F4169ECA551 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -716,7 +719,7 @@
 			projectRoot = "";
 			targets = (
 				2BA551AC21EC573D372C22914CC1E446 /* Anchorage */,
-				E70DEB7F17D0BC121A8C77AD351D4307 /* BonMot */,
+				DB742394EFA39863C295FA4D135D01A5 /* BonMot */,
 				A33B240767ED0C6849081B83357DA9BF /* Pods-Padiddle */,
 				3C96BCC68E0F3A9847188CEACF77CDA3 /* Pods-PadiddleTests */,
 				3DEEE1FC5424ACE86A94182D088F24D9 /* Pods-PadiddleUITests */,
@@ -726,6 +729,46 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0D8B622E890E2CB70A6C63473BDDDCFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F86C837B65D43D30FB61AC4DAFDD735 /* AccessibilityHeadingLevel.swift in Sources */,
+				D5991AD5FF9851C3CE60D11BC594BADE /* AdaptableTextContainer.swift in Sources */,
+				95C1BE8BBD03C528E92A07540EFC6E98 /* AdaptiveStyle.swift in Sources */,
+				007D1499E05E902282F03D0B92BE87C2 /* AdaptiveStyleTransformation.swift in Sources */,
+				A3CE101D2FF1432BCC3F41C4E2556D7F /* AttributedStringTransformation.swift in Sources */,
+				6E0DC9416CC8DB9B726A5FBA5AC5CF9D /* BonMot-dummy.m in Sources */,
+				057D283A45595F12F7CAEC2A19BB6394 /* Compatibility.swift in Sources */,
+				E7821C08F6BE4E80EC0BED82811E59CB /* Composable.swift in Sources */,
+				A9F8D6C0FB5197A8E3D2EE8688D8BA39 /* ContextualAlternates.swift in Sources */,
+				625BDC2A45FF816B2CB7ED25E2983829 /* EmbeddedTransformation.swift in Sources */,
+				39675E9CF4BA0B80C5D9FFE2D256DC4E /* FontFeatures.swift in Sources */,
+				1FAFFB28FD488A58C6BFBBDCAFCEECBE /* FontInspector.swift in Sources */,
+				141432C3E72D5C924BC93037C5D102F3 /* Image+Tinting.swift in Sources */,
+				511119A47FF2F457B7615AB667E81AC3 /* Ligatures.swift in Sources */,
+				558AFB12B35284D94140EE537642F8AE /* MutableCopying.swift in Sources */,
+				03DBE4D3E047EF41A89AF58701594B89 /* NamedStyles.swift in Sources */,
+				C4458CB7BEEA86C8554B4CEFA02B3A31 /* NSAttributedString+Adaptive.swift in Sources */,
+				9F262C5942228D1DB8F28A124216CCF0 /* NSAttributedString+BonMot.swift in Sources */,
+				02086E0D2F5CADCD78C61089D419FB3D /* Platform.swift in Sources */,
+				070A393A457682B9AF2D9C2237330DF1 /* Special.swift in Sources */,
+				EF5C63EAC0DAE6EDFF515AB4C95EE82D /* StringStyle+Part.swift in Sources */,
+				779020EBEE69DE68A567490A1A205B9D /* StringStyle.swift in Sources */,
+				1F85CF17694433BB1285A1C38724685D /* StyleableUIElement.swift in Sources */,
+				AA0B04631952772467DEA39F11CA62FA /* StylisticAlternates.swift in Sources */,
+				0DC0998C2B1AE7D5CB2E996DD70553B0 /* Tab+Adaptive.swift in Sources */,
+				019F9B097BA1D09683E52F23A04F458A /* Tab.swift in Sources */,
+				D0EF097BFC95CDE86C329742AD29F1F7 /* TextAlignmentConstraint.swift in Sources */,
+				C931B535410D2F5A6805BA08EC54CDDE /* Tracking+Adaptive.swift in Sources */,
+				B1C98592B5DF149E4972E47390806F4D /* Tracking.swift in Sources */,
+				974F6B3E8C0155065E30532B3B661B35 /* Transform.swift in Sources */,
+				9215CB0E30DD52427500AC0ADDDD2079 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
+				A8EFC05DA9F566ED169145F53D123AC9 /* UIKit+Helpers.swift in Sources */,
+				50C90BDB25ABFA099A2FDE42BCE017B2 /* XMLBuilder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A48F332EF87F85397E4359A33D54997 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -747,45 +790,6 @@
 				5256905296BE2AA512948B00D5398D7E /* SDStatusBarOverriderPost9_3.m in Sources */,
 				0E13181BA8A329FADD84AFE53A1098FB /* SDStatusBarOverriderPre8_3.m in Sources */,
 				590FB2F3BC57153DDA5AC28A26B0F346 /* SimulatorStatusMagic-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		68B2E37F2F1E06F381B55273336F94C9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				08AF421A052AE9D12CE7D8B6F761E4D2 /* AdaptableTextContainer.swift in Sources */,
-				A2A9CB90BB0D263036043AF55511FBCC /* AdaptiveStyle.swift in Sources */,
-				43D2171DFA7A2FAAC865DD50A9BF210A /* AdaptiveStyleTransformation.swift in Sources */,
-				B496B0983F4AF27808CD1255666C2998 /* AttributedStringTransformation.swift in Sources */,
-				B8D7384A4F176ED33EE81726BE9B2D86 /* BonMot-dummy.m in Sources */,
-				7B2ED2E76B51CC8A19B6CA6C290C1AFE /* Compatibility.swift in Sources */,
-				5EEFBE8466A7346132D207DBBDD08C56 /* Composable.swift in Sources */,
-				464D254AC989694BA104DC6BA86E36D9 /* ContextualAlternates.swift in Sources */,
-				4873D4B32BF7979064C38D1E4174CC77 /* EmbeddedTransformation.swift in Sources */,
-				C8DFC4C9943A382D5BF72177A18F6665 /* FontFeatures.swift in Sources */,
-				C067CB7AAA7E09DA431A55DDAE81062D /* FontInspector.swift in Sources */,
-				D5DDABB2785640C3BCE43A06E07E660F /* Image+Tinting.swift in Sources */,
-				204194286421923AF1260708A5AB304A /* Ligatures.swift in Sources */,
-				57226C0EA7C7A2C08EB8C31AFB3AD925 /* MutableCopying.swift in Sources */,
-				66DDDC86E51DE11CE0F66B3BACB206E6 /* NamedStyles.swift in Sources */,
-				503574E497896DBEF75E9AA93DA33AC3 /* NSAttributedString+Adaptive.swift in Sources */,
-				B23A3586A2B8AE1D7D363248B6859A73 /* NSAttributedString+BonMot.swift in Sources */,
-				033884EE09B6B9542A920C16200C9A5F /* Platform.swift in Sources */,
-				A4D25207CB9DDE2D9C1C15BAAA238105 /* Special.swift in Sources */,
-				FBAF2DF95909469FC6A651C18CC1780F /* StringStyle+Part.swift in Sources */,
-				FF6B879CAFE1C94EBA92CD9CB9B16225 /* StringStyle.swift in Sources */,
-				E0D5ED1D35331DED664FE315E7CD4678 /* StyleableUIElement.swift in Sources */,
-				5D81BE10AE662883C410B79A31C6FB44 /* StylisticAlternates.swift in Sources */,
-				B9B8F3D8C5FC32778D8B2A53D0B0DFE7 /* Tab+Adaptive.swift in Sources */,
-				C5C05930BEA8EDB3C9F167B27CD5B313 /* Tab.swift in Sources */,
-				B4185AE006CC473DC3E36ECD0328BC8C /* TextAlignmentConstraint.swift in Sources */,
-				37EAE5709FBEA77B6EB90DCDC44EAD67 /* Tracking+Adaptive.swift in Sources */,
-				E08C0FCA902837187A8186D716E3F56F /* Tracking.swift in Sources */,
-				7033E920DEA9E92EF2E122183E29CA04 /* Transform.swift in Sources */,
-				B407BE260E47A573D7A1597EDFE4C5B0 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
-				9268540E84F353D13B985835485ADDB4 /* UIKit+Helpers.swift in Sources */,
-				EFB5DCD8774A8AEE2E24257863A97630 /* XMLBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,7 +834,7 @@
 		A188F18BEFD6CA393DD84A4B5351E752 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BonMot;
-			target = E70DEB7F17D0BC121A8C77AD351D4307 /* BonMot */;
+			target = DB742394EFA39863C295FA4D135D01A5 /* BonMot */;
 			targetProxy = 6AA71E9A48F5D626BE638DD5D126BA21 /* PBXContainerItemProxy */;
 		};
 		BE5FAF180F612CEA7B90F6D93F07D139 /* PBXTargetDependency */ = {
@@ -868,37 +872,6 @@
 				PRODUCT_NAME = Pods_PadiddleUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0AB3922BFD8DF7058882FAC7A44BBC31 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C5AEA87960079B131580CB1EEF615BD /* BonMot.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
-				PRODUCT_NAME = BonMot;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -962,7 +935,7 @@
 		};
 		221460C0FEBC718981D33B6E6106C148 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06C4ADAB9E9F6E6F4B972C35C2780D7E /* SimulatorStatusMagic.xcconfig */;
+			baseConfigurationReference = 4225EB887A936D0C036CE8C45FCCA9EA /* SimulatorStatusMagic.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -993,7 +966,7 @@
 		};
 		2EB65AF69A03B12B574EE287C6F2AB06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF378CF3C0F41B44C1CC7141728ADA93 /* Anchorage.xcconfig */;
+			baseConfigurationReference = 78C5C8EF6EC78FDAEF08E8F512D74ADB /* Anchorage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1025,7 +998,7 @@
 		};
 		43B55A1CAE8CAE7141AD1DED6FD4F85E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF378CF3C0F41B44C1CC7141728ADA93 /* Anchorage.xcconfig */;
+			baseConfigurationReference = 78C5C8EF6EC78FDAEF08E8F512D74ADB /* Anchorage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1146,38 +1119,6 @@
 			};
 			name = Debug;
 		};
-		849B7489BB12BCB73FCF4C3975182B8A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C5AEA87960079B131580CB1EEF615BD /* BonMot.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
-				PRODUCT_NAME = BonMot;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		85501486903C3BDAD2EB1448C7CDC8BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDA9C39D39B7C99F25FE1288A5B217A7 /* Pods-PadiddleUITests.release.xcconfig */;
@@ -1245,9 +1186,41 @@
 			};
 			name = Release;
 		};
+		98B46B04C90D0BFE36E96A65497B6487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22C52E99C37389D9AD5CBAED0B213985 /* BonMot.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		A36AA8196BE4BF83013E4821AF885980 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06C4ADAB9E9F6E6F4B972C35C2780D7E /* SimulatorStatusMagic.xcconfig */;
+			baseConfigurationReference = 4225EB887A936D0C036CE8C45FCCA9EA /* SimulatorStatusMagic.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1342,6 +1315,37 @@
 			};
 			name = Release;
 		};
+		FEDD48AE507B0544D07DF47DC2856A37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22C52E99C37389D9AD5CBAED0B213985 /* BonMot.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1363,20 +1367,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28AFC03A79D02EEFA2C35AB717FDF19B /* Build configuration list for PBXNativeTarget "BonMot" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0AB3922BFD8DF7058882FAC7A44BBC31 /* Debug */,
-				849B7489BB12BCB73FCF4C3975182B8A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
 				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		795F078FBB21DB71C6A3C06C8D33CCFD /* Build configuration list for PBXNativeTarget "BonMot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEDD48AE507B0544D07DF47DC2856A37 /* Debug */,
+				98B46B04C90D0BFE36E96A65497B6487 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
