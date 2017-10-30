@@ -3,6 +3,7 @@
 {% if tables.count > 0 %}
 import Foundation
 
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 {% macro parametersBlock types %}{% filter removeNewlines:"leading" %}
   {% for type in types %}

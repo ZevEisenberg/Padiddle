@@ -11,6 +11,7 @@ import {% if isAppKit %}Cocoa{% else %}UIKit{% endif %}
 import {{module}}
 {% endfor %}
 
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 
 {# This first part of the code is static, same every time whatever Storyboard you have #}

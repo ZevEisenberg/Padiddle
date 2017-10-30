@@ -13,6 +13,7 @@
   typealias {{imageAlias}} = UIImage
 #endif
 
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 
 {% set enumName %}{{param.enumName|default:"Asset"}}{% endset %}
