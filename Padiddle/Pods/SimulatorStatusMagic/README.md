@@ -45,7 +45,7 @@ The overrides will be automatically enabled or disabled on launch.
 
 ### Does this work on device?
 
-No. The status bar server is blocked on devices. However, [this post contains more information on taking perfect screenshots on real devices](http://shinydevelopment.com/blog/status-magic-and-iphone6-screen-sizes/).
+No. The status bar server is blocked on devices. However, macOS includes the facility to include a perfect status bar when recording your device screen with QuickTime ([Read more](https://appadvice.com/appnn/2014/08/quicktime-in-os-x-yosemite-reveals-that-apple-cares-about-status-bars)).
 
 ### How does this work?
 
@@ -58,4 +58,4 @@ We'd love contributions and even have some suggestions for things that might nee
 * Found a bug? If you report it with a pull request attached then you get a gold star :)
 * ~~Non-English language support. We'd love it to work with more languages.~~ Now works with every language!
 
-However, the scope of this project is intentionally limited. We're not planning to add options to this to allow ultimate customisation of the status bar. It's intended to do just one job really well, change the status bar to match [Apple's marketing materials](http://www.apple.com/ios/). Things like custom carrier text are probably out of scope.
+However, the scope of this project is intentionally limited. We're not planning to add options to this to allow ultimate customisation of the status bar. It's intended to do just one job really well, change the status bar to match [Apple's marketing materials](http://www.apple.com/ios/).

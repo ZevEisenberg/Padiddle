@@ -54,7 +54,7 @@ typedef NS_ENUM(unsigned int, BatteryState) {
 typedef struct {
   bool itemIsEnabled[35];
   char timeString[64];
-  char x3[64];
+  char shortTimeString[64];
   int gsmSignalStrengthRaw;
   int gsmSignalStrengthBars;
   char serviceString[100];
@@ -86,11 +86,11 @@ typedef struct {
   char breadcrumbTitle[256];
   char breadcrumbSecondaryTitle[256];
   char personName[100];
-  // or returnToAppBundleIdentifier
   unsigned int electronicTollCollectionAvailable : 1;
   unsigned int wifiLinkWarning : 1;
-  unsigned int x38 : 1;
-  double x39;
+  unsigned int wifiSearching : 1;
+  double backgroundActivityDisplayStartDate;
+  unsigned int shouldShowEmergencyOnlyStatus : 1;
 } StatusBarRawData;
 
 typedef struct {
@@ -154,6 +154,7 @@ typedef struct {
 @synthesize bluetoothConnected;
 @synthesize bluetoothEnabled;
 @synthesize batteryDetailEnabled;
+@synthesize networkType;
 
 - (void)enableOverrides {
   StatusBarOverrideData *overrides = [UIStatusBarServer getStatusBarOverrideData];
@@ -169,6 +170,9 @@ typedef struct {
     overrides->overrideGsmSignalStrengthBars = 1;
     overrides->values.gsmSignalStrengthBars = 5;
   }
+  
+  overrides->overrideDataNetworkType = self.networkType != SDStatusBarManagerNetworkTypeWiFi;
+  overrides->values.dataNetworkType = self.networkType - 1;
   
   // Remove carrier text for iPhone, set it to "iPad" for the iPad
   overrides->overrideServiceString = 1;
@@ -222,6 +226,7 @@ typedef struct {
   // Remove specific overrides (separate flags)
   overrides->overrideTimeString = 0;
   overrides->overrideGsmSignalStrengthBars = 0;
+  overrides->overrideDataNetworkType = 0;
   overrides->overrideBatteryCapacity = 0;
   overrides->overrideBatteryState = 0;
   overrides->overrideBatteryDetailString = 0;
