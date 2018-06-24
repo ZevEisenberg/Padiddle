@@ -12,6 +12,14 @@ DEPENDENCIES:
   - SwiftGen
   - SwiftLint
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Anchorage
+    - BonMot
+    - SimulatorStatusMagic
+    - SwiftGen
+    - SwiftLint
+
 SPEC CHECKSUMS:
   Anchorage: 6c20225cb7f44fdf9609ec99949ee160c803969c
   BonMot: 3ff354572f2aa9295d3760947f7578490cb810be
@@ -21,4 +29,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3ca1b9eb743abc03bf5c0072158b482f02e915c7
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.5.3
