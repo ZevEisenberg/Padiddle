@@ -11,11 +11,6 @@ import UIKit.UIImage
 
 struct HelpViewModel {
 
-    init() {
-        let success = URLProtocol.registerClass(HelpImageProtocol.self.self)
-        assert(success)
-    }
-
     lazy var html: String = {
         guard let filePath = Bundle.main.path(forResource: "help", ofType: "html") else {
             fatalError("Couldn't find help HTML file")

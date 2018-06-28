@@ -511,7 +511,7 @@ private extension ToolbarViewController {
         let image = SpiralImageMaker.image(spiralModel: model)
 
         colorButton.setImage(image, for: .normal)
-        HelpImageProtocol.colorButtonImage = image
+        HelpImageHandler.colorButtonImage = image
     }
 
     func updateToolbarConstraints(_ toolbarVisible: Bool) {

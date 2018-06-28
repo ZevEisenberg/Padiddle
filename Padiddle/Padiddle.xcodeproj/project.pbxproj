@@ -60,7 +60,7 @@
 		CDBF24351BC5EB8200A0785C /* DeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */; };
 		CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24361BC5F56600A0785C /* ImageExtensions.swift */; };
 		CDDA9DC71C52FED200D9EF19 /* HelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DC61C52FED200D9EF19 /* HelpViewModel.swift */; };
-		CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */; };
+		CDDA9DDD1C53169F00D9EF19 /* HelpImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA9DDC1C53169F00D9EF19 /* HelpImageHandler.swift */; };
 		CDE071331C55BDFE00BB5D6A /* ImageIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE071321C55BDFE00BB5D6A /* ImageIO.swift */; };
 		CDEA9C5B1C02ACFC00E02D66 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */; };
 		EE17454F4648E84753A5FF0C /* Pods_PadiddleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAA0AF05DBDDB1D9FE22AE2 /* Pods_PadiddleTests.framework */; };
@@ -165,7 +165,7 @@
 		CDDA9DD01C5300FF00D9EF19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/help.html; sourceTree = "<group>"; };
 		CDDA9DD21C53011000D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/help.html"; sourceTree = "<group>"; };
 		CDDA9DD31C53011100D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/help.html"; sourceTree = "<group>"; };
-		CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageProtocol.swift; sourceTree = "<group>"; };
+		CDDA9DDC1C53169F00D9EF19 /* HelpImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageHandler.swift; sourceTree = "<group>"; };
 		CDE071321C55BDFE00BB5D6A /* ImageIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIO.swift; sourceTree = "<group>"; };
 		CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		DD49E4991F6AF6B500387B7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
 				CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */,
 				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
-				CDDA9DDC1C53169F00D9EF19 /* HelpImageProtocol.swift */,
+				CDDA9DDC1C53169F00D9EF19 /* HelpImageHandler.swift */,
 				CDBF24361BC5F56600A0785C /* ImageExtensions.swift */,
 				CD1317C91C8B6F6D0018D720 /* Log.swift */,
 				CDA3C34E1BDC8EF000D9D309 /* Math.swift */,
@@ -792,7 +792,7 @@
 				CD7C27501D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */,
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
-				CDDA9DDD1C53169F00D9EF19 /* HelpImageProtocol.swift in Sources */,
+				CDDA9DDD1C53169F00D9EF19 /* HelpImageHandler.swift in Sources */,
 				CDBB16871C6F19F600B7E0A2 /* UIColor+Extensions.swift in Sources */,
 				CD7519841ECD271D00B49272 /* SpinManager.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,

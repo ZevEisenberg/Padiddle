@@ -7,13 +7,18 @@
 //
 
 import Anchorage
+import WebKit
 
 class HelpViewController: UIViewController {
 
     var viewModel = HelpViewModel()
 
-    // Using UIWebView because WKWebView won't talk to the custom NSURLProtocol subclass
-    let webView = UIWebView()
+    let webView: WKWebView = {
+        let config = WKWebViewConfiguration()
+        config.setURLSchemeHandler(HelpImageHandler(), forURLScheme: "asset")
+        let webView = WKWebView(frame: .zero, configuration: config)
+        return webView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,7 @@ class HelpViewController: UIViewController {
         title = L10n.about
 
         webView.backgroundColor = .white
-        webView.delegate = self
+        webView.navigationDelegate = self
         view.addSubview(webView)
         webView.verticalAnchors == view.verticalAnchors
         webView.horizontalAnchors == view.horizontalAnchors
@@ -58,25 +63,25 @@ class HelpViewController: UIViewController {
 
 }
 
-extension HelpViewController: UIWebViewDelegate {
+extension HelpViewController: WKNavigationDelegate {
 
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if !Defaults.snapshotMode {
             webView.scrollView.flashScrollIndicators()
         }
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        switch navigationType {
-        case .linkClicked:
-            if let url = request.url {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        switch navigationAction.navigationType {
+        case .linkActivated:
+            if let url = navigationAction.request.url {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
-            return false
+            decisionHandler(.cancel)
         case .other, .reload:
-            return true
+            decisionHandler(.allow)
         default:
-            fatalError("Unexpected navigation type \(navigationType)")
+            fatalError("Unexpected navigation type \(navigationAction.navigationType)")
         }
     }
 
