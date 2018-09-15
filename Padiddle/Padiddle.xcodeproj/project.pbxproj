@@ -627,7 +627,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Padiddle/Pods-Padiddle-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
 				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
 				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
@@ -640,7 +640,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Padiddle/Pods-Padiddle-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Padiddle/Pods-Padiddle-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3FEA9B66249B6211A5AD979 /* [CP] Check Pods Manifest.lock */ = {
