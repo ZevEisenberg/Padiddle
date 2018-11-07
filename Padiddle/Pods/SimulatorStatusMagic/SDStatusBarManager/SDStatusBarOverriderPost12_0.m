@@ -11,22 +11,22 @@
 
 typedef NS_ENUM(int, StatusBarItem) {
   // 0
-  // 1
+  dateStringIpad = 1,
   // 2
   // 3
   SignalStrengthBars = 4,
-  // 5
-  // 6
+  SecondarySignalStrengthBars = 5,
+  SignalStrengthBarsVisibleOnIpad = 6,
   // 7
   // 8
   // 9
-  BatteryDetail = 10,
+  // 10
   // 11
   // 12
-  Bluetooth = 13,
+  BatteryDetail = 13,
   // 14
   // 15
-  // 16
+  Bluetooth = 16,
   // 17
   // 18
   // 19
@@ -45,6 +45,12 @@ typedef NS_ENUM(int, StatusBarItem) {
   // 32
   // 33
   // 34
+  // 35
+  // 36
+  // 37
+  // 38
+  // 39
+  // 40
 };
 
 typedef NS_ENUM(unsigned int, BatteryState) {
@@ -52,20 +58,26 @@ typedef NS_ENUM(unsigned int, BatteryState) {
 };
 
 typedef struct {
-  bool itemIsEnabled[36];
+  bool itemIsEnabled[41];
   char timeString[64];
   char shortTimeString[64];
   char dateString[256];
   int gsmSignalStrengthRaw;
+  int secondaryGsmSignalStrengthRaw;
   int gsmSignalStrengthBars;
+  int secondaryGsmSignalStrengthBars;
   char serviceString[100];
+  char secondaryServiceString[100];
   char serviceCrossfadeString[100];
+  char secondaryServiceCrossfadeString[100];
   char serviceImages[2][100];
   char operatorDirectory[1024];
   unsigned int serviceContentType;
+  unsigned int secondaryServiceContentType;
   int wifiSignalStrengthRaw;
   int wifiSignalStrengthBars;
   unsigned int dataNetworkType;
+  unsigned int secondaryDataNetworkType;
   int batteryCapacity;
   unsigned int batteryState;
   char batteryDetailString[150];
@@ -92,21 +104,29 @@ typedef struct {
   unsigned int wifiSearching : 1;
   double backgroundActivityDisplayStartDate;
   unsigned int shouldShowEmergencyOnlyStatus : 1;
+  unsigned int secondaryCellularConfigured : 1;
+  char primaryServiceBadgeString[100];
+  char secondaryServiceBadgeString[100];
 } StatusBarRawData;
 
 typedef struct {
-  bool overrideItemIsEnabled[36];
+  bool overrideItemIsEnabled[41];
   unsigned int overrideTimeString : 1;
   unsigned int overrideDateString : 1;
   unsigned int overrideGsmSignalStrengthRaw : 1;
+  unsigned int overrideSecondaryGsmSignalStrengthRaw : 1;
   unsigned int overrideGsmSignalStrengthBars : 1;
+  unsigned int overrideSecondaryGsmSignalStrengthBars : 1;
   unsigned int overrideServiceString : 1;
+  unsigned int overrideSecondaryServiceString : 1;
   unsigned int overrideServiceImages : 2;
   unsigned int overrideOperatorDirectory : 1;
   unsigned int overrideServiceContentType : 1;
+  unsigned int overrideSecondaryServiceContentType : 1;
   unsigned int overrideWifiSignalStrengthRaw : 1;
   unsigned int overrideWifiSignalStrengthBars : 1;
   unsigned int overrideDataNetworkType : 1;
+  unsigned int overrideSecondaryDataNetworkType : 1;
   unsigned int disallowsCellularDataNetworkTypes : 1;
   unsigned int overrideBatteryCapacity : 1;
   unsigned int overrideBatteryState : 1;
@@ -122,6 +142,9 @@ typedef struct {
   unsigned int overrideDisplayRawWifiSignal : 1;
   unsigned int overridePersonName : 1;
   unsigned int overrideWifiLinkWarning : 1;
+  unsigned int overrideSecondaryCellularConfigured : 1;
+  unsigned int overridePrimaryServiceBadgeString : 1;
+  unsigned int overrideSecondaryServiceBadgeString : 1;
   StatusBarRawData values;
 } StatusBarOverrideData;
 
@@ -156,6 +179,8 @@ typedef struct {
 @synthesize bluetoothEnabled;
 @synthesize batteryDetailEnabled;
 @synthesize networkType;
+@synthesize iPadDateEnabled;
+@synthesize iPadGsmSignalEnabled;
 
 - (void)enableOverrides {
   StatusBarOverrideData *overrides = [UIStatusBarServer getStatusBarOverrideData];
@@ -163,6 +188,12 @@ typedef struct {
   // Set 9:41 time in current localization
   strcpy(overrides->values.timeString, [self.timeString cStringUsingEncoding:NSUTF8StringEncoding]);
   overrides->overrideTimeString = 1;
+  
+  // Show / Hide date on iPad
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    overrides->overrideItemIsEnabled[dateStringIpad] = 1;
+    overrides->values.itemIsEnabled[dateStringIpad] = self.iPadDateEnabled ? 1 : 0;
+  }
 
   // Enable 5 bars of mobile (iPhone only)
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
@@ -170,6 +201,19 @@ typedef struct {
     overrides->values.itemIsEnabled[SignalStrengthBars] = 1;
     overrides->overrideGsmSignalStrengthBars = 1;
     overrides->values.gsmSignalStrengthBars = 5;
+  }
+  
+  // Enable / Disable GSM signal bars on iPad
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if (self.iPadGsmSignalEnabled) {
+      overrides->overrideItemIsEnabled[SignalStrengthBars] = 1;
+      overrides->values.itemIsEnabled[SignalStrengthBars] = 1;
+      overrides->overrideGsmSignalStrengthBars = 1;
+      overrides->values.gsmSignalStrengthBars = 5;
+    } else {
+      overrides->overrideItemIsEnabled[SignalStrengthBarsVisibleOnIpad] = 1;
+      overrides->values.itemIsEnabled[SignalStrengthBars] = 0;
+    }
   }
 
   overrides->overrideDataNetworkType = self.networkType != SDStatusBarManagerNetworkTypeWiFi;
@@ -185,14 +229,13 @@ typedef struct {
 
   // Battery: 100% and unplugged
   overrides->overrideItemIsEnabled[BatteryDetail] = YES;
-  overrides->values.itemIsEnabled[BatteryDetail] = YES;
+  overrides->values.itemIsEnabled[BatteryDetail] = self.batteryDetailEnabled;
   overrides->overrideBatteryCapacity = YES;
   overrides->values.batteryCapacity = 100;
   overrides->overrideBatteryState = YES;
   overrides->values.batteryState = BatteryStateUnplugged;
   overrides->overrideBatteryDetailString = YES;
-  NSString *batteryDetailString = self.batteryDetailEnabled ? [NSString stringWithFormat:@"%@%%", @(overrides->values.batteryCapacity)] : @" ";
-  // Setting this to an empty string will not work, it needs to be a @" "
+  NSString *batteryDetailString = [NSString stringWithFormat:@"%@%%", @(overrides->values.batteryCapacity)];
   strcpy(overrides->values.batteryDetailString, [batteryDetailString cStringUsingEncoding:NSUTF8StringEncoding]);
 
   // Bluetooth
@@ -205,13 +248,6 @@ typedef struct {
 
   // Actually update the status bar
   [UIStatusBarServer postStatusBarOverrideData:overrides];
-
-  // Remove the @" " used to trick the battery percentage into not showing, if used
-  if (!self.batteryDetailEnabled) {
-    batteryDetailString = @"";
-    strcpy(overrides->values.batteryDetailString, [batteryDetailString cStringUsingEncoding:NSUTF8StringEncoding]);
-    [UIStatusBarServer postStatusBarOverrideData:overrides];
-  }
 
   // Lock in the changes, reset simulator will remove this
   [UIStatusBarServer permanentizeStatusBarOverrideData];
