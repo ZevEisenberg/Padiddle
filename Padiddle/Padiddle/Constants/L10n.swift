@@ -1,3 +1,4 @@
+// swiftlint:disable all
 // Generated using SwiftGen, by O.Halligon — https://github.com/SwiftGen/SwiftGen
 
 import Foundation
@@ -5,7 +6,9 @@ import Foundation
 // swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
 
-// swiftlint:disable identifier_name line_length type_body_length
+// MARK: - Strings
+
+// swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 internal enum L10n {
   /// About Padiddle
   internal static let about = L10n.tr("Localizable", "about")
@@ -56,7 +59,9 @@ internal enum L10n {
   /// Start Here
   internal static let tutorialStartHere = L10n.tr("Localizable", "tutorial.startHere")
 }
-// swiftlint:enable identifier_name line_length type_body_length
+// swiftlint:enable function_parameter_count identifier_name line_length type_body_length
+
+// MARK: - Implementation Details
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
