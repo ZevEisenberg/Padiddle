@@ -75,7 +75,7 @@ extension SpinPromptView {
         keyframeAnimation.values = values
         keyframeAnimation.duration = duration
         keyframeAnimation.repeatCount = .greatestFiniteMagnitude
-        keyframeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        keyframeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
 
         layer.add(keyframeAnimation, forKey: "spinny")
     }

@@ -17,7 +17,7 @@ struct ImageIO {
             backgroundSaveTask = app.beginBackgroundTask {
                 if let task = self.backgroundSaveTask {
                     app.endBackgroundTask(task)
-                    self.backgroundSaveTask = UIBackgroundTaskInvalid
+                    self.backgroundSaveTask = .invalid
                 }
             }
 
@@ -26,10 +26,10 @@ struct ImageIO {
                     if let task = self.backgroundSaveTask {
                         app.endBackgroundTask(task)
                     }
-                    self.backgroundSaveTask = UIBackgroundTaskInvalid
+                    self.backgroundSaveTask = .invalid
                 }
 
-                guard let imageData = UIImagePNGRepresentation(image) else {
+                guard let imageData = image.pngData() else {
                     Log.error("Could not generate PNG to save image: \(image)")
                     return
                 }
@@ -73,10 +73,10 @@ private extension ImageIO {
 
     static var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
-    static func rotationForInterfaceOrientation(_ interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImageOrientation, rotation: CGFloat) {
+    static func rotationForInterfaceOrientation(_ interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImage.Orientation, rotation: CGFloat) {
 
         let rotation: CGFloat
-        let imageOrientaion: UIImageOrientation
+        let imageOrientaion: UIImage.Orientation
 
         switch interfaceOrientation {
         case .landscapeLeft:

@@ -26,7 +26,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
         viewModel.view = self
 
         displayLink = CADisplayLink(target: self, selector: #selector(DrawingView.displayLinkUpdated))
-        displayLink?.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        displayLink?.add(to: .main, forMode: .default)
     }
 
     required init?(coder aDecoder: NSCoder) {

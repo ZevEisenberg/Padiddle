@@ -82,7 +82,7 @@ class CounterRotatingViewController: UIViewController {
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
-            options: UIViewKeyframeAnimationOptions(),
+            options: [],
             animations: {
                 UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
 

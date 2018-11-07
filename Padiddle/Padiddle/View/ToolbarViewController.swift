@@ -278,7 +278,7 @@ extension ToolbarViewController {
         toolbarStackView.isUserInteractionEnabled = false
         recordButton.isUserInteractionEnabled = false
 
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.color = .appTint
         activityIndicator.startAnimating()
 
@@ -312,7 +312,7 @@ extension ToolbarViewController {
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [.assignToContact]
             activityViewController.modalPresentationStyle = .popover
-            activityViewController.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
+            activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
                 if completed {
                     if let activityType = activityType {
                         Log.info("shared via \(activityType)")

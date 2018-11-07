@@ -99,9 +99,9 @@ extension CGAffineTransform {
 
 extension UIInterfaceOrientation {
 
-    var imageRotation: (orientation: UIImageOrientation, rotation: CGFloat) {
+    var imageRotation: (orientation: UIImage.Orientation, rotation: CGFloat) {
         let rotation: CGFloat
-        let imageOrientaion: UIImageOrientation
+        let imageOrientaion: UIImage.Orientation
 
         switch self {
         case .landscapeLeft:

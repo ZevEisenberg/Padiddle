@@ -31,14 +31,14 @@ class RootViewController: UIViewController {
         view.backgroundColor = .white
         view.clipsToBounds = true
 
-        addChildViewController(pinnedViewController)
-        addChildViewController(rotatingViewController)
+        addChild(pinnedViewController)
+        addChild(rotatingViewController)
 
         view.addSubview(pinnedViewController.view)
         view.addSubview(rotatingViewController.view)
 
-        pinnedViewController.didMove(toParentViewController: self)
-        rotatingViewController.didMove(toParentViewController: self)
+        pinnedViewController.didMove(toParent: self)
+        rotatingViewController.didMove(toParent: self)
 
         pinnedViewController.view.centerAnchors == view.centerAnchors
 

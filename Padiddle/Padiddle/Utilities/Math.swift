@@ -16,7 +16,7 @@ extension CGFloat {
 
     func closeEnough(to: CGFloat) -> Bool {
         let epsilon = CGFloat(0.0001)
-        let closeEnough = fabs(self - to) < epsilon
+        let closeEnough = abs(self - to) < epsilon
         return closeEnough
     }
 

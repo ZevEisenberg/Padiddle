@@ -176,7 +176,7 @@ private extension TutorialCoordinator {
     func startTimer(timeout: TimeInterval) {
         self.timer?.invalidate()
         let timer = Timer(timeInterval: timeout, target: self, selector: #selector(timerFired), userInfo: nil, repeats: false)
-        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }
 

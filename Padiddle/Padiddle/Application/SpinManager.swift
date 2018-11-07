@@ -71,7 +71,7 @@ extension SpinManager {
 
         let timer = Timer(fireAt: Date(), interval: 1.0 / 60.0, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
         sufficientSpinTimer = timer
-        RunLoop.main.add(timer, forMode: .commonModes)
+        RunLoop.main.add(timer, forMode: .common)
     }
 
     func stopMonitoringForSufficientSpin() {
@@ -92,7 +92,7 @@ extension SpinManager {
         return UIDevice.isSimulator ? UIApplication.shared.keyWindow : nil
     }
 
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if UIDevice.isSimulator && motion == .motionShake {
             // can't spin the simulator, so shake to to simulate it
             respondToSufficientMotion()

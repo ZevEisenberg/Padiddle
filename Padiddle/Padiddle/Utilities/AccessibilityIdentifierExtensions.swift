@@ -19,7 +19,7 @@ extension UIView {
 
 extension UIButton {
 
-    convenience init(type buttonType: UIButtonType, axId accessibilityIdentifier: String) {
+    convenience init(type buttonType: UIButton.ButtonType, axId accessibilityIdentifier: String) {
         self.init(type: buttonType)
         self.accessibilityIdentifier = accessibilityIdentifier
     }

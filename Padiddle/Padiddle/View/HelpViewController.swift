@@ -32,7 +32,7 @@ class HelpViewController: UIViewController {
         webView.horizontalAnchors == view.horizontalAnchors
         webView.loadHTMLString(viewModel.html, baseURL: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HelpViewController.typeSizeChanged(_:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

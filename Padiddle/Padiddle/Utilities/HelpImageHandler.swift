@@ -35,7 +35,7 @@ class HelpImageHandler: NSObject, WKURLSchemeHandler {
 
         guard
             let existingImage = image,
-            let imageData = UIImagePNGRepresentation(existingImage)
+            let imageData = existingImage.pngData()
             else { return }
 
         let urlResponse = URLResponse(url: url, mimeType: "image/png", expectedContentLength: imageData.count, textEncodingName: nil)
