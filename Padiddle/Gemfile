@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-# work around acknowledgements plist issue in 1.6.0.beta.1: https://github.com/CocoaPods/CocoaPods/issues/8068
-gem 'cocoapods', :git => 'https://github.com/CocoaPods/CocoaPods.git'
+gem 'cocoapods', '1.6.0.beta.2'
 gem 'fastlane'
 gem 'synx'
