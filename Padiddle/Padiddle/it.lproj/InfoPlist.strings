@@ -1,0 +1,2 @@
+/* Permission when trying to save a picture to the photo library */
+"NSPhotoLibraryAddUsageDescription" = "Padiddle può salvare le immagini nella tua libreria di foto.";
