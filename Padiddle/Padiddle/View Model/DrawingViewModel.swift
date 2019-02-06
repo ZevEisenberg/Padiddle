@@ -180,9 +180,20 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
         DispatchQueue.global(qos: .default).async {
             let image = self.snapshot(interfaceOrientation)
-
-            DispatchQueue.main.async {
-                completion(image)
+            // Convert to PNG and back to save at full quality
+            if let cgImage = image.cgImage,
+                case let imageFromCGImage = UIImage(cgImage: cgImage),
+                let cgImageData = imageFromCGImage.pngData(),
+                let finalImage = UIImage(data: cgImageData) {
+                DispatchQueue.main.async {
+                    completion(finalImage)
+                }
+            }
+            else {
+                // If there was a problem, fall back to saving the original image
+                DispatchQueue.main.async {
+                    completion(image)
+                }
             }
         }
     }
