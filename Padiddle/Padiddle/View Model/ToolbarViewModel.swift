@@ -9,13 +9,13 @@
 import Foundation
 import UIKit.UIImage
 
-protocol ToolbarViewModelToolbarDelegate: class {
+protocol ToolbarViewModelToolbarDelegate: AnyObject {
 
     func setToolbarVisible(_ visible: Bool, animated: Bool)
 
 }
 
-protocol ToolbarViewModelColorDelegate: class {
+protocol ToolbarViewModelColorDelegate: AnyObject {
 
     func colorManagerPicked(_ colorManager: ColorManager)
 
@@ -38,7 +38,7 @@ class ToolbarViewModel {
     }
 
     func recordButtonTapped() {
-        rootViewModel.recording = !rootViewModel.recording
+        rootViewModel.recording.toggle()
     }
 
     func clearTapped() {

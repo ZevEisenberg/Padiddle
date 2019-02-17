@@ -35,7 +35,9 @@ extension Array {
             newArray.append(smallArrayElement)
         }
 
-        guard let largeLast = largerArray.last else { fatalError() }
+        guard let largeLast = largerArray.last else {
+            fatalError("We have already established that largerArray is 1 larger than smallerArray, so it must have at least one item")
+        }
         newArray.append(largeLast)
 
         return newArray

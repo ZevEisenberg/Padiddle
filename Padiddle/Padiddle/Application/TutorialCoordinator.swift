@@ -23,7 +23,7 @@ extension TutorialCoordinator {
 
 }
 
-protocol TutorialCoordinatorDelegate: class {
+protocol TutorialCoordinatorDelegate: AnyObject {
 
     func showRecordPrompt()
     func hideRecordPrompt()

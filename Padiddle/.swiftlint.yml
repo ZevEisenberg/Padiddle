@@ -5,11 +5,27 @@ disabled_rules: # rule identifiers to exclude from running
   - identifier_name
 
 opt_in_rules:
-  - vertical_whitespace
-  - operator_usage_whitespace
-  - sorted_imports
-  - implicit_return
+  - anyobject_protocol
+  - array_init
+  - closure_spacing
+  - contains_over_first_not_nil
+  - empty_count
   - extension_access_modifier
+  - fatal_error_message
+  - first_where
+  - identical_operands
+  - implicit_return
+  - last_where
+  - legacy_random
+  - multiline_arguments
+  - operator_usage_whitespace
+  - redundant_objc_attribute
+  - sorted_first_last
+  - sorted_imports
+  - static_operator
+  - toggle_bool
+  - unused_control_flow_label
+  - vertical_whitespace
 
 excluded:
   - Carthage

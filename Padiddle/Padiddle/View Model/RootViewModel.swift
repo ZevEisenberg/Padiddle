@@ -9,7 +9,7 @@
 import Foundation
 import UIKit.UIApplication
 
-@objc protocol RecordingDelegate: class {
+@objc protocol RecordingDelegate: AnyObject {
 
     func recordingStatusChanged(_ recording: Bool)
     @objc optional func motionUpdatesStatusChanged(_ updates: Bool)
@@ -17,7 +17,7 @@ import UIKit.UIApplication
 
 }
 
-protocol RootColorManagerDelegate: class {
+protocol RootColorManagerDelegate: AnyObject {
 
     func colorManagerPicked(_ colorManager: ColorManager)
 
@@ -60,7 +60,9 @@ class RootViewModel {
     }
 
     func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
-        guard let drawingViewController = drawingViewController else { fatalError() }
+        guard let drawingViewController = drawingViewController else {
+            fatalError("Not having a drawing view controller would represent a programmer error")
+        }
         drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
     }
 

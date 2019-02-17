@@ -32,14 +32,18 @@ struct HelpViewModel {
         var newString = ""
 
         // Device Name
-        guard let deviceNameRange = htmlString.range(of: "^deviceName^") else { fatalError() }
+        guard let deviceNameRange = htmlString.range(of: "^deviceName^") else {
+            fatalError("String should contain device name placeholder")
+        }
 
         let deviceName = UIDevice.deviceName
 
         newString = htmlString.replacingCharacters(in: deviceNameRange, with: deviceName)
 
         // Device Image
-        guard let deviceImageRange = newString.range(of: "^deviceImage^") else { fatalError() }
+        guard let deviceImageRange = newString.range(of: "^deviceImage^") else {
+            fatalError("String should contain device image placeholder")
+        }
 
         newString = newString.replacingCharacters(in: deviceImageRange, with: deviceName)
 
@@ -48,13 +52,17 @@ struct HelpViewModel {
 
         let nativeWidth = deviceImage.size.width
 
-        guard let imageWidthRange = newString.range(of: "^maxDeviceImageWidthPoints^") else { fatalError() }
+        guard let imageWidthRange = newString.range(of: "^maxDeviceImageWidthPoints^") else {
+            fatalError("string should contain image width placeholder")
+        }
         newString = newString.replacingCharacters(in: imageWidthRange, with: String(describing: nativeWidth))
 
         // Version Number
-        guard let versionRange = newString.range(of: "^version^", options: .backwards),
-        let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"],
-            let buildString = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] else { fatalError() }
+        guard
+            let versionRange = newString.range(of: "^version^", options: .backwards),
+            let versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"],
+            let buildString = Bundle.main.infoDictionary?[kCFBundleVersionKey as String]
+            else { fatalError("Something has gone horribly wrong") }
 
         let combinedString = "\(versionString) (\(buildString))"
         newString = newString.replacingCharacters(in: versionRange, with: combinedString)

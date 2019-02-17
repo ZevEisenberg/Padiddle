@@ -13,7 +13,7 @@ let rowsPortrait = 3
 let colsLandscape = 3
 let rowsLandscape = 2
 
-protocol ColorPickerDelegate: class {
+protocol ColorPickerDelegate: AnyObject {
     func colorPicked(_ color: ColorManager)
 }
 
@@ -191,7 +191,7 @@ extension ColorPickerViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PickerCell else {
-            fatalError()
+            fatalError("Cell registration was probably done incorrectly")
         }
 
         cell.title = viewModel.colorsToPick[indexPath.item].title

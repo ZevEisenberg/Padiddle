@@ -12,7 +12,7 @@ private let debugging = false
 
 let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
 
-protocol DrawingViewModelDelegate: class {
+protocol DrawingViewModelDelegate: AnyObject {
 
     func start()
     func pause()
@@ -20,7 +20,7 @@ protocol DrawingViewModelDelegate: class {
 
 }
 
-protocol DrawingViewBoundsVendor: class {
+protocol DrawingViewBoundsVendor: AnyObject {
 
     var bounds: CGRect { get }
 
@@ -121,7 +121,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
     }
 
     func drawInto(_ context: CGContext, dirtyRect: CGRect) {
-        guard let view = view else { fatalError() }
+        guard let view = view else {
+            fatalError("Not having a view represents a programmer error")
+        }
         let offscreenImage = offscreenContext.makeImage()
         let offset = CGSize(
             width: contextSize.width * contextScaleFactor - view.bounds.width,
@@ -249,7 +251,9 @@ extension DrawingViewModel { // Coordinate conversions
 
     fileprivate func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
 
-        guard let view = view else { fatalError() }
+        guard let view = view else {
+            fatalError("Not having a view represents a programmer error")
+        }
 
         var newPoint = point
 
@@ -280,7 +284,7 @@ extension DrawingViewModel { // Coordinate conversions
     func convertContextRectToViewCoordinates(_ rect: CGRect) -> CGRect {
 
         guard !rect.equalTo(CGRect.null) else { return CGRect.null }
-        guard let view = view else { fatalError() }
+        guard let view = view else { fatalError("Not having a view represents a programmer error") }
 
         // 1. Get the size of the context in self coordinates
         let scaledContextSize = CGSize(
@@ -307,7 +311,9 @@ extension DrawingViewModel { // Coordinate conversions
 
     func convertContextPointToViewCoordinates(_ point: CGPoint) -> CGPoint {
 
-        guard let view = view else { fatalError() }
+        guard let view = view else {
+            fatalError("Not having a view represents a programmer error")
+        }
 
         // 1. Get the size of the context in self coordinates
         let scaledContextSize = CGSize(

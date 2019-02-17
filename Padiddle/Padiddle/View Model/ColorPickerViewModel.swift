@@ -9,7 +9,7 @@
 import CoreGraphics.CGBase
 import UIKit
 
-protocol ColorPickerViewModelDelegate: class {
+protocol ColorPickerViewModelDelegate: AnyObject {
 
     func colorManagerPicked(_ colorManager: ColorManager)
 

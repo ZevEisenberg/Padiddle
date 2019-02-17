@@ -39,22 +39,17 @@ class ColorPickerLayout: UICollectionViewLayout {
         var cellLayoutInfo = [IndexPath: UICollectionViewLayoutAttributes]()
 
         if let sectionCount = collectionView?.numberOfSections {
-            var indexPath: IndexPath?
 
             for section in 0..<sectionCount {
                 if let itemCount = collectionView?.numberOfItems(inSection: section) {
 
                     for item in 0..<itemCount {
-                        indexPath = IndexPath(item: item, section: section)
+                        let indexPath = IndexPath(item: item, section: section)
 
-                        guard let definiteIndexPath = indexPath else {
-                            fatalError()
-                        }
+                        let itemAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                        itemAttributes.frame = frameForItemAtIndexPath(indexPath)
 
-                        let itemAttributes = UICollectionViewLayoutAttributes(forCellWith: definiteIndexPath)
-                        itemAttributes.frame = frameForItemAtIndexPath(definiteIndexPath)
-
-                        cellLayoutInfo[definiteIndexPath] = itemAttributes
+                        cellLayoutInfo[indexPath] = itemAttributes
                     }
                 }
             }

@@ -177,7 +177,9 @@ extension ToolbarViewController {
         }
 
         // Make first and last spacer views’ widths equal to each other
-        guard let first = spacerViews.first, let last = spacerViews.last else { fatalError() }
+        guard let first = spacerViews.first, let last = spacerViews.last else {
+            fatalError("If we don't have spacer views, what even is the point")
+        }
         first.widthAnchor == last.widthAnchor
 
         // Make all other spacer views a fixed width
@@ -262,7 +264,7 @@ extension ToolbarViewController {
 
     @objc func recordTapped() {
         Log.info("new recording status: \(!recordButton.isSelected)")
-        recordButton.isSelected = !recordButton.isSelected
+        recordButton.isSelected.toggle()
 
         viewModel?.recordButtonTapped()
         tutorialCoordinator.recordButtonTapped()
@@ -271,7 +273,9 @@ extension ToolbarViewController {
     @objc func shareTapped() {
         Log.info()
 
-        guard let viewModel = viewModel else { fatalError() }
+        guard let viewModel = viewModel else {
+            fatalError("Not having a view model would represent a programmer error")
+        }
 
         // Prevent the user from doing stuff while we are generating the snapshot
 
@@ -405,14 +409,18 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
     func showRecordPrompt() {
         recordPrompt.alpha = 0.0
         recordPrompt.isHidden = false
-        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
-            self.recordPrompt.alpha = 1.0
+        UIView.animate(
+            withDuration: Constants.tutorialFadeDuration,
+            animations: {
+                self.recordPrompt.alpha = 1.0
         }, completion: nil)
     }
 
     func hideRecordPrompt() {
-        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
-            self.recordPrompt.alpha = 0.0
+        UIView.animate(
+            withDuration: Constants.tutorialFadeDuration,
+            animations: {
+                self.recordPrompt.alpha = 0.0
         }, completion: { _ in
             self.recordPrompt.isHidden = true
         })
@@ -422,15 +430,19 @@ extension ToolbarViewController: TutorialCoordinatorDelegate {
         spinPrompt.alpha = 0.0
         spinPrompt.isHidden = false
         spinPrompt.startAnimating()
-        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
-            self.spinPrompt.alpha = 1.0
+        UIView.animate(
+            withDuration: Constants.tutorialFadeDuration,
+            animations: {
+                self.spinPrompt.alpha = 1.0
         }, completion: nil)
 
     }
 
     func hideSpinPrompt() {
-        UIView.animate(withDuration: Constants.tutorialFadeDuration, animations: {
-            self.spinPrompt.alpha = 0.0
+        UIView.animate(
+            withDuration: Constants.tutorialFadeDuration,
+            animations: {
+                self.spinPrompt.alpha = 0.0
         }, completion: { _ in
             self.spinPrompt.isHidden = true
             self.spinPrompt.stopAnimating()

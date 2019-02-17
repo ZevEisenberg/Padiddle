@@ -9,7 +9,7 @@
 import CoreMotion
 import UIKit
 
-protocol SufficientSpinDelegate: class {
+protocol SufficientSpinDelegate: AnyObject {
 
     /// After you call `startMonitoringForSufficientSpin()`, this method may be called
     /// on the delegate no more than one time at some point in the future. Subsequent
