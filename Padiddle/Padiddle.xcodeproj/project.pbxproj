@@ -286,9 +286,9 @@
 				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
 				CD193CC31BA4891500203B44 /* Assets.xcassets */,
 				CD193CC81BA4891500203B44 /* Info.plist */,
+				5B5AA511220B33C2005C1791 /* InfoPlist.strings */,
 				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
 				CD2025841D1A2DC70002C2A0 /* Localizable.strings */,
-				5B5AA511220B33C2005C1791 /* InfoPlist.strings */,
 				CD703CFC1D3346C200221364 /* Settings.bundle */,
 				CDDA9DCC1C5300CD00D9EF19 /* help.html */,
 			);
@@ -864,12 +864,13 @@
 			children = (
 				5B5AA512220B33C3005C1791 /* Base */,
 				5B5AA515220B3405005C1791 /* fr */,
-				5B5AA516220B3406005C1791 /* zh-Hans */,
-				5B5AA517220B3407005C1791 /* zh-Hant */,
 				5B5AA518220B3408005C1791 /* it */,
 				5B5AA519220B3409005C1791 /* nl */,
+				5B5AA516220B3406005C1791 /* zh-Hans */,
+				5B5AA517220B3407005C1791 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */ = {
