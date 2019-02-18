@@ -10,32 +10,32 @@ import Anchorage
 
 class ToolbarViewController: UIViewController {
 
-    fileprivate let toolbarAnimationDuration = 0.3
+    private let toolbarAnimationDuration = 0.3
 
     var viewModel: ToolbarViewModel?
 
-    fileprivate var tutorialCoordinator: TutorialCoordinator!
+    private var tutorialCoordinator: TutorialCoordinator!
 
-    fileprivate var toolbarVisible: Bool = true
+    private var toolbarVisible: Bool = true
 
-    fileprivate let recordButtonBack = UIImageView(axId: "recordButtonBack")
-    fileprivate let toolbarStackView = UIStackView(axId: "toolbarStackView")
-    fileprivate let clearButton = UIButton(type: .custom, axId: "clearButton")
-    fileprivate let colorButton = UIButton(type: .custom, axId: "colorButton")
-    fileprivate let recordButtonPlaceholder = UIView(axId: "recordButtonPlaceholder")
-    fileprivate let recordButton = AccessibleToggleButton(type: .custom, axId: "recordButton")
-    fileprivate let shareButton = UIButton(type: .custom, axId: "shareButton")
-    fileprivate let helpButton = UIButton(type: .custom, axId: "helpButton")
+    private let recordButtonBack = UIImageView(axId: "recordButtonBack")
+    private let toolbarStackView = UIStackView(axId: "toolbarStackView")
+    private let clearButton = UIButton(type: .custom, axId: "clearButton")
+    private let colorButton = UIButton(type: .custom, axId: "colorButton")
+    private let recordButtonPlaceholder = UIView(axId: "recordButtonPlaceholder")
+    private let recordButton = AccessibleToggleButton(type: .custom, axId: "recordButton")
+    private let shareButton = UIButton(type: .custom, axId: "shareButton")
+    private let helpButton = UIButton(type: .custom, axId: "helpButton")
 
-    fileprivate var toolbarBottomConstraint: NSLayoutConstraint!
-    fileprivate var toolbarTopConstraint: NSLayoutConstraint!
+    private var toolbarBottomConstraint: NSLayoutConstraint!
+    private var toolbarTopConstraint: NSLayoutConstraint!
 
-    fileprivate var passthroughViews: [UIView] {
+    private var passthroughViews: [UIView] {
         return [toolbarStackView, recordButton]
     }
 
-    fileprivate let recordPrompt = StarthereView()
-    fileprivate let spinPrompt = SpinPromptView()
+    private let recordPrompt = StarthereView()
+    private let spinPrompt = SpinPromptView()
 
     init(spinManager: SpinManager) {
         super.init(nibName: nil, bundle: nil)

@@ -37,7 +37,7 @@ final class TutorialCoordinator {
 
     // Private Properties
 
-    fileprivate var state: State = .initial {
+    private var state: State = .initial {
         didSet {
             guard oldValue != state else {
                 return
@@ -94,7 +94,7 @@ final class TutorialCoordinator {
     private weak var delegate: TutorialCoordinatorDelegate!
     var spinManager: SpinManager
 
-    fileprivate var timer: Timer?
+    private var timer: Timer?
 
     init(delegate: TutorialCoordinatorDelegate, spinManager: SpinManager) {
         self.delegate = delegate

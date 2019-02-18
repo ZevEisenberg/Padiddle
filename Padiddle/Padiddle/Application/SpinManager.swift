@@ -31,15 +31,15 @@ final class SpinManager: UIResponder {
 
     // Private Properties
 
-    fileprivate let motionManager: CMMotionManager = {
+    private let motionManager: CMMotionManager = {
         let manager = CMMotionManager()
         manager.deviceMotionUpdateInterval = 1.0 / 120.0
         return manager
     }()
 
-    fileprivate var isMonitoringForSufficientSpin = false
+    private var isMonitoringForSufficientSpin = false
 
-    fileprivate var sufficientSpinTimer: Timer?
+    private var sufficientSpinTimer: Timer?
 
 }
 

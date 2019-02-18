@@ -33,22 +33,22 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     let contextSize = CGSize(width: 1024.0, height: 1024.0)
 
-    fileprivate let brushDiameter: CGFloat = 12
+    private let brushDiameter: CGFloat = 12
 
     weak var delegate: DrawingViewModelDelegate?
     weak var view: DrawingViewBoundsVendor?
 
-    fileprivate var colorManager: ColorManager?
+    private var colorManager: ColorManager?
 
-    fileprivate let spinManager: SpinManager
+    private let spinManager: SpinManager
 
-    fileprivate let maxRadius: CGFloat
+    private let maxRadius: CGFloat
 
-    fileprivate var updateTimer: Timer?
+    private var updateTimer: Timer?
 
-    fileprivate var offscreenContext: CGContext!
+    private var offscreenContext: CGContext!
 
-    fileprivate let screenSize = UIScreen.main.bounds.size
+    private let screenSize = UIScreen.main.bounds.size
 
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
@@ -63,9 +63,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private var points = Array(repeating: CGPoint.zero, count: 4)
 
-    fileprivate let screenScale = UIScreen.main.scale
+    private let screenScale = UIScreen.main.scale
 
-    lazy fileprivate var contextScaleFactor: CGFloat = {
+    lazy private var contextScaleFactor: CGFloat = {
         // The context image is scaled as Aspect Fill, so the larger dimension
         // of the bounds is the limiting factor
         let maxDimension = max(self.contextSize.width, self.contextSize.height)
@@ -249,7 +249,7 @@ extension DrawingViewModel: RootColorManagerDelegate {
 
 extension DrawingViewModel { // Coordinate conversions
 
-    fileprivate func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
+    private func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
 
         guard let view = view else {
             fatalError("Not having a view represents a programmer error")

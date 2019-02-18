@@ -26,15 +26,15 @@ class ColorPickerViewController: UIViewController {
 
     weak var delegate: ColorPickerDelegate?
 
-    fileprivate let collectionView: UICollectionView
-    fileprivate let pageControl: UIPageControl
-    fileprivate let layout: ColorPickerLayout
-    fileprivate let viewModel: ColorPickerViewModel
+    private let collectionView: UICollectionView
+    private let pageControl: UIPageControl
+    private let layout: ColorPickerLayout
+    private let viewModel: ColorPickerViewModel
 
-    private(set) fileprivate var currentSelection = IndexPath(item: 0, section: 0)
-    fileprivate var pendingIndexPathToSelectAfterLayout: IndexPath?
+    private var currentSelection = IndexPath(item: 0, section: 0)
+    private var pendingIndexPathToSelectAfterLayout: IndexPath?
 
-    fileprivate func updateCurrentSelection(_ indexPath: IndexPath, updateScrollPosition: ScrollPositionUpdateMode) {
+    private func updateCurrentSelection(_ indexPath: IndexPath, updateScrollPosition: ScrollPositionUpdateMode) {
         currentSelection = indexPath
 
         switch updateScrollPosition {

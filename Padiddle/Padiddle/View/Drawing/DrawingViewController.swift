@@ -12,9 +12,9 @@ let showDebugLabel = false
 
 class DrawingViewController: CounterRotatingViewController {
 
-    fileprivate let viewModel: DrawingViewModel
-    fileprivate let drawingView: DrawingView
-    fileprivate let nib = UIImageView()
+    private let viewModel: DrawingViewModel
+    private let drawingView: DrawingView
+    private let nib = UIImageView()
 
     init(viewModel: DrawingViewModel) {
         self.viewModel = viewModel

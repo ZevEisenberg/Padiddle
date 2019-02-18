@@ -13,9 +13,9 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
     private var needsErase = true
     private let screenScale = UIScreen.main.scale
 
-    fileprivate var displayLink: CADisplayLink?
+    private var displayLink: CADisplayLink?
 
-    fileprivate var viewModel: DrawingViewModel
+    private var viewModel: DrawingViewModel
 
     init(viewModel: DrawingViewModel) {
 
