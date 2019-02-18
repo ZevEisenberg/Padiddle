@@ -8,7 +8,9 @@
 
 import UIKit
 
-let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
+// TODO: get rid of display link in drawing view. View model should own display link.
+// That way, we get 120 Hz refresh for free on devices that support it.
+let kNibUpdateInterval: TimeInterval = 1.0 / 120.0
 
 protocol DrawingViewModelDelegate: AnyObject {
 
