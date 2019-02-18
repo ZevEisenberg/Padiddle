@@ -48,13 +48,11 @@ final class SpinManager: UIResponder {
 extension SpinManager {
 
     func startMotionUpdates() {
-        if motionManager.isMagnetometerAvailable {
-            motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical)
-        }
-        else {
-            motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical)
-        }
+        let referenceFrame: CMAttitudeReferenceFrame = motionManager.isMagnetometerActive
+            ? .xArbitraryCorrectedZVertical
+            : .xArbitraryZVertical
 
+        motionManager.startDeviceMotionUpdates(using: referenceFrame)
     }
 
     func stopMotionUpdates() {
