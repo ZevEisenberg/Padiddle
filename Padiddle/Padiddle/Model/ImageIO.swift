@@ -42,6 +42,13 @@ enum ImageIO {
                 catch {
                     Log.error("Error writing to file: \(error)")
                 }
+
+                do {
+                    try addSkipBackupAttributeToItem(atUrl: imageURL)
+                }
+                catch {
+                    Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
+                }
             }
         }
     }
@@ -110,6 +117,13 @@ private extension ImageIO {
         }
 
         return image
+    }
+
+    static func addSkipBackupAttributeToItem(atUrl url: URL) throws {
+        var url = url
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try url.setResourceValues(values)
     }
 
 }
