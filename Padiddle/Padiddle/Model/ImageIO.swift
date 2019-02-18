@@ -8,7 +8,7 @@
 
 import UIKit.UIImage
 
-struct ImageIO {
+enum ImageIO {
 
     static func persistImageInBackground(_ image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
         if !Defaults.snapshotMode { // no-op in screenshot mode
