@@ -79,7 +79,7 @@ open class Snapshot: NSObject {
             setLanguage(app)
             setLocale(app)
             setLaunchArguments(app)
-        } catch let error {
+        } catch {
             print(error)
         }
     }
@@ -171,7 +171,7 @@ open class Snapshot: NSObject {
             let path = screenshotsDir.appendingPathComponent("\(simulator)-\(name).png")
             do {
                 try screenshot.pngRepresentation.write(to: path)
-            } catch let error {
+            } catch {
                 print("Problem writing screenshot: \(name) to \(path)")
                 print(error)
             }

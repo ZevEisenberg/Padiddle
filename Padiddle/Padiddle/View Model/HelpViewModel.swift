@@ -21,7 +21,7 @@ struct HelpViewModel {
             let filledHMTLString = HelpViewModel.populateHTMLString(htmlString)
             return filledHMTLString
         }
-        catch let error {
+        catch {
             Log.error("failed to read help HTML file: \(error)")
             fatalError("Error reading in help HTML file: \(error)")
         }

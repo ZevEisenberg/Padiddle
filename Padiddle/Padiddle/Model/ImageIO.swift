@@ -39,7 +39,7 @@ enum ImageIO {
                 do {
                     try imageData.write(to: imageURL, options: [.atomic])
                 }
-                catch let error {
+                catch {
                     Log.error("Error writing to file: \(error)")
                 }
             }
@@ -93,7 +93,7 @@ private extension ImageIO {
             do {
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
             }
-            catch let error {
+            catch {
                 Log.error("Error creating direcotry at path \(path): \(error)")
             }
         }
