@@ -26,12 +26,4 @@ class MathTests: XCTestCase {
         XCTAssertNotEqual(CGFloat(1E-2).reasonableValue, 0)
     }
 
-    func testDegrees() {
-        let ε = CGFloat(0.0001)
-        XCTAssertEqual(CGFloat(0).degrees, 0, accuracy: ε)
-        XCTAssertEqual(CGFloat.pi.degrees, 180, accuracy: ε)
-        XCTAssertEqual(twoPi.degrees, 360, accuracy: ε)
-        XCTAssertEqual((CGFloat.pi / 3.0).degrees, 60, accuracy: ε)
-    }
-
 }

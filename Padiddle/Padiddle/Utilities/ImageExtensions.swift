@@ -93,10 +93,6 @@ extension UIImage {
         return retImage
     }
 
-    var imageFlippedHorizontally: UIImage {
-        return imageScaledBy(CGVector(dx: -1, dy: 1))
-    }
-
     var imageFlippedVertically: UIImage {
         return imageScaledBy(CGVector(dx: 1, dy: -1))
     }

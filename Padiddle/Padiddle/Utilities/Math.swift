@@ -24,8 +24,4 @@ extension CGFloat {
         return self.closeEnough(to: 0) ? 0 : self
     }
 
-    var degrees: CGFloat {
-        return self * 180.0 / .pi
-    }
-
 }

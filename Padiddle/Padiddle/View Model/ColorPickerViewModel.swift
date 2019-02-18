@@ -38,24 +38,6 @@ class ColorPickerViewModel {
         return colorsToPick[selectedIndex]
     }
 
-    func indexPathsForItemsOnPageWithIndexPath(_ indexPath: IndexPath) -> [IndexPath] {
-        //--------------------------------------------------
-        // The layout doesn’t exist yet, so we can’t query
-        // its properties, so we use the same information
-        // it uses to derive its items per page.
-        //--------------------------------------------------
-        let itemsPerPage = colsPortrait * rowsPortrait
-
-        let page = indexPath.item / itemsPerPage
-
-        var indexPaths = [IndexPath]()
-
-        for item in 0..<itemsPerPage {
-            indexPaths.append(IndexPath(item: (itemsPerPage * page) + item, section: 0))
-        }
-        return indexPaths
-    }
-
     func imageForColorManager(_ colorManager: ColorManager) -> UIImage {
         let model = SpiralModel(
             colorManager: colorManager,

@@ -73,29 +73,6 @@ private extension ImageIO {
 
     static var backgroundSaveTask: UIBackgroundTaskIdentifier?
 
-    static func rotationForInterfaceOrientation(_ interfaceOrientation: UIInterfaceOrientation) -> (orientation: UIImage.Orientation, rotation: CGFloat) {
-
-        let rotation: CGFloat
-        let imageOrientaion: UIImage.Orientation
-
-        switch interfaceOrientation {
-        case .landscapeLeft:
-            rotation = -CGFloat.pi / 2.0
-            imageOrientaion = .right
-        case .landscapeRight:
-            rotation = .pi / 2.0
-            imageOrientaion = .left
-        case .portraitUpsideDown:
-            rotation = .pi
-            imageOrientaion = .down
-        case .portrait, .unknown:
-            rotation = 0
-            imageOrientaion = .up
-        }
-
-        return (imageOrientaion, rotation)
-    }
-
     static func urlForPersistedImage(_ contextScale: CGFloat, contextSize: CGSize) -> URL {
         var scaledContextSize = contextSize
         scaledContextSize.width *= contextScale

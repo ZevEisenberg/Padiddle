@@ -10,9 +10,6 @@ import UIKit
 
 class DrawingView: UIView, DrawingViewBoundsVendor {
 
-    private var needsErase = true
-    private let screenScale = UIScreen.main.scale
-
     private var displayLink: CADisplayLink?
 
     private var viewModel: DrawingViewModel
@@ -60,10 +57,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
             context.fill(rect)
             viewModel.drawInto(context, dirtyRect: rect)
         }
-    }
-
-    func setInitialImage(_ image: UIImage) {
-        viewModel.setInitialImage(image)
     }
 
 }

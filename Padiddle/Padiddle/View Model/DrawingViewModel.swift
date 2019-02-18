@@ -48,8 +48,6 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private var offscreenContext: CGContext!
 
-    private let screenSize = UIScreen.main.bounds.size
-
     lazy private var contextScale: CGFloat = {
         // don't go more extreme than necessary on an @3x device
         return min(UIScreen.main.scale, 2.0)
