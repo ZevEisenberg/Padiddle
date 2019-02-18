@@ -353,13 +353,15 @@ private extension DrawingViewModel {
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        let context = CGContext(data: nil,
+        let context = CGContext(
+            data: nil,
             width: Int(contextSize.width * screenScale),
             height: Int(contextSize.height * screenScale),
             bitsPerComponent: bitsPerComponent,
             bytesPerRow: bitmapBytesPerRow,
             space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue
+        )
 
         guard context != nil else {
             assertionFailure("Problem creating context")
