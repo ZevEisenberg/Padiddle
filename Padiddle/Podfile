@@ -8,17 +8,12 @@ target 'Padiddle' do
   pod 'SimulatorStatusMagic', :configurations => ['Debug']
   pod 'SwiftGen'
   pod 'SwiftLint'
+end
 
-  target 'PadiddleTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+target 'PadiddleTests' do
+end
 
-  target 'PadiddleUITests' do
-    inherit! :search_paths
-    # Pods for UI testing
-  end
-
+target 'PadiddleUITests' do
 end
 
 post_install do | installer |
