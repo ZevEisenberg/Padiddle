@@ -142,22 +142,21 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return rotatedImage
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
         DispatchQueue.global(qos: .default).async {
             let image = self.snapshot(interfaceOrientation)
-            // Convert to PNG and back to save at full quality
-            if let cgImage = image.cgImage,
-                case let imageFromCGImage = UIImage(cgImage: cgImage),
-                let cgImageData = imageFromCGImage.pngData(),
-                let finalImage = UIImage(data: cgImageData) {
+
+            // Share raw PNG data if we can, because it results in sharing a PNG image,
+            // which is desirable for the large chunks of color in this app.
+            if let pngData = image.pngData() {
                 DispatchQueue.main.async {
-                    completion(finalImage)
+                    completion(.png(pngData))
                 }
             }
             else {
                 // If there was a problem, fall back to saving the original image
                 DispatchQueue.main.async {
-                    completion(image)
+                    completion(.image(image))
                 }
             }
         }
@@ -385,4 +384,16 @@ extension DrawingViewModel {
         }
     }
 
+}
+
+enum EitherImage {
+    case png(Data)
+    case image(UIImage)
+
+    var valueForSharing: Any {
+        switch self {
+        case .png(let data): return data
+        case .image(let image): return image
+        }
+    }
 }
