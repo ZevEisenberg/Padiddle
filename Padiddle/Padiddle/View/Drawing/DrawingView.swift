@@ -10,8 +10,6 @@ import UIKit
 
 class DrawingView: UIView, DrawingViewBoundsVendor {
 
-    private var displayLink: CADisplayLink?
-
     private let viewModel: DrawingViewModel
 
     private let drawingLayer = CALayer()
@@ -26,9 +24,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
                 self?.drawingLayer.contents = newImage
             }
         }
-
-        displayLink = CADisplayLink(target: self, selector: #selector(DrawingView.displayLinkUpdated))
-        displayLink?.add(to: .main, forMode: .default)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,14 +37,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
         super.layoutSubviews()
     }
 
-    func startDrawing() {
-        displayLink?.isPaused = false
-    }
-
-    func stopDrawing() {
-        displayLink?.isPaused = true
-    }
-
     func clear() {
         viewModel.clear()
         setNeedsDisplay()
@@ -61,14 +48,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
     func restartAtPoint(_ point: CGPoint) {
         viewModel.restartAtPoint(point)
-    }
-
-}
-
-private extension DrawingView {
-
-    @objc func displayLinkUpdated() {
-        viewModel.requestUpdatedImage()
     }
 
 }

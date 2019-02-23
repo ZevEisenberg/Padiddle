@@ -38,7 +38,7 @@ class ToolbarViewModel {
     }
 
     func recordButtonTapped() {
-        rootViewModel.recording.toggle()
+        rootViewModel.isRecording.toggle()
     }
 
     func clearTapped() {

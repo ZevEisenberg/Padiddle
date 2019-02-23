@@ -83,16 +83,14 @@ class DrawingViewController: CounterRotatingViewController {
 
 extension DrawingViewController: DrawingViewModelDelegate {
 
-    func start() {
-        viewModel.isUpdating = true
-        drawingView.startDrawing()
+    func startDrawing() {
+        viewModel.startDrawing()
         viewModel.startMotionUpdates()
     }
 
-    func pause() {
-        viewModel.isUpdating = false
+    func pauseDrawing() {
         viewModel.needToMoveNibToNewStartLocation = true
-        drawingView.stopDrawing()
+        viewModel.stopDrawing()
         viewModel.persistImageInBackground()
     }
 
@@ -101,7 +99,7 @@ extension DrawingViewController: DrawingViewModelDelegate {
 
         nib.center = convertedLocation.screenPixelsIntegral
 
-        if viewModel.isUpdating {
+        if viewModel.isDrawing {
             if viewModel.needToMoveNibToNewStartLocation {
                 viewModel.needToMoveNibToNewStartLocation = false
                 drawingView.restartAtPoint(convertedLocation)

@@ -33,10 +33,10 @@ class RootViewModel {
         self.rootColorManagerDelegate = rootColorManagerDelegate
     }
 
-    var recording = false {
+    var isRecording = false {
         didSet {
             for delegate in recordingDelegates {
-                delegate.value?.recordingStatusChanged(recording)
+                delegate.value?.recordingStatusChanged(isRecording)
             }
         }
     }

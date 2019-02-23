@@ -8,14 +8,10 @@
 
 import UIKit
 
-// TODO: get rid of display link in drawing view. View model should own display link.
-// That way, we get 120 Hz refresh for free on devices that support it.
-let kNibUpdateInterval: TimeInterval = 1.0 / 120.0
-
 protocol DrawingViewModelDelegate: AnyObject {
 
-    func start()
-    func pause()
+    func startDrawing()
+    func pauseDrawing()
     func drawingViewModelUpdatedLocation(_ newLocation: CGPoint)
 
 }
@@ -26,9 +22,9 @@ protocol DrawingViewBoundsVendor: AnyObject {
 
 }
 
-class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
+class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callbacks to work
 
-    var isUpdating = false
+    private(set) var isDrawing = false
     var needToMoveNibToNewStartLocation = true
 
     let contextSize: CGSize
@@ -45,13 +41,13 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private let maxRadius: CGFloat
 
-    private var updateTimer: Timer?
-
     private var offscreenContext: CGContext!
 
     private var points = Array(repeating: CGPoint.zero, count: 4)
 
     private let screenScale = UIScreen.main.scale
+
+    private var displayLink: CADisplayLink?
 
     var imageUpdatedCallback: ((CGImage) -> Void)?
 
@@ -86,6 +82,8 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         let success = configureOffscreenContext()
         assert(success, "Problem creating bitmap context")
 
+        displayLink = CADisplayLink(target: self, selector: #selector(DrawingViewModel.displayLinkUpdated))
+        displayLink?.add(to: .main, forMode: .default)
     }
 
     func addPoint(_ point: CGPoint) {
@@ -101,6 +99,14 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     // MARK: Drawing
 
+    func startDrawing() {
+        isDrawing = true
+    }
+
+    func stopDrawing() {
+        isDrawing = false
+    }
+
     func clear() {
         offscreenContext.setFillColor(UIColor.white.cgColor)
         offscreenContext.fill(CGRect(origin: .zero, size: contextSize))
@@ -111,10 +117,6 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         let convertedPoint = convertViewPointToContextCoordinates(point)
         points = Array(repeating: convertedPoint, count: points.count)
         addLineSegmentBasedOnUpdatedPoints()
-    }
-
-    func requestUpdatedImage() {
-        offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
     }
 
     func setInitialImage(_ image: UIImage) {
@@ -177,14 +179,22 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
 }
 
+extension DrawingViewModel {
+
+    @objc func displayLinkUpdated() {
+        updateMotion()
+    }
+
+}
+
 extension DrawingViewModel: RecordingDelegate {
 
     @objc func recordingStatusChanged(_ recording: Bool) {
         if recording {
-            delegate?.start()
+            delegate?.startDrawing()
         }
         else {
-            delegate?.pause()
+            delegate?.pauseDrawing()
         }
     }
 
@@ -354,18 +364,16 @@ private extension DrawingViewModel {
 extension DrawingViewModel {
 
     func startMotionUpdates() {
+//        startDrawing()
         spinManager.startMotionUpdates()
-        if updateTimer == nil {
-            updateTimer = Timer.scheduledTimer(timeInterval: kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
-        }
     }
 
     func stopMotionUpdates() {
-        updateTimer?.invalidate()
+        stopDrawing()
         spinManager.stopMotionUpdates()
     }
 
-    @objc func timerFired() {
+    @objc func updateMotion() {
         if let deviceMotion = spinManager.deviceMotion {
 
             let zRotation = deviceMotion.rotationRate.z
