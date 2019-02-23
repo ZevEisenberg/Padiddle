@@ -101,7 +101,7 @@ private extension ImageIO {
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
             }
             catch {
-                Log.error("Error creating direcotry at path \(path): \(error)")
+                Log.error("Error creating directory at path \(path): \(error)")
             }
         }
 
