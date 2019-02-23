@@ -113,6 +113,9 @@ private extension ImageIO {
     static func loadPersistedImageData(_ imageData: Data, contextScale: CGFloat) -> UIImage? {
         guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
             Log.error("Couldn't create image from data on disk")
+            if Defaults.snapshotMode {
+                fatalError("We must always have a screenshot in snapshot mode.")
+            }
             return nil
         }
 
