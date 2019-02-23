@@ -10,32 +10,31 @@ import UIKit
 
 class DrawingView: UIView, DrawingViewBoundsVendor {
 
-    private var displayLink: CADisplayLink?
+    private let viewModel: DrawingViewModel
 
-    private var viewModel: DrawingViewModel
+    private let drawingLayer = CALayer()
 
     init(viewModel: DrawingViewModel) {
-
         self.viewModel = viewModel
-
         super.init(frame: .zero)
-
+        layer.addSublayer(drawingLayer)
         viewModel.view = self
-
-        displayLink = CADisplayLink(target: self, selector: #selector(DrawingView.displayLinkUpdated))
-        displayLink?.add(to: .main, forMode: .default)
+        viewModel.imageUpdatedCallback = { [weak self] newImage in
+            CATransaction.performWithoutAnimation {
+                self?.drawingLayer.contents = newImage
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("\(#function) has not been implemented")
     }
 
-    func startDrawing() {
-        displayLink?.isPaused = false
-    }
-
-    func stopDrawing() {
-        displayLink?.isPaused = true
+    override func layoutSubviews() {
+        drawingLayer.bounds = bounds
+        drawingLayer.anchorPoint = .zero
+        drawingLayer.position = .zero
+        super.layoutSubviews()
     }
 
     func clear() {
@@ -49,23 +48,6 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
 
     func restartAtPoint(_ point: CGPoint) {
         viewModel.restartAtPoint(point)
-    }
-
-    override func draw(_ rect: CGRect) {
-        if let context = UIGraphicsGetCurrentContext() {
-            context.setFillColor(UIColor.white.cgColor)
-            context.fill(rect)
-            viewModel.drawInto(context, dirtyRect: rect)
-        }
-    }
-
-}
-
-private extension DrawingView {
-
-    @objc func displayLinkUpdated() { // marked @objc so it can be looked up by selector
-        setNeedsDisplay(viewModel.convertContextRectToViewCoordinates(viewModel.currentDirtyRect))
-        viewModel.nullifyDirtyRect()
     }
 
 }

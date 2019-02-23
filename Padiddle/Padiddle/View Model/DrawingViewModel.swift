@@ -8,14 +8,10 @@
 
 import UIKit
 
-private let debugging = false
-
-let kNibUpdateInterval: TimeInterval = 1.0 / 60.0
-
 protocol DrawingViewModelDelegate: AnyObject {
 
-    func start()
-    func pause()
+    func startDrawing()
+    func pauseDrawing()
     func drawingViewModelUpdatedLocation(_ newLocation: CGPoint)
 
 }
@@ -26,12 +22,13 @@ protocol DrawingViewBoundsVendor: AnyObject {
 
 }
 
-class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to work
+class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callbacks to work
 
-    var isUpdating = false
+    private(set) var isDrawing = false
     var needToMoveNibToNewStartLocation = true
 
-    let contextSize = CGSize(width: 1024.0, height: 1024.0)
+    let contextSize: CGSize
+    let contextScale: CGFloat
 
     private let brushDiameter: CGFloat = 12
 
@@ -44,24 +41,15 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     private let maxRadius: CGFloat
 
-    private var updateTimer: Timer?
-
     private var offscreenContext: CGContext!
-
-    lazy private var contextScale: CGFloat = {
-        // don't go more extreme than necessary on an @3x device
-        return min(UIScreen.main.scale, 2.0)
-    }()
-
-    private(set) var currentDirtyRect = CGRect.null
-
-    func nullifyDirtyRect() {
-        currentDirtyRect = .null
-    }
 
     private var points = Array(repeating: CGPoint.zero, count: 4)
 
     private let screenScale = UIScreen.main.scale
+
+    private var displayLink: CADisplayLink?
+
+    var imageUpdatedCallback: ((CGImage) -> Void)?
 
     lazy private var contextScaleFactor: CGFloat = {
         // The context image is scaled as Aspect Fill, so the larger dimension
@@ -84,14 +72,18 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return colorManager.currentColor
     }
 
-    required init(maxRadius: CGFloat, spinManager: SpinManager) {
+    required init(maxRadius: CGFloat, contextSize: CGSize, contextScale: CGFloat, spinManager: SpinManager) {
         assert(maxRadius > 0)
         self.maxRadius = maxRadius
+        self.contextSize = contextSize
+        self.contextScale = contextScale
         self.spinManager = spinManager
         super.init()
         let success = configureOffscreenContext()
         assert(success, "Problem creating bitmap context")
 
+        displayLink = CADisplayLink(target: self, selector: #selector(DrawingViewModel.displayLinkUpdated))
+        displayLink?.add(to: .main, forMode: .default)
     }
 
     func addPoint(_ point: CGPoint) {
@@ -107,9 +99,18 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
     // MARK: Drawing
 
+    func startDrawing() {
+        isDrawing = true
+    }
+
+    func stopDrawing() {
+        isDrawing = false
+    }
+
     func clear() {
         offscreenContext.setFillColor(UIColor.white.cgColor)
         offscreenContext.fill(CGRect(origin: .zero, size: contextSize))
+        offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
     }
 
     func restartAtPoint(_ point: CGPoint) {
@@ -118,52 +119,18 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         addLineSegmentBasedOnUpdatedPoints()
     }
 
-    func drawInto(_ context: CGContext, dirtyRect: CGRect) {
-        guard let view = view else {
-            fatalError("Not having a view represents a programmer error")
-        }
-        let offscreenImage = offscreenContext.makeImage()
-        let offset = CGSize(
-            width: contextSize.width * contextScaleFactor - view.bounds.width,
-            height: contextSize.height * contextScaleFactor - view.bounds.height
-        )
-        let drawingRect = CGRect(
-            x: -offset.width / 2.0,
-            y: -offset.height / 2.0,
-            width: contextSize.width * contextScaleFactor,
-            height: contextSize.height * contextScaleFactor
-        )
-        context.draw(offscreenImage!, in: drawingRect)
-
-        if debugging {
-            context.setStrokeColor(UIColor.green.cgColor)
-            context.setLineWidth(1)
-            context.stroke(dirtyRect)
-        }
-    }
-
     func setInitialImage(_ image: UIImage) {
         let rect = CGRect(origin: .zero, size: contextSize)
         offscreenContext.draw(image.cgImage!, in: rect)
-    }
-
-    func addPathSegment(_ pathSegment: CGPath, color: UIColor) {
-        offscreenContext.addPath(pathSegment)
-        offscreenContext.setStrokeColor(color.cgColor)
-        offscreenContext.strokePath()
+        offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
     }
 
     private func addLineSegmentBasedOnUpdatedPoints() {
         let pathSegment = CGPath.smoothedPathSegment(points: points)
-
-        // draw the segment into the context
-
-        addPathSegment(pathSegment, color: currentColor)
-
-        let pathBoundingRect = pathSegment.boundingBoxOfPath
-
-        let insetPathBoundingRect = pathBoundingRect.insetBy(dx: -brushDiameter, dy: -brushDiameter)
-        currentDirtyRect = currentDirtyRect.union(insetPathBoundingRect)
+        offscreenContext.addPath(pathSegment)
+        offscreenContext.setStrokeColor(currentColor.cgColor)
+        offscreenContext.strokePath()
+        offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
     }
 
     // Saving & Loading
@@ -177,22 +144,21 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
         return rotatedImage
     }
 
-    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
+    func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
         DispatchQueue.global(qos: .default).async {
             let image = self.snapshot(interfaceOrientation)
-            // Convert to PNG and back to save at full quality
-            if let cgImage = image.cgImage,
-                case let imageFromCGImage = UIImage(cgImage: cgImage),
-                let cgImageData = imageFromCGImage.pngData(),
-                let finalImage = UIImage(data: cgImageData) {
+
+            // Share raw PNG data if we can, because it results in sharing a PNG image,
+            // which is desirable for the large chunks of color in this app.
+            if let pngData = image.pngData() {
                 DispatchQueue.main.async {
-                    completion(finalImage)
+                    completion(.png(pngData))
                 }
             }
             else {
                 // If there was a problem, fall back to saving the original image
                 DispatchQueue.main.async {
-                    completion(image)
+                    completion(.image(image))
                 }
             }
         }
@@ -213,14 +179,22 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for NSTimer to 
 
 }
 
+extension DrawingViewModel {
+
+    @objc func displayLinkUpdated() {
+        updateMotion()
+    }
+
+}
+
 extension DrawingViewModel: RecordingDelegate {
 
     @objc func recordingStatusChanged(_ recording: Bool) {
         if recording {
-            delegate?.start()
+            delegate?.startDrawing()
         }
         else {
-            delegate?.pause()
+            delegate?.pauseDrawing()
         }
     }
 
@@ -351,15 +325,18 @@ private extension DrawingViewModel {
 
         bitmapBytesPerRow = Int(contextSize.width) * bytesPerPixel * Int(screenScale)
 
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let widthPx = Int(contextSize.width * screenScale)
+        let heightPx = Int(contextSize.height * screenScale)
 
-        let context = CGContext(data: nil,
-            width: Int(contextSize.width * screenScale),
-            height: Int(contextSize.height * screenScale),
+        let context = CGContext(
+            data: nil,
+            width: widthPx,
+            height: heightPx,
             bitsPerComponent: bitsPerComponent,
             bytesPerRow: bitmapBytesPerRow,
-            space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue
+        )
 
         guard context != nil else {
             assertionFailure("Problem creating context")
@@ -368,8 +345,10 @@ private extension DrawingViewModel {
 
         offscreenContext = context
 
-        // http://stackoverflow.com/questions/10867767/how-to-create-a-cgbitmapcontext-which-works-for-retina-display-and-not-wasting-s
-        offscreenContext?.scaleBy(x: screenScale, y: screenScale)
+        // Scale by screen scale because the context is in pixels, not points.
+        // If we don't invert the y axis, the world will be turned upside down
+        offscreenContext?.translateBy(x: 0, y: CGFloat(heightPx))
+        offscreenContext?.scaleBy(x: screenScale, y: -screenScale)
 
         offscreenContext?.setLineCap(.round)
         offscreenContext?.setLineWidth(brushDiameter)
@@ -385,18 +364,16 @@ private extension DrawingViewModel {
 extension DrawingViewModel {
 
     func startMotionUpdates() {
+//        startDrawing()
         spinManager.startMotionUpdates()
-        if updateTimer == nil {
-            updateTimer = Timer.scheduledTimer(timeInterval: kNibUpdateInterval, target: self, selector: #selector(DrawingViewModel.timerFired), userInfo: nil, repeats: true)
-        }
     }
 
     func stopMotionUpdates() {
-        updateTimer?.invalidate()
+        stopDrawing()
         spinManager.stopMotionUpdates()
     }
 
-    @objc func timerFired() {
+    @objc func updateMotion() {
         if let deviceMotion = spinManager.deviceMotion {
 
             let zRotation = deviceMotion.rotationRate.z
@@ -415,4 +392,16 @@ extension DrawingViewModel {
         }
     }
 
+}
+
+enum EitherImage {
+    case png(Data)
+    case image(UIImage)
+
+    var valueForSharing: Any {
+        switch self {
+        case .png(let data): return data
+        case .image(let image): return image
+        }
+    }
 }

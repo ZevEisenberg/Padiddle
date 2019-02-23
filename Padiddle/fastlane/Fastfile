@@ -29,7 +29,7 @@ platform :ios do
   desc "Take screenshots for the website"
   lane :screenshotsForWebsite do
     snapshot(
-    devices: ["iPhone 6", "iPad Pro (9.7-inch)"],
+    devices: ["iPhone X", "iPad Pro (9.7-inch)"],
     languages: ["en-US"],
     scheme: "ScreenshotsForWebsite",
     output_directory: "fastlane/screenshots_for_website"

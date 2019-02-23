@@ -42,6 +42,13 @@ enum ImageIO {
                 catch {
                     Log.error("Error writing to file: \(error)")
                 }
+
+                do {
+                    try addSkipBackupAttributeToItem(atUrl: imageURL)
+                }
+                catch {
+                    Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
+                }
             }
         }
     }
@@ -94,7 +101,7 @@ private extension ImageIO {
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
             }
             catch {
-                Log.error("Error creating direcotry at path \(path): \(error)")
+                Log.error("Error creating directory at path \(path): \(error)")
             }
         }
 
@@ -106,10 +113,20 @@ private extension ImageIO {
     static func loadPersistedImageData(_ imageData: Data, contextScale: CGFloat) -> UIImage? {
         guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
             Log.error("Couldn't create image from data on disk")
+            if Defaults.snapshotMode {
+                fatalError("We must always have a screenshot in snapshot mode.")
+            }
             return nil
         }
 
         return image
+    }
+
+    static func addSkipBackupAttributeToItem(atUrl url: URL) throws {
+        var url = url
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try url.setResourceValues(values)
     }
 
 }
