@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B218F4C221A60530065D25E /* CATransaction+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */; };
 		5B5AA513220B33C3005C1791 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5AA511220B33C2005C1791 /* InfoPlist.strings */; };
 		763C3D99C586F221E097C6D6 /* Pods_Padiddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8349A30B7A24ECA46F18D85A /* Pods_Padiddle.framework */; };
 		7ACE6A151C83966C001F7062 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE6A141C83966C001F7062 /* MathTests.swift */; };
@@ -94,6 +95,7 @@
 /* Begin PBXFileReference section */
 		2EA9F581A0BA5339478BCCA5 /* Pods-PadiddleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.debug.xcconfig"; path = "Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B4EE77976F4D0AE9225CDB4 /* Pods-PadiddleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.debug.xcconfig"; path = "Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransaction+Utilities.swift"; sourceTree = "<group>"; };
 		5B5AA512220B33C3005C1791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5AA515220B3405005C1791 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5AA516220B3406005C1791 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
 				CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */,
 				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
+				5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -409,7 +412,6 @@
 				2EA9F581A0BA5339478BCCA5 /* Pods-PadiddleUITests.debug.xcconfig */,
 				BCE2F95BB3D8C25BE1DD6295 /* Pods-PadiddleUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -822,6 +824,7 @@
 				CD4237131BAB97FA0000E395 /* ColorPickerLayout.swift in Sources */,
 				CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */,
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,
+				5B218F4C221A60530065D25E /* CATransaction+Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

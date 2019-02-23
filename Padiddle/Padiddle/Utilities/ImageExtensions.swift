@@ -83,7 +83,6 @@ extension UIImage {
             width: rotatedSize.width,
             height: rotatedSize.height)
 
-        context?.scaleBy(x: 1.0, y: -1.0)
         context?.draw(self.cgImage!, in: imageRect)
 
         let newImage = context?.makeImage()!

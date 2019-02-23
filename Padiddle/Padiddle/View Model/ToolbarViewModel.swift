@@ -38,14 +38,14 @@ class ToolbarViewModel {
     }
 
     func recordButtonTapped() {
-        rootViewModel.recording.toggle()
+        rootViewModel.isRecording.toggle()
     }
 
     func clearTapped() {
         rootViewModel.clearTapped()
     }
 
-    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
+    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
         rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
     }
 

@@ -33,10 +33,10 @@ class RootViewModel {
         self.rootColorManagerDelegate = rootColorManagerDelegate
     }
 
-    var recording = false {
+    var isRecording = false {
         didSet {
             for delegate in recordingDelegates {
-                delegate.value?.recordingStatusChanged(recording)
+                delegate.value?.recordingStatusChanged(isRecording)
             }
         }
     }
@@ -59,7 +59,7 @@ class RootViewModel {
         recordingDelegates.append(Weak(value: delegate))
     }
 
-    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (UIImage) -> Void) {
+    func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
         guard let drawingViewController = drawingViewController else {
             fatalError("Not having a drawing view controller would represent a programmer error")
         }

@@ -1,12 +1,16 @@
 # A list of devices you want to take the screenshots from
 devices([
-  "iPhone 6",
-  "iPhone 6 Plus",
+  "iPhone 8",
+  "iPhone 8 Plus",
   "iPhone 5s",
-  "iPhone X",
+  "iPhone Xs",
+  "iPhone Xs Max",
+  "iPhone Xʀ",
   "iPad Pro (9.7-inch)",
   "iPad Pro (12.9-inch)",
-  # "iPad Pro (10.5-inch)", # not supported in iTunes Connect
+  "iPad Pro (12.9-inch) (3rd generation)",
+  "iPad Pro (10.5-inch)",
+  "iPad Pro (11-inch)",
 ])
 
 languages([
