@@ -237,6 +237,9 @@ extension ToolbarViewController {
         alert.addAction(cancelAction)
         alert.modalPresentationStyle = .popover
 
+        // Dismiss any other modals that may be visible
+        dismiss(animated: true, completion: nil)
+
         present(alert, animated: true, completion: nil)
         configurePopover(viewController: alert, sourceView: clearButton)
     }
@@ -257,6 +260,9 @@ extension ToolbarViewController {
             viewControllerToShow = navigationController
             viewControllerToShow.modalPresentationStyle = .formSheet
         }
+
+        // Dismiss any other modals that may be visible
+        dismiss(animated: true, completion: nil)
 
         present(viewControllerToShow, animated: true, completion: nil)
         configurePopover(viewController: viewControllerToShow, sourceView: colorButton)
@@ -354,6 +360,9 @@ extension ToolbarViewController {
             viewControllerToShow = navigationController
             viewControllerToShow.modalPresentationStyle = .formSheet
         }
+
+        // Dismiss any other modals that may be visible
+        dismiss(animated: true, completion: nil)
 
         self.present(viewControllerToShow, animated: true, completion: nil)
         configurePopover(viewController: viewControllerToShow, sourceView: helpButton)
