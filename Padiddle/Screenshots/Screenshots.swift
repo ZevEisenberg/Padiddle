@@ -36,6 +36,10 @@ class Screenshots: XCTestCase {
         XCTAssertTrue(helpButton.exists)
         helpButton.tap()
 
+        // Some screenshots miss the load of the web view, resulting
+        // in a blank screen. Sleep to make sure we get it.
+        sleep(1)
+
         snapshot("2")
 
         if iPhone {
