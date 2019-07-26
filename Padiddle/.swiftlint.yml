@@ -32,10 +32,6 @@ excluded:
   - Pods
   - Screenshots/SnapshotHelper.swift
 
-file_length:
-  warning: 450
-  error: 500
-
 statement_position:
   statement_mode: uncuddled_else
 
