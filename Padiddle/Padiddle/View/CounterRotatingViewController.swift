@@ -22,6 +22,9 @@ extension UIInterfaceOrientation: CustomStringConvertible {
             return "LandscapeLeft"
         case .landscapeRight:
             return "LandscapeRight"
+        @unknown default:
+            assertionFailure("Unknown orientation \(self)")
+            return "Unknown orientation \(rawValue)"
         }
     }
 
@@ -38,6 +41,9 @@ func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrienta
         newTransform = CGAffineTransform(rotationAngle: .pi / 2)
     case .landscapeRight:
         newTransform = CGAffineTransform(rotationAngle: -.pi / 2)
+    @unknown default:
+        assertionFailure("Unknown status bar orientation \(statusBarOrientation)")
+        newTransform = .identity
     }
     return newTransform
 }

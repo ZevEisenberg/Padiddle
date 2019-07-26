@@ -116,6 +116,10 @@ extension UIInterfaceOrientation {
         case .portrait, .unknown:
             rotation = 0
             imageOrientaion = .up
+        @unknown default:
+            assertionFailure("Unknown orientation \(self)")
+            rotation = 0
+            imageOrientaion = .up
         }
 
         return (imageOrientaion, rotation)
