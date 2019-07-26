@@ -236,13 +236,13 @@
 		CD193CB01BA4891500203B44 = {
 			isa = PBXGroup;
 			children = (
+				003383B27093BDA4496BDFCB /* Frameworks */,
 				CD193CBB1BA4891500203B44 /* Padiddle */,
 				CD193CD01BA4891500203B44 /* PadiddleTests */,
 				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
+				EA7F700921FF11B68A498AD4 /* Pods */,
 				CD193CBA1BA4891500203B44 /* Products */,
 				CD114B6F1CB80066001BBF75 /* Screenshots */,
-				EA7F700921FF11B68A498AD4 /* Pods */,
-				003383B27093BDA4496BDFCB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -326,6 +326,7 @@
 			children = (
 				CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */,
 				CD5D4F001BACA10600D4AABB /* ArrayExtensions.swift */,
+				5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */,
 				CDBF24341BC5EB8200A0785C /* DeviceExtensions.swift */,
 				7AE7217D1BD1A8B2001B7791 /* Geometry.swift */,
 				CDDA9DDC1C53169F00D9EF19 /* HelpImageHandler.swift */,
@@ -335,7 +336,6 @@
 				CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */,
 				CDBF24321BC5E66D00A0785C /* ScreenExtensions.swift */,
 				7ACF44F11BD3118300CE7FB2 /* Weak.swift */,
-				5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
