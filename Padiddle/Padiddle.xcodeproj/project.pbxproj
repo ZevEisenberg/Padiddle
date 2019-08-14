@@ -534,16 +534,16 @@
 			};
 			buildConfigurationList = CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
 				fr,
 				"zh-Hans",
 				"zh-Hant",
 				it,
 				nl,
+				en,
 			);
 			mainGroup = CD193CB01BA4891500203B44;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
