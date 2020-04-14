@@ -3,9 +3,10 @@
 //  BonMot
 //
 //  Created by Brian King on 8/31/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 /// A few default font scaling behaviors.
@@ -235,3 +236,4 @@ extension AdaptiveStyle: EmbeddedTransformation {
     }
 
 }
+#endif

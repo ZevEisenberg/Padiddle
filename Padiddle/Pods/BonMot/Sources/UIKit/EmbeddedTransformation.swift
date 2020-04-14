@@ -3,14 +3,11 @@
 //  BonMot
 //
 //  Created by Brian King on 9/28/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
-#if os(OSX)
-    import AppKit
-#else
-    import UIKit
-#endif
+#if canImport(UIKit) && !os(watchOS)
+import UIKit
 
 /// BonMot embeds transformation objects inside `NSAttributedString` attributes
 /// to do adaptive styling. To simplify `NSAttributedString`'s `NSCoding`
@@ -72,3 +69,4 @@ internal enum EmbeddedTransformationHelpers {
     }
 
 }
+#endif

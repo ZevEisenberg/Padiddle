@@ -1,9 +1,9 @@
 //
-//  _Compatibility.swift
+//  Compatibility.swift
 //  BonMot
 //
 //  Created by Brian King on 8/24/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 #if os(OSX)
