@@ -1,5 +1,5 @@
 PODS:
-  - Anchorage (4.3.1)
+  - Anchorage (4.4.0)
   - BonMot (5.4.1)
   - SimulatorStatusMagic (2.4.1)
   - SwiftGen (6.1.0)
@@ -21,7 +21,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
+  Anchorage: d7f02c4f9425b537053237aab11ae97e59b55f36
   BonMot: aa82119ff2ffa184223d8a31c72aed84fbb009e0
   SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
