@@ -93,7 +93,7 @@ extension UIImage {
     }
 
     var imageFlippedVertically: UIImage {
-        return imageScaledBy(CGVector(dx: 1, dy: -1))
+        imageScaledBy(CGVector(dx: 1, dy: -1))
     }
 
     class func recordButtonImage() -> UIImage {

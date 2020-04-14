@@ -57,7 +57,7 @@ extension UIDevice {
     }
 
     class var isSimulator: Bool {
-        return TARGET_OS_SIMULATOR != 0
+        TARGET_OS_SIMULATOR != 0
     }
 
 }

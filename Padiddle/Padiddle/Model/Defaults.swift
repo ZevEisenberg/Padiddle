@@ -11,7 +11,7 @@ import Foundation
 struct Defaults {
 
     static var snapshotMode: Bool {
-        return UserDefaults.standard.bool(forKey: snapshotKey)
+        UserDefaults.standard.bool(forKey: snapshotKey)
     }
 
     static var colorPickerSelection: Int {

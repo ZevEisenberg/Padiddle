@@ -31,7 +31,7 @@ class ToolbarViewController: UIViewController {
     private var toolbarTopConstraint: NSLayoutConstraint!
 
     private var passthroughViews: [UIView] {
-        return [toolbarStackView, recordButton]
+        [toolbarStackView, recordButton]
     }
 
     private let recordPrompt = StarthereView()

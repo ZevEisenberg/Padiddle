@@ -186,7 +186,7 @@ extension ColorPickerViewController: UIScrollViewDelegate {
 extension ColorPickerViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.colorsToPick.count
+        viewModel.colorsToPick.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

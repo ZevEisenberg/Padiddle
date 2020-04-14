@@ -71,7 +71,7 @@ class ColorPickerLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return layoutInfo[indexPath]
+        layoutInfo[indexPath]
     }
 
     override var collectionViewContentSize: CGSize {

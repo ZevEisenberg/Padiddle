@@ -27,7 +27,7 @@ class ColorPickerViewModel {
     var currentPage: Int = 0
     var selectedIndex: Int {
         get {
-            return Defaults.colorPickerSelection
+            Defaults.colorPickerSelection
         }
         set(newValue) {
             Defaults.colorPickerSelection = newValue
@@ -35,7 +35,7 @@ class ColorPickerViewModel {
         }
     }
     var selectedColorManager: ColorManager {
-        return colorsToPick[selectedIndex]
+        colorsToPick[selectedIndex]
     }
 
     func imageForColorManager(_ colorManager: ColorManager) -> UIImage {
@@ -57,12 +57,13 @@ class ColorPickerViewModel {
 extension ColorPickerViewModel {
 
     var colorsToPick: [ColorManager] {
-        return [ColorManager(
-            colorModel: .hsv(
-                h: .thetaIncreasing,
-                s: .manual(1.0),
-                v: .velocityIn),
-            title: L10n.colorsClassic),
+        [
+            ColorManager(
+                colorModel: .hsv(
+                    h: .thetaIncreasing,
+                    s: .manual(1.0),
+                    v: .velocityIn),
+                title: L10n.colorsClassic),
 
             ColorManager(
                 colorModel: .hsv(

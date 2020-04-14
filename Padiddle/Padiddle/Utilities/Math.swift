@@ -21,7 +21,7 @@ extension CGFloat {
     }
 
     var reasonableValue: CGFloat {
-        return self.closeEnough(to: 0) ? 0 : self
+        self.closeEnough(to: 0) ? 0 : self
     }
 
 }

@@ -84,7 +84,7 @@ extension CGPoint {
     }
 
     func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
-        return CGPoint(x: x + dx, y: y + dy)
+        CGPoint(x: x + dx, y: y + dy)
     }
 
 }
@@ -92,7 +92,7 @@ extension CGPoint {
 extension CGAffineTransform {
 
     var angle: CGFloat {
-        return atan2(b, a)
+        atan2(b, a)
     }
 
 }

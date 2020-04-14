@@ -41,7 +41,7 @@ struct ColorManager {
     var title: String
 
     var currentColor: UIColor {
-        return ColorManager.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
+        ColorManager.color(colorModel: colorModel, radius: radius, maxRadius: maxRadius, theta: theta)
     }
 
     init(colorModel: ColorModel, title: String) {

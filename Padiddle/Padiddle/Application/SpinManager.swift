@@ -26,7 +26,7 @@ final class SpinManager: UIResponder {
     weak var sufficientSpinDelegate: SufficientSpinDelegate?
 
     var deviceMotion: CMDeviceMotion? {
-        return motionManager.deviceMotion
+        motionManager.deviceMotion
     }
 
     // Private Properties
@@ -83,11 +83,11 @@ extension SpinManager {
     }
 
     override var canBecomeFirstResponder: Bool {
-        return UIDevice.isSimulator
+        UIDevice.isSimulator
     }
 
     override var next: UIResponder? {
-        return UIDevice.isSimulator ? UIApplication.shared.keyWindow : nil
+        UIDevice.isSimulator ? UIApplication.shared.keyWindow : nil
     }
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
