@@ -35,7 +35,7 @@ class PadiddleUITests: XCTestCase {
         let window = app.windows.element(boundBy: 0)
         XCTAssert(window.exists)
 
-        let rootView = window.children(matching: .other).element(matching: .other, identifier: "root view")
+        let rootView = window.descendants(matching: .other).element(matching: .other, identifier: "root view")
         XCTAssert(rootView.exists)
 
         let toolbarViewControllerView = rootView.children(matching: .other).element(matching: .other, identifier: "toolbar view controller view")

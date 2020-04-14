@@ -117,7 +117,7 @@ extension UIInterfaceOrientation {
             rotation = 0
             imageOrientaion = .up
         @unknown default:
-            assertionFailure("Unknown orientation \(self)")
+            assertionFailure("Unknown orientation \(rawValue)")
             rotation = 0
             imageOrientaion = .up
         }
