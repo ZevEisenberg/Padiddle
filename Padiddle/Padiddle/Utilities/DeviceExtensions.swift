@@ -48,10 +48,11 @@ extension UIDevice {
         }
     }
 
-    @nonobjc class var spinPromptImage: UIImage {
+    @nonobjc class var spinPromptImage: (image: UIImage, insets: UIEdgeInsets) {
+        // Inset values are measured from Sketch
         switch deviceName {
-        case "iPad": return #imageLiteral(resourceName: "iPad Spin Prompt")
-        case "iPhone", "iPod touch": return #imageLiteral(resourceName: "iPhone Spin Prompt")
+        case "iPad": return (#imageLiteral(resourceName: "iPad Spin Prompt"), UIEdgeInsets(top: 32, left: 14, bottom: 31, right: 14))
+        case "iPhone", "iPod touch": return (#imageLiteral(resourceName: "iPhone Spin Prompt"), UIEdgeInsets(top: 45, left: 12, bottom: 45, right: 12))
         default: fatalError("Should only get one or the other, but device name was \(deviceName)")
         }
     }

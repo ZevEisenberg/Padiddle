@@ -15,7 +15,7 @@ final class SpinPromptView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        let backgroundImage = UIDevice.spinPromptImage
+        let (backgroundImage, imageInsets) = UIDevice.spinPromptImage
         let imageView = UIImageView(image: backgroundImage)
 
         let label = UILabel(axId: "spinPromptLabel")
@@ -39,9 +39,7 @@ final class SpinPromptView: UIView {
         imageView.sizeAnchors == backgroundImage.size
         sizeAnchors == backgroundImage.size
 
-        label.centerAnchors == imageView.centerAnchors
-        label.horizontalAnchors >= imageView.horizontalAnchors + 12
-        label.verticalAnchors >= imageView.verticalAnchors + 45
+        label.edgeAnchors == imageView.edgeAnchors + imageInsets
     }
 
     @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
