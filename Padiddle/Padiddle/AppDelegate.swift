@@ -6,9 +6,6 @@
 //  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
-#if DEBUG
-    import SimulatorStatusMagic
-#endif
 import UIKit
 
 @UIApplicationMain
@@ -58,12 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.accessibilityIdentifier = "main window"
-
-        #if DEBUG
-            if Defaults.snapshotMode {
-                SDStatusBarManager.sharedInstance().enableOverrides()
-            }
-        #endif
 
         return true
     }

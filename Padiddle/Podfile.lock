@@ -1,14 +1,12 @@
 PODS:
   - Anchorage (4.4.0)
   - BonMot (5.5.1)
-  - SimulatorStatusMagic (2.4.1)
   - SwiftGen (6.1.0)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Anchorage
   - BonMot
-  - SimulatorStatusMagic
   - SwiftGen
   - SwiftLint
 
@@ -16,17 +14,15 @@ SPEC REPOS:
   trunk:
     - Anchorage
     - BonMot
-    - SimulatorStatusMagic
     - SwiftGen
     - SwiftLint
 
 SPEC CHECKSUMS:
   Anchorage: d7f02c4f9425b537053237aab11ae97e59b55f36
   BonMot: 0d179476725af81f622a6d9f660f43048070016a
-  SimulatorStatusMagic: 28d4a9d1a500ac7cea0b2b5a43c1c6ddb40ba56c
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: c1cc7d361ab0d010dca05c6c4bb157991b30b38c
+PODFILE CHECKSUM: 53666d175867259cc1d788cf62faacc1cacd28e9
 
 COCOAPODS: 1.9.1

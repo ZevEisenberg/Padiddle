@@ -199,7 +199,6 @@ fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework"
