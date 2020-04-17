@@ -14,6 +14,7 @@ if [ $(version "${TARGET_DEVICE_OS_VERSION}") -ge $(version "13") ]; then
     # Boot sim to make sure it is running
     xcrun simctl boot "${TARGET_DEVICE_IDENTIFIER}"
 
+    # --operatorName doesn't support empty string, even though it's supposed to. FB7664620
     zeroWidthSpace='\xE2\x80\x8B' # UTF-8 encoding of u+200B in Bash (different format from zsh)
     timeString="$(date -r 1568122860 +%FT%T%z)" # 9:41 AM, with the correct date for iPads
 
