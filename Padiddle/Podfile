@@ -5,8 +5,6 @@ platform :ios, '11.0'
 
   # Pods for Padiddle
 target 'Padiddle' do
-  pod 'Anchorage'
-  pod 'BonMot'
   pod 'SwiftGen'
   pod 'SwiftLint'
 end

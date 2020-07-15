@@ -7,6 +7,7 @@
 //
 
 import Anchorage
+import UIKit
 
 let colsPortrait = 2
 let rowsPortrait = 3

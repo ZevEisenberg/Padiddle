@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Anchorage",
+        "repositoryURL": "git@github.com:Rightpoint/Anchorage.git",
+        "state": {
+          "branch": null,
+          "revision": "18fed38e95db3200aecbd5b7101b981f91656084",
+          "version": "4.4.0"
+        }
+      },
+      {
+        "package": "BonMot",
+        "repositoryURL": "git@github.com:Rightpoint/BonMot.git",
+        "state": {
+          "branch": null,
+          "revision": "76fbef6e8d2095c7dace1912aa3b79ba86ad1150",
+          "version": "5.5.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

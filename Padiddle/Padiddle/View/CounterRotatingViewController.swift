@@ -7,6 +7,7 @@
 //
 
 import Anchorage
+import UIKit
 
 extension UIInterfaceOrientation: CustomStringConvertible {
 

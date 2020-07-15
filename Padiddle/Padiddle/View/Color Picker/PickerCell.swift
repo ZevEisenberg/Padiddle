@@ -7,6 +7,7 @@
 //
 
 import Anchorage
+import UIKit
 
 let backgroundColorNormal = UIColor.clear
 let backgroundColorHighlighted = UIColor(white: 0.85, alpha: 1)
