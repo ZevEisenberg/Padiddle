@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "1200"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -65,15 +65,6 @@
             </ActionContent>
          </ExecutionAction>
       </PostActions>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD193CB81BA4891500203B44"
-            BuildableName = "Padiddle.app"
-            BlueprintName = "Padiddle"
-            ReferencedContainer = "container:Padiddle.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
