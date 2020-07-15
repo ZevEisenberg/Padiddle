@@ -1,7 +1,7 @@
 PODS:
   - Anchorage (4.4.0)
   - BonMot (5.5.1)
-  - SwiftGen (6.1.0)
+  - SwiftGen (6.2.1)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Anchorage: d7f02c4f9425b537053237aab11ae97e59b55f36
   BonMot: 0d179476725af81f622a6d9f660f43048070016a
-  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftGen: 62e69d127507be1538d4263e137b2290cd6ab272
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
 PODFILE CHECKSUM: 53666d175867259cc1d788cf62faacc1cacd28e9
