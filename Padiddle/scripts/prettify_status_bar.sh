@@ -17,7 +17,7 @@ if [ $(version "${TARGET_DEVICE_OS_VERSION}") -ge $(version "13") ]; then
     # --operatorName doesn't support empty string, even though it's supposed to. FB7664620
     zeroWidthSpace='\xE2\x80\x8B' # UTF-8 encoding of u+200B in Bash (different format from zsh)
 
-    # 9:41 AM, with the correct date for iPads. Note that this will note be localized to other languages. FB7668656
+    # 9:41 AM, with the correct date for iPads. Note that this will not be localized to other languages. FB7668656
     timeString="$(date -r 1568122860 +%FT%T%z)"
 
     xcrun simctl status_bar "${TARGET_DEVICE_IDENTIFIER}" override \
