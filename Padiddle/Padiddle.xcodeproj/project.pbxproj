@@ -47,8 +47,8 @@
 		CD7C27511D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C274F1D20B79700F3E924 /* AccessibilityIdentifierExtensions.swift */; };
 		CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C27521D20BAC800F3E924 /* ViewTests.swift */; };
 		CD8B3E3B1EC7A0AE006A0C85 /* TutorialCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B3E3A1EC7A0AE006A0C85 /* TutorialCoordinator.swift */; };
-		CD9C7B8F24BF63290087FE69 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* SwiftPackageProductDependency */; };
-		CD9C7B9224BF63450087FE69 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* SwiftPackageProductDependency */; };
+		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
+		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
 		CDA035E51BA8AEAA0023F290 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E21BA8AEAA0023F290 /* RootViewController.swift */; };
 		CDA035E61BA8AEAA0023F290 /* ToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E31BA8AEAA0023F290 /* ToolbarViewController.swift */; };
 		CDA035E91BA8B02D0023F290 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA035E81BA8B02D0023F290 /* ColorManager.swift */; };
@@ -192,9 +192,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9C7B9224BF63450087FE69 /* BuildFile in Frameworks */,
+				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
 				0CAA7DE9E7C7164A872ECE02 /* Pods_Padiddle.framework in Frameworks */,
-				CD9C7B8F24BF63290087FE69 /* BuildFile in Frameworks */,
+				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,8 +459,8 @@
 			);
 			name = Padiddle;
 			packageProductDependencies = (
-				CD9C7B8E24BF63290087FE69 /* SwiftPackageProductDependency */,
-				CD9C7B9124BF63450087FE69 /* SwiftPackageProductDependency */,
+				CD9C7B8E24BF63290087FE69 /* BonMot */,
+				CD9C7B9124BF63450087FE69 /* Anchorage */,
 			);
 			productName = Padiddle;
 			productReference = CD193CB91BA4891500203B44 /* Padiddle.app */;
@@ -513,7 +513,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 				TargetAttributes = {
 					CD114B6D1CB80066001BBF75 = {
@@ -554,8 +554,8 @@
 			);
 			mainGroup = CD193CB01BA4891500203B44;
 			packageReferences = (
-				CD9C7B8D24BF63290087FE69 /* RemoteSwiftPackageReference */,
-				CD9C7B9024BF63450087FE69 /* RemoteSwiftPackageReference */,
+				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
+				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
 			);
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
 			projectDirPath = "";
@@ -1233,7 +1233,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD9C7B8D24BF63290087FE69 /* RemoteSwiftPackageReference */ = {
+		CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Rightpoint/BonMot.git";
 			requirement = {
@@ -1241,7 +1241,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		CD9C7B9024BF63450087FE69 /* RemoteSwiftPackageReference */ = {
+		CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Rightpoint/Anchorage.git";
 			requirement = {
@@ -1252,14 +1252,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD9C7B8E24BF63290087FE69 /* SwiftPackageProductDependency */ = {
+		CD9C7B8E24BF63290087FE69 /* BonMot */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD9C7B8D24BF63290087FE69 /* RemoteSwiftPackageReference */;
+			package = CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */;
 			productName = BonMot;
 		};
-		CD9C7B9124BF63450087FE69 /* SwiftPackageProductDependency */ = {
+		CD9C7B9124BF63450087FE69 /* Anchorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD9C7B9024BF63450087FE69 /* RemoteSwiftPackageReference */;
+			package = CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */;
 			productName = Anchorage;
 		};
 /* End XCSwiftPackageProductDependency section */
