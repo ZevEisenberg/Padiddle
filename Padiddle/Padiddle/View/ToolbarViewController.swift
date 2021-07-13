@@ -323,7 +323,7 @@ extension ToolbarViewController {
             let activityViewController = UIActivityViewController(activityItems: [image.valueForSharing], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [.assignToContact]
             activityViewController.modalPresentationStyle = .popover
-            activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
+            activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, _, activityError: Error?) in
                 if completed {
                     if let activityType = activityType {
                         Log.info("shared via \(activityType)")
@@ -332,8 +332,11 @@ extension ToolbarViewController {
                         Log.info("shared via unknown sharing type")
                     }
                 }
+                else if let error = activityError {
+                    Log.error("Error sharing: \(error)")
+                }
                 else {
-                    Log.info("Canceled sharing")
+                    Log.info("Sharing did not complete, but there was no error")
                 }
             }
 

@@ -80,12 +80,12 @@ class PickerCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                //--------------------------------------------------
+                // --------------------------------------------------
                 // Use the appTintColor here, instead of our own
                 // view’s tintColor, because we aren’t necessarily
                 // in the view hierarchy yet, in which case we don’t
                 // have the right tintColor.
-                //--------------------------------------------------
+                // --------------------------------------------------
                 contentView.layer.borderWidth = borderWidth
                 titleLabel.textColor = .appTint
             }

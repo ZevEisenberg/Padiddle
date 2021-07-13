@@ -44,7 +44,7 @@ extension UIImage {
         // Stroke the color
         currentContext?.strokeEllipse(in: insetRect)
 
-        //Snap the picture and close the context
+        // Snap the picture and close the context
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
