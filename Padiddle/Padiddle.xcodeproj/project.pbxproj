@@ -1238,7 +1238,7 @@
 			repositoryURL = "git@github.com:Rightpoint/BonMot.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				minimumVersion = 6.0.0;
 			};
 		};
 		CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */ = {

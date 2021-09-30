@@ -6,8 +6,8 @@
         "repositoryURL": "git@github.com:Rightpoint/Anchorage.git",
         "state": {
           "branch": null,
-          "revision": "18fed38e95db3200aecbd5b7101b981f91656084",
-          "version": "4.4.0"
+          "revision": "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
+          "version": "4.5.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "git@github.com:Rightpoint/BonMot.git",
         "state": {
           "branch": null,
-          "revision": "76fbef6e8d2095c7dace1912aa3b79ba86ad1150",
-          "version": "5.5.1"
+          "revision": "69dd5eba11694421418edc9063f3c7c02d069634",
+          "version": "6.0.0"
         }
       }
     ]
