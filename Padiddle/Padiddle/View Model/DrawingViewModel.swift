@@ -83,6 +83,9 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
         assert(success, "Problem creating bitmap context")
 
         displayLink = CADisplayLink(target: self, selector: #selector(DrawingViewModel.displayLinkUpdated))
+        if #available(iOS 15.0, *) {
+            displayLink?.preferredFrameRateRange = .init(minimum: 60, maximum: 120, preferred: 120)
+        }
         displayLink?.add(to: .main, forMode: .default)
     }
 
