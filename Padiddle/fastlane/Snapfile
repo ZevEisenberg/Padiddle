@@ -11,6 +11,7 @@ devices([
   "iPad Pro (12.9-inch) (4th generation)",
   "iPad Pro (10.5-inch)",
   "iPad Pro (11-inch) (2nd generation)",
+  "iPad mini (6th generation)"
 ])
 
 languages([
