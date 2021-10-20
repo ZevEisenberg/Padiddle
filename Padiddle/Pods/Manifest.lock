@@ -1,6 +1,6 @@
 PODS:
   - SwiftGen (6.4.0)
-  - SwiftLint (0.44.0)
+  - SwiftLint (0.45.0)
 
 DEPENDENCIES:
   - SwiftGen
@@ -13,7 +13,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
-  SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
+  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
 PODFILE CHECKSUM: 622d438a79f3acc526c624050f5ef35febf6c016
 
