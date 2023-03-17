@@ -1237,16 +1237,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Rightpoint/BonMot.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
+				kind = exactVersion;
+				version = 6.1.2;
 			};
 		};
 		CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Rightpoint/Anchorage.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				kind = exactVersion;
+				version = 4.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
