@@ -61,10 +61,8 @@ class ColorPickerLayout: UICollectionViewLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var allAtributes = [UICollectionViewLayoutAttributes]()
 
-        for (_, attributes) in layoutInfo {
-            if rect.intersects(attributes.frame) {
-                allAtributes.append(attributes)
-            }
+        for (_, attributes) in layoutInfo where rect.intersects(attributes.frame) {
+            allAtributes.append(attributes)
         }
 
         return allAtributes

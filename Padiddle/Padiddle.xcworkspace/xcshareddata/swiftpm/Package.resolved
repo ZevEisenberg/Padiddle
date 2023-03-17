@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Anchorage",
-        "repositoryURL": "git@github.com:Rightpoint/Anchorage.git",
-        "state": {
-          "branch": null,
-          "revision": "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
-          "version": "4.5.0"
-        }
-      },
-      {
-        "package": "BonMot",
-        "repositoryURL": "git@github.com:Rightpoint/BonMot.git",
-        "state": {
-          "branch": null,
-          "revision": "69dd5eba11694421418edc9063f3c7c02d069634",
-          "version": "6.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "anchorage",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:Rightpoint/Anchorage.git",
+      "state" : {
+        "revision" : "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
+        "version" : "4.5.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "bonmot",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:Rightpoint/BonMot.git",
+      "state" : {
+        "revision" : "69dd5eba11694421418edc9063f3c7c02d069634",
+        "version" : "6.0.0"
+      }
+    }
+  ],
+  "version" : 2
 }
