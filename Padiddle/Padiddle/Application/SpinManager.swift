@@ -60,10 +60,10 @@ extension SpinManager {
     }
 
     func startMonitoringForSufficientSpin() {
-        if UIDevice.isSimulator {
+        #if targetEnvironment(simulator)
             let result = becomeFirstResponder()
             print("become first responder:", result)
-        }
+        #endif
 
         isMonitoringForSufficientSpin = true
 
@@ -73,9 +73,9 @@ extension SpinManager {
     }
 
     func stopMonitoringForSufficientSpin() {
-        if UIDevice.isSimulator {
+#if targetEnvironment(simulator)
             resignFirstResponder()
-        }
+#endif
 
         isMonitoringForSufficientSpin = false
         sufficientSpinTimer?.invalidate()
@@ -83,18 +83,28 @@ extension SpinManager {
     }
 
     override var canBecomeFirstResponder: Bool {
-        UIDevice.isSimulator
+#if targetEnvironment(simulator)
+        true
+        #else
+        false
+        #endif
     }
 
     override var next: UIResponder? {
-        UIDevice.isSimulator ? UIApplication.shared.keyWindow : nil
+        #if targetEnvironment(simulator)
+        UIApplication.shared.keyWindow
+        #else
+        nil
+        #endif
     }
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if UIDevice.isSimulator && motion == .motionShake {
+        #if targetEnvironment(simulator)
+        if motion == .motionShake {
             // can't spin the simulator, so shake to to simulate it
             respondToSufficientMotion()
         }
+        #endif
     }
 
 }

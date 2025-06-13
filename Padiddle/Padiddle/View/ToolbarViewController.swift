@@ -213,11 +213,11 @@ extension ToolbarViewController {
 
         // Accessibility
 
-        clearButton.accessibilityLabel = L10n.buttonsClear
-        colorButton.accessibilityLabel = L10n.buttonsColor
-        recordButton.accessibilityLabels = (normal: L10n.buttonsRecord, selected: L10n.buttonsStop)
-        shareButton.accessibilityLabel = L10n.buttonsShare
-        helpButton.accessibilityLabel = L10n.buttonsHelp
+        clearButton.accessibilityLabel = String(localized: .buttonsClear)
+        colorButton.accessibilityLabel = String(localized: .buttonsColor)
+        recordButton.accessibilityLabels = (normal: String(localized: .buttonsRecord), selected: String(localized: .buttonsStop))
+        shareButton.accessibilityLabel = String(localized: .buttonsShare)
+        helpButton.accessibilityLabel = String(localized: .buttonsHelp)
     }
 
 }
@@ -228,11 +228,11 @@ extension ToolbarViewController {
 
     @objc func trashTapped() {
         Log.info()
-        let clearAction = UIAlertAction(title: L10n.clearDrawing, style: .destructive) { _ in
+        let clearAction = UIAlertAction(title: String(localized: .clearDrawing), style: .destructive) { _ in
             Log.info("Clear Drawing tapped")
             self.viewModel?.clearTapped()
         }
-        let cancelAction = UIAlertAction(title: L10n.cancel, style: .cancel) { _ in Log.info("Clear Drawing canceled") }
+        let cancelAction = UIAlertAction(title: String(localized: .cancel), style: .cancel) { _ in Log.info("Clear Drawing canceled") }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(clearAction)
         alert.addAction(cancelAction)

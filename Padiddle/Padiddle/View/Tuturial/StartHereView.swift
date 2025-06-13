@@ -30,7 +30,7 @@ final class StarthereView: UIView {
 
         let label = UILabel(axId: "startHereLabel")
         label.numberOfLines = 0
-        label.attributedText = L10n.tutorialStartHere.styled(with: StringStyle([
+        label.attributedText = String(localized: .tutorialStartHere).styled(with: StringStyle([
             .adapt(.control),
             .font(UIFont.systemFont(ofSize: 30, weight: .medium)),
             .color(.tutorialText),

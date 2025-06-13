@@ -23,7 +23,7 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = L10n.about
+        title = String(localized: .about)
 
         webView.backgroundColor = .white
         webView.navigationDelegate = self

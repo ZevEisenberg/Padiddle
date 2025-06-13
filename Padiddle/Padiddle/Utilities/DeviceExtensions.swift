@@ -22,7 +22,7 @@ extension UIDevice {
     @nonobjc class var deviceName: String {
         var deviceName = current.model
 
-        if isSimulator {
+        #if targetEnvironment(simulator)
             let range = deviceName.range(of: "simulator",
                 options: [.anchored, .backwards, .caseInsensitive]
             )
@@ -35,7 +35,7 @@ extension UIDevice {
                     deviceName = "iPhone"
                 }
             }
-        }
+#endif
 
         return deviceName
     }
@@ -56,9 +56,4 @@ extension UIDevice {
         default: fatalError("Should only get one or the other, but device name was \(deviceName)")
         }
     }
-
-    class var isSimulator: Bool {
-        TARGET_OS_SIMULATOR != 0
-    }
-
 }
