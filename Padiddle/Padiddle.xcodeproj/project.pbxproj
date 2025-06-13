@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CAA7DE9E7C7164A872ECE02 /* Pods_Padiddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */; };
 		1DEB447B5EAD97A77D4238EA /* Pods_PadiddleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */; };
 		20F5B9072C38CFDA50667728 /* Pods_PadiddleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075CF19A72744D6B4916191 /* Pods_PadiddleUITests.framework */; };
 		5B218F4C221A60530065D25E /* CATransaction+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */; };
@@ -94,8 +93,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01DBA5AD04A9AFFEAB01B33C /* Pods-Padiddle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Padiddle.debug.xcconfig"; path = "Target Support Files/Pods-Padiddle/Pods-Padiddle.debug.xcconfig"; sourceTree = "<group>"; };
-		44F2DF30FE7C46AA33CDEB1D /* Pods-PadiddleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.debug.xcconfig"; path = "Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransaction+Utilities.swift"; sourceTree = "<group>"; };
 		7075CF19A72744D6B4916191 /* Pods_PadiddleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +100,6 @@
 		7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		7ACF44F11BD3118300CE7FB2 /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Weak.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7AE7217D1BD1A8B2001B7791 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Geometry.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C1D018B9E7D3C65155E1FC21 /* Pods-Padiddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Padiddle.release.xcconfig"; path = "Target Support Files/Pods-Padiddle/Pods-Padiddle.release.xcconfig"; sourceTree = "<group>"; };
 		CD0FD2271ECE6189003C9F49 /* SpinPromptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinPromptView.swift; sourceTree = "<group>"; };
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD114B701CB80066001BBF75 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
@@ -162,46 +158,34 @@
 		CDDA9DDC1C53169F00D9EF19 /* HelpImageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageHandler.swift; sourceTree = "<group>"; };
 		CDE071321C55BDFE00BB5D6A /* ImageIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageIO.swift; sourceTree = "<group>"; };
 		CDEA9C5A1C02ACFC00E02D66 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		D2B5F27AFA8B5A1F32174D1A /* Pods-PadiddleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.release.xcconfig"; path = "Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DD49E49A1F6AF6B500387B7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/help.html; sourceTree = "<group>"; };
 		E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAD77A7D629704924A3E56FE /* Pods-PadiddleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleTests.release.xcconfig"; path = "Target Support Files/Pods-PadiddleTests/Pods-PadiddleTests.release.xcconfig"; sourceTree = "<group>"; };
-		F32BC388793EABA7DEAC2423 /* Pods-PadiddleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadiddleUITests.debug.xcconfig"; path = "Target Support Files/Pods-PadiddleUITests/Pods-PadiddleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CD114B6B1CB80066001BBF75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB61BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
-				0CAA7DE9E7C7164A872ECE02 /* Pods_Padiddle.framework in Frameworks */,
 				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				1DEB447B5EAD97A77D4238EA /* Pods_PadiddleTests.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD51BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				20F5B9072C38CFDA50667728 /* Pods_PadiddleUITests.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -232,7 +216,6 @@
 				CD193CBB1BA4891500203B44 /* Padiddle */,
 				CD193CD01BA4891500203B44 /* PadiddleTests */,
 				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
-				EA7F700921FF11B68A498AD4 /* Pods */,
 				CD193CBA1BA4891500203B44 /* Products */,
 				CD114B6F1CB80066001BBF75 /* Screenshots */,
 				A654FC30C20C02D41519486C /* Frameworks */,
@@ -394,19 +377,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		EA7F700921FF11B68A498AD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				01DBA5AD04A9AFFEAB01B33C /* Pods-Padiddle.debug.xcconfig */,
-				C1D018B9E7D3C65155E1FC21 /* Pods-Padiddle.release.xcconfig */,
-				44F2DF30FE7C46AA33CDEB1D /* Pods-PadiddleTests.debug.xcconfig */,
-				EAD77A7D629704924A3E56FE /* Pods-PadiddleTests.release.xcconfig */,
-				F32BC388793EABA7DEAC2423 /* Pods-PadiddleUITests.debug.xcconfig */,
-				D2B5F27AFA8B5A1F32174D1A /* Pods-PadiddleUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -432,7 +402,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
-				0EBC0A217E8078044FB54440 /* [CP] Check Pods Manifest.lock */,
 				7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */,
 				CD193CB51BA4891500203B44 /* Sources */,
 				CD193CB61BA4891500203B44 /* Frameworks */,
@@ -441,8 +410,6 @@
 				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = Padiddle;
 			packageProductDependencies = (
@@ -457,11 +424,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */;
 			buildPhases = (
-				80BE74FCDB86CDCA12F21699 /* [CP] Check Pods Manifest.lock */,
 				CD193CC91BA4891500203B44 /* Sources */,
 				CD193CCA1BA4891500203B44 /* Frameworks */,
 				CD193CCB1BA4891500203B44 /* Resources */,
-				CD2AD6021C56EA9400910FFE /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -477,11 +442,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */;
 			buildPhases = (
-				40E7482958E83BA50765E307 /* [CP] Check Pods Manifest.lock */,
 				CD193CD41BA4891500203B44 /* Sources */,
 				CD193CD51BA4891500203B44 /* Frameworks */,
 				CD193CD61BA4891500203B44 /* Resources */,
-				CD2AD6031C56EA9D00910FFE /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -527,7 +490,6 @@
 				};
 			};
 			buildConfigurationList = CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */;
-			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -544,6 +506,7 @@
 				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
 				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -559,14 +522,11 @@
 /* Begin PBXResourcesBuildPhase section */
 		CD114B6C1CB80066001BBF75 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB71BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD2BE7A71D1E206400A06FC3 /* help.html in Resources */,
 				CDD55DA72DFCE235009FF157 /* InfoPlist.xcstrings in Resources */,
@@ -575,176 +535,75 @@
 				CD2BE7A91D1E206B00A06FC3 /* LaunchScreen.storyboard in Resources */,
 				CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CCB1BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD61BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EBC0A217E8078044FB54440 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Padiddle-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		40E7482958E83BA50765E307 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PadiddleUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
 			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
-		};
-		80BE74FCDB86CDCA12F21699 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			shellScript = (
+				"# TODO",
+				"",
 			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PadiddleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
 			name = "Build Number";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\n    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-		CD2AD6021C56EA9400910FFE /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			shellScript = (
+				"# Set the build number to the current git commit count.",
+				"# If we're using the Dev scheme, then we'll suffix the build",
+				"# number with the current branch name, to make collisions",
+				"# far less likely across feature branches.",
+				"# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/",
+				"#",
+				"git=`sh /etc/profile; which git`",
+				"appBuild=`\"$git\" rev-list --all |wc -l`",
+				"if [ $CONFIGURATION = \"Debug\" ]; then",
+				"    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`",
+				"    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
+				"else",
+				"    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
+				"fi",
+				"echo \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
+				"",
 			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
-		};
-		CD2AD6031C56EA9D00910FFE /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "SWIFTLINT_BINARY=\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\"${SWIFTLINT_BINARY}\" lint\n";
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
 			name = "Copy Screenshot Images If Needed";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
+			shellScript = (
+				"if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then",
+				"    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/",
+				"fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CD114B6A1CB80066001BBF75 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD114B711CB80066001BBF75 /* Screenshots.swift in Sources */,
 				CD114B791CB8008A001BBF75 /* SnapshotHelper.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB51BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */,
 				CD8B3E3B1EC7A0AE006A0C85 /* TutorialCoordinator.swift in Sources */,
@@ -784,11 +643,9 @@
 				CD4237101BAB6F3E0000E395 /* ColorPickerViewModel.swift in Sources */,
 				5B218F4C221A60530065D25E /* CATransaction+Utilities.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CC91BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD7C27531D20BAC800F3E924 /* ViewTests.swift in Sources */,
 				CDA417731ED21B2C00C4E25D /* AccessibleToggleButton.swift in Sources */,
@@ -800,15 +657,12 @@
 				7AE7217F1BD1A8B2001B7791 /* Geometry.swift in Sources */,
 				CD2AD6011C56E7A600910FFE /* Math.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD41BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				CD193CDD1BA4891500203B44 /* PadiddleUITests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -858,7 +712,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CD114B751CB80066001BBF75 /* Debug */ = {
+		CD114B751CB80066001BBF75 /* Debug configuration for PBXNativeTarget "Screenshots" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -876,7 +730,7 @@
 			};
 			name = Debug;
 		};
-		CD114B761CB80066001BBF75 /* Release */ = {
+		CD114B761CB80066001BBF75 /* Release configuration for PBXNativeTarget "Screenshots" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -896,7 +750,7 @@
 			};
 			name = Release;
 		};
-		CD193CDF1BA4891500203B44 /* Debug */ = {
+		CD193CDF1BA4891500203B44 /* Debug configuration for PBXProject "Padiddle" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -957,7 +811,7 @@
 			};
 			name = Debug;
 		};
-		CD193CE01BA4891500203B44 /* Release */ = {
+		CD193CE01BA4891500203B44 /* Release configuration for PBXProject "Padiddle" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1011,9 +865,8 @@
 			};
 			name = Release;
 		};
-		CD193CE21BA4891500203B44 /* Debug */ = {
+		CD193CE21BA4891500203B44 /* Debug configuration for PBXNativeTarget "Padiddle" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01DBA5AD04A9AFFEAB01B33C /* Pods-Padiddle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
@@ -1034,9 +887,8 @@
 			};
 			name = Debug;
 		};
-		CD193CE31BA4891500203B44 /* Release */ = {
+		CD193CE31BA4891500203B44 /* Release configuration for PBXNativeTarget "Padiddle" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1D018B9E7D3C65155E1FC21 /* Pods-Padiddle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
@@ -1059,9 +911,8 @@
 			};
 			name = Release;
 		};
-		CD193CE51BA4891500203B44 /* Debug */ = {
+		CD193CE51BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleTests" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44F2DF30FE7C46AA33CDEB1D /* Pods-PadiddleTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
@@ -1076,9 +927,8 @@
 			};
 			name = Debug;
 		};
-		CD193CE61BA4891500203B44 /* Release */ = {
+		CD193CE61BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleTests" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAD77A7D629704924A3E56FE /* Pods-PadiddleTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
@@ -1095,9 +945,8 @@
 			};
 			name = Release;
 		};
-		CD193CE81BA4891500203B44 /* Debug */ = {
+		CD193CE81BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleUITests" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F32BC388793EABA7DEAC2423 /* Pods-PadiddleUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1113,9 +962,8 @@
 			};
 			name = Debug;
 		};
-		CD193CE91BA4891500203B44 /* Release */ = {
+		CD193CE91BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleUITests" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2B5F27AFA8B5A1F32174D1A /* Pods-PadiddleUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1139,46 +987,41 @@
 		CD114B771CB80066001BBF75 /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD114B751CB80066001BBF75 /* Debug */,
-				CD114B761CB80066001BBF75 /* Release */,
+				CD114B751CB80066001BBF75 /* Debug configuration for PBXNativeTarget "Screenshots" */,
+				CD114B761CB80066001BBF75 /* Release configuration for PBXNativeTarget "Screenshots" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CDF1BA4891500203B44 /* Debug */,
-				CD193CE01BA4891500203B44 /* Release */,
+				CD193CDF1BA4891500203B44 /* Debug configuration for PBXProject "Padiddle" */,
+				CD193CE01BA4891500203B44 /* Release configuration for PBXProject "Padiddle" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE21BA4891500203B44 /* Debug */,
-				CD193CE31BA4891500203B44 /* Release */,
+				CD193CE21BA4891500203B44 /* Debug configuration for PBXNativeTarget "Padiddle" */,
+				CD193CE31BA4891500203B44 /* Release configuration for PBXNativeTarget "Padiddle" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE51BA4891500203B44 /* Debug */,
-				CD193CE61BA4891500203B44 /* Release */,
+				CD193CE51BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleTests" */,
+				CD193CE61BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE81BA4891500203B44 /* Debug */,
-				CD193CE91BA4891500203B44 /* Release */,
+				CD193CE81BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleUITests" */,
+				CD193CE91BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
