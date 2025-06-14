@@ -10,7 +10,6 @@ source "https://rubygems.org"
 # 8. x bundle install
 
 gem 'fastlane'
-gem 'synx'
 
 # required by fastlane
 gem 'abbrev'
