@@ -46,6 +46,8 @@ class ToolbarViewController: UIViewController {
 
 // MARK: - Layout
 
+private let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
+
 extension ToolbarViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -105,7 +107,7 @@ extension ToolbarViewController {
     // Stack View
     view.addSubview(toolbarStackView)
     toolbarStackView.axis = .horizontal
-    toolbarStackView.alignment = .fill
+    toolbarStackView.alignment = .bottom
     toolbarStackView.distribution = .fill
     toolbarStackView.spacing = 0
 
@@ -135,7 +137,7 @@ extension ToolbarViewController {
       recordButtonPlaceholder.heightAnchor == recordButtonPlaceholderSuperview.heightAnchor
     }
 
-    clearButton.setImage(UIImage(resource: .trashButton), for: .normal)
+    clearButton.setImage(UIImage(systemName: "trash", withConfiguration: largeConfig), for: .normal)
     clearButton.addTarget(self, action: #selector(ToolbarViewController.trashTapped), for: .touchUpInside)
 
     // image is dynamic
@@ -147,10 +149,10 @@ extension ToolbarViewController {
     recordButton.setImage(UIImage(resource: .pauseButton), for: .selected)
     recordButton.addTarget(self, action: #selector(ToolbarViewController.recordTapped), for: .touchUpInside)
 
-    shareButton.setImage(UIImage(resource: .shareButton), for: .normal)
+    shareButton.setImage(UIImage(systemName: "square.and.arrow.up", withConfiguration: largeConfig), for: .normal)
     shareButton.addTarget(self, action: #selector(ToolbarViewController.shareTapped), for: .touchUpInside)
 
-    helpButton.setImage(UIImage(resource: .helpButton), for: .normal)
+    helpButton.setImage(UIImage(systemName: "questionmark.circle", withConfiguration: largeConfig), for: .normal)
     helpButton.addTarget(self, action: #selector(ToolbarViewController.helpTapped), for: .touchUpInside)
 
     let nonRecordButtons: [UIButton] = [
