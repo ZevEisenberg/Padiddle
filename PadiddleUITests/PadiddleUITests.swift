@@ -1,64 +1,49 @@
-//
-//  PadiddleUITests.swift
-//  PadiddleUITests
-//
-//  Created by Zev Eisenberg on 9/12/15.
-//  Copyright © 2015 Zev Eisenberg. All rights reserved.
-//
-
 import XCTest
 
 class PadiddleUITests: XCTestCase {
+  override func setUp() {
+    super.setUp()
 
-    override func setUp() {
-        super.setUp()
+    // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    // In UI tests it is usually best to stop immediately when a failure occurs.
+    continueAfterFailure = false
+    // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+    XCUIApplication().launch()
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+    XCUIDevice.shared.orientation = .portrait
+    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+  }
 
-        XCUIDevice.shared.orientation = .portrait
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
+  func testToolbarStaysHiddenWhileRotating() {
+    let app = XCUIApplication()
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+    let window = app.windows.element(boundBy: 0)
+    XCTAssert(window.exists)
 
-    func testToolbarStaysHiddenWhileRotating() {
-        let app = XCUIApplication()
+    let rootView = window.descendants(matching: .other).element(matching: .other, identifier: "root view")
+    XCTAssert(rootView.exists)
 
-        let window = app.windows.element(boundBy: 0)
-        XCTAssert(window.exists)
+    let toolbarViewControllerView = rootView.children(matching: .other).element(matching: .other, identifier: "toolbar view controller view")
+    XCTAssert(toolbarViewControllerView.exists)
 
-        let rootView = window.descendants(matching: .other).element(matching: .other, identifier: "root view")
-        XCTAssert(rootView.exists)
+    let toolbar = toolbarViewControllerView.children(matching: .other).element(matching: .other, identifier: "toolbarView")
+    XCTAssert(toolbar.exists)
 
-        let toolbarViewControllerView = rootView.children(matching: .other).element(matching: .other, identifier: "toolbar view controller view")
-        XCTAssert(toolbarViewControllerView.exists)
+    XCTAssert(window.frame.contains(toolbar.frame), "At the start, the toolbar is on screen")
 
-        let toolbar = toolbarViewControllerView.children(matching: .other).element(matching: .other, identifier: "toolbarView")
-        XCTAssert(toolbar.exists)
+    let recordButtonButton = app.buttons["recordButton"]
+    recordButtonButton.tap()
 
-        XCTAssert(window.frame.contains(toolbar.frame), "At the start, the toolbar is on screen")
+    XCTAssertFalse(window.frame.contains(toolbar.frame), "After recording begins, the toolbar is hidden")
 
-        let recordButtonButton = app.buttons["recordButton"]
-        recordButtonButton.tap()
+    XCUIDevice.shared.orientation = .landscapeRight
+    XCUIDevice.shared.orientation = .portrait
 
-        XCTAssertFalse(window.frame.contains(toolbar.frame), "After recording begins, the toolbar is hidden")
+    XCTAssertFalse(window.frame.contains(toolbar.frame), "After rotation, the toolbar remains hidden")
 
-        XCUIDevice.shared.orientation = .landscapeRight
-        XCUIDevice.shared.orientation = .portrait
+    recordButtonButton.tap()
 
-        XCTAssertFalse(window.frame.contains(toolbar.frame), "After rotation, the toolbar remains hidden")
-
-        recordButtonButton.tap()
-
-        XCTAssertTrue(window.frame.contains(toolbar.frame), "Tapping the Record button again un-hides the toolbar")
-    }
-
+    XCTAssertTrue(window.frame.contains(toolbar.frame), "Tapping the Record button again un-hides the toolbar")
+  }
 }

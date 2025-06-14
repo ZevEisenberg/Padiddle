@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DEB447B5EAD97A77D4238EA /* Pods_PadiddleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */; };
-		20F5B9072C38CFDA50667728 /* Pods_PadiddleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7075CF19A72744D6B4916191 /* Pods_PadiddleUITests.framework */; };
 		5B218F4C221A60530065D25E /* CATransaction+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B218F4B221A60530065D25E /* CATransaction+Utilities.swift */; };
 		7ACE6A151C83966C001F7062 /* MathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE6A141C83966C001F7062 /* MathTests.swift */; };
 		7ACF44F01BD3060F00CE7FB2 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF44EF1BD3060F00CE7FB2 /* RootViewModel.swift */; };
@@ -52,7 +50,6 @@
 		CDA417721ED21B2C00C4E25D /* AccessibleToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA417711ED21B2C00C4E25D /* AccessibleToggleButton.swift */; };
 		CDA417731ED21B2C00C4E25D /* AccessibleToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA417711ED21B2C00C4E25D /* AccessibleToggleButton.swift */; };
 		CDAD89CF1C57CC3300E61908 /* PathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */; };
-		CDBB16871C6F19F600B7E0A2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBB16861C6F19F600B7E0A2 /* UIColor+Extensions.swift */; };
 		CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */; };
 		CDBF242A1BC5DCA900A0785C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */; };
 		CDBF24301BC5DCE900A0785C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF242E1BC5DCE900A0785C /* DrawingView.swift */; };
@@ -139,7 +136,6 @@
 		CDA3C34E1BDC8EF000D9D309 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		CDA417711ED21B2C00C4E25D /* AccessibleToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibleToggleButton.swift; sourceTree = "<group>"; };
 		CDAD89CE1C57CC3300E61908 /* PathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathExtensions.swift; sourceTree = "<group>"; };
-		CDBB16861C6F19F600B7E0A2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CDBF24251BC5D3FE00A0785C /* CounterRotatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CounterRotatingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDBF24291BC5DCA900A0785C /* DrawingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DrawingViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CDBF242E1BC5DCE900A0785C /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -162,6 +158,14 @@
 		E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CD63C30E2DFD2DD70045F7ED /* Experiments */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Experiments;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		CD114B6B1CB80066001BBF75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -178,13 +182,11 @@
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				1DEB447B5EAD97A77D4238EA /* Pods_PadiddleTests.framework in Frameworks */,
 			);
 		};
 		CD193CD51BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				20F5B9072C38CFDA50667728 /* Pods_PadiddleUITests.framework in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		CD193CB01BA4891500203B44 = {
 			isa = PBXGroup;
 			children = (
+				CD63C30E2DFD2DD70045F7ED /* Experiments */,
 				CD193CBB1BA4891500203B44 /* Padiddle */,
 				CD193CD01BA4891500203B44 /* PadiddleTests */,
 				CD193CDB1BA4891500203B44 /* PadiddleUITests */,
@@ -237,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				CD8B3E391EC7A09C006A0C85 /* Application */,
-				CDDA9DD71C5310C100D9EF19 /* Constants */,
 				CDA035E71BA8AED50023F290 /* Model */,
 				CD5D4EFF1BACA0FE00D4AABB /* Utilities */,
 				CDA035E01BA8AEAA0023F290 /* View */,
@@ -369,14 +371,6 @@
 			path = Drawing;
 			sourceTree = "<group>";
 		};
-		CDDA9DD71C5310C100D9EF19 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				CDBB16861C6F19F600B7E0A2 /* UIColor+Extensions.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -402,7 +396,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
-				7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */,
+				CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */,
 				CD193CB51BA4891500203B44 /* Sources */,
 				CD193CB61BA4891500203B44 /* Frameworks */,
 				CD193CB71BA4891500203B44 /* Resources */,
@@ -549,15 +543,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7ACF44EE1BD1B64500CE7FB2 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			name = SwiftLint;
-			shellPath = /bin/sh;
-			shellScript = (
-				"# TODO",
-				"",
-			);
-		};
 		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			name = "Build Number";
@@ -579,6 +564,18 @@
 				"fi",
 				"echo \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
 				"",
+				"",
+			);
+		};
+		CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			name = "Check Dev Environment for Common Errors";
+			shellPath = /bin/sh;
+			shellScript = (
+				"\"${SRCROOT}/Scripts/environment-check.sh\"",
+				"",
+				"",
 			);
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
@@ -589,6 +586,8 @@
 				"if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then",
 				"    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/",
 				"fi",
+				"",
+				"",
 				"",
 			);
 		};
@@ -632,7 +631,6 @@
 				CDBF24261BC5D3FE00A0785C /* CounterRotatingViewController.swift in Sources */,
 				CDBF24371BC5F56600A0785C /* ImageExtensions.swift in Sources */,
 				CDDA9DDD1C53169F00D9EF19 /* HelpImageHandler.swift in Sources */,
-				CDBB16871C6F19F600B7E0A2 /* UIColor+Extensions.swift in Sources */,
 				CD7519841ECD271D00B49272 /* SpinManager.swift in Sources */,
 				CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */,
 				CDA3C34F1BDC8EF000D9D309 /* Math.swift in Sources */,
@@ -869,6 +867,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -891,6 +890,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

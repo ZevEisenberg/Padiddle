@@ -4,6 +4,8 @@ xcuserdata
 .DS_Store
 Graphics/Export
 
+Scripts/.bin
+
 # fastlane specific
 fastlane/report.xml
 fastlane/screenshots

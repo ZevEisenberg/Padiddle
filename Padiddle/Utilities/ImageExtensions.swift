@@ -1,170 +1,165 @@
-//
-//  ImageExtensions.swift
-//  Padiddle
-//
-//  Created by Zev Eisenberg on 10/7/15.
-//  Copyright © 2015 Zev Eisenberg. All rights reserved.
-//
-
 import UIKit
 
 extension UIImage {
+  class func ellipseImage(color: UIColor, size: CGSize, borderWidth: CGFloat, borderColor: UIColor) -> UIImage {
+    // Build a rect of appropriate size at origin (1,1)
+    let fullRect = CGRect(origin: .zero, size: size)
+    let insetRect = fullRect.insetBy(dx: borderWidth / 2.0, dy: borderWidth / 2.0)
 
-    class func ellipseImage(color: UIColor, size: CGSize, borderWidth: CGFloat, borderColor: UIColor) -> UIImage {
-        // Build a rect of appropriate size at origin (1,1)
-        let fullRect = CGRect(origin: .zero, size: size)
-        let insetRect = fullRect.insetBy(dx: borderWidth / 2.0, dy: borderWidth / 2.0)
+    UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+    let currentContext = UIGraphicsGetCurrentContext()
 
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        let currentContext = UIGraphicsGetCurrentContext()
+    // Add ellipse for masking
+    currentContext?.addEllipse(in: insetRect)
 
-        // Add ellipse for masking
-        currentContext?.addEllipse(in: insetRect)
+    // Save the graphics state so we can undo the clip to draw the stroke
+    currentContext?.saveGState()
 
-        // Save the graphics state so we can undo the clip to draw the stroke
-        currentContext?.saveGState()
+    // Clip the context by the current path to get rid of
+    // the part of the stroke that drew outside the line
+    currentContext?.clip()
 
-        // Clip the context by the current path to get rid of
-        // the part of the stroke that drew outside the line
-        currentContext?.clip()
+    // Set the fill color
+    currentContext?.setFillColor(color.cgColor)
 
-        // Set the fill color
-        currentContext?.setFillColor(color.cgColor)
+    // Fill the color
+    currentContext?.fill(fullRect)
 
-        // Fill the color
-        currentContext?.fill(fullRect)
+    // Undo the clip so the stroke draws inside and out
+    currentContext?.restoreGState()
 
-        // Undo the clip so the stroke draws inside and out
-        currentContext?.restoreGState()
+    // Set up the stroke
+    currentContext?.setStrokeColor(borderColor.cgColor)
+    currentContext?.setLineWidth(borderWidth)
 
-        // Set up the stroke
-        currentContext?.setStrokeColor(borderColor.cgColor)
-        currentContext?.setLineWidth(borderWidth)
+    // Stroke the color
+    currentContext?.strokeEllipse(in: insetRect)
 
-        // Stroke the color
-        currentContext?.strokeEllipse(in: insetRect)
+    // Snap the picture and close the context
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
 
-        // Snap the picture and close the context
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+    return image!
+  }
 
-        return image!
+  func imageRotatedByRadians(_ radians: CGFloat) -> UIImage {
+    // Don't optimize out the radians == 0 case by just returning self.
+    // It results in an image that is flipped vertically.
+    // I likely have a double rotation somewhere.
+
+    var rotatedSize: CGSize
+    if radians == .pi || radians == 0 {
+      rotatedSize = size
+    } else {
+      rotatedSize = CGSize(width: size.height, height: size.width)
     }
 
-    func imageRotatedByRadians(_ radians: CGFloat) -> UIImage {
-        // Don't optimize out the radians == 0 case by just returning self.
-        // It results in an image that is flipped vertically.
-        // I likely have a double rotation somewhere.
+    // Scale the size so it represents pixels instead of points
+    rotatedSize.width *= scale
+    rotatedSize.height *= scale
 
-        var rotatedSize: CGSize
-        if radians == .pi || radians == 0 {
-            rotatedSize = self.size
-        }
-        else {
-            rotatedSize = CGSize(width: size.height, height: size.width)
-        }
+    let context = createContext()
 
-        // Scale the size so it represents pixels instead of points
-        rotatedSize.width *= scale
-        rotatedSize.height *= scale
+    // Move the origin to the middle of the image so we will rotate and scale around the center.
+    context?.translateBy(x: size.width * scale / 2, y: size.height * scale / 2)
 
-        let context = createContext()
+    // Rotate the image context
+    context?.rotate(by: radians)
 
-        // Move the origin to the middle of the image so we will rotate and scale around the center.
-        context?.translateBy(x: size.width * scale / 2, y: size.height * scale / 2)
+    // Now, draw the rotated/scaled image into the context
+    let imageRect = CGRect(
+      x: -rotatedSize.width / 2,
+      y: -rotatedSize.height / 2,
+      width: rotatedSize.width,
+      height: rotatedSize.height
+    )
 
-        // Rotate the image context
-        context?.rotate(by: radians)
+    context?.draw(cgImage!, in: imageRect)
 
-        // Now, draw the rotated/scaled image into the context
-        let imageRect = CGRect(
-            x: -rotatedSize.width / 2,
-            y: -rotatedSize.height / 2,
-            width: rotatedSize.width,
-            height: rotatedSize.height)
+    let newImage = context?.makeImage()!
 
-        context?.draw(self.cgImage!, in: imageRect)
+    let retImage = UIImage(cgImage: newImage!, scale: scale, orientation: .up)
 
-        let newImage = context?.makeImage()!
+    return retImage
+  }
 
-        let retImage = UIImage(cgImage: newImage!, scale: scale, orientation: .up)
+  var imageFlippedVertically: UIImage {
+    imageScaledBy(CGVector(dx: 1, dy: -1))
+  }
 
-        return retImage
-    }
+  class func recordButtonImage() -> UIImage {
+    let backgroundImage = UIImage(resource: .recordButtonBack)
+    let foregroundImage = UIImage(resource: .recordButtonFront)
 
-    var imageFlippedVertically: UIImage {
-        imageScaledBy(CGVector(dx: 1, dy: -1))
-    }
+    let contextSize = CGSize.max(foregroundImage.size, backgroundImage.size)
+    UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)
 
-    class func recordButtonImage() -> UIImage {
-        let backgroundImage = #imageLiteral(resourceName: "RecordButtonBack")
-        let foregroundImage = #imageLiteral(resourceName: "RecordButtonFront")
+    let backgroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
+    let foregroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
 
-        let contextSize = CGSize.max(foregroundImage.size, backgroundImage.size)
-        UIGraphicsBeginImageContextWithOptions(contextSize, false, 0)
+    let contextRect = CGRect(origin: .zero, size: contextSize)
 
-        let backgroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
-        let foregroundImageBounds = CGRect(origin: .zero, size: backgroundImage.size)
+    let backgroundImageFrame = contextRect.centerSmallerRect(backgroundImageBounds)
+    let foregroundImageFrame = contextRect.centerSmallerRect(foregroundImageBounds)
 
-        let contextRect = CGRect(origin: .zero, size: contextSize)
+    backgroundImage.draw(in: backgroundImageFrame)
+    foregroundImage.draw(in: foregroundImageFrame)
 
-        let backgroundImageFrame = contextRect.centerSmallerRect(backgroundImageBounds)
-        let foregroundImageFrame = contextRect.centerSmallerRect(foregroundImageBounds)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
+  }
 
-        backgroundImage.draw(in: backgroundImageFrame)
-        foregroundImage.draw(in: foregroundImageFrame)
+  private func imageScaledBy(_ scaleVector: CGVector) -> UIImage {
+    let bitmapBytesPerRow = size_t(size.width) * bytesPerPixel * size_t(scale)
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
+    let bitmap = CGContext(
+      data: nil,
+      width: Int(size.width * scale),
+      height: Int(size.height * scale),
+      bitsPerComponent: bitsPerComponent,
+      bytesPerRow: bitmapBytesPerRow,
+      space: colorSpace,
+      bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
+    )
 
-    private func imageScaledBy(_ scaleVector: CGVector) -> UIImage {
-        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
+    // Move the origin to the middle of the image so we will rotate and scale around the center.
+    bitmap?.translateBy(x: size.width * scale / 2, y: size.height * scale / 2)
 
-        let bitmap = CGContext(data: nil,
-            width: Int(size.width * scale),
-            height: Int(size.height * scale),
-            bitsPerComponent: bitsPerComponent,
-            bytesPerRow: bitmapBytesPerRow,
-            space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
+    bitmap?.scaleBy(x: scaleVector.dx, y: scaleVector.dy)
 
-        // Move the origin to the middle of the image so we will rotate and scale around the center.
-        bitmap?.translateBy(x: size.width * scale / 2, y: size.height * scale / 2)
+    // Now, draw the rotated/scaled image into the context
+    let drawRect = CGRect(
+      x: -size.width * scale / 2,
+      y: -size.height * scale / 2,
+      width: size.width * scale,
+      height: size.height * scale
+    )
+    bitmap?.draw(cgImage!, in: drawRect)
 
-        bitmap?.scaleBy(x: scaleVector.dx, y: scaleVector.dy)
+    let newImage = bitmap?.makeImage()!
 
-        // Now, draw the rotated/scaled image into the context
-        let drawRect = CGRect(
-            x: -size.width * scale / 2,
-            y: -size.height * scale / 2,
-            width: size.width * scale,
-            height: size.height * scale)
-        bitmap?.draw(self.cgImage!, in: drawRect)
+    let retImage = UIImage(cgImage: newImage!, scale: scale, orientation: .up)
 
-        let newImage = bitmap?.makeImage()!
+    return retImage
+  }
 
-        let retImage = UIImage(cgImage: newImage!, scale: scale, orientation: .up)
+  private func createContext() -> CGContext? {
+    // Create the bitmap context
+    let bitmapBytesPerRow = size_t(size.width) * bytesPerPixel * size_t(scale)
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
 
-        return retImage
-    }
+    let context = CGContext(
+      data: nil,
+      width: Int(size.width * scale),
+      height: Int(size.height * scale),
+      bitsPerComponent: bitsPerComponent,
+      bytesPerRow: bitmapBytesPerRow,
+      space: colorSpace,
+      bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
+    )
 
-    private func createContext() -> CGContext? {
-        // Create the bitmap context
-        let bitmapBytesPerRow: size_t = size_t(size.width) * bytesPerPixel * size_t(scale)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-
-        let context = CGContext(data: nil,
-            width: Int(size.width * scale),
-            height: Int(size.height * scale),
-            bitsPerComponent: bitsPerComponent,
-            bytesPerRow: bitmapBytesPerRow,
-            space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
-
-        return context
-    }
-
+    return context
+  }
 }
