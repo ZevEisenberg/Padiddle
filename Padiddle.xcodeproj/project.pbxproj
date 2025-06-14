@@ -7,16 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD193CBC1BA4891500203B44 /* AppDelegate.swift */; };
-		CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC31BA4891500203B44 /* Assets.xcassets */; };
-		CD2BE7A71D1E206400A06FC3 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDA9DCC1C5300CD00D9EF19 /* help.html */; };
-		CD2BE7A91D1E206B00A06FC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */; };
 		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
-		CD703CFD1D3346C200221364 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD703CFC1D3346C200221364 /* Settings.bundle */; };
 		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
 		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
-		CDD55DA72DFCE235009FF157 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDD55DA62DFCE235009FF157 /* InfoPlist.xcstrings */; };
-		CDD55DA92DFCE235009FF157 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CDD55DA82DFCE235009FF157 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,43 +41,12 @@
 		72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD193CBC1BA4891500203B44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD193CC31BA4891500203B44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CD193CC61BA4891500203B44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CD193CC81BA4891500203B44 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD4010651D333A1D0004F411 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/help.html; sourceTree = "<group>"; };
-		CD703CFC1D3346C200221364 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		CDD55DA52DFCE235009FF157 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
-		CDD55DA62DFCE235009FF157 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
-		CDD55DA82DFCE235009FF157 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		CDDA9DCD1C5300CD00D9EF19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/help.html; sourceTree = "<group>"; };
-		CDDA9DD01C5300FF00D9EF19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/help.html; sourceTree = "<group>"; };
-		CDDA9DD21C53011000D9EF19 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/help.html"; sourceTree = "<group>"; };
-		CDDA9DD31C53011100D9EF19 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/help.html"; sourceTree = "<group>"; };
-		DD49E49A1F6AF6B500387B7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/help.html; sourceTree = "<group>"; };
 		E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CD4E0A532DFD561000FBBC4C /* Exceptions for "Utilities" folder in "PadiddleTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AccessibilityIdentifierExtensions.swift,
-				ArrayExtensions.swift,
-				Geometry.swift,
-				Math.swift,
-			);
-			target = CD193CCC1BA4891500203B44 /* PadiddleTests */;
-		};
-		CD4E0A712DFD561600FBBC4C /* Exceptions for "View" folder in "PadiddleTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AccessibleToggleButton.swift,
-			);
-			target = CD193CCC1BA4891500203B44 /* PadiddleTests */;
-		};
 		CD4E0A882DFD562200FBBC4C /* Exceptions for "PadiddleTests" folder in "PadiddleTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -107,40 +69,27 @@
 			);
 			target = CD114B6D1CB80066001BBF75 /* Screenshots */;
 		};
+		CD4E0B2A2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "Padiddle" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CD193CB81BA4891500203B44 /* Padiddle */;
+		};
+		CD4E0B2B2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "PadiddleTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utilities/AccessibilityIdentifierExtensions.swift,
+				Utilities/ArrayExtensions.swift,
+				Utilities/Geometry.swift,
+				Utilities/Math.swift,
+				View/AccessibleToggleButton.swift,
+			);
+			target = CD193CCC1BA4891500203B44 /* PadiddleTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		CD4E0A2A2DFD560400FBBC4C /* Application */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		CD4E0A312DFD560C00FBBC4C /* Model */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CD4E0A422DFD561000FBBC4C /* Utilities */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				CD4E0A532DFD561000FBBC4C /* Exceptions for "Utilities" folder in "PadiddleTests" target */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		CD4E0A632DFD561600FBBC4C /* View */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				CD4E0A712DFD561600FBBC4C /* Exceptions for "View" folder in "PadiddleTests" target */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CD4E0A772DFD561D00FBBC4C /* View Model */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "View Model";
-			sourceTree = "<group>";
-		};
 		CD4E0A822DFD562100FBBC4C /* PadiddleTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -163,6 +112,15 @@
 				CD4E0ABD2DFD565C00FBBC4C /* Exceptions for "Screenshots" folder in "Screenshots" target */,
 			);
 			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		CD4E0AF92DFD56B100FBBC4C /* Padiddle */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CD4E0B2A2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "Padiddle" target */,
+				CD4E0B2B2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "PadiddleTests" target */,
+			);
+			path = Padiddle;
 			sourceTree = "<group>";
 		};
 		CD63C30E2DFD2DD70045F7ED /* Experiments */ = {
@@ -213,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				CD63C30E2DFD2DD70045F7ED /* Experiments */,
-				CD193CBB1BA4891500203B44 /* Padiddle */,
+				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
 				CD4E0A822DFD562100FBBC4C /* PadiddleTests */,
 				CD4E0A942DFD563B00FBBC4C /* PadiddleUITests */,
 				CD193CBA1BA4891500203B44 /* Products */,
@@ -231,26 +189,6 @@
 				CD114B6E1CB80066001BBF75 /* Screenshots.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CD193CBB1BA4891500203B44 /* Padiddle */ = {
-			isa = PBXGroup;
-			children = (
-				CD4E0A2A2DFD560400FBBC4C /* Application */,
-				CD4E0A312DFD560C00FBBC4C /* Model */,
-				CD4E0A422DFD561000FBBC4C /* Utilities */,
-				CD4E0A632DFD561600FBBC4C /* View */,
-				CD4E0A772DFD561D00FBBC4C /* View Model */,
-				CD193CBC1BA4891500203B44 /* AppDelegate.swift */,
-				CD193CC31BA4891500203B44 /* Assets.xcassets */,
-				CD193CC81BA4891500203B44 /* Info.plist */,
-				CDD55DA62DFCE235009FF157 /* InfoPlist.xcstrings */,
-				CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */,
-				CDD55DA82DFCE235009FF157 /* Localizable.xcstrings */,
-				CD703CFC1D3346C200221364 /* Settings.bundle */,
-				CDDA9DCC1C5300CD00D9EF19 /* help.html */,
-			);
-			path = Padiddle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,11 +226,7 @@
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
-				CD4E0A2A2DFD560400FBBC4C /* Application */,
-				CD4E0A312DFD560C00FBBC4C /* Model */,
-				CD4E0A422DFD561000FBBC4C /* Utilities */,
-				CD4E0A632DFD561600FBBC4C /* View */,
-				CD4E0A772DFD561D00FBBC4C /* View Model */,
+				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
 			);
 			name = Padiddle;
 			packageProductDependencies = (
@@ -418,12 +352,6 @@
 		CD193CB71BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				CD2BE7A71D1E206400A06FC3 /* help.html in Resources */,
-				CDD55DA72DFCE235009FF157 /* InfoPlist.xcstrings in Resources */,
-				CDD55DA92DFCE235009FF157 /* Localizable.xcstrings in Resources */,
-				CD703CFD1D3346C200221364 /* Settings.bundle in Resources */,
-				CD2BE7A91D1E206B00A06FC3 /* LaunchScreen.storyboard in Resources */,
-				CD193CC41BA4891500203B44 /* Assets.xcassets in Resources */,
 			);
 		};
 		CD193CCB1BA4891500203B44 /* Resources */ = {
@@ -504,7 +432,6 @@
 		CD193CB51BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				CD193CBD1BA4891500203B44 /* AppDelegate.swift in Sources */,
 			);
 		};
 		CD193CC91BA4891500203B44 /* Sources */ = {
@@ -536,33 +463,6 @@
 			targetProxy = CD193CD91BA4891500203B44 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CD193CC51BA4891500203B44 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD193CC61BA4891500203B44 /* Base */,
-				CDD55DA52DFCE235009FF157 /* mul */,
-			);
-			name = LaunchScreen.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		CDDA9DCC1C5300CD00D9EF19 /* help.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CDDA9DCD1C5300CD00D9EF19 /* Base */,
-				CDDA9DD01C5300FF00D9EF19 /* fr */,
-				CD4010651D333A1D0004F411 /* it */,
-				DD49E49A1F6AF6B500387B7F /* nl */,
-				CDDA9DD21C53011000D9EF19 /* zh-Hans */,
-				CDDA9DD31C53011100D9EF19 /* zh-Hant */,
-			);
-			name = help.html;
-			path = .;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CD114B751CB80066001BBF75 /* Debug configuration for PBXNativeTarget "Screenshots" */ = {
