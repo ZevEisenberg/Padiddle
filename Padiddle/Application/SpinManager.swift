@@ -79,7 +79,7 @@ extension SpinManager {
 
   override var next: UIResponder? {
     #if targetEnvironment(simulator)
-    UIApplication.shared.keyWindow
+    UIApplication.shared.connectedScenes.first as? UIWindowScene
     #else
     nil
     #endif
