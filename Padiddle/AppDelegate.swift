@@ -41,10 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootViewController = RootViewController(viewModel: rootViewModel, pinnedViewController: drawingViewController!, rotatingViewController: toolbarViewController!)
     rootViewController.view.accessibilityIdentifier = "root view"
 
-    window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = rootViewController
-    window?.makeKeyAndVisible()
-    window?.accessibilityIdentifier = "main window"
+    if let scene = (application.connectedScenes.first as? UIWindowScene) {
+      window = UIWindow(windowScene: scene)
+      window?.rootViewController = rootViewController
+      window?.makeKeyAndVisible()
+      window?.accessibilityIdentifier = "main window"
+    } else {
+      Log.error("Could not find UIWindowScene in \(application.connectedScenes)")
+    }
 
     return true
   }
