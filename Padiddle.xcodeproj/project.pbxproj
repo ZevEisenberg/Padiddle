@@ -407,13 +407,15 @@
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
+			inputPaths = (
+				"$(SRCROOT)/Screenshots",
+			);
 			name = "Copy Screenshot Images If Needed";
 			shellPath = /bin/sh;
 			shellScript = (
 				"set -ex",
 				"set -o pipefail",
 				"",
-				"echo \"\\$FASTLANE_SNAPSHOT is ${FASTLANE_SNAPSHOT}\"",
 				"if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then",
 				"    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/",
 				"fi",
