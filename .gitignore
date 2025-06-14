@@ -5,14 +5,14 @@ xcuserdata
 Graphics/Export
 
 # fastlane specific
-*/fastlane/report.xml
-*/fastlane/screenshots
-*/fastlane/screenshots_for_website
+fastlane/report.xml
+fastlane/screenshots
+fastlane/screenshots_for_website
 
 # deliver temporary files
-*/fastlane/Preview.html
+fastlane/Preview.html
 *.ipa
 *.dSYM.zip
 
 # scan temporary files
-*/fastlane/test_output
+fastlane/test_output
