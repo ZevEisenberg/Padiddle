@@ -32,8 +32,8 @@ class ToolbarViewModel {
     rootViewModel.clearTapped()
   }
 
-  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
-    rootViewModel.getSnapshotImage(interfaceOrientation, completion: completion)
+  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
+    rootViewModel.getSnapshotImage(interfaceOrientation)
   }
 }
 

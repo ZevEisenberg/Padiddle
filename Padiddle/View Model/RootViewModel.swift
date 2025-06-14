@@ -46,11 +46,11 @@ class RootViewModel {
     recordingDelegates.append(Weak(value: delegate))
   }
 
-  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
-    guard let drawingViewController = drawingViewController else {
+  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
+    guard let drawingViewController else {
       fatalError("Not having a drawing view controller would represent a programmer error")
     }
-    drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
+    return drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation)
   }
 
   func clearTapped() {

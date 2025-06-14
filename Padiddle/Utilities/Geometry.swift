@@ -49,8 +49,7 @@ extension CGRect {
 }
 
 extension CGPoint {
-  var screenPixelsIntegral: CGPoint {
-    let screenScale = UIScreen.main.scale
+  func screenPixelsIntegral(forScreenScale screenScale: CGFloat) -> CGPoint {
     var newX = x
     var newY = y
 

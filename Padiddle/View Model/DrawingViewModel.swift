@@ -134,22 +134,16 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
     return rotatedImage
   }
 
-  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
-    DispatchQueue.global(qos: .default).async {
-      let image = self.snapshot(interfaceOrientation)
+  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
+    let image = snapshot(interfaceOrientation)
 
-      // Share raw PNG data if we can, because it results in sharing a PNG image,
-      // which is desirable for the large chunks of color in this app.
-      if let pngData = image.pngData() {
-        DispatchQueue.main.async {
-          completion(.png(pngData))
-        }
-      } else {
-        // If there was a problem, fall back to saving the original image
-        DispatchQueue.main.async {
-          completion(.image(image))
-        }
-      }
+    // Share raw PNG data if we can, because it results in sharing a PNG image,
+    // which is desirable for the large chunks of color in this app.
+    if let pngData = image.pngData() {
+      return .png(pngData)
+    } else {
+      // If there was a problem, fall back to saving the original image
+      return .image(image)
     }
   }
 

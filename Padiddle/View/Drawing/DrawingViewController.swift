@@ -65,8 +65,8 @@ class DrawingViewController: CounterRotatingViewController {
     viewModel.startMotionUpdates()
   }
 
-  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, completion: @escaping (EitherImage) -> Void) {
-    viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation, completion: completion)
+  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
+    viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation)
   }
 
   func clearTapped() {
@@ -89,7 +89,7 @@ extension DrawingViewController: DrawingViewModelDelegate {
   func drawingViewModelUpdatedLocation(_ newLocation: CGPoint) {
     let convertedLocation = viewModel.convertContextPointToViewCoordinates(newLocation)
 
-    nib.center = convertedLocation.screenPixelsIntegral
+    nib.center = convertedLocation.screenPixelsIntegral(forScreenScale: traitCollection.displayScale)
 
     if viewModel.isDrawing {
       if viewModel.needToMoveNibToNewStartLocation {

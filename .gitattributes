@@ -1,1 +1,2 @@
 *.sketch diff=sketchtool
+*.strings diff=localizablestrings

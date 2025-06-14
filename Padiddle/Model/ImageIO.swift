@@ -12,32 +12,30 @@ enum ImageIO {
         }
       }
 
-      DispatchQueue.global(qos: .default).async {
-        defer {
-          if let task = self.backgroundSaveTask {
-            app.endBackgroundTask(task)
-          }
-          self.backgroundSaveTask = .invalid
+      defer {
+        if let task = self.backgroundSaveTask {
+          app.endBackgroundTask(task)
         }
+        self.backgroundSaveTask = .invalid
+      }
 
-        guard let imageData = image.pngData() else {
-          Log.error("Could not generate PNG to save image: \(image)")
-          return
-        }
+      guard let imageData = image.pngData() else {
+        Log.error("Could not generate PNG to save image: \(image)")
+        return
+      }
 
-        let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
+      let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
-        do {
-          try imageData.write(to: imageURL, options: [.atomic])
-        } catch {
-          Log.error("Error writing to file: \(error)")
-        }
+      do {
+        try imageData.write(to: imageURL, options: [.atomic])
+      } catch {
+        Log.error("Error writing to file: \(error)")
+      }
 
-        do {
-          try addSkipBackupAttributeToItem(atUrl: imageURL)
-        } catch {
-          Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
-        }
+      do {
+        try addSkipBackupAttributeToItem(atUrl: imageURL)
+      } catch {
+        Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
       }
     }
   }

@@ -1,8 +1,8 @@
 import Anchorage
 import UIKit
 
-extension UIInterfaceOrientation: CustomStringConvertible {
-  public var description: String {
+public extension UIInterfaceOrientation {
+  var readableName: String {
     switch self {
     case .unknown:
       return "Unknown"
@@ -34,7 +34,7 @@ func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrienta
   case .landscapeRight:
     newTransform = CGAffineTransform(rotationAngle: -.pi / 2)
   @unknown default:
-    assertionFailure("Unknown status bar orientation \(statusBarOrientation)")
+    assertionFailure("Unknown status bar orientation \(statusBarOrientation.readableName)")
     newTransform = .identity
   }
   return newTransform

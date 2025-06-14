@@ -303,31 +303,29 @@ extension ToolbarViewController {
 
     // Get the snapshot image async
     let interfaceOrientation = UIApplication.shared.statusBarOrientation
-    viewModel.getSnapshotImage(interfaceOrientation) { image in
-      assert(Thread.isMainThread)
+    let image = viewModel.getSnapshotImage(interfaceOrientation)
 
-      let activityViewController = UIActivityViewController(activityItems: [image.valueForSharing], applicationActivities: nil)
-      activityViewController.excludedActivityTypes = [.assignToContact]
-      activityViewController.modalPresentationStyle = .popover
-      activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, _, activityError: Error?) in
-        if completed {
-          if let activityType = activityType {
-            Log.info("shared via \(activityType)")
-          } else {
-            Log.info("shared via unknown sharing type")
-          }
-        } else if let error = activityError {
-          Log.error("Error sharing: \(error)")
+    let activityViewController = UIActivityViewController(activityItems: [image.valueForSharing], applicationActivities: nil)
+    activityViewController.excludedActivityTypes = [.assignToContact]
+    activityViewController.modalPresentationStyle = .popover
+    activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, _, activityError: Error?) in
+      if completed {
+        if let activityType = activityType {
+          Log.info("shared via \(activityType)")
         } else {
-          Log.info("Sharing did not complete, but there was no error")
+          Log.info("shared via unknown sharing type")
         }
+      } else if let error = activityError {
+        Log.error("Error sharing: \(error)")
+      } else {
+        Log.info("Sharing did not complete, but there was no error")
       }
-
-      self.present(activityViewController, animated: true, completion: {
-        restoreShareButton(activityViewController)
-      })
-      self.configurePopover(viewController: activityViewController, sourceView: activityIndicator)
     }
+
+    present(activityViewController, animated: true, completion: {
+      restoreShareButton(activityViewController)
+    })
+    configurePopover(viewController: activityViewController, sourceView: activityIndicator)
   }
 
   @objc func helpTapped() {

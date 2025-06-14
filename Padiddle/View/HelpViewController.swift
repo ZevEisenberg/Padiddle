@@ -60,16 +60,16 @@ extension HelpViewController: WKNavigationDelegate {
     }
   }
 
-  func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
     switch navigationAction.navigationType {
     case .linkActivated:
       if let url = navigationAction.request.url {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
       }
-      decisionHandler(.cancel)
+      return .cancel
     case .other,
          .reload:
-      decisionHandler(.allow)
+      return .allow
     default:
       fatalError("Unexpected navigation type \(navigationAction.navigationType)")
     }
