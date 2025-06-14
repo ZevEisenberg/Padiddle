@@ -53,7 +53,7 @@ class CounterRotatingViewController: UIViewController {
     counterRotatingView.centerYAnchor == view.centerYAnchor
     counterRotatingView.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
 
-    counterRotatingView.transform = transformForStatusBarOrientation(UIApplication.shared.statusBarOrientation)
+    counterRotatingView.transform = transformForStatusBarOrientation(view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait)
   }
 
   override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -61,7 +61,7 @@ class CounterRotatingViewController: UIViewController {
     let targetTransform = coordinator.targetTransform
 
     // status bar orientation right before this rotation occurred
-    let statusBarTransform = transformForStatusBarOrientation(UIApplication.shared.statusBarOrientation)
+    let statusBarTransform = transformForStatusBarOrientation(view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait)
 
     let newTransform = targetTransform.inverted().concatenating(statusBarTransform)
 

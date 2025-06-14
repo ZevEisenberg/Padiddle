@@ -274,7 +274,7 @@ extension ToolbarViewController {
     toolbarStackView.isUserInteractionEnabled = false
     recordButton.isUserInteractionEnabled = false
 
-    let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     activityIndicator.color = UIColor(resource: .accent)
     activityIndicator.startAnimating()
 
@@ -302,7 +302,7 @@ extension ToolbarViewController {
     }
 
     // Get the snapshot image async
-    let interfaceOrientation = UIApplication.shared.statusBarOrientation
+    let interfaceOrientation = view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait
     let image = viewModel.getSnapshotImage(interfaceOrientation)
 
     let activityViewController = UIActivityViewController(activityItems: [image.valueForSharing], applicationActivities: nil)
