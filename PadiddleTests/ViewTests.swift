@@ -1,11 +1,15 @@
-import XCTest
+import Testing
+import UIKit
 
-class ViewTests: XCTestCase {
-  func testAccessibilityIdentifiers() {
+@Suite
+@MainActor
+struct ViewTests {
+  @Test
+  func accessibilityIdentifiers() {
     let view = UIView(axId: "foobar")
-    XCTAssertEqual(view.accessibilityIdentifier, "foobar")
+    #expect(view.accessibilityIdentifier == "foobar")
 
     let button = UIButton(type: .system, axId: "foobar")
-    XCTAssertEqual(button.accessibilityIdentifier, "foobar")
+    #expect(button.accessibilityIdentifier == "foobar")
   }
 }

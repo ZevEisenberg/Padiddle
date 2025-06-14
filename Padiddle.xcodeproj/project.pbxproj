@@ -34,6 +34,7 @@
 		CD5D4F031BACAA0000D4AABB /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F021BACAA0000D4AABB /* PickerCell.swift */; };
 		CD5D4F091BACB0E700D4AABB /* ToolbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F081BACB0E700D4AABB /* ToolbarViewModel.swift */; };
 		CD5D4F0B1BACB18200D4AABB /* SpiralImageMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5D4F0A1BACB18200D4AABB /* SpiralImageMaker.swift */; };
+		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD703CFD1D3346C200221364 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD703CFC1D3346C200221364 /* Settings.bundle */; };
 		CD7519841ECD271D00B49272 /* SpinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7519831ECD271D00B49272 /* SpinManager.swift */; };
 		CD7519871ECD3F0D00B49272 /* StartHereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7519861ECD3F0D00B49272 /* StartHereView.swift */; };
@@ -182,6 +183,7 @@
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				CD657F6B2DFD31C300215549 /* RealModule in Frameworks */,
 			);
 		};
 		CD193CD51BA4891500203B44 /* Frameworks */ = {
@@ -428,6 +430,9 @@
 				CD193CCF1BA4891500203B44 /* PBXTargetDependency */,
 			);
 			name = PadiddleTests;
+			packageProductDependencies = (
+				CD657F6A2DFD31C300215549 /* RealModule */,
+			);
 			productName = PadiddleTests;
 			productReference = CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -499,6 +504,7 @@
 			packageReferences = (
 				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
 				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
+				CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
@@ -565,6 +571,7 @@
 				"echo \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
 				"",
 				"",
+				"",
 			);
 		};
 		CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */ = {
@@ -574,6 +581,7 @@
 			shellPath = /bin/sh;
 			shellScript = (
 				"\"${SRCROOT}/Scripts/environment-check.sh\"",
+				"",
 				"",
 				"",
 			);
@@ -586,6 +594,7 @@
 				"if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then",
 				"    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/",
 				"fi",
+				"",
 				"",
 				"",
 				"",
@@ -1027,6 +1036,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-numerics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Rightpoint/BonMot.git";
@@ -1046,6 +1063,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD657F6A2DFD31C300215549 /* RealModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = RealModule;
+		};
 		CD9C7B8E24BF63290087FE69 /* BonMot */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */;

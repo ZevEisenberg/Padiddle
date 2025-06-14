@@ -123,7 +123,7 @@ extension ToolbarViewController {
       helpButton,
     ]
 
-    let stackSubViews = spacerViews.interleave(with: buttons)
+    let stackSubViews = spacerViews.interleaved(with: buttons)
 
     for stackSubView in stackSubViews {
       toolbarStackView.addArrangedSubview(stackSubView)

@@ -1,43 +1,49 @@
-import XCTest
+import CoreGraphics
+import RealModule
+import Testing
 
 @testable import Padiddle
 
 let accuracy = 0.00001
 
-class PadiddleTests: XCTestCase {
-  func testDistanceBetweenPoints() {
+@Suite
+struct GeometryTests {
+  @Test
+  func distanceBetweenPoints() {
     let p1 = CGPoint.zero
-    XCTAssertEqual(Double(CGPoint.distanceBetween(p1, p1)), 0.0, accuracy: accuracy)
+    #expect(Double(CGPoint.distanceBetween(p1, p1)).isApproximatelyEqual(to: 0.0, absoluteTolerance: accuracy))
 
     let p2 = CGPoint(x: 10, y: 10)
     let p3 = CGPoint(x: 13, y: 14)
-    XCTAssertEqual(Double(CGPoint.distanceBetween(p2, p3)), 5.0, accuracy: accuracy)
+    #expect(Double(CGPoint.distanceBetween(p2, p3)).isApproximatelyEqual(to: 5.0, absoluteTolerance: accuracy))
 
     let p4 = CGPoint(x: -8, y: -2000)
     let p5 = CGPoint(x: -13, y: -2012)
-    XCTAssertEqual(Double(CGPoint.distanceBetween(p4, p5)), 13.0, accuracy: accuracy)
+    #expect(Double(CGPoint.distanceBetween(p4, p5)).isApproximatelyEqual(to: 13.0, absoluteTolerance: accuracy))
 
     let p6 = CGPoint.zero
-    let p7 = CGPoint(x: 1, y: Darwin.sqrt(3))
-    XCTAssertEqual(Double(CGPoint.distanceBetween(p6, p7)), 2.0, accuracy: accuracy)
+    let p7 = CGPoint(x: 1, y: sqrt(3))
+    #expect(Double(CGPoint.distanceBetween(p6, p7)).isApproximatelyEqual(to: 2.0, absoluteTolerance: accuracy))
   }
 
-  func testCGSizeMax() {
+  @Test
+  func cgSizeMax() {
     let zeroMax = CGSize.max(.zero, .zero)
-    XCTAssertEqual(zeroMax, .zero)
+    #expect(zeroMax == .zero)
 
-    XCTAssertEqual(CGSize.max(.zero, CGSize(width: 10, height: 20)), CGSize(width: 10, height: 20))
+    #expect(CGSize.max(.zero, CGSize(width: 10, height: 20)) == CGSize(width: 10, height: 20))
 
-    XCTAssertEqual(CGSize.max(CGSize(width: 10, height: 20), CGSize(width: 5, height: 30)), CGSize(width: 10, height: 30))
+    #expect(CGSize.max(CGSize(width: 10, height: 20), CGSize(width: 5, height: 30)) == CGSize(width: 10, height: 30))
 
-    XCTAssertEqual(CGSize.max(CGSize(width: -10, height: -10), CGSize(width: -5, height: 8)), CGSize(width: -5, height: 8))
+    #expect(CGSize.max(CGSize(width: -10, height: -10), CGSize(width: -5, height: 8)) == CGSize(width: -5, height: 8))
   }
 
-  func testCenterSmallerRect() {
+  @Test
+  func centerSmallerRect() {
     let smallRect1 = CGRect(x: 0, y: 0, width: 10, height: 10)
     let largeRect1 = CGRect(x: 0, y: 0, width: 20, height: 20)
 
     let centered1 = largeRect1.centerSmallerRect(smallRect1)
-    XCTAssertEqual(centered1, CGRect(x: 5, y: 5, width: 10, height: 10))
+    #expect(centered1 == CGRect(x: 5, y: 5, width: 10, height: 10))
   }
 }

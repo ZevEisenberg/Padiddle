@@ -1,19 +1,22 @@
-import XCTest
+import Testing
 
-class MathTests: XCTestCase {
-  func testCloseEnough() {
-    XCTAssertTrue(CGFloat(0.00000001).closeEnough(to: 0))
-    XCTAssertTrue(CGFloat(0.00000001).closeEnough(to: 0.00000002))
-    XCTAssertFalse(CGFloat(1).closeEnough(to: 2))
-    XCTAssertTrue(CGFloat(0).closeEnough(to: 0))
-    XCTAssertTrue(CGFloat(1).closeEnough(to: 1))
-    XCTAssertTrue(CGFloat(-1).closeEnough(to: -1))
-    XCTAssertTrue(CGFloat(-0.00000001).closeEnough(to: 0.00000001))
+@Suite
+struct MathTests {
+  @Test
+  func closeEnough() {
+    #expect(0.00000001.closeEnough(to: 0))
+    #expect(0.00000001.closeEnough(to: 0.00000002))
+    #expect(!1.closeEnough(to: 2))
+    #expect(0.closeEnough(to: 0))
+    #expect(1.closeEnough(to: 1))
+    #expect((-1).closeEnough(to: -1))
+    #expect((-0.00000001).closeEnough(to: 0.00000001))
   }
 
-  func testReasonableValue() {
-    XCTAssertEqual(CGFloat(0).reasonableValue, 0)
-    XCTAssertEqual(CGFloat(1e-10).reasonableValue, 0)
-    XCTAssertNotEqual(CGFloat(1e-2).reasonableValue, 0)
+  @Test
+  func reasonableValue() {
+    #expect(0.reasonableValue == 0)
+    #expect(1e-10.reasonableValue == 0)
+    #expect(1e-2.reasonableValue != 0)
   }
 }

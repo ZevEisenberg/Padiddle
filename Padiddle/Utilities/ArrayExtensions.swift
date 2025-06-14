@@ -8,7 +8,7 @@ extension Array where Element: Equatable {
 }
 
 extension Array {
-  func interleave(with otherArray: [Element]) -> [Element] {
+  func interleaved(with otherArray: [Element]) -> [Element] {
     let selfCount = count
     let otherCount = otherArray.count
     let selfIsBigger = selfCount > otherCount
