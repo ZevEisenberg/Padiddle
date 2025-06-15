@@ -16,7 +16,7 @@ class HelpViewController: UIViewController {
 
     title = String(localized: .about)
 
-    webView.backgroundColor = .white
+    webView.backgroundColor = .systemBackground
     webView.navigationDelegate = self
     view.addSubview(webView)
     webView.verticalAnchors == view.verticalAnchors

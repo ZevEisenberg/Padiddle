@@ -1,16 +1,6 @@
 import Anchorage
 import UIKit
 
-let backgroundColorNormal = UIColor.clear
-let backgroundColorHighlighted = UIColor(white: 0.85, alpha: 1)
-let borderColor = UIColor(white: 0.85, alpha: 1)
-
-let textColor = UIColor(white: 0.5, alpha: 1)
-let highlightedTextColor = UIColor(white: 0.4, alpha: 1)
-let highlightedTrimColor = UIColor(white: 0.65, alpha: 1.0)
-
-let borderWidth = CGFloat(2)
-
 class PickerCell: UICollectionViewCell {
   var image: UIImage? {
     didSet {
@@ -36,7 +26,7 @@ class PickerCell: UICollectionViewCell {
     imageView.contentMode = .center
     imageView.clipsToBounds = true
 
-    titleLabel.textColor = textColor
+    titleLabel.textColor = UIColor(resource: .ColorPicker.Text.normal)
     titleLabel.textAlignment = .center
     titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     titleLabel.numberOfLines = 0 // in case we are even in a situation where we need to wrap lines
@@ -44,8 +34,7 @@ class PickerCell: UICollectionViewCell {
     contentView.addSubview(imageView)
     contentView.addSubview(titleLabel)
 
-    contentView.layer.cornerRadius = 5
-    contentView.layer.borderColor = borderColor.cgColor
+    contentView.layer.cornerRadius = 10
 
     // Layout
 
@@ -56,6 +45,12 @@ class PickerCell: UICollectionViewCell {
     titleLabel.bottomAnchor == contentView.bottomAnchor - 6
 
     titleLabel.topAnchor == imageView.bottomAnchor
+
+    registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, _) in
+      self.updateColors()
+    }
+
+    updateColors()
   }
 
   @available(*, unavailable)
@@ -64,43 +59,49 @@ class PickerCell: UICollectionViewCell {
   }
 
   override func prepareForReuse() {
+    updateColors()
     super.prepareForReuse()
-    titleLabel.textColor = textColor
-    contentView.backgroundColor = backgroundColorNormal
-    contentView.layer.borderWidth = 0
   }
 
   override var isSelected: Bool {
     didSet {
-      if isSelected {
-        // --------------------------------------------------
-        // Use the appTintColor here, instead of our own
-        // view’s tintColor, because we aren’t necessarily
-        // in the view hierarchy yet, in which case we don’t
-        // have the right tintColor.
-        // --------------------------------------------------
-        contentView.layer.borderWidth = borderWidth
-        titleLabel.textColor = UIColor(resource: .accent)
-      } else {
-        contentView.layer.borderWidth = 0
-        titleLabel.textColor = textColor
-      }
+      updateColors()
     }
   }
 
   override var isHighlighted: Bool {
     didSet {
-      if isHighlighted {
-        contentView.backgroundColor = backgroundColorHighlighted
-        contentView.layer.borderColor = highlightedTrimColor.cgColor
-        contentView.layer.borderWidth = borderWidth
-        titleLabel.textColor = highlightedTextColor
-      } else {
-        contentView.backgroundColor = backgroundColorNormal
-        contentView.layer.borderColor = borderColor.cgColor
-        contentView.layer.borderWidth = 0.0
-        titleLabel.textColor = textColor
-      }
+      updateColors()
     }
+  }
+
+  func updateColors() {
+    // Layer
+    contentView.layer.borderColor = UIColor(
+      resource: isHighlighted
+        ? .ColorPicker.Border.highlighted
+        : .ColorPicker.Border.normal
+    ).cgColor
+
+    contentView.layer.borderWidth = (isHighlighted || isSelected) ? 2 : 0
+
+    // UIColors
+
+    let textResource: ColorResource
+    let backgroundResource: ColorResource
+
+    if isHighlighted {
+      textResource = .ColorPicker.Text.highlighted
+      backgroundResource = .ColorPicker.Background.highlighted
+    } else if isSelected {
+      // Use the appTintColor here, instead of our own view’s tintColor, because we aren’t necessarily in the view hierarchy yet, in which case we don’t have the right tintColor.
+      textResource = .accent
+      backgroundResource = .ColorPicker.Background.selected
+    } else {
+      textResource = .ColorPicker.Text.normal
+      backgroundResource = .ColorPicker.Background.normal
+    }
+    titleLabel.textColor = UIColor(resource: textResource)
+    contentView.backgroundColor = UIColor(resource: backgroundResource)
   }
 }

@@ -49,7 +49,7 @@ class ColorPickerViewController: UIViewController {
 
     collectionView.allowsMultipleSelection = true
     collectionView.showsHorizontalScrollIndicator = false
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = .systemBackground
     collectionView.isPagingEnabled = true
     collectionView.dataSource = self
     collectionView.delegate = self
@@ -70,7 +70,7 @@ class ColorPickerViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     collectionView.contentInsetAdjustmentBehavior = .automatic
 
     collectionView.register(PickerCell.self, forCellWithReuseIdentifier: "cell")

@@ -24,7 +24,7 @@ class DrawingViewController: CounterRotatingViewController {
 
     viewModel.delegate = self
 
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     view.accessibilityIdentifier = "drawing view controller view"
 
     counterRotatingView.addSubview(drawingView)
@@ -39,10 +39,10 @@ class DrawingViewController: CounterRotatingViewController {
     let borderWidth: CGFloat = (UIScreen.main.scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
 
     nib.image = UIImage.ellipseImage(
-      color: .black,
+      color: UIColor.label,
       size: CGSize(width: nibDiameter, height: nibDiameter),
       borderWidth: borderWidth,
-      borderColor: .white
+      borderColor: .systemBackground
     )
     nib.sizeToFit()
 

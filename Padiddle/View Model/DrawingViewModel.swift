@@ -98,7 +98,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
   }
 
   func clear() {
-    offscreenContext.setFillColor(UIColor.white.cgColor)
+    offscreenContext.setFillColor(UIColor.systemBackground.cgColor)
     offscreenContext.fill(CGRect(origin: .zero, size: contextSize))
     offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
   }
