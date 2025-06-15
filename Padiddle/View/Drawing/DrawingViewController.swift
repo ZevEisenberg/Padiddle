@@ -36,12 +36,11 @@ class DrawingViewController: CounterRotatingViewController {
     drawingView.centerAnchors == counterRotatingView.centerAnchors
 
     let nibDiameter = 12.0
-    let borderWidth: CGFloat = (UIScreen.main.scale == 1.0) ? 1.5 : 1.0 // 1.5 looks best on non-Retina
 
     nib.image = UIImage.ellipseImage(
       color: UIColor.label,
       size: CGSize(width: nibDiameter, height: nibDiameter),
-      borderWidth: borderWidth,
+      borderWidth: 1,
       borderColor: .systemBackground
     )
     nib.sizeToFit()
