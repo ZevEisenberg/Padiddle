@@ -60,7 +60,7 @@ extension HelpViewController: WKNavigationDelegate {
     }
   }
 
-  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
+  func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
     switch navigationAction.navigationType {
     case .linkActivated:
       if let url = navigationAction.request.url {
