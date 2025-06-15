@@ -40,8 +40,21 @@ func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrienta
   return newTransform
 }
 
+private final class WindowNotifyingView: UIView {
+  var didMoveToWindowCallback: ((UIWindow?) -> Void)!
+
+  override func didMoveToWindow() {
+    didMoveToWindowCallback(window)
+    super.didMoveToWindow()
+  }
+}
+
 class CounterRotatingViewController: UIViewController {
-  let counterRotatingView = UIView(axId: "counterRotatingView")
+  private let _counterRotatingView = WindowNotifyingView(axId: "counterRotatingView")
+
+  var counterRotatingView: UIView {
+    _counterRotatingView
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,15 +65,27 @@ class CounterRotatingViewController: UIViewController {
     counterRotatingView.centerYAnchor == view.centerYAnchor
     counterRotatingView.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
 
-    counterRotatingView.transform = transformForStatusBarOrientation(view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait)
+    _counterRotatingView.didMoveToWindowCallback = { [weak self] window in
+      guard let self, let window else {
+        return
+      }
+      guard let statusBarOrientation = window.windowScene?.effectiveGeometry.interfaceOrientation else {
+        fatalError("status bar orientation should never be unavailable when the window is non-nil")
+      }
+
+      counterRotatingView.transform = transformForStatusBarOrientation(statusBarOrientation)
+    }
   }
 
-  override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     // amount of rotation relative to previous status bar orientation
     let targetTransform = coordinator.targetTransform
 
     // status bar orientation right before this rotation occurred
-    let statusBarTransform = transformForStatusBarOrientation(view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait)
+    guard let statusBarOrientation = view.window?.windowScene?.effectiveGeometry.interfaceOrientation else {
+      fatalError("Status bar orientation should never be unavailable during a transition")
+    }
+    let statusBarTransform = transformForStatusBarOrientation(statusBarOrientation)
 
     let newTransform = targetTransform.inverted().concatenating(statusBarTransform)
 
@@ -68,37 +93,31 @@ class CounterRotatingViewController: UIViewController {
     let newAngle = newTransform.angle.reasonableValue
     let delta = newAngle - oldAngle
 
-    let duration = coordinator.transitionDuration
+    coordinator.animate { _ in
+      // Note: though this is not explicitly a keyframe animation context, adding keyframes seems to work fine, so let's go with it I guess!
+      UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+        // The midpoint of the two-step rotation animation
+        var average = (oldAngle + newAngle) / 2
 
-    UIView.animateKeyframes(
-      withDuration: duration,
-      delay: 0,
-      options: [],
-      animations: {
-        UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-          // The midpoint of the two-step rotation animation
-          var average = (oldAngle + newAngle) / 2
-
-          // Handle two edge cases that cause undesirable reverse counter-rotation,
-          // where the counter-rotating view makes a full 360° or 270° rotation
-          // instead of taking the 180° or 90° shortest path.
-          // The edge cases are as follows:
-          //     1. if the delta is +180° (+π rad)
-          //     2. if the delta is ±270° (±3π/2 rad)
-          // In both cases, we subtract 180° (π rad) so it will take the shortest path.
-          if delta.closeEnough(to: .pi) || abs(delta).closeEnough(to: 3 * .pi / 2) {
-            average -= .pi
-          }
-
-          self.counterRotatingView.transform = CGAffineTransform(rotationAngle: average.reasonableValue)
+        // Handle two edge cases that cause undesirable reverse counter-rotation,
+        // where the counter-rotating view makes a full 360° or 270° rotation
+        // instead of taking the 180° or 90° shortest path.
+        // The edge cases are as follows:
+        //     1. if the delta is +180° (+π rad)
+        //     2. if the delta is ±270° (±3π/2 rad)
+        // In both cases, we subtract 180° (π rad) so it will take the shortest path.
+        if delta.closeEnough(to: .pi) || abs(delta).closeEnough(to: 3 * .pi / 2) {
+          average -= .pi
         }
 
-        UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-          self.counterRotatingView.transform = newTransform
-        }
+        self.counterRotatingView.transform = CGAffineTransform(rotationAngle: average.reasonableValue)
+      }
 
-      },
-      completion: nil
-    )
+      UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+        self.counterRotatingView.transform = newTransform
+      }
+    }
+
+    super.viewWillTransition(to: size, with: coordinator)
   }
 }
