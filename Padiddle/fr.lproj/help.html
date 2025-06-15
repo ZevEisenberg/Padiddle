@@ -39,6 +39,7 @@
         /* end reset */
 
         body {
+            background-color: #FFFFFF;
             padding: 20px;
             -webkit-user-select: none;
             color: #181818;
@@ -102,6 +103,17 @@
             max-width: ^maxDeviceImageWidthPoints^pt;
         }
 
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #D3D3D3;
+            }
+
+            h1 {
+                color: #FF4E45;
+                letter-spacing: 0.08em;
+            }
+        }
             </style>
     </head>
     <body>
