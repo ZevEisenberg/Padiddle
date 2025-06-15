@@ -407,9 +407,7 @@
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
-			inputPaths = (
-				"$(SRCROOT)/Screenshots",
-			);
+			alwaysOutOfDate = 1;
 			name = "Copy Screenshot Images If Needed";
 			shellPath = /bin/sh;
 			shellScript = (
