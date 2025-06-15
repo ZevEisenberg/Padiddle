@@ -42,7 +42,6 @@ func transformForStatusBarOrientation(_ statusBarOrientation: UIInterfaceOrienta
 
 class CounterRotatingViewController: UIViewController {
   let counterRotatingView = UIView(axId: "counterRotatingView")
-  var rotationLocked = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,10 +69,6 @@ class CounterRotatingViewController: UIViewController {
     let delta = newAngle - oldAngle
 
     let duration = coordinator.transitionDuration
-
-    if rotationLocked {
-      UIView.setAnimationsEnabled(false)
-    }
 
     UIView.animateKeyframes(
       withDuration: duration,
@@ -105,11 +100,5 @@ class CounterRotatingViewController: UIViewController {
       },
       completion: nil
     )
-
-    coordinator.animate(alongsideTransition: nil, completion: { _ in
-      if self.rotationLocked {
-        UIView.setAnimationsEnabled(true)
-      }
-    })
   }
 }
