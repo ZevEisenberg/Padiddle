@@ -26,7 +26,7 @@ class ToolbarViewController: UIViewController {
     [toolbarStackView, recordButton]
   }
 
-  private let recordPrompt = StarthereView()
+  private let recordPrompt = StartHereView()
   private let spinPrompt: SpinPromptView
 
   init(spinManager: SpinManager, maximumFramesPerSecond: Int) {

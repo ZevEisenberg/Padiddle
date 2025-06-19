@@ -2,7 +2,7 @@ import Anchorage
 import BonMot
 import UIKit
 
-final class StarthereView: UIView {
+final class StartHereView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
 
