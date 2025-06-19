@@ -21,12 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       return
     }
 
-    toolbarViewController = ToolbarViewController(spinManager: spinManager)
+    toolbarViewController = ToolbarViewController(spinManager: spinManager, maximumFramesPerSecond: windowScene.screen.maximumFramesPerSecond)
 
     let drawingViewModel = DrawingViewModel(
-      maxRadius: UIScreen.main.shortestSide,
-      contextSize: CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide),
-      contextScale: UIScreen.main.scale,
+      maxRadius: windowScene.screen.shortestSide,
+      contextSize: CGSize(
+        width: windowScene.screen.longestSide,
+        height: windowScene.screen.longestSide
+      ),
+      screenScale: windowScene.screen.scale,
       spinManager: spinManager
     )
 
@@ -38,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     rootViewModel.rootColorManagerDelegate = drawingViewModel
 
-    drawingViewController = DrawingViewController(viewModel: drawingViewModel)
+    drawingViewController = DrawingViewController(viewModel: drawingViewModel, screenLongestSideLength: windowScene.screen.longestSide)
 
     rootViewModel.drawingViewController = drawingViewController
 

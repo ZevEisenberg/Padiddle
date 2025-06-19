@@ -1,3 +1,4 @@
+import SwiftUI
 import UIKit
 
 protocol DrawingViewModelDelegate: AnyObject {
@@ -10,12 +11,35 @@ protocol DrawingViewBoundsVendor: AnyObject {
   var bounds: CGRect { get }
 }
 
+enum ImageDestination {
+  /// Clear background, for state restoration on app relaunch
+  case saveToDisk
+
+  /// Opaque background with the specified color, for export
+  case export(ColorScheme)
+}
+
+extension UIUserInterfaceStyle {
+  var asColorScheme: ColorScheme? {
+    switch self {
+    case .unspecified:
+      nil
+    case .light:
+      .light
+    case .dark:
+      .dark
+    @unknown default:
+      nil
+    }
+  }
+}
+
 class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callbacks to work
   private(set) var isDrawing = false
   var needToMoveNibToNewStartLocation = true
 
   let contextSize: CGSize
-  let contextScale: CGFloat
+  let screenScale: CGFloat
 
   private let brushDiameter: CGFloat = 12
 
@@ -31,8 +55,6 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
   private var offscreenContext: CGContext!
 
   private var points = Array(repeating: CGPoint.zero, count: 4)
-
-  private let screenScale = UIScreen.main.scale
 
   private var displayLink: CADisplayLink?
 
@@ -59,11 +81,16 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
     return colorManager.currentColor
   }
 
-  required init(maxRadius: CGFloat, contextSize: CGSize, contextScale: CGFloat, spinManager: SpinManager) {
+  required init(
+    maxRadius: CGFloat,
+    contextSize: CGSize,
+    screenScale: CGFloat,
+    spinManager: SpinManager
+  ) {
     assert(maxRadius > 0)
     self.maxRadius = maxRadius
     self.contextSize = contextSize
-    self.contextScale = contextScale
+    self.screenScale = screenScale
     self.spinManager = spinManager
     super.init()
     let success = configureOffscreenContext()
@@ -95,10 +122,12 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
     isDrawing = false
   }
 
-  func clear() {
-    offscreenContext.setFillColor(UIColor.systemBackground.cgColor)
-    offscreenContext.fill(CGRect(origin: .zero, size: contextSize))
+  func clear(andPersist persist: Bool) {
+    offscreenContext.clear(CGRect(origin: .zero, size: contextSize))
     offscreenContext.makeImage().map { imageUpdatedCallback?($0) }
+    if persist {
+      persistImageInBackground()
+    }
   }
 
   func restartAtPoint(_ point: CGPoint) {
@@ -123,38 +152,45 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
 
   // Saving & Loading
 
-  func snapshot(_ orientation: UIInterfaceOrientation) -> UIImage {
+  func snapshot(_ orientation: UIInterfaceOrientation, destination: ImageDestination) -> UIImage {
     let (imageOrientation, rotation) = orientation.imageRotation
 
     let cacheCGImage = offscreenContext.makeImage()!
-    let unrotatedImage = UIImage(cgImage: cacheCGImage, scale: UIScreen.main.scale, orientation: imageOrientation)
-    let rotatedImage = unrotatedImage.imageRotatedByRadians(rotation)
+    let unrotatedImage = UIImage(cgImage: cacheCGImage, scale: screenScale, orientation: imageOrientation)
+    let backgroundColor: UIColor? = switch destination {
+    case .saveToDisk:
+      nil
+    case .export(let colorScheme):
+      switch colorScheme {
+      case .light:
+        .white
+      case .dark:
+        .black
+      @unknown default:
+        .black
+      }
+    }
+    let rotatedImage = unrotatedImage.rotatedByRadians(rotation, onBackgroundColor: backgroundColor)
     return rotatedImage
   }
 
-  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
-    let image = snapshot(interfaceOrientation)
+  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, destination: ImageDestination) -> ExportableImage {
+    let image = snapshot(interfaceOrientation, destination: destination)
 
-    // Share raw PNG data if we can, because it results in sharing a PNG image,
-    // which is desirable for the large chunks of color in this app.
-    if let pngData = image.pngData() {
-      return .png(pngData)
-    } else {
-      // If there was a problem, fall back to saving the original image
-      return .image(image)
-    }
+    return ExportableImage(pngData: image.pngData(), image: image)
   }
 
   func persistImageInBackground() {
-    let image = snapshot(.portrait)
-    ImageIO.persistImageInBackground(image, contextScale: contextScale, contextSize: contextSize)
+    let image = snapshot(.portrait, destination: .saveToDisk)
+    ImageIO.persistImageInBackground(image, contextScale: screenScale, contextSize: contextSize)
   }
 
   func loadPersistedImage() {
-    ImageIO.loadPersistedImage(contextScale: contextScale, contextSize: contextSize) { image in
-      if let image = image {
-        self.setInitialImage(image)
-      }
+    if let image = ImageIO.loadPersistedImage(
+      contextScale: screenScale,
+      contextSize: contextSize
+    ) {
+      setInitialImage(image)
     }
   }
 }
@@ -303,7 +339,7 @@ private extension DrawingViewModel {
       bitsPerComponent: bitsPerComponent,
       bytesPerRow: bitmapBytesPerRow,
       space: CGColorSpaceCreateDeviceRGB(),
-      bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue
+      bitmapInfo: CGBitmapInfo(alpha: .premultipliedFirst)
     )
 
     guard context != nil else {
@@ -321,7 +357,7 @@ private extension DrawingViewModel {
     offscreenContext?.setLineCap(.round)
     offscreenContext?.setLineWidth(brushDiameter)
 
-    clear()
+    clear(andPersist: false)
 
     return true
   }
@@ -359,16 +395,10 @@ extension DrawingViewModel {
   }
 }
 
-enum EitherImage {
-  case png(Data)
-  case image(UIImage)
+struct ExportableImage {
+  /// If we can get the PNG data from the image, we should, because it is higher quality than the default JPEG image sharing for the type of image we are generating.
+  let pngData: Data?
 
-  var valueForSharing: Any {
-    switch self {
-    case .png(let data):
-      data
-    case .image(let image):
-      image
-    }
-  }
+  /// The original image. Used for the share sheet preview and as a fallback in case the PNG data was not available for some reason.
+  let image: UIImage
 }

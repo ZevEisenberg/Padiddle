@@ -50,6 +50,17 @@ private final class WindowNotifyingView: UIView {
 }
 
 class CounterRotatingViewController: UIViewController {
+  let screenLongestSideLength: CGFloat
+
+  init(screenLongestSideLength: CGFloat) {
+    self.screenLongestSideLength = screenLongestSideLength
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   private let _counterRotatingView = WindowNotifyingView(axId: "counterRotatingView")
 
   var counterRotatingView: UIView {
@@ -63,7 +74,7 @@ class CounterRotatingViewController: UIViewController {
 
     counterRotatingView.centerXAnchor == view.centerXAnchor
     counterRotatingView.centerYAnchor == view.centerYAnchor
-    counterRotatingView.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
+    counterRotatingView.sizeAnchors == CGSize(width: screenLongestSideLength, height: screenLongestSideLength)
 
     _counterRotatingView.didMoveToWindowCallback = { [weak self] window in
       guard let self, let window else {

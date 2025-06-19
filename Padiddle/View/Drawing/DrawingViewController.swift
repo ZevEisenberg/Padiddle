@@ -8,10 +8,10 @@ class DrawingViewController: CounterRotatingViewController {
   private let drawingView: DrawingView
   private let nib = UIImageView()
 
-  init(viewModel: DrawingViewModel) {
+  init(viewModel: DrawingViewModel, screenLongestSideLength: CGFloat) {
     self.viewModel = viewModel
     self.drawingView = DrawingView(viewModel: self.viewModel)
-    super.init(nibName: nil, bundle: nil)
+    super.init(screenLongestSideLength: screenLongestSideLength)
   }
 
   @available(*, unavailable)
@@ -29,10 +29,10 @@ class DrawingViewController: CounterRotatingViewController {
 
     counterRotatingView.addSubview(drawingView)
 
-    view.sizeAnchors == CGSize(width: UIScreen.main.longestSide, height: UIScreen.main.longestSide)
+    view.sizeAnchors == viewModel.contextSize
 
-    drawingView.widthAnchor == UIScreen.main.longestSide
-    drawingView.heightAnchor == UIScreen.main.longestSide
+    drawingView.widthAnchor == viewModel.contextSize.width
+    drawingView.heightAnchor == viewModel.contextSize.width
     drawingView.centerAnchors == counterRotatingView.centerAnchors
 
     let nibDiameter = 12.0
@@ -64,8 +64,8 @@ class DrawingViewController: CounterRotatingViewController {
     viewModel.startMotionUpdates()
   }
 
-  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
-    viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation)
+  func getSnapshotImage(interfaceOrientation: UIInterfaceOrientation, destination: ImageDestination) -> ExportableImage {
+    viewModel.getSnapshotImage(interfaceOrientation: interfaceOrientation, destination: destination)
   }
 
   func clearTapped() {

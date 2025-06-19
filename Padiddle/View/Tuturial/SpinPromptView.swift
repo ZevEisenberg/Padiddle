@@ -3,8 +3,10 @@ import BonMot
 import UIKit
 
 final class SpinPromptView: UIView {
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+  let maximumFramesPerSecond: Int
+  init(maximumFramesPerSecond: Int) {
+    self.maximumFramesPerSecond = maximumFramesPerSecond
+    super.init(frame: .zero)
 
     let (backgroundImage, imageInsets) = UIDevice.spinPromptImage
     let imageView = UIImageView(image: backgroundImage)
@@ -46,7 +48,7 @@ extension SpinPromptView {
     let keyframeAnimation = CAKeyframeAnimation(keyPath: #keyPath(CALayer.transform))
 
     let duration: CFTimeInterval = 2
-    let framesPerSecond = Double(UIScreen.main.maximumFramesPerSecond)
+    let framesPerSecond = Double(maximumFramesPerSecond)
     let frameCount = duration * framesPerSecond
 
     let frameFractions = stride(from: 0, to: 1.0, by: 1.0 / frameCount)

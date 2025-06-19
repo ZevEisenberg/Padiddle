@@ -2,14 +2,14 @@ import UIKit
 
 extension UIScreen {
   var longestSide: CGFloat {
-    let width = UIScreen.main.bounds.width
-    let height = UIScreen.main.bounds.height
+    let width = bounds.width
+    let height = bounds.height
     return max(width, height)
   }
 
   var shortestSide: CGFloat {
-    let width = UIScreen.main.bounds.width
-    let height = UIScreen.main.bounds.height
+    let width = bounds.width
+    let height = bounds.height
     return min(width, height)
   }
 }

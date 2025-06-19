@@ -2,50 +2,56 @@ import UIKit.UIImage
 
 enum ImageIO {
   static func persistImageInBackground(_ image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
-    if !Defaults.snapshotMode { // no-op in screenshot mode
-      let app = UIApplication.shared
+    guard !Defaults.snapshotMode else {
+      // no-op in screenshot mode
+      return
+    }
+    let app = UIApplication.shared
 
-      backgroundSaveTask = app.beginBackgroundTask {
-        if let task = self.backgroundSaveTask {
-          app.endBackgroundTask(task)
-          self.backgroundSaveTask = .invalid
-        }
-      }
-
-      defer {
-        if let task = self.backgroundSaveTask {
-          app.endBackgroundTask(task)
-        }
+    backgroundSaveTask = app.beginBackgroundTask {
+      if let task = self.backgroundSaveTask {
+        app.endBackgroundTask(task)
         self.backgroundSaveTask = .invalid
       }
+    }
 
-      guard let imageData = image.pngData() else {
-        Log.error("Could not generate PNG to save image: \(image)")
-        return
+    defer {
+      if let task = self.backgroundSaveTask {
+        app.endBackgroundTask(task)
       }
+      self.backgroundSaveTask = .invalid
+    }
 
-      let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
+    guard let imageData = image.pngData() else {
+      Log.error("Could not generate PNG to save image: \(image)")
+      return
+    }
 
-      do {
-        try imageData.write(to: imageURL, options: [.atomic])
-      } catch {
-        Log.error("Error writing to file: \(error)")
-      }
+    let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
-      do {
-        try addSkipBackupAttributeToItem(atUrl: imageURL)
-      } catch {
-        Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
-      }
+    do {
+      try imageData.write(to: imageURL, options: [.atomic])
+    } catch {
+      Log.error("Error writing to file: \(error)")
+    }
+
+    do {
+      try addSkipBackupAttributeToItem(atUrl: imageURL)
+    } catch {
+      Log.error("Error adding do-not-back-up attribute to item at \(imageURL)")
     }
   }
 
-  static func loadPersistedImage(contextScale: CGFloat, contextSize: CGSize, completion: (UIImage?) -> Void) {
+  static func loadPersistedImage(contextScale: CGFloat, contextSize: CGSize) -> UIImage? {
     let imageURL = urlForPersistedImage(contextScale, contextSize: contextSize)
 
-    if let imageData = try? Data(contentsOf: imageURL) {
+    do {
+      let imageData = try Data(contentsOf: imageURL)
       let image = loadPersistedImageData(imageData, contextScale: contextScale)
-      completion(image)
+      return image
+    } catch {
+      Log.error("Error creating data from image URL \(imageURL): \(error)")
+      return nil
     }
   }
 }
@@ -93,7 +99,7 @@ private extension ImageIO {
   }
 
   static func loadPersistedImageData(_ imageData: Data, contextScale: CGFloat) -> UIImage? {
-    guard let image = UIImage(data: imageData, scale: contextScale)?.imageFlippedVertically else {
+    guard let image = UIImage(data: imageData, scale: contextScale) else {
       Log.error("Couldn't create image from data on disk")
       if Defaults.snapshotMode {
         fatalError("We must always have a screenshot in snapshot mode.")
@@ -101,7 +107,10 @@ private extension ImageIO {
       return nil
     }
 
-    return image
+    // As of this writing, I don't remember why I have to flip the image.
+    let flipped = image.flippedTopToBottom
+
+    return flipped
   }
 
   static func addSkipBackupAttributeToItem(atUrl url: URL) throws {

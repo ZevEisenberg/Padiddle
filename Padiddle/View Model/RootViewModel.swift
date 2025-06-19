@@ -22,16 +22,20 @@ class RootViewModel {
 
   var isRecording = false {
     didSet {
-      for delegate in recordingDelegates {
-        delegate.value?.recordingStatusChanged(isRecording)
+      if oldValue != isRecording {
+        for delegate in recordingDelegates {
+          delegate.value?.recordingStatusChanged(isRecording)
+        }
       }
     }
   }
 
   var motionUpdates = false {
     didSet {
-      for delegate in recordingDelegates {
-        delegate.value?.motionUpdatesStatusChanged?(motionUpdates)
+      if oldValue != motionUpdates {
+        for delegate in recordingDelegates {
+          delegate.value?.motionUpdatesStatusChanged?(motionUpdates)
+        }
       }
     }
   }
@@ -46,11 +50,11 @@ class RootViewModel {
     recordingDelegates.append(Weak(value: delegate))
   }
 
-  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation) -> EitherImage {
+  func getSnapshotImage(_ interfaceOrientation: UIInterfaceOrientation, destination: ImageDestination) -> ExportableImage {
     guard let drawingViewController else {
       fatalError("Not having a drawing view controller would represent a programmer error")
     }
-    return drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation)
+    return drawingViewController.getSnapshotImage(interfaceOrientation: interfaceOrientation, destination: destination)
   }
 
   func clearTapped() {

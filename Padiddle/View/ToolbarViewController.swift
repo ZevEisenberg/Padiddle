@@ -27,9 +27,10 @@ class ToolbarViewController: UIViewController {
   }
 
   private let recordPrompt = StarthereView()
-  private let spinPrompt = SpinPromptView()
+  private let spinPrompt: SpinPromptView
 
-  init(spinManager: SpinManager) {
+  init(spinManager: SpinManager, maximumFramesPerSecond: Int) {
+    self.spinPrompt = SpinPromptView(maximumFramesPerSecond: maximumFramesPerSecond)
     super.init(nibName: nil, bundle: nil)
 
     self.tutorialCoordinator = TutorialCoordinator(delegate: self, spinManager: spinManager)
@@ -229,8 +230,9 @@ extension ToolbarViewController {
     // Dismiss any other modals that may be visible
     dismiss(animated: true, completion: nil)
 
-    present(alert, animated: true, completion: nil)
+    // Popover configuration for alerts seems to need to happen before presentation as of iPadOS 26.
     configurePopover(viewController: alert, sourceView: clearButton)
+    present(alert, animated: true, completion: nil)
   }
 
   @objc func colorTapped() {
@@ -303,12 +305,17 @@ extension ToolbarViewController {
       popoverController.sourceRect = self.shareButton.bounds
     }
 
-    // Get the snapshot image async
+    // Get the snapshot image
     let interfaceOrientation = view.window?.windowScene?.effectiveGeometry.interfaceOrientation ?? .portrait
-    let image = viewModel.getSnapshotImage(interfaceOrientation)
+    let image = viewModel.getSnapshotImage(
+      interfaceOrientation,
+      destination: .export(
+        traitCollection.userInterfaceStyle.asColorScheme ?? .dark
+      )
+    )
 
-    let activityViewController = UIActivityViewController(activityItems: [image.valueForSharing], applicationActivities: nil)
-    activityViewController.excludedActivityTypes = [.assignToContact]
+    #warning("replace this withShareLink because UIKit isn't wanting to show the image preview for unknown reasons")
+    let activityViewController = UIActivityViewController(activityItems: [image.pngData ?? image.image], applicationActivities: nil)
     activityViewController.modalPresentationStyle = .popover
     activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, _, activityError: Error?) in
       if completed {

@@ -15,6 +15,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
         self?.drawingLayer.contents = newImage
       }
     }
+    backgroundColor = UIColor(resource: .DrawingView.background)
   }
 
   @available(*, unavailable)
@@ -30,7 +31,7 @@ class DrawingView: UIView, DrawingViewBoundsVendor {
   }
 
   func clear() {
-    viewModel.clear()
+    viewModel.clear(andPersist: true)
     setNeedsDisplay()
   }
 
