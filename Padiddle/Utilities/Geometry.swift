@@ -80,28 +80,28 @@ extension CGAffineTransform {
 extension UIInterfaceOrientation {
   var imageRotation: (orientation: UIImage.Orientation, rotation: CGFloat) {
     let rotation: CGFloat
-    let imageOrientaion: UIImage.Orientation
+    let imageOrientation: UIImage.Orientation
 
     switch self {
     case .landscapeLeft:
       rotation = -CGFloat.pi / 2.0
-      imageOrientaion = .right
+      imageOrientation = .right
     case .landscapeRight:
       rotation = .pi / 2.0
-      imageOrientaion = .left
+      imageOrientation = .left
     case .portraitUpsideDown:
       rotation = .pi
-      imageOrientaion = .down
+      imageOrientation = .down
     case .portrait,
          .unknown:
       rotation = 0
-      imageOrientaion = .up
+      imageOrientation = .up
     @unknown default:
       assertionFailure("Unknown orientation \(rawValue)")
       rotation = 0
-      imageOrientaion = .up
+      imageOrientation = .up
     }
 
-    return (imageOrientaion, rotation)
+    return (imageOrientation, rotation)
   }
 }
