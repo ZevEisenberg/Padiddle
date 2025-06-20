@@ -1,12 +1,14 @@
 import SwiftUI
 import UIKit
 
+@MainActor
 protocol DrawingViewModelDelegate: AnyObject {
   func startDrawing()
   func pauseDrawing()
   func drawingViewModelUpdatedLocation(_ newLocation: CGPoint)
 }
 
+@MainActor
 protocol DrawingViewBoundsVendor: AnyObject {
   var bounds: CGRect { get }
 }
@@ -34,6 +36,7 @@ extension UIUserInterfaceStyle {
   }
 }
 
+@MainActor
 class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callbacks to work
   private(set) var isDrawing = false
   var needToMoveNibToNewStartLocation = true

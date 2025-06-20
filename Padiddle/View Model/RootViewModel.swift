@@ -1,16 +1,19 @@
 import Foundation
 import UIKit.UIApplication
 
+@MainActor
 @objc protocol RecordingDelegate: AnyObject {
   func recordingStatusChanged(_ recording: Bool)
   @objc optional func motionUpdatesStatusChanged(_ updates: Bool)
   @objc optional func persistImageInBackground()
 }
 
+@MainActor
 protocol RootColorManagerDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@MainActor
 @Observable
 class RootViewModel {
   private var recordingDelegates = [Weak<RecordingDelegate>]()

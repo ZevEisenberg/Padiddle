@@ -1,10 +1,12 @@
 import CoreGraphics.CGBase
 import UIKit
 
+@MainActor
 protocol ColorPickerViewModelDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@MainActor
 @Observable
 class ColorPickerViewModel {
   @ObservationIgnored

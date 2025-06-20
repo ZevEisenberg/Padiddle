@@ -2,14 +2,17 @@ import Foundation
 import SwiftUI
 import UIKit.UIImage
 
+@MainActor
 protocol ToolbarViewModelToolbarDelegate: AnyObject {
   func setToolbarVisible(_ visible: Bool, animated: Bool)
 }
 
+@MainActor
 protocol ToolbarViewModelColorDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@MainActor
 @Observable
 class ToolbarViewModel {
   var colorPickerViewModel: ColorPickerViewModel?

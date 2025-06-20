@@ -144,32 +144,40 @@ private extension ToolbarView {
   }
 }
 
-private let previewOnlyDrawingViewModel = DrawingViewModel(maxRadius: 30, contextSize: .square(sideLength: 500), screenScale: 2, spinManager: SpinManager())
-
-#Preview {
-  @Previewable let toolbarVC = ToolbarViewController(spinManager: SpinManager(), maximumFramesPerSecond: 120)
-  @Previewable let rootViewModel = RootViewModel(rootColorManagerDelegate: previewOnlyDrawingViewModel)
-
-  ToolbarView(
-    model: ToolbarViewModel(
-      rootViewModel: rootViewModel,
-      toolbarDelegate: toolbarVC,
-      colorDelegate: rootViewModel
-    ),
-    spiralModel: SpiralModel(
-      colorManager: .init(colorModel: .hsv(
-        h: .manual(30.0 / 360.0),
-        s: .velocityIn,
-        v: .manual(1.0)
-      ), title: "Placeholder"),
-      size: .square(sideLength: 36),
-      startRadius: 0,
-      spacePerLoop: 0.7,
-      thetaRange: 0...(2 * .pi * 4),
-      thetaStep: .pi / 16,
-      lineWidth: 2.3
-    )
-  )
-  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-  .background(.gray)
-}
+//
+// nonisolated private var previewOnlyDrawingViewModel: DrawingViewModel {
+//  DrawingViewModel(
+//    maxRadius: 30,
+//    contextSize: .square(sideLength: 500),
+//    screenScale: 2,
+//    spinManager: SpinManager()
+//  )
+// }
+//
+// #Preview {
+//  @Previewable let toolbarVC = ToolbarViewController(spinManager: SpinManager(), maximumFramesPerSecond: 120)
+//  @Previewable let rootViewModel = RootViewModel(rootColorManagerDelegate: previewOnlyDrawingViewModel)
+//
+//  ToolbarView(
+//    model: ToolbarViewModel(
+//      rootViewModel: rootViewModel,
+//      toolbarDelegate: toolbarVC,
+//      colorDelegate: rootViewModel
+//    ),
+//    spiralModel: SpiralModel(
+//      colorManager: .init(colorModel: .hsv(
+//        h: .manual(30.0 / 360.0),
+//        s: .velocityIn,
+//        v: .manual(1.0)
+//      ), title: "Placeholder"),
+//      size: .square(sideLength: 36),
+//      startRadius: 0,
+//      spacePerLoop: 0.7,
+//      thetaRange: 0...(2 * .pi * 4),
+//      thetaStep: .pi / 16,
+//      lineWidth: 2.3
+//    )
+//  )
+//  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+//  .background(.gray)
+// }

@@ -6,6 +6,7 @@ let rowsPortrait = 3
 let colsLandscape = 3
 let rowsLandscape = 2
 
+@MainActor
 protocol ColorPickerDelegate: AnyObject {
   func colorPicked(_ color: ColorManager)
 }

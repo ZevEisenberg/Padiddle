@@ -1,6 +1,9 @@
+import Synchronization
 import UIKit.UIImage
 
 enum ImageIO {
+  #warning("TODO: probably don't need a background task for this")
+  @MainActor
   static func persistImageInBackground(_ image: UIImage, contextScale: CGFloat, contextSize: CGSize) {
     guard !Defaults.snapshotMode else {
       // no-op in screenshot mode
@@ -8,18 +11,24 @@ enum ImageIO {
     }
     let app = UIApplication.shared
 
-    backgroundSaveTask = app.beginBackgroundTask {
-      if let task = self.backgroundSaveTask {
-        app.endBackgroundTask(task)
-        self.backgroundSaveTask = .invalid
+    backgroundSaveTask.withLock { outerTask in
+      outerTask = app.beginBackgroundTask {
+        self.backgroundSaveTask.withLock { innerTask in
+          if let innerTaskNonOptional = innerTask {
+            app.endBackgroundTask(innerTaskNonOptional)
+            innerTask = .invalid
+          }
+        }
       }
     }
 
     defer {
-      if let task = self.backgroundSaveTask {
-        app.endBackgroundTask(task)
+      backgroundSaveTask.withLock { task in
+        if let task {
+          app.endBackgroundTask(task)
+        }
+        task = .invalid
       }
-      self.backgroundSaveTask = .invalid
     }
 
     guard let imageData = image.pngData() else {
@@ -67,7 +76,7 @@ private extension ImageIO {
     }
   }()
 
-  static var backgroundSaveTask: UIBackgroundTaskIdentifier?
+  static let backgroundSaveTask: Mutex<UIBackgroundTaskIdentifier?> = .init(nil)
 
   static func urlForPersistedImage(_ contextScale: CGFloat, contextSize: CGSize) -> URL {
     var scaledContextSize = contextSize

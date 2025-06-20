@@ -11,6 +11,7 @@ extension TutorialCoordinator {
   }
 }
 
+@MainActor
 protocol TutorialCoordinatorDelegate: AnyObject {
   func showRecordPrompt()
   func hideRecordPrompt()
@@ -19,6 +20,7 @@ protocol TutorialCoordinatorDelegate: AnyObject {
   func hideSpinPrompt()
 }
 
+@MainActor
 final class TutorialCoordinator {
   // Private Properties
 

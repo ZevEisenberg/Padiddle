@@ -1,6 +1,7 @@
 import Foundation
 import UIKit.UIImage
 
+@MainActor
 struct HelpViewModel {
   lazy var html: String = {
     guard let filePath = Bundle.main.path(forResource: "help", ofType: "html") else {
