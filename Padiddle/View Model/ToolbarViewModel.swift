@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import UIKit.UIImage
 
 protocol ToolbarViewModelToolbarDelegate: AnyObject {
@@ -9,15 +10,23 @@ protocol ToolbarViewModelColorDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@Observable
 class ToolbarViewModel {
   var colorPickerViewModel: ColorPickerViewModel?
 
   let rootViewModel: RootViewModel
 
+  @ObservationIgnored
   weak var toolbarDelegate: ToolbarViewModelToolbarDelegate?
+
+  @ObservationIgnored
   weak var colorDelegate: ToolbarViewModelColorDelegate?
 
-  required init(rootViewModel: RootViewModel, toolbarDelegate: ToolbarViewModelToolbarDelegate, colorDelegate: ToolbarViewModelColorDelegate) {
+  required init(
+    rootViewModel: RootViewModel,
+    toolbarDelegate: ToolbarViewModelToolbarDelegate,
+    colorDelegate: ToolbarViewModelColorDelegate
+  ) {
     self.rootViewModel = rootViewModel
     self.toolbarDelegate = toolbarDelegate
     self.colorDelegate = colorDelegate
@@ -25,7 +34,9 @@ class ToolbarViewModel {
   }
 
   func recordButtonTapped() {
-    rootViewModel.isRecording.toggle()
+    withAnimation(.snappy) {
+      rootViewModel.isRecording.toggle()
+    }
   }
 
   func clearTapped() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD42E9082E05ABBC00ACE900 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */; };
 		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
 		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
@@ -141,6 +142,7 @@
 			files = (
 				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
 				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
+				CD42E9082E05ABBC00ACE900 /* ComposableArchitecture in Frameworks */,
 			);
 		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
@@ -232,6 +234,7 @@
 			packageProductDependencies = (
 				CD9C7B8E24BF63290087FE69 /* BonMot */,
 				CD9C7B9124BF63450087FE69 /* Anchorage */,
+				CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */,
 			);
 			productName = Padiddle;
 			productReference = CD193CB91BA4891500203B44 /* Padiddle.app */;
@@ -330,6 +333,7 @@
 				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
 				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
 				CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */,
+				CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
@@ -777,6 +781,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.20.2;
+			};
+		};
 		CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-numerics.git";
@@ -787,7 +799,7 @@
 		};
 		CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:Rightpoint/BonMot.git";
+			repositoryURL = "https://github.com/Rightpoint/BonMot.git";
 			requirement = {
 				kind = exactVersion;
 				version = 6.1.3;
@@ -795,7 +807,7 @@
 		};
 		CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:Rightpoint/Anchorage.git";
+			repositoryURL = "https://github.com/Rightpoint/Anchorage.git";
 			requirement = {
 				kind = exactVersion;
 				version = 4.5.0;
@@ -804,6 +816,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		CD657F6A2DFD31C300215549 /* RealModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */;

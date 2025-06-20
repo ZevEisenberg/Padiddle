@@ -5,7 +5,9 @@ protocol ColorPickerViewModelDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@Observable
 class ColorPickerViewModel {
+  @ObservationIgnored
   weak var delegate: ColorPickerViewModelDelegate?
 
   init(delegate: ColorPickerViewModelDelegate) {

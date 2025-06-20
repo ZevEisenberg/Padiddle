@@ -11,6 +11,7 @@ protocol RootColorManagerDelegate: AnyObject {
   func colorManagerPicked(_ colorManager: ColorManager)
 }
 
+@Observable
 class RootViewModel {
   private var recordingDelegates = [Weak<RecordingDelegate>]()
   weak var rootColorManagerDelegate: RootColorManagerDelegate?

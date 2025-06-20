@@ -1,6 +1,7 @@
 import CoreGraphics.CGGeometry
 import UIKit.UIScreen
 
+nonisolated
 extension CGPoint {
   static func distanceBetween(_ p1: CGPoint, _ p2: CGPoint) -> CGFloat {
     if p1.equalTo(p2) {
@@ -24,14 +25,19 @@ extension CGPoint {
   }
 }
 
-extension CGSize {
+nonisolated extension CGSize {
   static func max(_ size1: CGSize, _ size2: CGSize) -> CGSize {
     let maxWidth = Swift.max(size1.width, size2.width)
     let maxHeight = Swift.max(size1.height, size2.height)
     return CGSize(width: maxWidth, height: maxHeight)
   }
+
+  static func square(sideLength: CGFloat) -> Self {
+    CGSize(width: sideLength, height: sideLength)
+  }
 }
 
+nonisolated
 extension CGRect {
   func centerSmallerRect(_ smallerRect: CGRect) -> CGRect {
     assert(smallerRect.width <= width)
@@ -48,6 +54,7 @@ extension CGRect {
   }
 }
 
+nonisolated
 extension CGPoint {
   func screenPixelsIntegral(forScreenScale screenScale: CGFloat) -> CGPoint {
     var newX = x
@@ -71,12 +78,14 @@ extension CGPoint {
   }
 }
 
+nonisolated
 extension CGAffineTransform {
   var angle: CGFloat {
     atan2(b, a)
   }
 }
 
+nonisolated
 extension UIInterfaceOrientation {
   var imageRotation: (orientation: UIImage.Orientation, rotation: CGFloat) {
     let rotation: CGFloat
