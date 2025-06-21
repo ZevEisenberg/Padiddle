@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD4A24932E05BBEA00C60BDB /* Packages in Frameworks */ = {isa = PBXBuildFile; productRef = CD4A24922E05BBEA00C60BDB /* Packages */; };
 		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
 		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
@@ -156,7 +155,6 @@
 				CDB625952E05BE0F00C07147 /* PadiddleCore in Frameworks */,
 				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
 				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
-				CD4A24932E05BBEA00C60BDB /* Packages in Frameworks */,
 			);
 		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
@@ -257,7 +255,6 @@
 			packageProductDependencies = (
 				CD9C7B8E24BF63290087FE69 /* BonMot */,
 				CD9C7B9124BF63450087FE69 /* Anchorage */,
-				CD4A24922E05BBEA00C60BDB /* Packages */,
 				CDB625942E05BE0F00C07147 /* PadiddleCore */,
 			);
 			productName = Padiddle;
@@ -938,10 +935,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD4A24922E05BBEA00C60BDB /* Packages */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Packages;
-		};
 		CD657F6A2DFD31C300215549 /* RealModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */;
