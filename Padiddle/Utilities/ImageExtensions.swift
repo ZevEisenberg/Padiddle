@@ -52,11 +52,10 @@ extension UIImage {
     // It results in an image that is flipped vertically.
     // I likely have a double rotation somewhere.
 
-    let rotatedSize: CGSize
-    if radians == .pi || radians == 0 {
-      rotatedSize = size
+    let rotatedSize: CGSize = if radians == .pi || radians == 0 {
+      size
     } else {
-      rotatedSize = CGSize(width: size.height, height: size.width)
+      CGSize(width: size.height, height: size.width)
     }
 
     let format = UIGraphicsImageRendererFormat()

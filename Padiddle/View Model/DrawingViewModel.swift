@@ -77,7 +77,7 @@ class DrawingViewModel: NSObject { // must inherit from NSObject for @objc callb
   }()
 
   private var currentColor: UIColor {
-    guard let colorManager = colorManager else {
+    guard let colorManager else {
       return UIColor.magenta
     }
 
@@ -232,7 +232,7 @@ extension DrawingViewModel: RootColorManagerDelegate {
 
 extension DrawingViewModel { // Coordinate conversions
   private func convertViewPointToContextCoordinates(_ point: CGPoint) -> CGPoint {
-    guard let view = view else {
+    guard let view else {
       fatalError("Not having a view represents a programmer error")
     }
 
@@ -266,7 +266,7 @@ extension DrawingViewModel { // Coordinate conversions
     guard !rect.equalTo(CGRect.null) else {
       return .null
     }
-    guard let view = view else { fatalError("Not having a view represents a programmer error") }
+    guard let view else { fatalError("Not having a view represents a programmer error") }
 
     // 1. Get the size of the context in self coordinates
     let scaledContextSize = CGSize(
@@ -292,7 +292,7 @@ extension DrawingViewModel { // Coordinate conversions
   }
 
   func convertContextPointToViewCoordinates(_ point: CGPoint) -> CGPoint {
-    guard let view = view else {
+    guard let view else {
       fatalError("Not having a view represents a programmer error")
     }
 

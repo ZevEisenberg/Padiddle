@@ -6,9 +6,9 @@ class Weak<T: AnyObject>: CustomStringConvertible {
 
   var description: String {
     if let value {
-      return "Weak(\(value))"
+      "Weak(\(value))"
     } else {
-      return "Weak(nil)"
+      "Weak(nil)"
     }
   }
 }

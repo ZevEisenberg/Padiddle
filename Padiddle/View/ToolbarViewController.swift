@@ -269,7 +269,7 @@ extension ToolbarViewController {
   @objc func shareTapped() {
     Log.info()
 
-    guard let viewModel = viewModel else {
+    guard let viewModel else {
       fatalError("Not having a view model would represent a programmer error")
     }
 
@@ -319,7 +319,7 @@ extension ToolbarViewController {
     activityViewController.modalPresentationStyle = .popover
     activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, _, activityError: Error?) in
       if completed {
-        if let activityType = activityType {
+        if let activityType {
           Log.info("shared via \(activityType)")
         } else {
           Log.info("shared via unknown sharing type")
@@ -368,7 +368,7 @@ extension ToolbarViewController: ColorPickerDelegate {
   func colorPicked(_ color: ColorManager) {
     updateColorButton(color)
 
-    if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+    if traitCollection.horizontalSizeClass == .regular, traitCollection.verticalSizeClass == .regular {
       popColor()
       dismiss(animated: true, completion: nil)
     } else {
@@ -489,13 +489,13 @@ private extension ToolbarViewController {
   }
 
   func setUpNavigationItem(_ navigationItem: UINavigationItem, cancelSelector: Selector?, doneSelector: Selector?) {
-    if let cancelSelector = cancelSelector {
+    if let cancelSelector {
       let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: cancelSelector)
       cancelButton.accessibilityIdentifier = "cancelButton"
       navigationItem.leftBarButtonItem = cancelButton
     }
 
-    if let doneSelector = doneSelector {
+    if let doneSelector {
       let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: doneSelector)
       doneButton.accessibilityIdentifier = "doneButton"
       navigationItem.rightBarButtonItem = doneButton

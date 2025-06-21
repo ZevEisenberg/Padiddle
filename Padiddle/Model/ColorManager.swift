@@ -61,11 +61,10 @@ struct ColorManager {
       channelValue = theta / twoPi
 
     case .thetaIncreasingAndDecreasing:
-      var value: CGFloat
-      if theta > .pi {
-        value = twoPi - theta
+      let value: CGFloat = if theta > .pi {
+        twoPi - theta
       } else {
-        value = theta
+        theta
       }
       channelValue = value / .pi
 

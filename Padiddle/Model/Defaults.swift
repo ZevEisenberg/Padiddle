@@ -8,9 +8,9 @@ enum Defaults {
   static var colorPickerSelection: Int {
     get {
       if snapshotMode {
-        return snapshotPersistedIndex
+        snapshotPersistedIndex
       } else {
-        return (UserDefaults().object(forKey: colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
+        (UserDefaults().object(forKey: colorPickerPersistentIndexKey) as? Int) ?? deafultPersistedIndex
       }
     }
     set(newSelection) {

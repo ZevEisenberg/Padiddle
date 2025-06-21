@@ -31,7 +31,7 @@ public enum EffectBuilder<Action> {
   }
 
   public static func buildBlock(_ effects: ArrayOfEffects...) -> ArrayOfEffects {
-    effects.flatMap { $0 }
+    effects.flatMap(\.self)
   }
 
   public static func buildExpression(_ effects: [EffectType]) -> ArrayOfEffects {
@@ -55,6 +55,6 @@ public enum EffectBuilder<Action> {
   }
 
   public static func buildArray(_ effects: [ArrayOfEffects]) -> ArrayOfEffects {
-    effects.flatMap { $0 }
+    effects.flatMap(\.self)
   }
 }

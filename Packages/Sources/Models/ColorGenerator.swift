@@ -96,11 +96,10 @@ private extension ColorGenerator {
       channelValue = theta / (2 * .pi)
 
     case .thetaIncreasingAndDecreasing:
-      var value: Double
-      if theta > .pi {
-        value = (2 * .pi) - theta
+      let value: Double = if theta > .pi {
+        (2 * .pi) - theta
       } else {
-        value = theta
+        theta
       }
       channelValue = value / .pi
 

@@ -16,20 +16,16 @@ class HelpImageHandler: NSObject, WKURLSchemeHandler {
       return
     }
 
-    var image: UIImage?
-    switch imageName {
+    let image: UIImage? = switch imageName {
     case "recordButton":
-      image = UIImage.recordButtonImage()
+      UIImage.recordButtonImage()
     case "colorButton":
-      image = HelpImageHandler.colorButtonImage
+      HelpImageHandler.colorButtonImage
     default:
-      image = UIImage(named: imageName)
+      UIImage(named: imageName)
     }
 
-    guard
-      let existingImage = image,
-      let imageData = existingImage.pngData()
-    else {
+    guard let image, let imageData = image.pngData() else {
       return
     }
 

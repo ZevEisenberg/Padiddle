@@ -13,7 +13,7 @@ enum ImageIO {
 
     backgroundSaveTask.withLock { outerTask in
       outerTask = app.beginBackgroundTask {
-        self.backgroundSaveTask.withLock { innerTask in
+        backgroundSaveTask.withLock { innerTask in
           if let innerTaskNonOptional = innerTask {
             app.endBackgroundTask(innerTaskNonOptional)
             innerTask = .invalid
@@ -68,13 +68,9 @@ enum ImageIO {
 private extension ImageIO {
   static let persistedImageExtension = "png"
 
-  static let persistedImageName: String = {
-    if Defaults.snapshotMode {
-      return "ScreenshotPersistedImage"
-    } else {
-      return "PadiddlePersistedImage"
-    }
-  }()
+  static let persistedImageName: String = Defaults.snapshotMode
+    ? "ScreenshotPersistedImage"
+    : "PadiddlePersistedImage"
 
   static let backgroundSaveTask: Mutex<UIBackgroundTaskIdentifier?> = .init(nil)
 

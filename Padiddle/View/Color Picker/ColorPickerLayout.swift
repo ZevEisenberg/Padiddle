@@ -64,7 +64,7 @@ class ColorPickerLayout: UICollectionViewLayout {
   }
 
   override var collectionViewContentSize: CGSize {
-    guard let collectionView = collectionView else {
+    guard let collectionView else {
       return .zero
     }
 
@@ -78,7 +78,7 @@ class ColorPickerLayout: UICollectionViewLayout {
 
 private extension ColorPickerLayout {
   func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
-    guard let collectionView = collectionView else {
+    guard let collectionView else {
       return .zero
     }
 

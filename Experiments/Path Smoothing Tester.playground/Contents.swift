@@ -129,7 +129,7 @@ let positions = [
 ]
 
 let notifier = {
-  let centers = pathView.subviews.map { $0.center }
+  let centers = pathView.subviews.map(\.center)
   pathView.update(with: centers)
 }
 

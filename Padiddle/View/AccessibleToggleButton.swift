@@ -5,7 +5,7 @@ class AccessibleToggleButton: UIButton {
 
   override var accessibilityLabel: String? {
     get {
-      guard let accessibilityLabels = accessibilityLabels else {
+      guard let accessibilityLabels else {
         return super.accessibilityLabel
       }
 

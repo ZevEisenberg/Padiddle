@@ -5,9 +5,9 @@ nonisolated
 extension CGPoint {
   static func distanceBetween(_ p1: CGPoint, _ p2: CGPoint) -> CGFloat {
     if p1.equalTo(p2) {
-      return 0
+      0
     } else {
-      return hypot(p1.x - p2.x, p1.y - p2.y)
+      hypot(p1.x - p2.x, p1.y - p2.y)
     }
   }
 

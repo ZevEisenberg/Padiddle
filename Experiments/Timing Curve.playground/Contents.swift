@@ -25,6 +25,4 @@ let fractions = frameFractions.map {
   rotationFraction(forFraction: Double($0))
 }
 
-fractions.map {
-  $0
-}
+fractions.map(\.self)

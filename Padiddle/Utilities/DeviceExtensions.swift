@@ -4,9 +4,9 @@ extension UIDevice {
   class var gyroMaxValue: CGFloat {
     switch current.userInterfaceIdiom {
     case .pad:
-      return 30
+      30
     default:
-      return 30
+      30
     }
   }
 
