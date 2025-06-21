@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD42E9082E05ABBC00ACE900 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */; };
+		CD4A24932E05BBEA00C60BDB /* Packages in Frameworks */ = {isa = PBXBuildFile; productRef = CD4A24922E05BBEA00C60BDB /* Packages */; };
 		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
 		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
+		CDB625952E05BE0F00C07147 /* PadiddleCore in Frameworks */ = {isa = PBXBuildFile; productRef = CDB625942E05BE0F00C07147 /* PadiddleCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapshotTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB6247B2E05BC8600C07147 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +132,16 @@
 			path = Experiments;
 			sourceTree = "<group>";
 		};
+		CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SnapshotTestHost;
+			sourceTree = "<group>";
+		};
+		CD9C55D92E05DBD800D3D3C8 /* Test Plans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Test Plans";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +153,10 @@
 		CD193CB61BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				CDB625952E05BE0F00C07147 /* PadiddleCore in Frameworks */,
 				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
 				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
-				CD42E9082E05ABBC00ACE900 /* ComposableArchitecture in Frameworks */,
+				CD4A24932E05BBEA00C60BDB /* Packages in Frameworks */,
 			);
 		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
@@ -152,6 +166,11 @@
 			);
 		};
 		CD193CD51BA4891500203B44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		CD9C55CA2E05DB0D00D3D3C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -172,12 +191,15 @@
 		CD193CB01BA4891500203B44 = {
 			isa = PBXGroup;
 			children = (
-				CD63C30E2DFD2DD70045F7ED /* Experiments */,
+				CDB6247B2E05BC8600C07147 /* Packages */,
+				CD9C55D92E05DBD800D3D3C8 /* Test Plans */,
 				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
 				CD4E0A822DFD562100FBBC4C /* PadiddleTests */,
 				CD4E0A942DFD563B00FBBC4C /* PadiddleUITests */,
-				CD193CBA1BA4891500203B44 /* Products */,
+				CD63C30E2DFD2DD70045F7ED /* Experiments */,
 				CD4E0ABA2DFD565C00FBBC4C /* Screenshots */,
+				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
+				CD193CBA1BA4891500203B44 /* Products */,
 				A654FC30C20C02D41519486C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -189,6 +211,7 @@
 				CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */,
 				CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */,
 				CD114B6E1CB80066001BBF75 /* Screenshots.xctest */,
+				CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +257,8 @@
 			packageProductDependencies = (
 				CD9C7B8E24BF63290087FE69 /* BonMot */,
 				CD9C7B9124BF63450087FE69 /* Anchorage */,
-				CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */,
+				CD4A24922E05BBEA00C60BDB /* Packages */,
+				CDB625942E05BE0F00C07147 /* PadiddleCore */,
 			);
 			productName = Padiddle;
 			productReference = CD193CB91BA4891500203B44 /* Padiddle.app */;
@@ -282,6 +306,24 @@
 			productReference = CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD9C55D72E05DB0E00D3D3C8 /* Build configuration list for PBXNativeTarget "SnapshotTestHost" */;
+			buildPhases = (
+				CD9C55C92E05DB0D00D3D3C8 /* Sources */,
+				CD9C55CA2E05DB0D00D3D3C8 /* Frameworks */,
+				CD9C55CB2E05DB0D00D3D3C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
+			);
+			name = SnapshotTestHost;
+			productName = SnapshotTestHost;
+			productReference = CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -289,7 +331,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 				TargetAttributes = {
@@ -314,6 +356,9 @@
 						LastSwiftMigration = 1020;
 						TestTargetID = CD193CB81BA4891500203B44;
 					};
+					CD9C55CC2E05DB0D00D3D3C8 = {
+						CreatedOnToolsVersion = 26.0;
+					};
 				};
 			};
 			buildConfigurationList = CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */;
@@ -333,7 +378,6 @@
 				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
 				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
 				CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */,
-				CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
@@ -344,6 +388,7 @@
 				CD193CCC1BA4891500203B44 /* PadiddleTests */,
 				CD193CD71BA4891500203B44 /* PadiddleUITests */,
 				CD114B6D1CB80066001BBF75 /* Screenshots */,
+				CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 			);
 		};
 /* End PBXProject section */
@@ -365,6 +410,11 @@
 			);
 		};
 		CD193CD61BA4891500203B44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		CD9C55CB2E05DB0D00D3D3C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -449,6 +499,11 @@
 			files = (
 			);
 		};
+		CD9C55C92E05DB0D00D3D3C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -512,7 +567,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -542,7 +597,7 @@
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -575,7 +630,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -605,7 +660,7 @@
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -733,6 +788,75 @@
 			};
 			name = Release;
 		};
+		CD9C55D52E05DB0E00D3D3C8 /* Debug configuration for PBXNativeTarget "SnapshotTestHost" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.SnapshotTestHost;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+			};
+			name = Debug;
+		};
+		CD9C55D62E05DB0E00D3D3C8 /* Release configuration for PBXNativeTarget "SnapshotTestHost" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.SnapshotTestHost;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -776,17 +900,17 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		CD9C55D72E05DB0E00D3D3C8 /* Build configuration list for PBXNativeTarget "SnapshotTestHost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD9C55D52E05DB0E00D3D3C8 /* Debug configuration for PBXNativeTarget "SnapshotTestHost" */,
+				CD9C55D62E05DB0E00D3D3C8 /* Release configuration for PBXNativeTarget "SnapshotTestHost" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.20.2;
-			};
-		};
 		CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-numerics.git";
@@ -814,10 +938,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD42E9072E05ABBC00ACE900 /* ComposableArchitecture */ = {
+		CD4A24922E05BBEA00C60BDB /* Packages */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD42E9062E05ABBC00ACE900 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
+			productName = Packages;
 		};
 		CD657F6A2DFD31C300215549 /* RealModule */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -833,6 +956,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */;
 			productName = Anchorage;
+		};
+		CDB625942E05BE0F00C07147 /* PadiddleCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PadiddleCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

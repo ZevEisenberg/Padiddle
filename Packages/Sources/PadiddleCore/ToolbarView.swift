@@ -1,29 +1,75 @@
 import ComposableArchitecture
+import Models
 import SwiftUI
+import Utilities
+
+@Reducer
+struct ToolbarFeature {
+  @ObservableState
+  struct State {
+    @Shared var isRecording: Bool
+    var colorGenerator: ColorGenerator
+
+    /// Which hint, if any, is currently visible
+    var hint: Hint?
+  }
+
+  enum Action {
+    case onTask
+
+    // User Actions
+    case clearButtonTapped
+    case colorButtonTapped
+    case recordButtonTapped
+    case helpButtonTapped
+
+    // Timed Events
+    case showHint(Hint)
+    case hideHint
+  }
+
+  var body: some ReducerOf<Self> {
+    Reduce { state, action in
+      switch action {
+      case .onTask:
+        return .none
+      case .clearButtonTapped:
+        return .none
+      case .colorButtonTapped:
+        return .none
+      case .recordButtonTapped:
+        state.$isRecording.withLock { $0.toggle() }
+        return .none
+      case .helpButtonTapped:
+        return .none
+      case .showHint(let hint):
+        return .none
+      case .hideHint:
+        return .none
+      }
+    }
+  }
+}
+
+extension ToolbarFeature {
+  /// Which hint, if any, is currently visible
+  enum Hint {
+    case pressRecordButton
+    case howToSpin
+  }
+}
 
 struct ToolbarView: View {
-  let model: ToolbarViewModel
-  private let spiralModel: SpiralModel
-
-  private var isRecording: Bool {
-    model.rootViewModel.isRecording
-  }
+  let store: StoreOf<ToolbarFeature>
 
   @Namespace private var namespace
-
-  init(
-    model: ToolbarViewModel,
-    spiralModel: SpiralModel
-  ) {
-    self.model = model
-    self.spiralModel = spiralModel
-  }
+  @Environment(\.displayScale) private var displayScale
 
   var body: some View {
     GlassEffectContainer {
       #warning("TODO: idea from Cam: try putting non-record buttons at the top in a toolbar")
       HStack(spacing: 20) {
-        if !isRecording {
+        if !store.isRecording {
           clearButton
             .glassEffect(.regular.interactive())
             .glassEffectID("clear", in: namespace)
@@ -39,7 +85,7 @@ struct ToolbarView: View {
           .glassEffectID("record", in: namespace)
           .glassEffectUnion(id: "middle", namespace: namespace)
 
-        if !isRecording {
+        if !store.isRecording {
           shareButton
             .glassEffect(.regular.interactive())
             .glassEffectID("share", in: namespace)
@@ -52,10 +98,14 @@ struct ToolbarView: View {
         }
       }
     }
+    .border(.red)
     .font(.system(size: 28))
     .overlay(alignment: .top) {
-      StartHereViewSwiftUI()
+      StartHereView()
         .alignmentGuide(.top) { $0[.bottom] + 15 }
+    }
+    .task {
+      await store.send(.onTask).finish()
     }
   }
 }
@@ -73,7 +123,7 @@ private extension ToolbarView {
   @ViewBuilder
   var clearButton: some View {
     Button {
-      model.clearTapped()
+      store.send(.clearButtonTapped)
     } label: {
       Image(systemName: "trash")
         .accessibilityLabel(Text("Clear"))
@@ -84,21 +134,24 @@ private extension ToolbarView {
   @ViewBuilder
   var colorButton: some View {
     Button {
-      #warning("TODO")
+      store.send(.colorButtonTapped)
     } label: {
+      let spiralModel = SpiralModel(
+        colorGenerator: store.colorGenerator,
+        size: .square(sideLength: 36),
+        startRadius: 0,
+        spacePerLoop: 0.7,
+        thetaRange: 0...(2 * .pi * 4),
+        thetaStep: .pi / 16,
+        lineWidth: 2.3
+      )
       let image = SpiralImageMaker.image(
-        spiralModel: spiralModel
+        spiralModel: spiralModel,
+        scale: displayScale
       )
       Image(uiImage: image)
         .frame(size: Design.buttonSize)
     }
-  }
-
-  @ViewBuilder
-  var recordButtonPlaceholder: some View {
-    Color.clear
-      .frame(size: Design.recordButtonSize)
-      .border(.purple)
   }
 
   @ViewBuilder
@@ -118,7 +171,7 @@ private extension ToolbarView {
   @ViewBuilder
   var helpButton: some View {
     Button {
-      #warning("TODO")
+      store.send(.helpButtonTapped)
     } label: {
       Image(systemName: "questionmark.circle")
         .accessibilityLabel(Text("Help"))
@@ -133,51 +186,36 @@ private extension ToolbarView {
   @ViewBuilder
   var recordButton: some View {
     Button {
-      model.recordButtonTapped()
+      store.send(.recordButtonTapped, animation: .snappy)
     } label: {
-      Image(systemName: model.rootViewModel.isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
+      Image(systemName: store.isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
         .fontWeight(.black)
         .foregroundStyle(.white)
         .frame(size: Design.recordButtonSize)
-        .glassEffect(.regular.interactive().tint(Color(isRecording ? .red : .ToolbarSwiftUI.RecordButton.foreground)))
+        .glassEffect(
+          .regular.interactive().tint(
+            Color(
+              store.isRecording
+                ? .Toolbar.RecordButton.pause
+                : .Toolbar.RecordButton.record
+            )
+          )
+        )
     }
   }
 }
 
-//
-// nonisolated private var previewOnlyDrawingViewModel: DrawingViewModel {
-//  DrawingViewModel(
-//    maxRadius: 30,
-//    contextSize: .square(sideLength: 500),
-//    screenScale: 2,
-//    spinManager: SpinManager()
-//  )
-// }
-//
-// #Preview {
-//  @Previewable let toolbarVC = ToolbarViewController(spinManager: SpinManager(), maximumFramesPerSecond: 120)
-//  @Previewable let rootViewModel = RootViewModel(rootColorManagerDelegate: previewOnlyDrawingViewModel)
-//
-//  ToolbarView(
-//    model: ToolbarViewModel(
-//      rootViewModel: rootViewModel,
-//      toolbarDelegate: toolbarVC,
-//      colorDelegate: rootViewModel
-//    ),
-//    spiralModel: SpiralModel(
-//      colorManager: .init(colorModel: .hsv(
-//        h: .manual(30.0 / 360.0),
-//        s: .velocityIn,
-//        v: .manual(1.0)
-//      ), title: "Placeholder"),
-//      size: .square(sideLength: 36),
-//      startRadius: 0,
-//      spacePerLoop: 0.7,
-//      thetaRange: 0...(2 * .pi * 4),
-//      thetaStep: .pi / 16,
-//      lineWidth: 2.3
-//    )
-//  )
-//  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-//  .background(.gray)
-// }
+#Preview {
+  ToolbarView(
+    store: .init(
+      initialState: .init(
+        isRecording: Shared(value: false),
+        colorGenerator: .classic
+      )
+    ) {
+      ToolbarFeature()
+    }
+  )
+  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+  .background(.gray)
+}

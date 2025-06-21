@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "E0597034-62A5-419E-826F-892568882833",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Padiddle.xcodeproj",
+      "identifier" : "CD9C55CC2E05DB0D00D3D3C8",
+      "name" : "SnapshotTestHost"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
