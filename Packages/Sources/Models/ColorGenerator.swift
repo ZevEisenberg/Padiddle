@@ -1,7 +1,7 @@
 import struct SwiftUI.Color
 
 /// Holds values representing a coordinate while spinning, and then produces a color from those coordinates on-demand.
-public struct ColorGenerator {
+public struct ColorGenerator: Equatable {
   public var title: String
   public var model: Model
 
@@ -38,7 +38,29 @@ public extension ColorGenerator {
   }
 }
 
-public typealias Triple<T> = (T, T, T)
+public struct Triple<Value> {
+  public var a: Value
+  public var b: Value
+  public var c: Value
+
+  public init(
+    _ a: Value,
+    _ b: Value,
+    _ c: Value
+  ) {
+    self.a = a
+    self.b = b
+    self.c = c
+  }
+
+  var tuple: (Value, Value, Value) {
+    (a, b, c)
+  }
+}
+
+extension Triple: Equatable where Value: Equatable {}
+extension Triple: Hashable where Value: Hashable {}
+extension Triple: Sendable where Value: Sendable {}
 
 public extension ColorGenerator {
   enum Space {
@@ -46,7 +68,7 @@ public extension ColorGenerator {
     case rgb
   }
 
-  struct Model {
+  struct Model: Equatable {
     public var space: Space
     public var components: Triple<ComponentBehavior>
 
@@ -56,6 +78,14 @@ public extension ColorGenerator {
     ) {
       self.space = space
       self.components = components
+    }
+
+    public init(
+      space: Space = .hsv,
+      components: (ComponentBehavior, ComponentBehavior, ComponentBehavior)
+    ) {
+      self.space = space
+      self.components = .init(components.0, components.1, components.2)
     }
   }
 }
@@ -68,14 +98,14 @@ private extension ColorGenerator {
     let color: Color
     switch model.space {
     case .hsv:
-      let (hBehavior, sBehavior, vBehavior) = model.components
+      let (hBehavior, sBehavior, vBehavior) = model.components.tuple
       let h = componentValue(at: coordinate, behavior: hBehavior)
       let s = componentValue(at: coordinate, behavior: sBehavior)
       let v = componentValue(at: coordinate, behavior: vBehavior)
       color = Color(hue: h, saturation: s, brightness: v)
 
     case .rgb:
-      let (rBehavior, gBehavior, bBehavior) = model.components
+      let (rBehavior, gBehavior, bBehavior) = model.components.tuple
       let r = componentValue(at: coordinate, behavior: rBehavior)
       let g = componentValue(at: coordinate, behavior: gBehavior)
       let b = componentValue(at: coordinate, behavior: bBehavior)

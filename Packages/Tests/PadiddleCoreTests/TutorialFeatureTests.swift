@@ -5,17 +5,13 @@ import Testing
 
 @Suite
 @MainActor
-struct TutorialFeatureTests {
+struct HintFeatureTests {
   @Test
   func allHints() async {
-    let isRecording = Shared(value: false)
-
     let store = TestStore(
-      initialState: TutorialFeature.State(
-        isRecording: isRecording
-      )
+      initialState: .init()
     ) {
-      TutorialFeature()
+      HintFeature()
     } withDependencies: {
       $0.continuousClock = ImmediateClock()
     }
@@ -28,7 +24,9 @@ struct TutorialFeatureTests {
       $0.hintState = .promptForRecord
     }
 
-    isRecording.withLock { $0 = true }
+    @Shared(.isRecording) var isRecording
+
+    $isRecording.withLock { $0 = true }
 
     await store.receive(\.isRecordingChanged, true) {
       $0.hintState = .waitToShowSpinPrompt
@@ -45,15 +43,11 @@ struct TutorialFeatureTests {
 
   @Test
   func tappedRecordBeforeRecordHint() async {
-    let isRecording = Shared(value: false)
-
     let clock = TestClock()
     let store = TestStore(
-      initialState: TutorialFeature.State(
-        isRecording: isRecording
-      )
+      initialState: .init()
     ) {
-      TutorialFeature()
+      HintFeature()
     } withDependencies: {
       $0.continuousClock = clock
     }
@@ -65,7 +59,8 @@ struct TutorialFeatureTests {
     // not enough to trigger the hint
     await clock.advance(by: .seconds(1))
 
-    isRecording.withLock { $0 = true }
+    @Shared(.isRecording) var isRecording
+    $isRecording.withLock { $0 = true }
 
     await store.receive(\.isRecordingChanged, true) {
       $0.hintState = .waitToShowSpinPrompt
@@ -85,15 +80,11 @@ struct TutorialFeatureTests {
 
   @Test
   func spunBeforeSpinHint() async {
-    let isRecording = Shared(value: false)
-
     let clock = TestClock()
     let store = TestStore(
-      initialState: TutorialFeature.State(
-        isRecording: isRecording
-      )
+      initialState: .init()
     ) {
-      TutorialFeature()
+      HintFeature()
     } withDependencies: {
       $0.continuousClock = clock
     }
@@ -105,7 +96,8 @@ struct TutorialFeatureTests {
     // not enough to trigger hint
     await clock.advance(by: .seconds(1))
 
-    isRecording.withLock { $0 = true }
+    @Shared(.isRecording) var isRecording
+    $isRecording.withLock { $0 = true }
 
     await store.receive(\.isRecordingChanged, true) {
       $0.hintState = .waitToShowSpinPrompt

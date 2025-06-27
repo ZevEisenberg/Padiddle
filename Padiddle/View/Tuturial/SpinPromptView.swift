@@ -38,6 +38,12 @@ final class SpinPromptView: UIView {
   @available(*, unavailable) required init?(coder _: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  override func didMoveToWindow() {
+    if window != nil {
+      startAnimating()
+    }
+  }
 }
 
 // MARK: - Public Methods
@@ -83,4 +89,8 @@ private extension SpinPromptView {
     let denominator = 2 * atan(a / 2)
     return numerator / denominator + 0.5
   }
+}
+
+#Preview {
+  SpinPromptView(maximumFramesPerSecond: 120)
 }

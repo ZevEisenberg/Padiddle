@@ -1,20 +1,28 @@
+import Clocks
 import ComposableArchitecture
 import Models
 import SwiftUI
 import Utilities
 
+extension SharedKey where Self == InMemoryKey<Bool>.Default {
+  static var isRecording: Self {
+    Self[.inMemory("isRecording"), default: false]
+  }
+}
+
 @Reducer
 struct ToolbarFeature {
   @ObservableState
-  struct State {
-    @Shared var isRecording: Bool
+  struct State: Equatable {
     var colorGenerator: ColorGenerator
 
-    /// Which hint, if any, is currently visible
-    var hint: Hint?
+    var hint: HintFeature.State = .init()
+
+    /// The maximum refresh rate of the display. Usually 120 for ProMotion displays and 60 otherwise.
+    var maximumFramesPerSecond: Int
   }
 
-  enum Action {
+  enum Action: Hashable {
     case onTask
 
     // User Actions
@@ -23,28 +31,36 @@ struct ToolbarFeature {
     case recordButtonTapped
     case helpButtonTapped
 
-    // Timed Events
-    case showHint(Hint)
-    case hideHint
+    // Nested Features
+    case hint(HintFeature.Action)
   }
 
   var body: some ReducerOf<Self> {
-    Reduce { state, action in
+    Scope(state: \.hint, action: \.hint) {
+      HintFeature()
+    }
+    Reduce { _, action in
       switch action {
       case .onTask:
-        return .none
+        return .run { send in
+          await send(.hint(.start))
+        }
+
       case .clearButtonTapped:
         return .none
+
       case .colorButtonTapped:
         return .none
+
       case .recordButtonTapped:
-        state.$isRecording.withLock { $0.toggle() }
+        @Shared(.isRecording) var isRecording
+        $isRecording.withLock { $0.toggle() }
         return .none
+
       case .helpButtonTapped:
         return .none
-      case .showHint(let hint):
-        return .none
-      case .hideHint:
+
+      case .hint:
         return .none
       }
     }
@@ -66,44 +82,56 @@ struct ToolbarView: View {
   @Environment(\.displayScale) private var displayScale
 
   var body: some View {
-    GlassEffectContainer {
-      #warning("TODO: idea from Cam: try putting non-record buttons at the top in a toolbar")
-      HStack(spacing: 20) {
-        if !store.isRecording {
-          clearButton
-            .glassEffect(.regular.interactive())
-            .glassEffectID("clear", in: namespace)
-            .glassEffectUnion(id: "leading", namespace: namespace)
+    ZStack(alignment: .bottom) {
+      ZStack(alignment: .top) {
+        GlassEffectContainer {
+          #warning("TODO: idea from Cam: try putting non-record buttons at the top in a toolbar")
+          HStack(spacing: 20) {
+            @Shared(.isRecording) var isRecording
 
-          colorButton
-            .glassEffect(.regular.interactive())
-            .glassEffectID("color", in: namespace)
-            .glassEffectUnion(id: "leading", namespace: namespace)
-        }
+            if !isRecording {
+              clearButton
+                .glassEffect(.regular.interactive())
+                .glassEffectID("clear", in: namespace)
+                .glassEffectUnion(id: "leading", namespace: namespace)
 
-        recordButton
-          .glassEffectID("record", in: namespace)
-          .glassEffectUnion(id: "middle", namespace: namespace)
+              colorButton
+                .glassEffect(.regular.interactive())
+                .glassEffectID("color", in: namespace)
+                .glassEffectUnion(id: "leading", namespace: namespace)
+            }
 
-        if !store.isRecording {
-          shareButton
-            .glassEffect(.regular.interactive())
-            .glassEffectID("share", in: namespace)
-            .glassEffectUnion(id: "trailing", namespace: namespace)
+            recordButton
+              .glassEffectID("record", in: namespace)
+              .glassEffectUnion(id: "middle", namespace: namespace)
 
-          helpButton
-            .glassEffect(.regular.interactive())
-            .glassEffectID("help", in: namespace)
-            .glassEffectUnion(id: "trailing", namespace: namespace)
+            if !isRecording {
+              shareButton
+                .glassEffect(.regular.interactive())
+                .glassEffectID("share", in: namespace)
+                .glassEffectUnion(id: "trailing", namespace: namespace)
+
+              helpButton
+                .glassEffect(.regular.interactive())
+                .glassEffectID("help", in: namespace)
+                .glassEffectUnion(id: "trailing", namespace: namespace)
+            }
+          }
+
+          if store.hint.hintState == .promptForRecord {
+            StartHereView()
+              .padding(.bottom, 10)
+              .alignmentGuide(.top) { $0[.bottom] }
+          }
         }
       }
+      if store.hint.hintState == .promptForSpin {
+        SpinPromptView(maximumFramesPerSecond: store.maximumFramesPerSecond)
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+      }
     }
-    .border(.red)
     .font(.system(size: 28))
-    .overlay(alignment: .top) {
-      StartHereView()
-        .alignmentGuide(.top) { $0[.bottom] + 15 }
-    }
+    .frame(maxWidth: .infinity)
     .task {
       await store.send(.onTask).finish()
     }
@@ -188,14 +216,15 @@ private extension ToolbarView {
     Button {
       store.send(.recordButtonTapped, animation: .snappy)
     } label: {
-      Image(systemName: store.isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
+      @SharedReader(.isRecording) var isRecording
+      Image(systemName: isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
         .fontWeight(.black)
         .foregroundStyle(.white)
         .frame(size: Design.recordButtonSize)
         .glassEffect(
           .regular.interactive().tint(
             Color(
-              store.isRecording
+              isRecording
                 ? .Toolbar.RecordButton.pause
                 : .Toolbar.RecordButton.record
             )
@@ -205,12 +234,14 @@ private extension ToolbarView {
   }
 }
 
-#Preview {
+#Preview("Initial") {
+  @Previewable @Shared(.isRecording) var isRecording = false
+
   ToolbarView(
     store: .init(
       initialState: .init(
-        isRecording: Shared(value: false),
-        colorGenerator: .classic
+        colorGenerator: .classic,
+        maximumFramesPerSecond: 120
       )
     ) {
       ToolbarFeature()
@@ -218,4 +249,48 @@ private extension ToolbarView {
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
   .background(.gray)
+}
+
+#Preview("Prompt for Record") {
+  @Previewable @Shared(.isRecording) var isRecording = false
+  ToolbarView(
+    store: .init(
+      initialState: .init(
+        colorGenerator: .classic,
+        hint: .init(hintState: .promptForRecord),
+        maximumFramesPerSecond: 120
+      )
+    ) {
+      ToolbarFeature()._printChanges()
+    } withDependencies: {
+      $0.continuousClock = ImmediateClock()
+    }
+  )
+  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+  .background(.gray)
+  .onAppear {
+    $isRecording.withLock { $0 = false }
+  }
+}
+
+#Preview("Spin Prompt") {
+  @Previewable @Shared(.isRecording) var isRecording
+  ToolbarView(
+    store: .init(
+      initialState: .init(
+        colorGenerator: .classic,
+        hint: .init(hintState: .promptForSpin),
+        maximumFramesPerSecond: 120
+      )
+    ) {
+      ToolbarFeature()._printChanges()
+    } withDependencies: {
+      $0.continuousClock = ImmediateClock()
+    }
+  )
+  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+  .background(.gray)
+  .onAppear {
+    $isRecording.withLock { $0 = true }
+  }
 }

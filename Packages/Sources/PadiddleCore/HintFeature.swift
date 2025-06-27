@@ -3,10 +3,9 @@ import SwiftUI
 import Utilities
 
 @Reducer
-struct TutorialFeature {
+struct HintFeature {
   @ObservableState
   struct State: Equatable {
-    @Shared var isRecording: Bool
     var hintState: HintState = .initial
 
     enum HintState {
@@ -19,7 +18,8 @@ struct TutorialFeature {
     }
   }
 
-  enum Action {
+  @CasePathable
+  enum Action: Hashable {
     case start
     case isRecordingChanged(Bool)
 
@@ -46,16 +46,21 @@ struct TutorialFeature {
     Reduce { state, action in
       switch action {
       case .start:
-        state.hintState = .waitToShowRecordPrompt
+        if state.hintState == .initial {
+          state.hintState = .waitToShowRecordPrompt
+        }
         return .merge {
-          Effect.run { send in
-            try await clock.sleep(for: Design.waitForRecordTimeout)
-            await send(.showRecordPrompt)
+          if state.hintState == .waitToShowRecordPrompt {
+            Effect.run { send in
+              try await clock.sleep(for: Design.waitForRecordTimeout)
+              await send(.showRecordPrompt)
+            }
+            .cancellable(id: CancelID.waitToShowRecordPrompt, cancelInFlight: true)
           }
-          .cancellable(id: CancelID.waitToShowRecordPrompt, cancelInFlight: true)
 
+          @Shared(.isRecording) var isRecording
           Effect.publisher {
-            state.$isRecording.publisher.dropFirst().map {
+            $isRecording.publisher.dropFirst().map {
               Action.isRecordingChanged($0)
             }
           }
