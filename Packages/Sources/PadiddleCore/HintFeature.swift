@@ -53,7 +53,7 @@ struct HintFeature {
           if state.hintState == .waitToShowRecordPrompt {
             Effect.run { send in
               try await clock.sleep(for: Design.waitForRecordTimeout)
-              await send(.showRecordPrompt)
+              await send(.showRecordPrompt, animation: .spring)
             }
             .cancellable(id: CancelID.waitToShowRecordPrompt, cancelInFlight: true)
           }
@@ -77,7 +77,7 @@ struct HintFeature {
           if isRecording {
             Effect.run { send in
               try await clock.sleep(for: Design.waitForSpinTimeout)
-              await send(.showSpinPrompt)
+              await send(.showSpinPrompt, animation: .default)
             }
             .cancellable(id: CancelID.waitToShowSpinPrompt)
           }

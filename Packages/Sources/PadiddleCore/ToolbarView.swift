@@ -12,9 +12,18 @@ extension SharedKey where Self == InMemoryKey<Bool>.Default {
 
 @Reducer
 struct ToolbarFeature {
+  let disableHintsForTesting: Bool
+
+  init(disableHintsForTesting: Bool = false) {
+    self.disableHintsForTesting = disableHintsForTesting
+  }
+
   @ObservableState
   struct State: Equatable {
     var colorGenerator: ColorGenerator
+
+    @Presents
+    var destination: Destination.State?
 
     var hint: HintFeature.State = .init()
 
@@ -22,7 +31,14 @@ struct ToolbarFeature {
     var maximumFramesPerSecond: Int
   }
 
-  enum Action: Hashable {
+  @Reducer(state: .equatable)
+  enum Destination {
+    case colorPicker(ColorPickerFeature)
+    @ReducerCaseIgnored
+    case help
+  }
+
+  enum Action {
     case onTask
 
     // User Actions
@@ -32,24 +48,31 @@ struct ToolbarFeature {
     case helpButtonTapped
 
     // Nested Features
+    case destination(PresentationAction<Destination.Action>)
     case hint(HintFeature.Action)
   }
 
   var body: some ReducerOf<Self> {
-    Scope(state: \.hint, action: \.hint) {
-      HintFeature()
+    if !disableHintsForTesting {
+      Scope(state: \.hint, action: \.hint) {
+        HintFeature()
+      }
     }
-    Reduce { _, action in
+
+    Reduce { state, action in
       switch action {
       case .onTask:
         return .run { send in
-          await send(.hint(.start))
+          if !disableHintsForTesting {
+            await send(.hint(.start))
+          }
         }
 
       case .clearButtonTapped:
         return .none
 
       case .colorButtonTapped:
+        state.destination = .colorPicker(ColorPickerFeature.State(currentSelection: state.colorGenerator.id))
         return .none
 
       case .recordButtonTapped:
@@ -60,10 +83,26 @@ struct ToolbarFeature {
       case .helpButtonTapped:
         return .none
 
+      case .destination(.presented(.colorPicker(let action))):
+        switch action {
+        case .colorPicked(let color):
+          state.colorGenerator = color
+          state.destination = nil
+          return .none
+
+        case .delegate(.cancelTapped):
+          state.destination = nil
+          return .none
+        }
+
+      case .destination:
+        return .none
+
       case .hint:
         return .none
       }
     }
+    .ifLet(\.$destination, action: \.destination)
   }
 }
 
@@ -76,10 +115,17 @@ extension ToolbarFeature {
 }
 
 struct ToolbarView: View {
-  let store: StoreOf<ToolbarFeature>
+  @Bindable
+  var store: StoreOf<ToolbarFeature>
 
   @Namespace private var namespace
   @Environment(\.displayScale) private var displayScale
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+  @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+  var isPopoverActuallyPopover: Bool {
+    horizontalSizeClass == .regular && verticalSizeClass == .regular
+  }
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -96,9 +142,39 @@ struct ToolbarView: View {
                 .glassEffectUnion(id: "leading", namespace: namespace)
 
               colorButton
+                .keyframeAnimator(
+                  initialValue: 1.0,
+                  trigger: store.colorGenerator,
+                  content: { content, value in
+                    content
+                      .scaleEffect(value)
+                  },
+                  keyframes: { _ in
+                    KeyframeTrack {
+                      if !isPopoverActuallyPopover {
+                        // wait for sheet to dismiss
+                        LinearKeyframe(1, duration: 0.4)
+                      } else {
+                        // required for conditional builder
+                      }
+                      SpringKeyframe(1.2, duration: 0.2, spring: .snappy)
+                      SpringKeyframe(1, spring: .snappy, startVelocity: 10)
+                    }
+                  }
+                )
                 .glassEffect(.regular.interactive())
                 .glassEffectID("color", in: namespace)
                 .glassEffectUnion(id: "leading", namespace: namespace)
+                .popover(
+                  item: $store.scope(
+                    state: \.destination?.colorPicker,
+                    action: \.destination.colorPicker
+                  ),
+                  arrowEdge: .bottom
+                ) { store in
+                  ColorPickerView(store: store)
+                    .frame(minWidth: 320)
+                }
             }
 
             recordButton
@@ -122,12 +198,21 @@ struct ToolbarView: View {
             StartHereView()
               .padding(.bottom, 10)
               .alignmentGuide(.top) { $0[.bottom] }
+              .transition(
+                .opacity
+                  .combined(
+                    with: .offset(y: -10)
+                  )
+              )
           }
         }
       }
       if store.hint.hintState == .promptForSpin {
-        SpinPromptView(maximumFramesPerSecond: store.maximumFramesPerSecond)
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
+        SpinPromptView(
+          maximumFramesPerSecond: store.maximumFramesPerSecond
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .transition(.opacity)
       }
     }
     .font(.system(size: 28))
@@ -244,7 +329,7 @@ private extension ToolbarView {
         maximumFramesPerSecond: 120
       )
     ) {
-      ToolbarFeature()
+      ToolbarFeature()._printChanges()
     }
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

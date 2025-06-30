@@ -1,5 +1,7 @@
+import IdentifiedCollections
+
 public extension ColorGenerator {
-  static var toPick: [ColorGenerator] {
+  static var toPick: IdentifiedArrayOf<ColorGenerator> {
     [
       classic,
       sepia,
@@ -18,7 +20,7 @@ public extension ColorGenerator {
 
   static var classic: Self {
     ColorGenerator(
-      title: String(localized: .colorsClassic),
+      title: .colorsClassic,
       model: .init(
         space: .hsv,
         components: (
@@ -32,7 +34,7 @@ public extension ColorGenerator {
 
   static var sepia: Self {
     ColorGenerator(
-      title: String(localized: .colorsSepia),
+      title: .colorsSepia,
       model: .init(
         space: .hsv,
         components: (
@@ -46,7 +48,7 @@ public extension ColorGenerator {
 
   static var blackWidow: Self {
     ColorGenerator(
-      title: String(localized: .colorsBlackWidow),
+      title: .colorsBlackWidow,
       model: .init(
         space: .hsv,
         components: (
@@ -60,7 +62,7 @@ public extension ColorGenerator {
 
   static var autumn: Self {
     ColorGenerator(
-      title: String(localized: .colorsAutumn),
+      title: .colorsAutumn,
       model: .init(
         space: .rgb,
         components: (
@@ -74,7 +76,7 @@ public extension ColorGenerator {
 
   static var tangerine: Self {
     ColorGenerator(
-      title: String(localized: .colorsTangerine),
+      title: .colorsTangerine,
       model: .init(
         space: .hsv,
         components: (
@@ -89,7 +91,7 @@ public extension ColorGenerator {
   /// Because `3D` in backticks was causing problems for poor SwiftFormat.
   static var ddd: Self {
     ColorGenerator(
-      title: String(localized: .colors3D),
+      title: .colors3D,
       model: .init(
         space: .rgb,
         components: (
@@ -103,7 +105,7 @@ public extension ColorGenerator {
 
   static var watercolor: Self {
     ColorGenerator(
-      title: String(localized: .colorsWatercolor),
+      title: .colorsWatercolor,
       model: .init(
         space: .rgb,
         components: (
@@ -117,7 +119,7 @@ public extension ColorGenerator {
 
   static var monsters: Self {
     ColorGenerator(
-      title: String(localized: .colorsMonsters),
+      title: .colorsMonsters,
       model: .init(
         space: .rgb,
         components: (
@@ -131,7 +133,7 @@ public extension ColorGenerator {
 
   static var pastels: Self {
     ColorGenerator(
-      title: String(localized: .colorsPastels),
+      title: .colorsPastels,
       model: .init(
         space: .hsv,
         components: (
@@ -145,7 +147,7 @@ public extension ColorGenerator {
 
   static var merlin: Self {
     ColorGenerator(
-      title: String(localized: .colorsMerlin),
+      title: .colorsMerlin,
       model: .init(
         space: .hsv,
         components: (
@@ -159,7 +161,7 @@ public extension ColorGenerator {
 
   static var regolith: Self {
     ColorGenerator(
-      title: String(localized: .colorsRegolith),
+      title: .colorsRegolith,
       model: .init(
         space: .hsv,
         components: (
@@ -173,7 +175,7 @@ public extension ColorGenerator {
 
   static var filmNoir: Self {
     ColorGenerator(
-      title: String(localized: .colorsFilmNoir),
+      title: .colorsFilmNoir,
       model: .init(
         space: .hsv,
         components: (

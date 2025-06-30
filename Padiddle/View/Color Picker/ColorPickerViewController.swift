@@ -217,3 +217,26 @@ extension ColorPickerViewController: UICollectionViewDelegate {
     delegate?.colorPicked(viewModel.selectedColorManager)
   }
 }
+
+private final class MyColorPickerViewModelDelegate: ColorPickerViewModelDelegate {
+  init() {}
+
+  func colorManagerPicked(_ colorManager: ColorManager) {
+    print(#function, colorManager)
+  }
+}
+
+private final class MyColorPickerDelegate: ColorPickerDelegate {
+  init() {}
+
+  func colorPicked(_ color: ColorManager) {
+    print(#function, color)
+  }
+}
+
+#Preview {
+  ColorPickerViewController(
+    viewModel: ColorPickerViewModel(delegate: MyColorPickerViewModelDelegate()),
+    delegate: MyColorPickerDelegate()
+  )
+}

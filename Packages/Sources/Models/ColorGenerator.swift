@@ -1,9 +1,19 @@
+import Foundation
 import struct SwiftUI.Color
 
 /// Holds values representing a coordinate while spinning, and then produces a color from those coordinates on-demand.
-public struct ColorGenerator: Equatable {
-  public var title: String
+public struct ColorGenerator: Hashable, Identifiable {
+  public var title: LocalizedStringResource
   public var model: Model
+
+  public var id: String {
+    title.key
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(title.key)
+    hasher.combine(model)
+  }
 
   public func color(
     at coordinate: Coordinate
@@ -68,7 +78,7 @@ public extension ColorGenerator {
     case rgb
   }
 
-  struct Model: Equatable {
+  struct Model: Hashable {
     public var space: Space
     public var components: Triple<ComponentBehavior>
 
