@@ -13,6 +13,11 @@ public struct AboutView: View {
   @Environment(\.displayScale) private var displayScale
   @Environment(\.colorScheme) private var colorScheme
 
+  private struct ContentInvalidator: Hashable {
+    let displayScale: CGFloat
+    let colorScheme: ColorScheme
+  }
+
   public init(horizontalSizeClass: UserInterfaceSizeClass) {
     self.horizontalSizeClass = horizontalSizeClass
   }
@@ -31,7 +36,7 @@ public struct AboutView: View {
         // Stop bottom of web view from getting clipped by nav stack. Apparently.
         .ignoresSafeArea(edges: .bottom)
     }
-    .task {
+    .task(id: ContentInvalidator(displayScale: displayScale, colorScheme: colorScheme)) {
       await loadContent()
     }
   }

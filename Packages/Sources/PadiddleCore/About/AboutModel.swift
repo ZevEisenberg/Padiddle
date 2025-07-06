@@ -96,7 +96,7 @@ struct DeviceClient: DependencyKey, Sendable {
           )
         )
 
-        let spinImage = UIImage(systemName: "arrow.trianglehead.2.clockwise")!
+        let spinImage = UIImage(systemName: "arrow.trianglehead.2.clockwise.rotate.90")!
           .applyingSymbolConfiguration(.init(weight: .regular))!
           .withTintColor(UIColor(resource: .Toolbar.RecordButton.record))
           .applyingSymbolConfiguration(.init(pointSize: 75))!

@@ -3,6 +3,7 @@ import Foundation
 import Sharing
 import SwiftUI
 import UIKit.UIImage
+import Utilities
 import WebKit
 
 /// Handle `padiddle-asset://assetName` requests from `WebView` and return the appropriate
@@ -26,34 +27,49 @@ struct AboutAssetHandler: URLSchemeHandler {
         return
       }
 
-      #warning("TODO: figure out how to get liquid glass images in here. or. Something???")
-      let image: UIImage?
-      switch imageName {
-      case "recordButton":
-        image = UIImage(systemName: "record.circle")!
-      case "colorButton":
-        @SharedReader(.colorButtonImage) var colorButtonImage
-        image = colorButtonImage
-      case "deviceImage":
-        image = deviceKind.deviceSpinImage(displayScale: displayScale, colorScheme: colorScheme)
-      default:
-        image = nil
+      Task {
+        let image: UIImage?
+        switch imageName {
+        case "recordButton":
+          image = await .recordButton(displayScale: displayScale)
+        case "colorButton":
+          @SharedReader(.colorButtonImage) var colorButtonImage
+          image = colorButtonImage
+        case "deviceImage":
+          image = deviceKind.deviceSpinImage(displayScale: displayScale, colorScheme: colorScheme)
+        default:
+          image = nil
+        }
+
+        guard let image, let imageData = image.pngData() else {
+          return
+        }
+
+        let response = URLResponse(
+          url: url,
+          mimeType: "image/png",
+          expectedContentLength: imageData.count,
+          textEncodingName: nil
+        )
+        continuation.yield(.response(response))
+
+        continuation.yield(.data(imageData))
       }
-
-      guard let image, let imageData = image.pngData() else {
-        return
-      }
-
-      let response = URLResponse(
-        url: url,
-        mimeType: "image/png",
-        expectedContentLength: imageData.count,
-        textEncodingName: nil
-      )
-      continuation.yield(.response(response))
-
-      continuation.yield(.data(imageData))
     }
+  }
+}
+
+extension UIImage {
+  @MainActor
+  static func recordButton(displayScale: CGFloat) -> UIImage {
+    let renderer = ImageRenderer(
+      content: ToolbarView.recordButtonLabel(isRecording: false)
+        .background(Color(.Toolbar.RecordButton.record), in: .circle)
+    )
+    renderer.scale = displayScale
+    renderer.proposedSize = .init(.square(sideLength: 60))
+    let image = renderer.uiImage!
+    return image
   }
 }
 

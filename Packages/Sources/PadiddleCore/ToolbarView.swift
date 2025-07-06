@@ -314,10 +314,7 @@ private extension ToolbarView {
       store.send(.recordButtonTapped, animation: .snappy)
     } label: {
       @SharedReader(.isRecording) var isRecording
-      Image(systemName: isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
-        .fontWeight(.black)
-        .foregroundStyle(.white)
-        .frame(size: Design.recordButtonSize)
+      Self.recordButtonLabel(isRecording: isRecording)
         .glassEffect(
           .regular.interactive().tint(
             Color(
@@ -328,6 +325,17 @@ private extension ToolbarView {
           )
         )
     }
+  }
+}
+
+extension ToolbarView {
+  @ViewBuilder
+  static func recordButtonLabel(isRecording: Bool) -> some View {
+    Image(systemName: isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
+      .fontWeight(.black)
+      .foregroundStyle(.white)
+      .frame(size: Design.recordButtonSize)
+      .font(.system(size: 28))
   }
 }
 
