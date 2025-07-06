@@ -58,7 +58,7 @@ struct HintFeature {
             .cancellable(id: CancelID.waitToShowRecordPrompt, cancelInFlight: true)
           }
 
-          @Shared(.isRecording) var isRecording
+          @SharedReader(.isRecording) var isRecording
           Effect.publisher {
             $isRecording.publisher.dropFirst().map {
               Action.isRecordingChanged($0)

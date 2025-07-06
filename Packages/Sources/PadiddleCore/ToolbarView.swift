@@ -141,7 +141,7 @@ struct ToolbarView: View {
         GlassEffectContainer {
           #warning("TODO: idea from Cam: try putting non-record buttons at the top in a toolbar")
           HStack(spacing: 20) {
-            @Shared(.isRecording) var isRecording
+            @SharedReader(.isRecording) var isRecording
 
             if !isRecording {
               clearButton
@@ -332,7 +332,7 @@ private extension ToolbarView {
 }
 
 #Preview("Initial") {
-  @Previewable @Shared(.isRecording) var isRecording = false
+  @Previewable @SharedReader(.isRecording) var isRecording = false
 
   ToolbarView(
     store: .init(

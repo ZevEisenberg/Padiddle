@@ -32,7 +32,7 @@ struct AboutAssetHandler: URLSchemeHandler {
       case "recordButton":
         image = UIImage(systemName: "record.circle")!
       case "colorButton":
-        @Shared(.colorButtonImage) var colorButtonImage
+        @SharedReader(.colorButtonImage) var colorButtonImage
         image = colorButtonImage
       case "deviceImage":
         image = deviceKind.deviceSpinImage(displayScale: displayScale, colorScheme: colorScheme)
