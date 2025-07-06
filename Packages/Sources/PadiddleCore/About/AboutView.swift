@@ -102,5 +102,4 @@ private extension AboutView {
   } operation: {
     AboutView(horizontalSizeClass: horizontalSizeClass!)
   }
-  .colorScheme(.dark)
 }
