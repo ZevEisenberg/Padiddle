@@ -35,7 +35,7 @@ struct AboutModel {
   }
 }
 
-extension Locale {
+private extension Locale {
   /// "en" instead of "en\_US"
   var bundleLocalizationLanguageCode: String? {
     language.languageCode?.identifier
