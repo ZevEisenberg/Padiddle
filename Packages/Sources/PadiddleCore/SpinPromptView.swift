@@ -1,3 +1,4 @@
+import Dependencies
 import SwiftUI
 
 struct SpinPromptView: View {
@@ -18,22 +19,17 @@ struct SpinPromptView: View {
 
   @ViewBuilder
   var deviceImage: some View {
-    Text(
-      Image(
-        systemName: horizontalSizeClass == .regular
-          ? "ipad"
-          : "iphone"
-      )
-    )
-    .symbolRenderingMode(.monochrome)
-    .font(.system(size: 300, weight: .ultraLight))
-    .overlay {
-      Text(.tutorialSpinPrompt)
-        .font(.system(size: 30, weight: .medium))
-        .foregroundStyle(Color(.Toolbar.SpinPrompt.text))
-        .multilineTextAlignment(.center)
-        .frame(maxWidth: 105)
-    }
+    @Dependency(\.deviceClient) var deviceClient
+    Text(deviceClient.deviceKind().deviceImage)
+      .symbolRenderingMode(.monochrome)
+      .font(.system(size: 300, weight: .ultraLight))
+      .overlay {
+        Text(.tutorialSpinPrompt)
+          .font(.system(size: 30, weight: .medium))
+          .foregroundStyle(Color(.Toolbar.SpinPrompt.text))
+          .multilineTextAlignment(.center)
+          .frame(maxWidth: 105)
+      }
   }
 }
 

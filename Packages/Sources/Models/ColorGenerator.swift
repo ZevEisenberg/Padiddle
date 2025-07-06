@@ -2,7 +2,7 @@ import Foundation
 import struct SwiftUI.Color
 
 /// Holds values representing a coordinate while spinning, and then produces a color from those coordinates on-demand.
-public struct ColorGenerator: Hashable, Identifiable {
+public struct ColorGenerator: Hashable, Identifiable, Sendable {
   public var title: LocalizedStringResource
   public var model: Model
 
@@ -73,12 +73,12 @@ extension Triple: Hashable where Value: Hashable {}
 extension Triple: Sendable where Value: Sendable {}
 
 public extension ColorGenerator {
-  enum Space {
+  enum Space: Sendable {
     case hsv
     case rgb
   }
 
-  struct Model: Hashable {
+  struct Model: Hashable, Sendable {
     public var space: Space
     public var components: Triple<ComponentBehavior>
 

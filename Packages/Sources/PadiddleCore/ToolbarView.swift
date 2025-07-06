@@ -19,7 +19,7 @@ struct ToolbarFeature {
   }
 
   @ObservableState
-  struct State: Equatable {
+  struct State: Equatable, Sendable {
     var colorGenerator: ColorGenerator
 
     @Presents
@@ -35,21 +35,23 @@ struct ToolbarFeature {
   enum Destination {
     case colorPicker(ColorPickerFeature)
     @ReducerCaseIgnored
-    case help
+    case about
   }
 
-  enum Action {
+  enum Action: BindableAction {
     case onTask
 
     // User Actions
     case clearButtonTapped
     case colorButtonTapped
     case recordButtonTapped
-    case helpButtonTapped
+    case aboutButtonTapped
 
     // Nested Features
     case destination(PresentationAction<Destination.Action>)
     case hint(HintFeature.Action)
+
+    case binding(BindingAction<ToolbarFeature.State>)
   }
 
   var body: some ReducerOf<Self> {
@@ -80,7 +82,8 @@ struct ToolbarFeature {
         $isRecording.withLock { $0.toggle() }
         return .none
 
-      case .helpButtonTapped:
+      case .aboutButtonTapped:
+        state.destination = .about
         return .none
 
       case .destination(.presented(.colorPicker(let action))):
@@ -100,9 +103,14 @@ struct ToolbarFeature {
 
       case .hint:
         return .none
+
+      case .binding:
+        return .none
       }
     }
     .ifLet(\.$destination, action: \.destination)
+
+    BindingReducer()
   }
 }
 
@@ -187,9 +195,9 @@ struct ToolbarView: View {
                 .glassEffectID("share", in: namespace)
                 .glassEffectUnion(id: "trailing", namespace: namespace)
 
-              helpButton
+              aboutButton
                 .glassEffect(.regular.interactive())
-                .glassEffectID("help", in: namespace)
+                .glassEffectID("about", in: namespace)
                 .glassEffectUnion(id: "trailing", namespace: namespace)
             }
           }
@@ -258,11 +266,11 @@ private extension ToolbarView {
         thetaStep: .pi / 16,
         lineWidth: 2.3
       )
-      let image = SpiralImageMaker.image(
+      @Shared(.colorButtonImage) var colorButtonImage = SpiralImageMaker.image(
         spiralModel: spiralModel,
         scale: displayScale
       )
-      Image(uiImage: image)
+      Image(uiImage: colorButtonImage)
         .frame(size: Design.buttonSize)
     }
   }
@@ -282,13 +290,17 @@ private extension ToolbarView {
   }
 
   @ViewBuilder
-  var helpButton: some View {
+  var aboutButton: some View {
     Button {
-      store.send(.helpButtonTapped)
+      store.send(.aboutButtonTapped)
     } label: {
       Image(systemName: "questionmark.circle")
-        .accessibilityLabel(Text("Help"))
+        .accessibilityLabel(Text("About"))
         .frame(size: Design.buttonSize)
+    }
+    .popover(isPresented: $store.destination.about) {
+      AboutView(horizontalSizeClass: horizontalSizeClass!)
+        .frame(minWidth: 320, minHeight: 500)
     }
   }
 }
@@ -378,4 +390,23 @@ private extension ToolbarView {
   .onAppear {
     $isRecording.withLock { $0 = true }
   }
+}
+
+private let aboutPreviewState = ToolbarFeature.State(
+  colorGenerator: .classic,
+  destination: .about,
+  hint: .init(hintState: .disabled),
+  maximumFramesPerSecond: 120,
+)
+
+#Preview("About") {
+  ToolbarView(
+    store: .init(
+      initialState: aboutPreviewState
+    ) {
+      ToolbarFeature()._printChanges()
+    }
+  )
+  .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+  .background(.gray)
 }

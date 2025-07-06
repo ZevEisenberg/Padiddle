@@ -1,5 +1,5 @@
 /// How a single component of a color varies.
-public enum ComponentBehavior: Hashable {
+public enum ComponentBehavior: Hashable, Sendable {
   case thetaIncreasing
   case thetaIncreasingAndDecreasing
   case velocityOut
