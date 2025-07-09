@@ -81,7 +81,6 @@ struct DeviceClient: DependencyKey, Sendable {
     )
   }
 
-  // testValue
   static var testValue: Self {
     Self(
       deviceKind: { .iPhone }
