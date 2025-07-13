@@ -28,7 +28,7 @@ struct DeviceMotionClient: DependencyKey, Sendable {
 }
 
 @MainActor
-let motionManager = with(CMMotionManager()) {
+private let motionManager = with(CMMotionManager()) {
   $0.deviceMotionUpdateInterval = 1 / 120
 }
 
