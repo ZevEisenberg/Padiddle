@@ -5,3 +5,9 @@ public extension CGSize {
     CGSize(width: sideLength, height: sideLength)
   }
 }
+
+public extension CGAffineTransform {
+  var angle: CGFloat {
+    atan2(b, a)
+  }
+}

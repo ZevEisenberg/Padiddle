@@ -17,6 +17,7 @@ let package = Package(
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.20.2"),
     .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.9.2"),
     .package(url: "https://github.com/pointfreeco/swift-identified-collections", exact: "1.1.1"),
+    .package(url: "https://github.com/pointfreeco/swift-numerics", exact: "1.0.3"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.18.4"),
     .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", exact: "1.5.2"),
   ],
@@ -71,6 +72,13 @@ let package = Package(
         .tca,
       ]
     ),
+    .testTarget(
+      name: "UtilitiesTests",
+      dependencies: [
+        .numerics,
+        .utilities,
+      ]
+    ),
   ]
 )
 
@@ -99,6 +107,7 @@ extension Target.Dependency {
   static let identifiedCollections: Self = .product(name: "IdentifiedCollections", package: "swift-identified-collections")
   static let inlineSnapshotTesting: Self = .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing")
   static let issueReportingTestSupport: Self = .product(name: "IssueReportingTestSupport", package: "xctest-dynamic-overlay")
+  static let numerics: Self = .product(name: "RealModule", package: "swift-numerics")
   static let snapshotTesting: Self = .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
   static let tca: Self = .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
 }
