@@ -10,6 +10,12 @@ extension SharedKey where Self == InMemoryKey<Bool>.Default {
   }
 }
 
+extension SharedKey where Self == AppStorageKey<ColorGenerator>.Default {
+  static var colorGenerator: Self {
+    Self[.appStorage("colorGenerator"), default: ColorGenerator.toPick[0]]
+  }
+}
+
 @Reducer
 struct ToolbarFeature {
   let disableHintsForTesting: Bool
@@ -19,16 +25,19 @@ struct ToolbarFeature {
   }
 
   @ObservableState
-  struct State: Equatable, Sendable {
+  struct State: Equatable {
+    var displayScale: CGFloat = 2.0
+
+    @Shared(.colorGenerator)
     var colorGenerator: ColorGenerator
+
+    @Shared(.colorButtonImage)
+    var colorButtonImage
 
     @Presents
     var destination: Destination.State?
 
     var hint: HintFeature.State = .init()
-
-    /// The maximum refresh rate of the display. Usually 120 for ProMotion displays and 60 otherwise.
-    var maximumFramesPerSecond: Int
   }
 
   @Reducer(state: .equatable)
@@ -39,7 +48,7 @@ struct ToolbarFeature {
   }
 
   enum Action: BindableAction {
-    case onTask
+    case onTask(displayScale: CGFloat)
 
     // User Actions
     case clearButtonTapped
@@ -63,7 +72,9 @@ struct ToolbarFeature {
 
     Reduce { state, action in
       switch action {
-      case .onTask:
+      case .onTask(let displayScale):
+        state.displayScale = displayScale
+
         return .run { send in
           if !disableHintsForTesting {
             await send(.hint(.start))
@@ -89,7 +100,26 @@ struct ToolbarFeature {
       case .destination(.presented(.colorPicker(let action))):
         switch action {
         case .colorPicked(let color):
-          state.colorGenerator = color
+          state.$colorGenerator.withLock { $0 = color }
+
+          #warning("more evidence that this doesn't belong in the feature: now we have to coordinate calling this on first load, or the image will be blank. Boo. Need a cache!")
+          let spiralModel = SpiralModel(
+            colorGenerator: state.colorGenerator,
+            size: .square(sideLength: 36),
+            startRadius: 0,
+            spacePerLoop: 0.7,
+            thetaRange: 0...(2 * .pi * 4),
+            thetaStep: .pi / 16,
+            lineWidth: 2.3
+          )
+
+          state.$colorButtonImage.withLock {
+            $0 = SpiralImageMaker.image(
+              spiralModel: spiralModel,
+              scale: state.displayScale
+            )
+          }
+
           state.destination = nil
           return .none
 
@@ -216,17 +246,15 @@ struct ToolbarView: View {
         }
       }
       if store.hint.hintState == .promptForSpin {
-        SpinPromptView(
-          maximumFramesPerSecond: store.maximumFramesPerSecond
-        )
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .transition(.opacity)
+        SpinPromptView()
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .transition(.opacity)
       }
     }
     .font(.system(size: 28))
     .frame(maxWidth: .infinity)
     .task {
-      await store.send(.onTask).finish()
+      await store.send(.onTask(displayScale: displayScale)).finish()
     }
   }
 }
@@ -257,20 +285,7 @@ private extension ToolbarView {
     Button {
       store.send(.colorButtonTapped)
     } label: {
-      let spiralModel = SpiralModel(
-        colorGenerator: store.colorGenerator,
-        size: .square(sideLength: 36),
-        startRadius: 0,
-        spacePerLoop: 0.7,
-        thetaRange: 0...(2 * .pi * 4),
-        thetaStep: .pi / 16,
-        lineWidth: 2.3
-      )
-      @Shared(.colorButtonImage) var colorButtonImage = SpiralImageMaker.image(
-        spiralModel: spiralModel,
-        scale: displayScale
-      )
-      Image(uiImage: colorButtonImage)
+      Image(uiImage: store.colorButtonImage)
         .frame(size: Design.buttonSize)
     }
   }
@@ -344,10 +359,7 @@ extension ToolbarView {
 
   ToolbarView(
     store: .init(
-      initialState: .init(
-        colorGenerator: .classic,
-        maximumFramesPerSecond: 120
-      )
+      initialState: .init()
     ) {
       ToolbarFeature()._printChanges()
     }
@@ -361,9 +373,7 @@ extension ToolbarView {
   ToolbarView(
     store: .init(
       initialState: .init(
-        colorGenerator: .classic,
-        hint: .init(hintState: .promptForRecord),
-        maximumFramesPerSecond: 120
+        hint: .init(hintState: .promptForRecord)
       )
     ) {
       ToolbarFeature()._printChanges()
@@ -383,9 +393,7 @@ extension ToolbarView {
   ToolbarView(
     store: .init(
       initialState: .init(
-        colorGenerator: .classic,
-        hint: .init(hintState: .promptForSpin),
-        maximumFramesPerSecond: 120
+        hint: .init(hintState: .promptForSpin)
       )
     ) {
       ToolbarFeature()._printChanges()
@@ -401,10 +409,8 @@ extension ToolbarView {
 }
 
 private let aboutPreviewState = ToolbarFeature.State(
-  colorGenerator: .classic,
   destination: .about,
-  hint: .init(hintState: .disabled),
-  maximumFramesPerSecond: 120
+  hint: .init(hintState: .disabled)
 )
 
 #Preview("About") {

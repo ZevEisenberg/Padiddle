@@ -1,5 +1,19 @@
 import IdentifiedCollections
 
+extension ColorGenerator: RawRepresentable {
+  public var rawValue: String {
+    title.key
+  }
+
+  public init?(rawValue: String) {
+    if let generator = ColorGenerator.toPick.first(where: { $0.title.key == rawValue }) {
+      self = generator
+    } else {
+      return nil
+    }
+  }
+}
+
 public extension ColorGenerator {
   static var toPick: IdentifiedArrayOf<ColorGenerator> {
     [

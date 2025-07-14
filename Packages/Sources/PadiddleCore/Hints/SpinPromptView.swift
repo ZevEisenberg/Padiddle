@@ -2,8 +2,6 @@ import Dependencies
 import SwiftUI
 
 struct SpinPromptView: View {
-  let maximumFramesPerSecond: Int
-
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
   var body: some View {
@@ -50,5 +48,5 @@ private struct AnimationProperties {
 }
 
 #Preview {
-  SpinPromptView(maximumFramesPerSecond: 120)
+  SpinPromptView()
 }
