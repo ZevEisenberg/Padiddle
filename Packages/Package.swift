@@ -29,7 +29,7 @@ let package = Package(
       ],
       resources: [
         .process("Resources"),
-      ],
+      ]
     ),
     .testTarget(
       name: "ModelsTests",
@@ -48,7 +48,7 @@ let package = Package(
       ],
       resources: [
         .process("Resources"),
-      ],
+      ]
     ),
     .testTarget(
       name: "PadiddleCoreTests",

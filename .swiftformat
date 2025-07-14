@@ -1,32 +1,41 @@
+# Excludes
+
 --exclude .build/**/*
 --exclude Scripts/**/*
 --exclude Screenshots/SnapshotHelper.swift
 
-# rules
+# Disabled Rules
 
+--disable modifiersOnSameLine
 --disable trailingClosures
+
+# Enabled Rules
+
 --enable blankLinesBetweenScopes
 --enable emptyExtensions
 --enable environmentEntry
+--enable noGuardInTests
 --enable privateStateVariables
 --enable redundantEquatable
+--enable throwingTests
 --enable wrapEnumCases
 --enable wrapSwitchCases
 
-# options
+# Options
 
---binarygrouping 4,8
---decimalgrouping 3,5
---exponentcase lowercase
+--binary-grouping 4,8
+--decimal-grouping 3,5
+--exponent-case lowercase
 --header strip
 --ifdef no-indent
---importgrouping testable-last
+--import-grouping testable-last
 --indent 2
---patternlet inline
+--pattern-let inline
 --ranges no-space
 --self init-only
 --someAny false
---stripunusedargs unnamed-only
---wraparguments before-first
---wrapcollections before-first
---wrapparameters before-first
+--trailing-commas collections-only
+--strip-unused-args unnamed-only
+--wrap-arguments before-first
+--wrap-collections before-first
+--wrap-parameters before-first

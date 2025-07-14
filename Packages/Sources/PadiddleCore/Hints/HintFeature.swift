@@ -96,7 +96,7 @@ struct HintFeature {
         return .merge(
           .cancel(id: CancelID.waitToShowRecordPrompt),
           .cancel(id: CancelID.waitToShowSpinPrompt),
-          .cancel(id: CancelID.spunEnoughToHideSpinPrompt),
+          .cancel(id: CancelID.spunEnoughToHideSpinPrompt)
         )
       }
     }

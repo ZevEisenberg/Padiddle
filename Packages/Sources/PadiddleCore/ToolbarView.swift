@@ -404,7 +404,7 @@ private let aboutPreviewState = ToolbarFeature.State(
   colorGenerator: .classic,
   destination: .about,
   hint: .init(hintState: .disabled),
-  maximumFramesPerSecond: 120,
+  maximumFramesPerSecond: 120
 )
 
 #Preview("About") {
