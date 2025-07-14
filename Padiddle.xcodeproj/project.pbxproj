@@ -38,15 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7075CF19A72744D6B4916191 /* Pods_PadiddleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadiddleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapshotTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB6247B2E05BC8600C07147 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
-		E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Padiddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -186,16 +183,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A654FC30C20C02D41519486C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E639A2B444C2F23A3DB2D09E /* Pods_Padiddle.framework */,
-				72A6CDF319C4FFE781A19C6C /* Pods_PadiddleTests.framework */,
-				7075CF19A72744D6B4916191 /* Pods_PadiddleUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CD193CB01BA4891500203B44 = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +195,6 @@
 				CD4E0ABA2DFD565C00FBBC4C /* Screenshots */,
 				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 				CD193CBA1BA4891500203B44 /* Products */,
-				A654FC30C20C02D41519486C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
