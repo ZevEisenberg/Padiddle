@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -146,32 +146,42 @@
 /* Begin PBXFrameworksBuildPhase section */
 		CD114B6B1CB80066001BBF75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB61BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
 				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
 				CD2E96122E0F63FD00706A7C /* PadiddleCore in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				CD657F6B2DFD31C300215549 /* RealModule in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD51BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD9C55CA2E05DB0D00D3D3C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -231,6 +241,8 @@
 				CD114B741CB80066001BBF75 /* PBXTargetDependency */,
 			);
 			name = Screenshots;
+			packageProductDependencies = (
+			);
 			productName = Screenshots;
 			productReference = CD114B6E1CB80066001BBF75 /* Screenshots.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -247,6 +259,8 @@
 				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
 			);
 			buildRules = (
+			);
+			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
@@ -299,6 +313,8 @@
 				CD193CDA1BA4891500203B44 /* PBXTargetDependency */,
 			);
 			name = PadiddleUITests;
+			packageProductDependencies = (
+			);
 			productName = PadiddleUITests;
 			productReference = CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -313,10 +329,14 @@
 			);
 			buildRules = (
 			);
+			dependencies = (
+			);
 			fileSystemSynchronizedGroups = (
 				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 			);
 			name = SnapshotTestHost;
+			packageProductDependencies = (
+			);
 			productName = SnapshotTestHost;
 			productReference = CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */;
 			productType = "com.apple.product-type.application";
@@ -376,7 +396,7 @@
 				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
 				CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,113 +413,135 @@
 /* Begin PBXResourcesBuildPhase section */
 		CD114B6C1CB80066001BBF75 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB71BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CCB1BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD61BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD9C55CB2E05DB0D00D3D3C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
-			name = "Build Number";
-			shellPath = /bin/sh;
-			shellScript = (
-				"# Set the build number to the current git commit count.",
-				"# If we're using the Dev scheme, then we'll suffix the build",
-				"# number with the current branch name, to make collisions",
-				"# far less likely across feature branches.",
-				"# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/",
-				"#",
-				"git=`sh /etc/profile; which git`",
-				"appBuild=`\"$git\" rev-list --all |wc -l`",
-				"if [ $CONFIGURATION = \"Debug\" ]; then",
-				"    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`",
-				"    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
-				"else",
-				"    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
-				"fi",
-				"echo \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"",
-				"",
-				"",
-				"",
+			buildActionMask = 2147483647;
+			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\n    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n\n\n";
 		};
 		CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			name = "Check Dev Environment for Common Errors";
-			shellPath = /bin/sh;
-			shellScript = (
-				"\"${SRCROOT}/Scripts/environment-check.sh\"",
-				"",
-				"",
-				"",
+			buildActionMask = 2147483647;
+			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check Dev Environment for Common Errors";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/environment-check.sh\"\n\n\n\n";
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			name = "Copy Screenshot Images If Needed";
-			shellPath = /bin/sh;
-			shellScript = (
-				"set -ex",
-				"set -o pipefail",
-				"",
-				"if [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then",
-				"    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/",
-				"fi",
-				"",
-				"",
-				"",
+			buildActionMask = 2147483647;
+			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Screenshot Images If Needed";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\nset -o pipefail\n\nif [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CD114B6A1CB80066001BBF75 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CB51BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CC91BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD193CD41BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CD9C55C92E05DB0D00D3D3C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -522,7 +564,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		CD114B751CB80066001BBF75 /* Debug configuration for PBXNativeTarget "Screenshots" */ = {
+		CD114B751CB80066001BBF75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -539,7 +581,7 @@
 			};
 			name = Debug;
 		};
-		CD114B761CB80066001BBF75 /* Release configuration for PBXNativeTarget "Screenshots" */ = {
+		CD114B761CB80066001BBF75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -558,7 +600,7 @@
 			};
 			name = Release;
 		};
-		CD193CDF1BA4891500203B44 /* Debug configuration for PBXProject "Padiddle" */ = {
+		CD193CDF1BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -621,7 +663,7 @@
 			};
 			name = Debug;
 		};
-		CD193CE01BA4891500203B44 /* Release configuration for PBXProject "Padiddle" */ = {
+		CD193CE01BA4891500203B44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -677,7 +719,7 @@
 			};
 			name = Release;
 		};
-		CD193CE21BA4891500203B44 /* Debug configuration for PBXNativeTarget "Padiddle" */ = {
+		CD193CE21BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -698,7 +740,7 @@
 			};
 			name = Debug;
 		};
-		CD193CE31BA4891500203B44 /* Release configuration for PBXNativeTarget "Padiddle" */ = {
+		CD193CE31BA4891500203B44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -721,7 +763,7 @@
 			};
 			name = Release;
 		};
-		CD193CE51BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleTests" */ = {
+		CD193CE51BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
@@ -735,7 +777,7 @@
 			};
 			name = Debug;
 		};
-		CD193CE61BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleTests" */ = {
+		CD193CE61BA4891500203B44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleTests/Info.plist;
@@ -751,7 +793,7 @@
 			};
 			name = Release;
 		};
-		CD193CE81BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleUITests" */ = {
+		CD193CE81BA4891500203B44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleUITests/Info.plist;
@@ -767,7 +809,7 @@
 			};
 			name = Debug;
 		};
-		CD193CE91BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleUITests" */ = {
+		CD193CE91BA4891500203B44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = PadiddleUITests/Info.plist;
@@ -785,7 +827,7 @@
 			};
 			name = Release;
 		};
-		CD9C55D52E05DB0E00D3D3C8 /* Debug configuration for PBXNativeTarget "SnapshotTestHost" */ = {
+		CD9C55D52E05DB0E00D3D3C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -820,7 +862,7 @@
 			};
 			name = Debug;
 		};
-		CD9C55D62E05DB0E00D3D3C8 /* Release configuration for PBXNativeTarget "SnapshotTestHost" */ = {
+		CD9C55D62E05DB0E00D3D3C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -860,49 +902,55 @@
 		CD114B771CB80066001BBF75 /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD114B751CB80066001BBF75 /* Debug configuration for PBXNativeTarget "Screenshots" */,
-				CD114B761CB80066001BBF75 /* Release configuration for PBXNativeTarget "Screenshots" */,
+				CD114B751CB80066001BBF75 /* Debug */,
+				CD114B761CB80066001BBF75 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CB41BA4891500203B44 /* Build configuration list for PBXProject "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CDF1BA4891500203B44 /* Debug configuration for PBXProject "Padiddle" */,
-				CD193CE01BA4891500203B44 /* Release configuration for PBXProject "Padiddle" */,
+				CD193CDF1BA4891500203B44 /* Debug */,
+				CD193CE01BA4891500203B44 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE21BA4891500203B44 /* Debug configuration for PBXNativeTarget "Padiddle" */,
-				CD193CE31BA4891500203B44 /* Release configuration for PBXNativeTarget "Padiddle" */,
+				CD193CE21BA4891500203B44 /* Debug */,
+				CD193CE31BA4891500203B44 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE51BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleTests" */,
-				CD193CE61BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleTests" */,
+				CD193CE51BA4891500203B44 /* Debug */,
+				CD193CE61BA4891500203B44 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD193CE81BA4891500203B44 /* Debug configuration for PBXNativeTarget "PadiddleUITests" */,
-				CD193CE91BA4891500203B44 /* Release configuration for PBXNativeTarget "PadiddleUITests" */,
+				CD193CE81BA4891500203B44 /* Debug */,
+				CD193CE91BA4891500203B44 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		CD9C55D72E05DB0E00D3D3C8 /* Build configuration list for PBXNativeTarget "SnapshotTestHost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CD9C55D52E05DB0E00D3D3C8 /* Debug configuration for PBXNativeTarget "SnapshotTestHost" */,
-				CD9C55D62E05DB0E00D3D3C8 /* Release configuration for PBXNativeTarget "SnapshotTestHost" */,
+				CD9C55D52E05DB0E00D3D3C8 /* Debug */,
+				CD9C55D62E05DB0E00D3D3C8 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
