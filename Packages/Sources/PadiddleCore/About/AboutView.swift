@@ -7,6 +7,9 @@ import SwiftUI
 public struct AboutView: View {
   /// Pass this in because the About view is presented in a popover, and it is the size class of the parent view that we care about.
   let horizontalSizeClass: UserInterfaceSizeClass
+
+  @Shared(.colorGenerator) var colorGenerator
+
   @State private var webPage = WebPage()
 
   @Environment(\.dismiss) private var dismiss
@@ -14,6 +17,7 @@ public struct AboutView: View {
   @Environment(\.colorScheme) private var colorScheme
 
   private struct ContentInvalidator: Hashable {
+    let colorGenerator: ColorGenerator
     let displayScale: CGFloat
     let colorScheme: ColorScheme
   }
@@ -36,7 +40,13 @@ public struct AboutView: View {
         // Stop bottom of web view from getting clipped by nav stack. Apparently.
         .ignoresSafeArea(edges: .bottom)
     }
-    .task(id: ContentInvalidator(displayScale: displayScale, colorScheme: colorScheme)) {
+    .task(
+      id: ContentInvalidator(
+        colorGenerator: Shared(.colorGenerator).wrappedValue,
+        displayScale: displayScale,
+        colorScheme: colorScheme
+      )
+    ) {
       await loadContent()
     }
   }
@@ -49,6 +59,8 @@ extension WebPage.Configuration {
     colorScheme: ColorScheme
   ) -> WebPage.Configuration {
     var configuration = WebPage.Configuration()
+    @Shared(.colorGenerator) var colorGenerator
+
     configuration.urlSchemeHandlers = [
       URLScheme("padiddle-asset")!: AboutAssetHandler(
         deviceKind: deviceKind,
@@ -85,25 +97,9 @@ private extension AboutView {
 
 #Preview {
   @Previewable @Environment(\.horizontalSizeClass) var horizontalSizeClass
-  @Previewable @Shared(.colorButtonImage) var colorButtonImage
   @Previewable @Environment(\.displayScale) var displayScale
   withDependencies {
     $0.locale = Locale(identifier: "en")
-    $colorButtonImage.withLock {
-      $0 = SpiralImageMaker.image(
-        // TODO: constantize
-        spiralModel: SpiralModel(
-          colorGenerator: .classic,
-          size: .square(sideLength: 36),
-          startRadius: 0,
-          spacePerLoop: 0.7,
-          thetaRange: 0...(2.0 * .pi * 4.0),
-          thetaStep: .pi / 16.0,
-          lineWidth: 2.3
-        ),
-        scale: displayScale
-      )
-    }
   } operation: {
     AboutView(horizontalSizeClass: horizontalSizeClass!)
   }

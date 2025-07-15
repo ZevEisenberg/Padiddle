@@ -1,5 +1,6 @@
 import Dependencies
 import Foundation
+import Models
 import Sharing
 import SwiftUI
 import UIKit.UIImage
@@ -33,10 +34,16 @@ struct AboutAssetHandler: URLSchemeHandler {
         case "recordButton":
           image = await .recordButton(displayScale: displayScale)
         case "colorButton":
-          @SharedReader(.colorButtonImage) var colorButtonImage
-          image = colorButtonImage
+          @Shared(.colorGenerator) var colorGenerator
+          image = await ColorButtonImageCache.shared.image(
+            forColorGenerator: colorGenerator,
+            displayScale: displayScale
+          )
         case "deviceImage":
-          image = deviceKind.deviceSpinImage(displayScale: displayScale, colorScheme: colorScheme)
+          image = deviceKind.deviceSpinImage(
+            displayScale: displayScale,
+            colorScheme: colorScheme
+          )
         default:
           image = nil
         }
@@ -70,11 +77,5 @@ extension UIImage {
     renderer.proposedSize = .init(.square(sideLength: 60))
     let image = renderer.uiImage!
     return image
-  }
-}
-
-extension SharedKey where Self == InMemoryKey<UIImage>.Default {
-  static var colorButtonImage: Self {
-    Self[.inMemory("colorButtonImage"), default: UIImage(systemName: "square")!]
   }
 }

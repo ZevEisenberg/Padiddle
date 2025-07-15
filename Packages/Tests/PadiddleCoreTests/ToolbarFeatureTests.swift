@@ -20,7 +20,7 @@ struct ToolbarFeatureTests {
 
     store.exhaustivity = .off
 
-    await store.send(.onTask(displayScale: 2))
+    await store.send(.onTask)
 
     await store.receive(\.hint, .start)
   }
@@ -53,7 +53,6 @@ struct ToolbarFeatureTests {
     @Shared(.colorGenerator) var colorGenerator = .monsters
     let store = TestStore(
       initialState: .init(
-        displayScale: 2,
         colorGenerator: $colorGenerator
       )
     ) {
@@ -66,13 +65,9 @@ struct ToolbarFeatureTests {
       $0.destination = .colorPicker(.init(currentSelection: ColorGenerator.monsters.id))
     }
 
-    #warning("Disable exhaustivity because the color image is coming up as different. Probably need to add an image cache that doesn't participate in TCA to avoid this.")
-    // ignore result because the wrapped .send() call is @discardableResult
-    _ = await store.withExhaustivity(.off) {
-      await store.send(\.destination.colorPicker.colorPicked, .merlin) {
-        $0.destination = nil
-        $0.$colorGenerator.withLock { $0 = .merlin }
-      }
+    await store.send(\.destination.colorPicker.colorPicked, .merlin) {
+      $0.destination = nil
+      $0.$colorGenerator.withLock { $0 = .merlin }
     }
   }
 }

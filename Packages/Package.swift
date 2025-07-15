@@ -26,6 +26,7 @@ let package = Package(
       name: "Models",
       dependencies: [
         .identifiedCollections,
+        .utilities,
       ],
       resources: [
         .process("Resources"),

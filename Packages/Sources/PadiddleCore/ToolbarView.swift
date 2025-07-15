@@ -26,13 +26,8 @@ struct ToolbarFeature {
 
   @ObservableState
   struct State: Equatable {
-    var displayScale: CGFloat = 2.0
-
     @Shared(.colorGenerator)
     var colorGenerator: ColorGenerator
-
-    @Shared(.colorButtonImage)
-    var colorButtonImage
 
     @Presents
     var destination: Destination.State?
@@ -48,7 +43,7 @@ struct ToolbarFeature {
   }
 
   enum Action: BindableAction {
-    case onTask(displayScale: CGFloat)
+    case onTask
 
     // User Actions
     case clearButtonTapped
@@ -72,9 +67,7 @@ struct ToolbarFeature {
 
     Reduce { state, action in
       switch action {
-      case .onTask(let displayScale):
-        state.displayScale = displayScale
-
+      case .onTask:
         return .run { send in
           if !disableHintsForTesting {
             await send(.hint(.start))
@@ -101,25 +94,6 @@ struct ToolbarFeature {
         switch action {
         case .colorPicked(let color):
           state.$colorGenerator.withLock { $0 = color }
-
-          #warning("more evidence that this doesn't belong in the feature: now we have to coordinate calling this on first load, or the image will be blank. Boo. Need a cache!")
-          let spiralModel = SpiralModel(
-            colorGenerator: state.colorGenerator,
-            size: .square(sideLength: 36),
-            startRadius: 0,
-            spacePerLoop: 0.7,
-            thetaRange: 0...(2 * .pi * 4),
-            thetaStep: .pi / 16,
-            lineWidth: 2.3
-          )
-
-          state.$colorButtonImage.withLock {
-            $0 = SpiralImageMaker.image(
-              spiralModel: spiralModel,
-              scale: state.displayScale
-            )
-          }
-
           state.destination = nil
           return .none
 
@@ -254,7 +228,7 @@ struct ToolbarView: View {
     .font(.system(size: 28))
     .frame(maxWidth: .infinity)
     .task {
-      await store.send(.onTask(displayScale: displayScale)).finish()
+      await store.send(.onTask).finish()
     }
   }
 }
@@ -285,8 +259,13 @@ private extension ToolbarView {
     Button {
       store.send(.colorButtonTapped)
     } label: {
-      Image(uiImage: store.colorButtonImage)
-        .frame(size: Design.buttonSize)
+      Image(
+        uiImage: ColorButtonImageCache.shared.image(
+          forColorGenerator: store.colorGenerator,
+          displayScale: displayScale
+        )
+      )
+      .frame(size: Design.buttonSize)
     }
   }
 
