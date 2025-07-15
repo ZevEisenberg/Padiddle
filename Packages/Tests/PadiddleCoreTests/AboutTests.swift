@@ -121,6 +121,7 @@ struct AboutTests {
                   margin-right: auto;
                   display: block;
                   width: 80%;
+                  max-width: 200px;
               }
 
               @media (prefers-color-scheme: dark) {
@@ -270,6 +271,7 @@ struct AboutTests {
                   margin-right: auto;
                   display: block;
                   width: 80%;
+                  max-width: 200px;
               }
 
               @media (prefers-color-scheme: dark) {

@@ -169,8 +169,8 @@ struct ToolbarView: View {
                       } else {
                         // required for conditional builder
                       }
-                      SpringKeyframe(1.2, duration: 0.2, spring: .snappy)
-                      SpringKeyframe(1, spring: .snappy, startVelocity: 10)
+                      SpringKeyframe(1.2, duration: 0.2, spring: .smooth)
+                      SpringKeyframe(1, spring: .smooth, startVelocity: 10)
                     }
                   }
                 )
