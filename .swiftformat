@@ -34,8 +34,8 @@
 --ranges no-space
 --self init-only
 --someAny false
---trailing-commas collections-only
 --strip-unused-args unnamed-only
+--trailing-commas collections-only
 --wrap-arguments before-first
 --wrap-collections before-first
 --wrap-parameters before-first
