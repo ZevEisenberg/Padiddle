@@ -52,7 +52,7 @@ struct DeviceMotionFeature {
           }
         }
       }
-      .cancellable(id: CancelID.sufficientSpinTimer, cancelInFlight: true)
+      .cancellable(id: CancelID.sufficientSpinTimer, cancelInFlight: actuallyStart)
 
     case .stop:
       state.isMonitoringForSufficientSpin = false
