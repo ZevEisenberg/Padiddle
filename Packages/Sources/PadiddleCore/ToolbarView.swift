@@ -29,6 +29,9 @@ struct ToolbarFeature {
     @Shared(.colorGenerator)
     var colorGenerator: ColorGenerator
 
+    @Shared(.isRecording)
+    var isRecording: Bool
+
     @Presents
     var destination: Destination.State?
 
@@ -82,8 +85,7 @@ struct ToolbarFeature {
         return .none
 
       case .recordButtonTapped:
-        @Shared(.isRecording) var isRecording
-        $isRecording.withLock { $0.toggle() }
+        state.$isRecording.withLock { $0.toggle() }
         return .none
 
       case .aboutButtonTapped:
