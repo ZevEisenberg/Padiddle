@@ -80,6 +80,8 @@ struct HintFeature {
               await send(.showSpinPrompt, animation: .default)
             }
             .cancellable(id: CancelID.waitToShowSpinPrompt)
+          } else {
+            Effect.cancel(id: CancelID.waitToShowSpinPrompt)
           }
         }
 
