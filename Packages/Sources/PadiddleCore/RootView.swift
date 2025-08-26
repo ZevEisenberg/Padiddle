@@ -90,6 +90,14 @@ struct RootFeature {
 public struct RootView: View {
   let store = StoreOf<RootFeature>(initialState: .init()) {
     RootFeature()
+      ._printChanges(.init(printChange: { receivedAction, oldState, newState in
+        switch receivedAction {
+        case .drawing(.updateMotion):
+          break
+        default:
+          _ReducerPrinter.customDump.printChange(receivedAction: receivedAction, oldState: oldState, newState: newState)
+        }
+      }))
   }
 
   @Environment(\.scenePhase)
