@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Models
 import SwiftUI
 import Utilities
 
@@ -23,7 +24,7 @@ struct DrawingFeature {
   enum Action {
     case onAppear(viewSize: CGSize)
     case updateMotion
-    case addPoint(CGPoint)
+    case processMotion(PadiddleDeviceMotion)
   }
 
   @Dependency(\.bitmapContextClient)
@@ -48,27 +49,35 @@ struct DrawingFeature {
       return .none
 
     case .updateMotion:
+      return .run { send in
+        if let deviceMotion = await motionClient.deviceMotion() {
+          await send(.processMotion(deviceMotion))
+        }
+      }
+
+    case .processMotion(let motion):
       guard let viewSize = state.viewSize else {
         return .none
       }
 
-      return .run { send in
-        if let deviceMotion = await motionClient.deviceMotion() {
-          let zRotation = deviceMotion.rotationRateZ
-          let maxRadius = max(viewSize.width, viewSize.height) / 2
-          let radius = maxRadius / 30 * abs(zRotation)
+      let zRotation = motion.rotationRateZ
+      let maxRadius = max(viewSize.width, viewSize.height) / 2
+      let radius = maxRadius / 30 * abs(zRotation)
 
-          // Yaw is on the range [-π...π]. Remap to [0...π]
-          let theta = deviceMotion.attitudeYaw + .pi
+      // Yaw is on the range [-π...π]. Remap to [0...π]
+      let theta = motion.attitudeYaw + .pi
 
-          let contextSize = bitmapContext.contextSize()
-          let x = radius * cos(theta) + contextSize.width / 2
-          let y = radius * sin(theta) + contextSize.height / 2
-          await send(.addPoint(CGPoint(x: x, y: y)))
-        }
-      }
+      let coordinate = ColorGenerator.Coordinate(
+        radius: radius,
+        theta: theta,
+        maxRadius: maxRadius
+      )
 
-    case .addPoint(let point):
+      let contextSize = bitmapContext.contextSize()
+      let x = radius * cos(theta) + contextSize.width / 2
+      let y = radius * sin(theta) + contextSize.height / 2
+      let point = CGPoint(x: x, y: y)
+
       state.nibLocation = point
       if isRecording {
         let contextSize = bitmapContext.contextSize()
@@ -92,8 +101,9 @@ struct DrawingFeature {
         let pathSegment = CGPath.smoothedPathSegment(points: state.points)
         let context = bitmapContext.context()!
         context.addPath(pathSegment)
-        #warning("TODO: real color")
-        context.setStrokeColor(UIColor.green.cgColor)
+        if let color = colorGenerator.color(at: coordinate).cgColor {
+          context.setStrokeColor(color)
+        }
         context.strokePath()
         drawingLayer().contents = context.makeImage()
       }
