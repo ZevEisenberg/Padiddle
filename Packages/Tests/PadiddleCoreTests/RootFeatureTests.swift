@@ -54,8 +54,6 @@ struct RootFeatureTests {
     var startMotionUpdatesCallCount = 0
     var stopMotionUpdatesCallCount = 0
 
-    @Shared(.isRecording) var isRecording
-
     let clock = TestClock()
 
     let store = TestStore(initialState: RootFeature.State()) {
@@ -85,13 +83,15 @@ struct RootFeatureTests {
 
     #expect(startMotionUpdatesCallCount == 1)
 
-    await store.send(.toolbar(.recordButtonTapped))
-    #expect(isRecording)
+    await store.send(.toolbar(.recordButtonTapped)) {
+      $0.toolbar.$isRecording.withLock { $0 = true }
+    }
 
     await clock.advance(by: .seconds(2)) // not enough for prompt to show
 
-    await store.send(.toolbar(.recordButtonTapped))
-    #expect(!isRecording)
+    await store.send(.toolbar(.recordButtonTapped)) {
+      $0.toolbar.$isRecording.withLock { $0 = false }
+    }
 
     await clock.advance(by: .seconds(2)) // enough time for prompt to show if it were going to
 
