@@ -92,7 +92,9 @@ public struct RootView: View {
     RootFeature()
       ._printChanges(.init(printChange: { receivedAction, oldState, newState in
         switch receivedAction {
-        case .drawing(.updateMotion):
+        case .drawing(.updateMotion),
+             .drawing(.processMotion):
+          // noisy things
           break
         default:
           _ReducerPrinter.customDump.printChange(receivedAction: receivedAction, oldState: oldState, newState: newState)
