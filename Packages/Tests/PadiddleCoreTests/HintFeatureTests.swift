@@ -110,4 +110,42 @@ struct HintFeatureTests {
       $0.hintState = .disabled
     }
   }
+
+  @Test
+  func stoppedRecordingWhileSpinHintIsVisible() async {
+    let store = TestStore(
+      initialState: .init()
+    ) {
+      HintFeature()
+    } withDependencies: {
+      $0.continuousClock = ImmediateClock()
+    }
+
+    await store.send(.start) {
+      $0.hintState = .waitToShowRecordPrompt
+    }
+
+    await store.receive(\.showRecordPrompt) {
+      $0.hintState = .promptForRecord
+    }
+
+    @Shared(.isRecording) var isRecording
+    $isRecording.withLock { $0 = true }
+
+    await store.receive(\.isRecordingChanged, true) {
+      $0.hintState = .waitToShowSpinPrompt
+    }
+
+    await store.receive(\.showSpinPrompt) {
+      $0.hintState = .promptForSpin
+    }
+
+    $isRecording.withLock { $0 = false }
+
+    await store.receive(\.isRecordingChanged, false) {
+      $0.hintState = .waitToShowSpinPrompt
+    }
+
+    await store.skipInFlightEffects()
+  }
 }

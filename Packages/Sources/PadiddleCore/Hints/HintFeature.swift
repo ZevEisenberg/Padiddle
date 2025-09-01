@@ -68,10 +68,14 @@ struct HintFeature {
         }
 
       case .isRecordingChanged(let isRecording):
-        // Careful: state.isRecording is not updated yet apparently???
-        if isRecording {
-          state.hintState = .waitToShowSpinPrompt
-        }
+        /// When isRecording changes, we always revert to `waitToShowSpinPrompt`.
+        /// Reasoning:
+        /// - If `isRecording` changes to `true`, we wait to see if the user spins, and if they don’t, we show the prompt.
+        /// - If `isRecording` changes to `false`, we want to:
+        ///  - Hide the spin prompt if it happened to be visible.
+        ///  - Cancel any pending spin prompt so it doesn’t show when we are not recording.
+        ///  - _Not_ set the state to `disabled`, because the next time they start recording, we still want to be able to show the spin prompt if they don’t understand how spinning works.
+        state.hintState = .waitToShowSpinPrompt
         return .merge {
           Effect.cancel(id: CancelID.waitToShowRecordPrompt)
           if isRecording {
@@ -79,7 +83,7 @@ struct HintFeature {
               try await clock.sleep(for: Design.waitForSpinTimeout)
               await send(.showSpinPrompt, animation: .default)
             }
-            .cancellable(id: CancelID.waitToShowSpinPrompt)
+            .cancellable(id: CancelID.waitToShowSpinPrompt, cancelInFlight: true)
           } else {
             Effect.cancel(id: CancelID.waitToShowSpinPrompt)
           }
@@ -90,6 +94,10 @@ struct HintFeature {
         return .none
 
       case .showSpinPrompt:
+        #if DEBUG
+        @SharedReader(.isRecording) var isRecording
+        precondition(isRecording, "we should never show the spin prompt when we are not recording")
+        #endif
         state.hintState = .promptForSpin
         return .none
 
