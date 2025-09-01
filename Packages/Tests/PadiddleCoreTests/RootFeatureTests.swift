@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import CoreGraphics.CGBase
 import Models
+import Synchronization
 import Testing
 
 @testable import PadiddleCore
@@ -105,5 +106,39 @@ struct RootFeatureTests {
     }
 
     #expect(stopMotionUpdatesCallCount == 1)
+  }
+
+  @Test
+  func toolbarClearTriggersContextClear() async {
+    let eraseCallCount = LockIsolated(0)
+
+    let store = TestStore(initialState: RootFeature.State()) {
+      RootFeature()
+    } withDependencies: {
+      $0.continuousClock = ImmediateClock()
+      $0.bitmapContextClient.eraseAll = {
+        eraseCallCount.withValue { $0 += 1 }
+      }
+      $0.deviceMotionClient.deviceMotion = { .zero }
+    }
+
+    // Don't need to test all the setup and tear-down; just need to test routing of the call to erase
+    store.exhaustivity = .off
+
+    await store.send(
+      .screenChanged(
+        ScreenMetrics(
+          size: CGSize(width: 100, height: 100),
+          scale: 2
+        )
+      )
+    )
+
+    #expect(eraseCallCount.value == 0)
+
+    await store.send(.toolbar(.clearButtonTapped))
+    await store.receive(\.drawing.eraseAll)
+
+    #expect(eraseCallCount.value == 1)
   }
 }

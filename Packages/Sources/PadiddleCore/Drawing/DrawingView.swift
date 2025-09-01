@@ -23,6 +23,7 @@ struct DrawingFeature {
 
   enum Action {
     case onAppear(viewSize: CGSize)
+    case eraseAll
     case updateMotion
     case processMotion(PadiddleDeviceMotion)
   }
@@ -46,6 +47,11 @@ struct DrawingFeature {
     switch action {
     case .onAppear(let viewSize):
       state.viewSize = viewSize
+      return .none
+
+    case .eraseAll:
+      bitmapContext.eraseAll()
+      drawingLayer().contents = bitmapContext.context()!.makeImage()
       return .none
 
     case .updateMotion:
