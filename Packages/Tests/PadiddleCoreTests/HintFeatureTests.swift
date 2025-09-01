@@ -25,7 +25,6 @@ struct HintFeatureTests {
     }
 
     @Shared(.isRecording) var isRecording
-
     $isRecording.withLock { $0 = true }
 
     await store.receive(\.isRecordingChanged, true) {
