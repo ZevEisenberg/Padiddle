@@ -36,7 +36,7 @@ struct DrawingFeature {
   @Dependency(\.deviceMotionClient)
   private var motionClient
 
-  @Shared(.isRecording)
+  @SharedReader(.isRecording)
   private var isRecording
 
   @SharedReader(.colorGenerator)
