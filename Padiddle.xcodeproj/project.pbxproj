@@ -334,6 +334,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD8973B42E2498AB0092247A /* Build configuration list for PBXNativeTarget "PunchBuggy" */;
 			buildPhases = (
+				7AC362232E6879C800DEB03F /* Check Dev Environment for Common Errors */,
 				CD8973A82E2498AA0092247A /* Sources */,
 				CD8973A92E2498AA0092247A /* Frameworks */,
 				CD8973AA2E2498AA0092247A /* Resources */,
@@ -494,6 +495,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7AC362232E6879C800DEB03F /* Check Dev Environment for Common Errors */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check Dev Environment for Common Errors";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/environment-check.sh\"\n";
+		};
 		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -895,7 +915,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -935,7 +954,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
