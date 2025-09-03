@@ -116,7 +116,7 @@ struct RootFeatureTests {
       RootFeature()
     } withDependencies: {
       $0.continuousClock = ImmediateClock()
-      $0.bitmapContextClient.eraseAll = {
+      $0.bitmapContextClient.eraseDrawing = {
         eraseCallCount.withValue { $0 += 1 }
       }
       $0.deviceMotionClient.deviceMotion = { .zero }
@@ -136,8 +136,8 @@ struct RootFeatureTests {
 
     #expect(eraseCallCount.value == 0)
 
-    await store.send(.toolbar(.clearButtonTapped))
-    await store.receive(\.drawing.eraseAll)
+    await store.send(.toolbar(.delegate(.eraseDrawing)))
+    await store.receive(\.drawing.eraseDrawing)
 
     #expect(eraseCallCount.value == 1)
   }

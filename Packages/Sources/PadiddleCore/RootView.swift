@@ -78,8 +78,8 @@ struct RootFeature {
           return .send(.toolbar(.hint(.spunEnoughToHideSpinPrompt)))
         }
 
-      case .toolbar(.clearButtonTapped):
-        return .send(.drawing(.eraseAll))
+      case .toolbar(.delegate(.eraseDrawing)):
+        return .send(.drawing(.eraseDrawing))
 
       case .deviceMotion,
            .drawing,

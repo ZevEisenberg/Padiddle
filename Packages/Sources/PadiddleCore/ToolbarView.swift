@@ -16,6 +16,25 @@ extension SharedKey where Self == AppStorageKey<ColorGenerator>.Default {
   }
 }
 
+extension ToolbarFeature.Destination.Action {
+  @CasePathable
+  enum ConfirmationDialog {
+    case eraseDrawingButtonTapped
+  }
+}
+
+private extension ConfirmationDialogState where Action == ToolbarFeature.Destination.Action.ConfirmationDialog {
+  static var eraseDrawing: Self {
+    .init {
+      TextState(String(localized: .eraseDrawing))
+    } actions: {
+      ButtonState(role: .destructive, action: .eraseDrawingButtonTapped) {
+        TextState(String(localized: .erase))
+      }
+    }
+  }
+}
+
 @Reducer
 struct ToolbarFeature {
   let disableHintsForTesting: Bool
@@ -41,6 +60,7 @@ struct ToolbarFeature {
   @Reducer(state: .equatable)
   enum Destination {
     case colorPicker(ColorPickerFeature)
+    case clearConfirmation(ConfirmationDialogState<Action.ConfirmationDialog>)
     @ReducerCaseIgnored
     case about
   }
@@ -49,16 +69,23 @@ struct ToolbarFeature {
     case onTask
 
     // User Actions
-    case clearButtonTapped
+    case eraseButtonTapped
     case colorButtonTapped
     case recordButtonTapped
     case aboutButtonTapped
+
+    // Parent Features
+    case delegate(Delegate)
 
     // Nested Features
     case destination(PresentationAction<Destination.Action>)
     case hint(HintFeature.Action)
 
     case binding(BindingAction<ToolbarFeature.State>)
+
+    enum Delegate {
+      case eraseDrawing
+    }
   }
 
   var body: some ReducerOf<Self> {
@@ -77,7 +104,15 @@ struct ToolbarFeature {
           }
         }
 
-      case .clearButtonTapped:
+      case .eraseButtonTapped:
+        state.destination = .clearConfirmation(.init {
+          TextState("Erase Drawing?")
+        } actions: {
+          ButtonState(role: .destructive, action: .eraseDrawingButtonTapped) {
+            #warning("TODO: localize")
+            TextState("Erase")
+          }
+        })
         return .none
 
       case .colorButtonTapped:
@@ -104,6 +139,9 @@ struct ToolbarFeature {
           return .none
         }
 
+      case .destination(.presented(.clearConfirmation(.eraseDrawingButtonTapped))):
+        return .send(.delegate(.eraseDrawing))
+
       case .destination:
         return .none
 
@@ -111,6 +149,9 @@ struct ToolbarFeature {
         return .none
 
       case .binding:
+        return .none
+
+      case .delegate:
         return .none
       }
     }
@@ -150,7 +191,7 @@ struct ToolbarView: View {
             @SharedReader(.isRecording) var isRecording
 
             if !isRecording {
-              clearButton
+              eraseButton
                 .glassEffect(.regular.interactive())
                 .glassEffectID("clear", in: namespace)
                 .glassEffectUnion(id: "leading", namespace: namespace)
@@ -246,14 +287,20 @@ private extension ToolbarView {
 
 private extension ToolbarView {
   @ViewBuilder
-  var clearButton: some View {
+  var eraseButton: some View {
     Button {
-      store.send(.clearButtonTapped)
+      store.send(.eraseButtonTapped)
     } label: {
       Image(systemName: "trash")
-        .accessibilityLabel(Text("Clear"))
+        .accessibilityLabel(Text(.erase))
         .frame(size: Design.buttonSize)
     }
+    .confirmationDialog(
+      $store.scope(
+        state: \.destination?.clearConfirmation,
+        action: \.destination.clearConfirmation
+      )
+    )
   }
 
   @ViewBuilder
@@ -276,13 +323,14 @@ private extension ToolbarView {
     ShareLink(
       item: Image(systemName: "watch.analog"),
       preview: SharePreview(
-        "TODO",
+        "TODO: share preview title and such",
         image: Image(systemName: "eyes")
       )
     ) {
       Image(systemName: "square.and.arrow.up")
         .frame(size: Design.buttonSize)
     }
+    #warning("TODO: check default accessibility label for share button and customize if needed")
   }
 
   @ViewBuilder
@@ -291,7 +339,7 @@ private extension ToolbarView {
       store.send(.aboutButtonTapped)
     } label: {
       Image(systemName: "questionmark.circle")
-        .accessibilityLabel(Text("About"))
+        .accessibilityLabel(Text(.about))
         .frame(size: Design.buttonSize)
     }
     .popover(isPresented: $store.destination.about) {

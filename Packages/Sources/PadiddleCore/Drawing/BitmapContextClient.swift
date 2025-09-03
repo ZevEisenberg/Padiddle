@@ -11,7 +11,7 @@ struct BitmapContextClient: DependencyKey, Sendable {
     _ screenScale: CGFloat
   ) -> Bool = { _, _ in false }
 
-  var eraseAll: @Sendable () -> Void
+  var eraseDrawing: @Sendable () -> Void
 
   var addPath: @Sendable (CGPath, Color) -> Void
 
@@ -67,7 +67,7 @@ extension BitmapContextClient {
         context = theContext
         return true
       },
-      eraseAll: {
+      eraseDrawing: {
         context.clear(CGRect(origin: .zero, size: contextSize))
       },
       addPath: { path, color in

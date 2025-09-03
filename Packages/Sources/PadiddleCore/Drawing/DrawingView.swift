@@ -23,7 +23,7 @@ struct DrawingFeature {
 
   enum Action {
     case onAppear(viewSize: CGSize)
-    case eraseAll
+    case eraseDrawing
     case updateMotion
     case processMotion(PadiddleDeviceMotion)
   }
@@ -49,9 +49,11 @@ struct DrawingFeature {
       state.viewSize = viewSize
       return .none
 
-    case .eraseAll:
-      bitmapContext.eraseAll()
-      drawingLayer().contents = bitmapContext.context()!.makeImage()
+    case .eraseDrawing:
+      bitmapContext.eraseDrawing()
+      CATransaction.withoutAnimation {
+        drawingLayer().contents = bitmapContext.context()!.makeImage()
+      }
       return .none
 
     case .updateMotion:
@@ -111,7 +113,9 @@ struct DrawingFeature {
           context.setStrokeColor(color)
         }
         context.strokePath()
-        drawingLayer().contents = context.makeImage()
+        CATransaction.withoutAnimation {
+          drawingLayer().contents = context.makeImage()
+        }
       }
       return .none
     }
@@ -238,6 +242,15 @@ extension DependencyValues {
   var drawingLayerClient: DrawingLayerClient {
     get { self[DrawingLayerClient.self] }
     set { self[DrawingLayerClient.self] = newValue }
+  }
+}
+
+extension CATransaction {
+  static func withoutAnimation(_ block: () -> Void) {
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
+    block()
+    CATransaction.commit()
   }
 }
 
