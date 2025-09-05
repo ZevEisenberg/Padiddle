@@ -18,13 +18,14 @@ struct SpinPromptView: View {
   @ViewBuilder
   var deviceImage: some View {
     @Dependency(\.deviceClient) var deviceClient
-    Text(deviceClient.deviceKind().deviceImage)
-      .symbolRenderingMode(.monochrome)
+    deviceClient.deviceKind().deviceImage
+      .symbolRenderingMode(.palette)
+      .foregroundStyle(.foreground, .background)
       .font(.system(size: 300, weight: .ultraLight))
       .overlay {
         Text(.tutorialSpinPrompt)
           .font(.system(size: 30, weight: .medium))
-          .foregroundStyle(Color(.Toolbar.SpinPrompt.text))
+          .foregroundStyle(.blue)
           .multilineTextAlignment(.center)
           .frame(maxWidth: 105)
       }
@@ -48,5 +49,8 @@ private struct AnimationProperties {
 }
 
 #Preview {
-  SpinPromptView()
+  ZStack {
+    Text("This should be occluded behind the spinning phone like so")
+    SpinPromptView()
+  }
 }
