@@ -108,6 +108,7 @@ struct SpiralCell: View {
       }
     }
     .buttonStyle(ColorPickerButtonStyle(isSelected: isSelected))
+    .accessibilityAddTraits(isSelected ? .isSelected : [])
   }
 }
 
