@@ -174,6 +174,7 @@ struct ToolbarView: View {
   var store: StoreOf<ToolbarFeature>
 
   @Namespace private var namespace
+  @Environment(\.colorScheme) private var colorScheme
   @Environment(\.displayScale) private var displayScale
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -316,21 +317,26 @@ private extension ToolbarView {
       )
       .frame(size: Design.buttonSize)
     }
+    .accessibilityLabel(Text(.colorSettings))
   }
 
   @ViewBuilder
   var shareButton: some View {
+    @Dependency(\.bitmapContextClient) var bitmapClient
     ShareLink(
-      item: Image(systemName: "watch.analog"),
+      item: bitmapClient.renderer(colorScheme: colorScheme),
       preview: SharePreview(
-        "TODO: share preview title and such",
-        image: Image(systemName: "eyes")
+        Text("Image from Padiddle"),
+        icon: bitmapClient.renderer(
+          colorScheme: colorScheme,
+          sideLength: 100
+        )
       )
     ) {
+      // Override default label in order to hide the default preview text that ShareLink uses.
       Image(systemName: "square.and.arrow.up")
         .frame(size: Design.buttonSize)
     }
-    #warning("TODO: check default accessibility label for share button and customize if needed")
   }
 
   @ViewBuilder
@@ -354,10 +360,10 @@ private extension ToolbarView {
 private extension ToolbarView {
   @ViewBuilder
   var recordButton: some View {
+    @SharedReader(.isRecording) var isRecording
     Button {
       store.send(.recordButtonTapped, animation: .snappy)
     } label: {
-      @SharedReader(.isRecording) var isRecording
       Self.recordButtonLabel(isRecording: isRecording)
         .glassEffect(
           .regular.interactive().tint(
@@ -369,6 +375,8 @@ private extension ToolbarView {
           )
         )
     }
+    .contentShape(Circle())
+    .accessibilityLabel(Text(isRecording ? .pauseDrawing : .startDrawing))
   }
 }
 
