@@ -29,6 +29,7 @@ public struct AboutView: View {
   public var body: some View {
     NavigationStack {
       WebView(webPage)
+        .scrollBounceBehavior(.basedOnSize)
         .navigationTitle(Text(.about))
         .navigationBarTitleDisplayMode(.inline)
         .scrollIndicatorsFlash(onAppear: true)
