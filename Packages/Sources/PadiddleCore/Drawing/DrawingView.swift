@@ -9,6 +9,8 @@ let brushDiameter = 12.0
 struct DrawingFeature {
   @ObservableState
   struct State: Equatable {
+    var contextSideLength: CGFloat = 0
+
     /// Where the nib is right now, relative to the center point.
     var nibLocation: CGPoint = .zero
 
@@ -50,11 +52,12 @@ struct DrawingFeature {
       return .none
 
     case .eraseDrawing:
-      bitmapContext.eraseDrawing()
-      CATransaction.withoutAnimation {
-        drawingLayer().contents = bitmapContext.context()!.makeImage()
+      return .run { _ in
+        await bitmapContext.eraseDrawing()
+        await CATransaction.withoutAnimation {
+          drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+        }
       }
-      return .none
 
     case .updateMotion:
       return .run { send in
@@ -81,40 +84,39 @@ struct DrawingFeature {
         maxRadius: maxRadius
       )
 
-      let contextSize = bitmapContext.contextSize()
-      let x = radius * cos(theta) + contextSize.width / 2
-      let y = radius * sin(theta) + contextSize.height / 2
+      let contextSideLength = state.contextSideLength
+      let x = radius * cos(theta) + contextSideLength / 2
+      let y = radius * sin(theta) + contextSideLength / 2
       let point = CGPoint(x: x, y: y)
 
       state.nibLocation = point
       if isRecording {
-        let contextSize = bitmapContext.contextSize()
-        let contextScaleFactor = bitmapContext.contextFittingScaleFactor()
-
         if state.needToMoveNibToNewStartLocation {
           state.restart(
             at: point,
-            contextSize: contextSize,
-            contextScaleFactor: contextScaleFactor
+            contextSideLength: contextSideLength
           )
           state.needToMoveNibToNewStartLocation = false
         } else {
           state.addPoint(
             point,
-            contextSize: contextSize,
-            contextScaleFactor: contextScaleFactor
+            contextSideLength: contextSideLength
           )
         }
 
-        let pathSegment = CGPath.smoothedPathSegment(points: state.points)
-        let context = bitmapContext.context()!
-        context.addPath(pathSegment)
-        if let color = colorGenerator.color(at: coordinate).cgColor {
-          context.setStrokeColor(color)
-        }
-        context.strokePath()
-        CATransaction.withoutAnimation {
-          drawingLayer().contents = context.makeImage()
+        let points = state.points
+        return .run { _ in
+          await bitmapContext.contextOperation { context in
+            let pathSegment = CGPath.smoothedPathSegment(points: points)
+            context.addPath(pathSegment)
+            if let color = colorGenerator.color(at: coordinate).cgColor {
+              context.setStrokeColor(color)
+            }
+            context.strokePath()
+          }
+          await CATransaction.withoutAnimation {
+            drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+          }
         }
       }
       return .none
@@ -125,13 +127,11 @@ struct DrawingFeature {
 extension DrawingFeature.State {
   mutating func addPoint(
     _ point: CGPoint,
-    contextSize: CGSize,
-    contextScaleFactor: CGFloat
+    contextSideLength: CGFloat
   ) {
     let scaledPoint = convertViewPointToContextCoordinates(
       point,
-      contextSize: contextSize,
-      contextFittingScaleFactor: contextScaleFactor
+      contextSideLength: contextSideLength
     )
     let distance = CGPoint.distanceBetween(points[3], scaledPoint)
     if distance > 2.25 {
@@ -142,21 +142,18 @@ extension DrawingFeature.State {
 
   mutating func restart(
     at point: CGPoint,
-    contextSize: CGSize,
-    contextScaleFactor: CGFloat
+    contextSideLength: CGFloat
   ) {
     let scaledPoint = convertViewPointToContextCoordinates(
       point,
-      contextSize: contextSize,
-      contextFittingScaleFactor: contextScaleFactor
+      contextSideLength: contextSideLength
     )
     points = Array(repeating: scaledPoint, count: points.count)
   }
 
   private func convertViewPointToContextCoordinates(
     _ point: CGPoint,
-    contextSize: CGSize,
-    contextFittingScaleFactor: CGFloat
+    contextSideLength: CGFloat
   ) -> CGPoint {
     guard let viewSize else {
       fatalError("Not having a view size represents a programmer error")
@@ -164,23 +161,13 @@ extension DrawingFeature.State {
 
     var newPoint = point
 
-    // 1. Scale the point by the context scale factor
-    newPoint.x /= contextFittingScaleFactor
-    newPoint.y /= contextFittingScaleFactor
-
-    // 2. Get the size of self in context coordinates
-    let scaledViewSize = CGSize(
-      width: viewSize.width / contextFittingScaleFactor,
-      height: viewSize.height / contextFittingScaleFactor
-    )
-
-    // 3. Get the difference in size between self and the context
+    // 1. Get the difference in size between self and the context
     let difference = CGSize(
-      width: contextSize.width - scaledViewSize.width,
-      height: contextSize.height - scaledViewSize.height
+      width: contextSideLength - viewSize.width,
+      height: contextSideLength - viewSize.height
     )
 
-    // 4. Shift the point by half the difference in width and height
+    // 2. Shift the point by half the difference in width and height
     newPoint.x += difference.width / 2
     newPoint.y += difference.height / 2
 
@@ -190,9 +177,6 @@ extension DrawingFeature.State {
 
 struct DrawingView: View {
   let store: StoreOf<DrawingFeature>
-
-  @Dependency(\.bitmapContextClient.context)
-  private var bitmapContext
 
   @Dependency(\.drawingLayerClient.layer)
   private var drawingLayer
@@ -246,10 +230,10 @@ extension DependencyValues {
 }
 
 extension CATransaction {
-  static func withoutAnimation(_ block: () -> Void) {
+  static func withoutAnimation(_ block: @Sendable () async -> Void) async {
     CATransaction.begin()
     CATransaction.setDisableActions(true)
-    block()
+    await block()
     CATransaction.commit()
   }
 }

@@ -40,19 +40,19 @@ struct RootFeature {
       ToolbarFeature()
     }
 
-    Reduce { _, action in
+    Reduce { state, action in
       switch action {
       case .screenChanged(let metrics):
         if let metrics {
           let maxDimension = max(metrics.size.width, metrics.size.height)
-          let contextSize = CGSize.square(sideLength: maxDimension)
-          let success = bitmapContext.configureContext(
-            contextSize: contextSize,
-            screenScale: metrics.scale
-          )
-          assert(success, "Problem creating bitmap context")
-
+          state.drawing.contextSideLength = maxDimension
           return .run { send in
+            let success = await bitmapContext.configure(
+              contextSideLength: maxDimension,
+              screenScale: metrics.scale
+            )
+            assert(success, "Problem creating bitmap context")
+
             await send(.deviceMotion(.start))
           }
         }
@@ -93,6 +93,7 @@ struct RootFeature {
 public struct RootView: View {
   let store = StoreOf<RootFeature>(initialState: .init()) {
     RootFeature()
+      .signpost()
       ._printChanges(.init(printChange: { receivedAction, oldState, newState in
         switch receivedAction {
         case .drawing(.updateMotion),

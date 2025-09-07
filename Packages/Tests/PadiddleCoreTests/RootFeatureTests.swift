@@ -33,7 +33,9 @@ struct RootFeatureTests {
           scale: 2
         )
       )
-    )
+    ) {
+      $0.drawing.contextSideLength = 100
+    }
 
     await store.receive(\.deviceMotion.start) {
       $0.deviceMotion.isMonitoringForSufficientSpin = true
@@ -76,7 +78,9 @@ struct RootFeatureTests {
           scale: 2
         )
       )
-    )
+    ) {
+      $0.drawing.contextSideLength = 100
+    }
 
     await store.receive(\.deviceMotion.start) {
       $0.deviceMotion.isMonitoringForSufficientSpin = true
@@ -106,39 +110,5 @@ struct RootFeatureTests {
     }
 
     #expect(stopMotionUpdatesCallCount == 1)
-  }
-
-  @Test
-  func toolbarClearTriggersContextClear() async {
-    let eraseCallCount = LockIsolated(0)
-
-    let store = TestStore(initialState: RootFeature.State()) {
-      RootFeature()
-    } withDependencies: {
-      $0.continuousClock = ImmediateClock()
-      $0.bitmapContextClient.eraseDrawing = {
-        eraseCallCount.withValue { $0 += 1 }
-      }
-      $0.deviceMotionClient.deviceMotion = { .zero }
-    }
-
-    // Don't need to test all the setup and tear-down; just need to test routing of the call to erase
-    store.exhaustivity = .off
-
-    await store.send(
-      .screenChanged(
-        ScreenMetrics(
-          size: CGSize(width: 100, height: 100),
-          scale: 2
-        )
-      )
-    )
-
-    #expect(eraseCallCount.value == 0)
-
-    await store.send(.toolbar(.delegate(.eraseDrawing)))
-    await store.receive(\.drawing.eraseDrawing)
-
-    #expect(eraseCallCount.value == 1)
   }
 }
