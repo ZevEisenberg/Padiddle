@@ -116,7 +116,7 @@ extension BitmapContextClient {
 
     let format = UIGraphicsImageRendererFormat()
     format.scale = screenScale
-    let size = CGSize.square(sideLength: contextSideLength)
+    let size = CGSize.square(sideLength: overrideSideLength ?? contextSideLength)
 
     // Context image has a clear background. Composite it over the appropriate background color for light or dark mode.
     let renderedImage = UIGraphicsImageRenderer(size: size, format: format).image { rendererContext in
@@ -150,8 +150,6 @@ private extension BitmapContextClient {
   struct Renderer: Transferable {
     let colorScheme: ColorScheme
     let client: BitmapContextClient
-
-    #warning("Do we need to bother with this?")
     let overrideSideLength: Double?
 
     static var transferRepresentation: some TransferRepresentation {
