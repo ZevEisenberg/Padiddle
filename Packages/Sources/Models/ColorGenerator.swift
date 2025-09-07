@@ -26,7 +26,7 @@ public struct ColorGenerator: Hashable, Identifiable, Sendable {
 }
 
 public extension ColorGenerator {
-  struct Coordinate {
+  struct Coordinate: Sendable {
     public var radius: Double
     public var theta: Double {
       didSet {
