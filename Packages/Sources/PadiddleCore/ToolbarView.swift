@@ -109,8 +109,7 @@ struct ToolbarFeature {
           TextState("Erase Drawing?")
         } actions: {
           ButtonState(role: .destructive, action: .eraseDrawingButtonTapped) {
-            #warning("TODO: localize")
-            TextState("Erase")
+            TextState(String(localized: .erase))
           }
         })
         return .none
