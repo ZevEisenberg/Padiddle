@@ -186,7 +186,6 @@ struct ToolbarView: View {
     ZStack(alignment: .bottom) {
       ZStack(alignment: .top) {
         GlassEffectContainer {
-          #warning("TODO: idea from Cam: try putting non-record buttons at the top in a toolbar")
           HStack(spacing: 20) {
             @SharedReader(.isRecording) var isRecording
 
