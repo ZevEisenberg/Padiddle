@@ -4,7 +4,7 @@ import DependenciesMacros
 import Synchronization
 import Utilities
 
-struct PadiddleDeviceMotion: Hashable, Sendable {
+struct PadiddleDeviceMotion: Hashable, Sendable, Codable {
   /// Z-axis rotation rate in radians/second. The sign follows the right hand rule (i.e. if the right hand is wrapped around the Z axis such that the tip of the thumb points toward positive Z, a positive rotation is one toward the tips of the other 4 fingers).
   var rotationRateZ: Double
 

@@ -71,6 +71,12 @@ struct DrawingFeature {
         return .none
       }
 
+      // Uncomment to record new drawing data
+//      if isRecording {
+//        let motionData = try! JSONEncoder().encode(motion)
+//        print("motionLog:", String(decoding: motionData, as: UTF8.self))
+//      }
+
       let zRotation = motion.rotationRateZ
       let maxRadius = max(viewSize.width, viewSize.height) / 2
       let radius = maxRadius / 30 * abs(zRotation)

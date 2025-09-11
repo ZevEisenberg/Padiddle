@@ -18,6 +18,10 @@ struct RootFeature {
     case screenChanged(ScreenMetrics?)
     case scenePhaseChanged(ScenePhase)
 
+    #if DEBUG
+    case debugDrawImage
+    #endif
+
     // Nested Features
     case deviceMotion(DeviceMotionFeature.Action)
     case drawing(DrawingFeature.Action)
@@ -72,6 +76,29 @@ struct RootFeature {
           }
         }
 
+      #if DEBUG
+      case .debugDrawImage:
+        Shared(.isRecording).withLock { $0 = true }
+        return .run { send in
+          await send(.drawing(.eraseDrawing))
+          await send(.toolbar(.hint(.spunEnoughToHideSpinPrompt)))
+
+          // Uncomment the code in DrawingView to capture new values for this file
+          guard let sampleURL = Bundle.module.url(forResource: "sample_drawing", withExtension: "json") else {
+            assertionFailure("could not find sample URL")
+            return
+          }
+
+          let data = try Data(contentsOf: sampleURL)
+          let motions = try JSONDecoder().decode([PadiddleDeviceMotion].self, from: data)
+
+          for motion in motions {
+            await send(.drawing(.processMotion(motion)))
+          }
+          Shared(.isRecording).withLock { $0 = false }
+        }
+      #endif
+
       case .deviceMotion(.delegate(let action)):
         switch action {
         case .spunSufficiently:
@@ -123,6 +150,15 @@ public struct RootView: View {
         .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
       }
       .ignoresSafeArea()
+      #if DEBUG
+        .overlay {
+          Color.clear
+            .contentShape(.rect) // make clear color tappable
+            .onTapGesture(count: 2) {
+              store.send(.debugDrawImage)
+            }
+        }
+      #endif
 
       ToolbarView(
         store: store.scope(
