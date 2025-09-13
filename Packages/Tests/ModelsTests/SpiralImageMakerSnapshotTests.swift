@@ -5,7 +5,7 @@ import XCTest
 
 final class SpiralImageMakerSnapshotTests: SnapshotTestCase {
   func testSpiral() {
-    for generator in ColorGenerator.colorsToPick {
+    for generator in ColorGenerator.toPick {
       assertSnapshot(
         of: SpiralImageMaker.image(
           spiralModel: SpiralModel(
@@ -23,7 +23,7 @@ final class SpiralImageMakerSnapshotTests: SnapshotTestCase {
           scale: 1
         ),
         as: .image(scale: 1),
-        named: generator.title
+        named: generator.title.key
       )
     }
   }
