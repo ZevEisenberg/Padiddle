@@ -31,14 +31,15 @@ class Screenshots: XCTestCase {
 
     snapshot("2")
 
+    // n.b. we used to check for the accessibility identifier of the nav bar, but we can't control that in SwiftUI, so it ends up defaulting to the localized name, which is no good for UI tests. Instead, infer the About screen by looking for its Close button.
+    let doneButton = app.buttons["aboutViewClose"]
+    XCTAssertTrue(doneButton.exists)
+
     if iPhone {
-      let navBar = app.navigationBars["about padiddle"]
-      XCTAssertTrue(navBar.exists)
-      let doneButton = navBar.buttons["doneButton"]
-      XCTAssertTrue(doneButton.exists)
       doneButton.tap()
     } else {
-      let dismissRegion = XCUIApplication().otherElements["PopoverDismissRegion"]
+      // n.b. Post-SwiftUI and iOS 26 rewrite, we could technically tap the close button here as well, but it's kinda nice to know this works too.
+      let dismissRegion = app.otherElements["PopoverDismissRegion"]
       XCTAssertTrue(dismissRegion.exists)
       dismissRegion.tap()
     }

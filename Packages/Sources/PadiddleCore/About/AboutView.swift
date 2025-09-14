@@ -37,6 +37,7 @@ public struct AboutView: View {
           Button(role: .close) {
             dismiss()
           }
+          .accessibilityIdentifier("aboutViewClose")
         }
         // Stop bottom of web view from getting clipped by nav stack. Apparently.
         .ignoresSafeArea(edges: .bottom)

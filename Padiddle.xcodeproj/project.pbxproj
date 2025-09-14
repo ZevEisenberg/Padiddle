@@ -36,6 +36,13 @@
 			remoteGlobalIDString = CD193CB81BA4891500203B44;
 			remoteInfo = Padiddle;
 		};
+		CDAFE17C2E76109E000EFA7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD8973AB2E2498AA0092247A;
+			remoteInfo = PunchBuggy;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +257,7 @@
 			);
 			dependencies = (
 				CD114B741CB80066001BBF75 /* PBXTargetDependency */,
+				CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */,
 			);
 			name = Screenshots;
 			packageProductDependencies = (
@@ -338,6 +346,7 @@
 				CD8973A82E2498AA0092247A /* Sources */,
 				CD8973A92E2498AA0092247A /* Frameworks */,
 				CD8973AA2E2498AA0092247A /* Resources */,
+				CDAFE17B2E761031000EFA7D /* Build Number */,
 			);
 			buildRules = (
 			);
@@ -390,7 +399,7 @@
 					CD114B6D1CB80066001BBF75 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 1020;
-						TestTargetID = CD193CB81BA4891500203B44;
+						TestTargetID = CD8973AB2E2498AA0092247A;
 					};
 					CD193CB81BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
@@ -551,6 +560,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/environment-check.sh\"\n";
 		};
+		CDAFE17B2E761031000EFA7D /* Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\n    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -633,6 +661,11 @@
 			target = CD193CB81BA4891500203B44 /* Padiddle */;
 			targetProxy = CD193CD91BA4891500203B44 /* PBXContainerItemProxy */;
 		};
+		CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
+			targetProxy = CDAFE17C2E76109E000EFA7D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -649,7 +682,7 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Padiddle;
+				TEST_TARGET_NAME = PunchBuggy;
 			};
 			name = Debug;
 		};
@@ -668,7 +701,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				TEST_TARGET_NAME = Padiddle;
+				TEST_TARGET_NAME = PunchBuggy;
 			};
 			name = Release;
 		};

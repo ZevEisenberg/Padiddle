@@ -316,6 +316,7 @@ private extension ToolbarView {
       .frame(size: Design.buttonSize)
     }
     .accessibilityLabel(Text(.colorSettings))
+    .accessibilityIdentifier("colorButton")
   }
 
   @ViewBuilder
@@ -346,6 +347,7 @@ private extension ToolbarView {
         .accessibilityLabel(Text(.about))
         .frame(size: Design.buttonSize)
     }
+    .accessibilityIdentifier("helpButton")
     .popover(isPresented: $store.destination.about) {
       AboutView(horizontalSizeClass: horizontalSizeClass!)
         .frame(minWidth: 320, minHeight: 500)
