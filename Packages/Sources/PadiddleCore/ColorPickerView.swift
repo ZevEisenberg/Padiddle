@@ -104,6 +104,7 @@ struct SpiralCell: View {
 
         Text(generator.title)
           .fixedSize(horizontal: false, vertical: true)
+          .frame(maxWidth: .infinity, alignment: .leading)
           .padding(.bottom, 5)
       }
     }
@@ -118,13 +119,16 @@ private struct ColorPickerButtonStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .background {
-        if configuration.isPressed {
-          Color(.ColorPicker.Background.highlighted)
+        let color: ColorResource = if configuration.isPressed {
+          .ColorPicker.Background.highlighted
         } else if isSelected {
-          Color(.ColorPicker.Background.selected)
+          .ColorPicker.Background.selected
         } else {
-          Color(.ColorPicker.Background.normal)
+          .ColorPicker.Background.normal
         }
+        Color(color)
+          .padding(-5)
+          .clipShape(.rect(cornerRadius: 10))
       }
       .overlay {
         RoundedRectangle(cornerRadius: 10)
@@ -136,6 +140,7 @@ private struct ColorPickerButtonStyle: ButtonStyle {
             ),
             lineWidth: (configuration.isPressed || isSelected) ? 2 : 0
           )
+          .padding(-5)
       }
   }
 }
