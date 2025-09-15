@@ -224,6 +224,7 @@ PLATFORMS
   arm64-darwin-20
   arm64-darwin-21
   arm64-darwin-24
+  arm64-darwin-25
 
 DEPENDENCIES
   abbrev
@@ -231,4 +232,4 @@ DEPENDENCIES
   ostruct
 
 BUNDLED WITH
-   2.6.9
+   2.7.2
