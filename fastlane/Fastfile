@@ -52,11 +52,11 @@ platform :ios do
       ],
       languages: [
         "en-US",
-        "fr-FR",
-        "it",
-        "nl-NL",
-        "zh-Hans",
-        "zh-Hant",
+        # "fr-FR",
+        # "it",
+        # "nl-NL",
+        # "zh-Hans",
+        # "zh-Hant",
       ],
     )
   end

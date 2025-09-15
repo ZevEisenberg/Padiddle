@@ -39,6 +39,9 @@ struct DrawingFeature {
   @Dependency(\.deviceMotionClient)
   private var motionClient
 
+  @Dependency(\.imageIO)
+  private var imageIO
+
   @SharedReader(.isRecording)
   private var isRecording
 
@@ -49,6 +52,17 @@ struct DrawingFeature {
     switch action {
     case .onAppear(let viewSize):
       state.viewSize = viewSize
+
+      if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+        return .run { _ in
+          let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
+          let image = imageIO.fetchImage(sideLengthPixels: sideLength)
+          await CATransaction.withoutAnimation {
+            drawingLayer().contents = image
+          }
+        }
+      }
+
       return .none
 
     case .eraseDrawing:
