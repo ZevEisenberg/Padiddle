@@ -14,12 +14,12 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-algorithms", exact: "1.2.1"),
-    .package(url: "https://github.com/apple/swift-numerics", exact: "1.1.0"),
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.22.2"),
-    .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.9.4"),
+    .package(url: "https://github.com/apple/swift-numerics", exact: "1.1.1"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.22.3"),
+    .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.10.0"),
     .package(url: "https://github.com/pointfreeco/swift-identified-collections", exact: "1.1.1"),
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.18.6"),
-    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", exact: "1.6.1"),
+    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.18.7"),
+    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", exact: "1.7.0"),
   ],
   targets: [
     .target(
