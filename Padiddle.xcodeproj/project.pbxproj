@@ -56,6 +56,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CD22A0942EA53EB1008E5DAF /* Exceptions for "PunchBuggy" folder in "PunchBuggy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
+		};
 		CD4E0A882DFD562200FBBC4C /* Exceptions for "PadiddleTests" folder in "PadiddleTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -139,6 +146,9 @@
 		};
 		CD8973AD2E2498AA0092247A /* PunchBuggy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CD22A0942EA53EB1008E5DAF /* Exceptions for "PunchBuggy" folder in "PunchBuggy" target */,
+			);
 			path = PunchBuggy;
 			sourceTree = "<group>";
 		};
@@ -969,6 +979,7 @@
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PunchBuggy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1008,6 +1019,7 @@
 				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PunchBuggy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
