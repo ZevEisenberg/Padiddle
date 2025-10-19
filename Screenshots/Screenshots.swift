@@ -17,10 +17,11 @@ class Screenshots: XCTestCase {
   }
 
   func testTakeScreenshots() {
+    dismissAppleIntelligenceNotification()
+
     snapshot("1")
 
     let app = XCUIApplication()
-
     let helpButton = app.buttons["helpButton"]
     XCTAssertTrue(helpButton.exists)
     helpButton.tap()
@@ -58,5 +59,23 @@ class Screenshots: XCTestCase {
     }
 
     snapshot("website")
+  }
+}
+
+private extension Screenshots {
+  func dismissAppleIntelligenceNotification() {
+    let springboardApp = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+    let appleIntelligenceNotification = springboardApp/*@START_MENU_TOKEN@*/ .staticTexts["Time to experience the new personal intelligence system."]/*[[".otherElements[\"NotificationBody.TopAligned.originalMessage\"].staticTexts",".otherElements",".staticTexts[\"Time to experience the new personal intelligence system.\"]",".staticTexts[\"TextContent.Primary\"]"],[[[-1,3],[-1,2],[-1,1,1],[-1,0]],[[-1,3],[-1,2]]],[1]]@END_MENU_TOKEN@*/ .firstMatch
+    _ = appleIntelligenceNotification.waitForExistence(timeout: 10)
+
+    var dismissAttempts = 0
+    while appleIntelligenceNotification.exists {
+      appleIntelligenceNotification.swipeUp()
+      dismissAttempts += 1
+      sleep(2)
+      if dismissAttempts >= 5 {
+        XCTFail("Attempted to dismiss Apple Intelligence \(dismissAttempts) times, which probably means something is not working")
+      }
+    }
   }
 }
