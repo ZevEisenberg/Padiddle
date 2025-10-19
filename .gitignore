@@ -5,6 +5,7 @@ Graphics/Export
 Scripts/.bin
 
 fastlane/screenshots_for_website
+fastlane/screenshots
 
 # End of 🌀 Padiddle-specific
 
