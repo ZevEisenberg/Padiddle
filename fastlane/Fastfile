@@ -43,20 +43,16 @@ platform :ios do
       erase_simulator: true,
       devices: [
         "iPhone SE (3rd generation)",
-        # "iPhone 16 Pro",
-        # "iPhone 16 Pro Max",
-        # "iPhone 16",
-        # "iPad Air (4th generation)",
-        # "iPad Pro 13-inch (M4)",
-        # "iPad Pro 11-inch (M4)",
+        "iPhone 17",
+        "iPad Pro 11-inch (M4)",
       ],
       languages: [
         "en-US",
-        # "fr-FR",
-        # "it",
-        # "nl-NL",
-        # "zh-Hans",
-        # "zh-Hant",
+        "fr-FR",
+        "it",
+        "nl-NL",
+        "zh-Hans",
+        "zh-Hant",
       ],
     )
   end
@@ -64,7 +60,7 @@ platform :ios do
   desc "Take screenshots for the website"
   lane :screenshotsForWebsite do
     snapshot(
-    devices: ["iPhone 16 Pro", "iPad Air (4th generation)"],
+    devices: ["iPhone 17", "iPad Pro 11-inch (M4)"],
     languages: ["en-US"],
     scheme: "ScreenshotsForWebsite",
     output_directory: "fastlane/screenshots_for_website"
