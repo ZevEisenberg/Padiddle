@@ -15,13 +15,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CD114B731CB80066001BBF75 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CD193CB81BA4891500203B44;
-			remoteInfo = Padiddle;
-		};
 		CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
@@ -266,7 +259,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CD114B741CB80066001BBF75 /* PBXTargetDependency */,
 				CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */,
 			);
 			name = Screenshots;
@@ -676,11 +668,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CD114B741CB80066001BBF75 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CD193CB81BA4891500203B44 /* Padiddle */;
-			targetProxy = CD114B731CB80066001BBF75 /* PBXContainerItemProxy */;
-		};
 		CD193CCF1BA4891500203B44 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD193CB81BA4891500203B44 /* Padiddle */;
