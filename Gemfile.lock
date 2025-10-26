@@ -31,6 +31,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     babosa (1.0.4)
     base64 (0.3.0)
+    benchmark (0.4.1)
     bigdecimal (3.3.1)
     claide (1.1.0)
     colored (1.2)
@@ -228,6 +229,7 @@ PLATFORMS
 
 DEPENDENCIES
   abbrev
+  benchmark
   fastlane
   ostruct
 
