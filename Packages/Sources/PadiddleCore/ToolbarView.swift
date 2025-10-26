@@ -247,18 +247,18 @@ struct ToolbarView: View {
                 .glassEffectUnion(id: "trailing", namespace: namespace)
             }
           }
+        }
 
-          if store.hint.hintState == .promptForRecord {
-            StartHereView()
-              .padding(.bottom, 10)
-              .alignmentGuide(.top) { $0[.bottom] }
-              .transition(
-                .opacity
-                  .combined(
-                    with: .offset(y: -10)
-                  )
-              )
-          }
+        if store.hint.hintState == .promptForRecord {
+          StartHereView()
+            .padding(.bottom, 10)
+            .alignmentGuide(.top) { $0[.bottom] }
+            .transition(
+              .opacity
+                .combined(
+                  with: .offset(y: -10)
+                )
+            )
         }
       }
       if store.hint.hintState == .promptForSpin {
