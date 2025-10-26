@@ -14,9 +14,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CD193CB81BA4891500203B44"
-               BuildableName = "Padiddle.app"
-               BlueprintName = "Padiddle"
+               BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
+               BuildableName = "PunchBuggy.app"
+               BlueprintName = "PunchBuggy"
                ReferencedContainer = "container:Padiddle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -93,16 +93,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD193CB81BA4891500203B44"
-            BuildableName = "Padiddle.app"
-            BlueprintName = "Padiddle"
-            ReferencedContainer = "container:Padiddle.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-FASTLANE_SNAPSHOT"
@@ -124,6 +114,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
+            BuildableName = "PunchBuggy.app"
+            BlueprintName = "PunchBuggy"
+            ReferencedContainer = "container:Padiddle.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

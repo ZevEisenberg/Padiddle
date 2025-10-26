@@ -50,14 +50,16 @@ class Screenshots: XCTestCase {
     snapshot("3")
   }
 
-  func testTakeLandscapeScreenshotForWebsite() {
-    if UIDevice.current.userInterfaceIdiom == .pad {
-      XCUIDevice.shared.orientation = .portrait
-      XCUIApplication().buttons["colorButton"].tap()
-    } else {
-      XCUIDevice.shared.orientation = .landscapeLeft
+  func testTakeScreenshotForWebsite() {
+    dismissAppleIntelligenceNotification()
+
+    if !iPhone {
+      let colorButton = XCUIApplication().buttons["colorButton"]
+      XCTAssert(colorButton.exists)
+      colorButton.tap()
     }
 
+    dismissAppleIntelligenceNotification()
     snapshot("website")
   }
 }
@@ -66,7 +68,6 @@ private extension Screenshots {
   func dismissAppleIntelligenceNotification() {
     let springboardApp = XCUIApplication(bundleIdentifier: "com.apple.springboard")
     let appleIntelligenceNotification = springboardApp/*@START_MENU_TOKEN@*/ .staticTexts["Time to experience the new personal intelligence system."]/*[[".otherElements[\"NotificationBody.TopAligned.originalMessage\"].staticTexts",".otherElements",".staticTexts[\"Time to experience the new personal intelligence system.\"]",".staticTexts[\"TextContent.Primary\"]"],[[[-1,3],[-1,2],[-1,1,1],[-1,0]],[[-1,3],[-1,2]]],[1]]@END_MENU_TOKEN@*/ .firstMatch
-    _ = appleIntelligenceNotification.waitForExistence(timeout: 10)
 
     var dismissAttempts = 0
     while appleIntelligenceNotification.exists {

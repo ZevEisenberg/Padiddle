@@ -56,7 +56,7 @@ struct DrawingFeature {
       if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
         return .run { _ in
           let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
-          let image = imageIO.fetchImage(sideLengthPixels: sideLength)
+          let image = try imageIO.fetchImage(sideLengthPixels: sideLength)
           await CATransaction.withoutAnimation {
             drawingLayer().contents = image
           }

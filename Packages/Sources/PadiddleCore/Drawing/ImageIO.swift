@@ -6,12 +6,15 @@ import UIKit
 
 @DependencyClient
 public struct ImageIO: TestDependencyKey, Sendable {
-  public var fetchImage: @Sendable (_ sideLengthPixels: Int) -> CGImage?
+  public var fetchImage: @Sendable (_ sideLengthPixels: Int) throws -> CGImage
 }
 
 public extension ImageIO {
   static var testValue: Self {
-    Self(fetchImage: { _ in nil })
+    Self(fetchImage: { _ in
+      struct TestValueError: Error {}
+      throw TestValueError()
+    })
   }
 }
 

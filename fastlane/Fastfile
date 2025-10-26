@@ -43,8 +43,8 @@ platform :ios do
       erase_simulator: true,
       devices: [
         "iPhone SE (3rd generation)",
-        "iPhone 17",
-        "iPad Pro 11-inch (M4)",
+        "iPhone 14",
+        "iPad Air 11-inch (M3)",
       ],
       languages: [
         "en-US",
@@ -59,11 +59,25 @@ platform :ios do
 
   desc "Take screenshots for the website"
   lane :screenshotsForWebsite do
+    ENV["FASTLANE_SNAPSHOT"] = "YES"
+    scan(
+      scheme: "Screenshots",
+      configuration: "Debug",
+      derived_data_path: ".build/DerivedData"
+    )
     snapshot(
-    devices: ["iPhone 17", "iPad Pro 11-inch (M4)"],
-    languages: ["en-US"],
-    scheme: "ScreenshotsForWebsite",
-    output_directory: "fastlane/screenshots_for_website"
+      scheme: "ScreenshotsForWebsite",
+      configuration: "Debug",
+      test_without_building: true,
+      derived_data_path: ".build/DerivedData",
+      clear_previous_screenshots: true,
+      erase_simulator: true,
+      devices: [
+        "iPhone 14",
+        "iPad Pro (11-inch) (3rd generation)",
+      ],
+      languages: ["en-US"],    
+      output_directory: "fastlane/screenshots_for_website"
     )
     frameit
   end

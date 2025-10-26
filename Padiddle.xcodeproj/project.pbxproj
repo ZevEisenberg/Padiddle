@@ -599,7 +599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -ex\nset -o pipefail\n\nenv\n\nif [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n  cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
+			shellScript = "set -ex\nset -o pipefail\n\nenv\n\nif [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n  # Clean up files from previous runs to make debugging more predictable\n  rm -rf \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/ScreenshotPersistedImage*.png\n\n  cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\n\n  # Prevent codesign error: \"resource fork, Finder information, or similar detritus not allowed\"\n  xattr -c \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/ScreenshotPersistedImage*.png\nfi\n";
 		};
 		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
 			isa = PBXShellScriptBuildPhase;

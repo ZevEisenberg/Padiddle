@@ -15,10 +15,24 @@ extension ImageIO: @retroactive DependencyKey {
   public static var liveValue: Self {
     Self(
       fetchImage: { sideLengthPixels in
-        let url = Bundle.main.url(forResource: "ScreenshotPersistedImage-\(sideLengthPixels)×\(sideLengthPixels)", withExtension: "png")!
-        let data = try! Data(contentsOf: url)
-        let image = UIImage(data: data)!
-        let cgImage = image.cgImage!
+        guard let url = Bundle.main.url(
+          forResource: "ScreenshotPersistedImage-\(sideLengthPixels)×\(sideLengthPixels)",
+          withExtension: "png"
+        ) else {
+          struct ScreenshotNotFound: Error {
+            let sideLengthPixels: Int
+          }
+          throw ScreenshotNotFound(sideLengthPixels: sideLengthPixels)
+        }
+        let data = try Data(contentsOf: url)
+        guard let image = UIImage(data: data) else {
+          struct CouldNotMakeImageFromData: Error {}
+          throw CouldNotMakeImageFromData()
+        }
+        guard let cgImage = image.cgImage else {
+          struct CouldNotMakeCGImageFromImage: Error {}
+          throw CouldNotMakeCGImageFromImage()
+        }
         return cgImage
       }
     )
