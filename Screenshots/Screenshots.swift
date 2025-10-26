@@ -51,8 +51,6 @@ class Screenshots: XCTestCase {
   }
 
   func testTakeScreenshotForWebsite() {
-    dismissAppleIntelligenceNotification()
-
     if !iPhone {
       let colorButton = XCUIApplication().buttons["colorButton"]
       XCTAssert(colorButton.exists)

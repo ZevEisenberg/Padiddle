@@ -77,7 +77,7 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "Screenshots/testTakeLandscapeScreenshotForWebsite()">
+                  Identifier = "Screenshots/testTakeScreenshotForWebsite()">
                </Test>
             </SkippedTests>
          </TestableReference>
