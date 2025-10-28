@@ -1,5 +1,5 @@
 {
-  "originHash" : "cbe0a836eb4d11905c88a3cb93cea73d3491b5b8ca269c256074dafa8f10b699",
+  "originHash" : "ba4d9394921d218f988b2888b490d89f033546de985bb2e356d60fab2ca96b34",
   "pins" : [
     {
       "identity" : "anchorage",
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-composable-architecture",
       "state" : {
-        "revision" : "2d60d4082dfb4978974307acf0f00dfa20e5f621",
-        "version" : "1.22.3"
+        "revision" : "5b0890fabfd68a2d375d68502bc3f54a8548c494",
+        "version" : "1.23.1"
       }
     },
     {
@@ -114,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-navigation",
       "state" : {
-        "revision" : "91415670c91d41e8e1872ef6fe1bf118e20dee37",
-        "version" : "2.5.1"
+        "revision" : "bf498690e1f6b4af790260f542e8428a4ba10d78",
+        "version" : "2.6.0"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-perception",
       "state" : {
-        "revision" : "30721accd0370d7c9cb5bd0f7cdf5a1a767b383d",
-        "version" : "2.0.8"
+        "revision" : "4f47ebafed5f0b0172cf5c661454fa8e28fb2ac4",
+        "version" : "2.0.9"
       }
     },
     {

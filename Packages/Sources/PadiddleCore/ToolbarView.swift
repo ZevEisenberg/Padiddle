@@ -57,7 +57,7 @@ struct ToolbarFeature {
     var hint: HintFeature.State = .init()
   }
 
-  @Reducer(state: .equatable)
+  @Reducer
   enum Destination {
     case colorPicker(ColorPickerFeature)
     case clearConfirmation(ConfirmationDialogState<Action.ConfirmationDialog>)
@@ -159,6 +159,8 @@ struct ToolbarFeature {
     BindingReducer()
   }
 }
+
+extension ToolbarFeature.Destination.State: Equatable {}
 
 extension ToolbarFeature {
   /// Which hint, if any, is currently visible
