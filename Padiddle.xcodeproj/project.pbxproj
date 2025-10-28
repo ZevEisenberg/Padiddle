@@ -7,28 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD2E96122E0F63FD00706A7C /* PadiddleCore in Frameworks */ = {isa = PBXBuildFile; productRef = CD2E96112E0F63FD00706A7C /* PadiddleCore */; };
 		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD8973B92E2498CE0092247A /* PadiddleCore in Frameworks */ = {isa = PBXBuildFile; productRef = CD8973B82E2498CE0092247A /* PadiddleCore */; };
-		CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B8E24BF63290087FE69 /* BonMot */; };
-		CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD9C7B9124BF63450087FE69 /* Anchorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CD193CB81BA4891500203B44;
-			remoteInfo = Padiddle;
-		};
-		CD193CD91BA4891500203B44 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CD193CB81BA4891500203B44;
-			remoteInfo = Padiddle;
-		};
 		CDAFE17C2E76109E000EFA7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
@@ -40,9 +23,7 @@
 
 /* Begin PBXFileReference section */
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD193CB91BA4891500203B44 /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD8973AC2E2498AA0092247A /* PunchBuggy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PunchBuggy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapshotTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB6247B2E05BC8600C07147 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
@@ -56,20 +37,6 @@
 			);
 			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
 		};
-		CD4E0A882DFD562200FBBC4C /* Exceptions for "PadiddleTests" folder in "PadiddleTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = CD193CCC1BA4891500203B44 /* PadiddleTests */;
-		};
-		CD4E0A962DFD563B00FBBC4C /* Exceptions for "PadiddleUITests" folder in "PadiddleUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				PadiddleUITests.swift,
-			);
-			target = CD193CD71BA4891500203B44 /* PadiddleUITests */;
-		};
 		CD4E0ABD2DFD565C00FBBC4C /* Exceptions for "Screenshots" folder in "Screenshots" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -78,63 +45,15 @@
 			);
 			target = CD114B6D1CB80066001BBF75 /* Screenshots */;
 		};
-		CD4E0B2A2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "Padiddle" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = CD193CB81BA4891500203B44 /* Padiddle */;
-		};
-		CD4E0B2B2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "PadiddleTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Utilities/AccessibilityIdentifierExtensions.swift,
-				Utilities/ArrayExtensions.swift,
-				Utilities/Geometry.swift,
-				Utilities/Math.swift,
-				View/AccessibleToggleButton.swift,
-			);
-			target = CD193CCC1BA4891500203B44 /* PadiddleTests */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		CD4E0A822DFD562100FBBC4C /* PadiddleTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				CD4E0A882DFD562200FBBC4C /* Exceptions for "PadiddleTests" folder in "PadiddleTests" target */,
-			);
-			path = PadiddleTests;
-			sourceTree = "<group>";
-		};
-		CD4E0A942DFD563B00FBBC4C /* PadiddleUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				CD4E0A962DFD563B00FBBC4C /* Exceptions for "PadiddleUITests" folder in "PadiddleUITests" target */,
-			);
-			path = PadiddleUITests;
-			sourceTree = "<group>";
-		};
 		CD4E0ABA2DFD565C00FBBC4C /* Screenshots */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CD4E0ABD2DFD565C00FBBC4C /* Exceptions for "Screenshots" folder in "Screenshots" target */,
 			);
 			path = Screenshots;
-			sourceTree = "<group>";
-		};
-		CD4E0AF92DFD56B100FBBC4C /* Padiddle */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				CD4E0B2A2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "Padiddle" target */,
-				CD4E0B2B2DFD56B100FBBC4C /* Exceptions for "Padiddle" folder in "PadiddleTests" target */,
-			);
-			path = Padiddle;
-			sourceTree = "<group>";
-		};
-		CD63C30E2DFD2DD70045F7ED /* Experiments */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Experiments;
 			sourceTree = "<group>";
 		};
 		CD8973AD2E2498AA0092247A /* PunchBuggy */ = {
@@ -165,28 +84,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD193CB61BA4891500203B44 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CD9C7B9224BF63450087FE69 /* Anchorage in Frameworks */,
-				CD9C7B8F24BF63290087FE69 /* BonMot in Frameworks */,
-				CD2E96122E0F63FD00706A7C /* PadiddleCore in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CD193CCA1BA4891500203B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CD657F6B2DFD31C300215549 /* RealModule in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CD193CD51BA4891500203B44 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,11 +115,7 @@
 			children = (
 				CDB6247B2E05BC8600C07147 /* Packages */,
 				CD9C55D92E05DBD800D3D3C8 /* Test Plans */,
-				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
 				CD8973AD2E2498AA0092247A /* PunchBuggy */,
-				CD4E0A822DFD562100FBBC4C /* PadiddleTests */,
-				CD4E0A942DFD563B00FBBC4C /* PadiddleUITests */,
-				CD63C30E2DFD2DD70045F7ED /* Experiments */,
 				CD4E0ABA2DFD565C00FBBC4C /* Screenshots */,
 				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 				CD8973B72E2498CE0092247A /* Frameworks */,
@@ -228,9 +126,7 @@
 		CD193CBA1BA4891500203B44 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD193CB91BA4891500203B44 /* Padiddle.app */,
 				CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */,
-				CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */,
 				CD114B6E1CB80066001BBF75 /* Screenshots.xctest */,
 				CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */,
 				CD8973AC2E2498AA0092247A /* PunchBuggy.app */,
@@ -268,34 +164,6 @@
 			productReference = CD114B6E1CB80066001BBF75 /* Screenshots.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		CD193CB81BA4891500203B44 /* Padiddle */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */;
-			buildPhases = (
-				CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */,
-				CD193CB51BA4891500203B44 /* Sources */,
-				CD193CB61BA4891500203B44 /* Frameworks */,
-				CD193CB71BA4891500203B44 /* Resources */,
-				CD118DBF1BA4E7C800668DB6 /* Build Number */,
-				CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				CD4E0AF92DFD56B100FBBC4C /* Padiddle */,
-			);
-			name = Padiddle;
-			packageProductDependencies = (
-				CD9C7B8E24BF63290087FE69 /* BonMot */,
-				CD9C7B9124BF63450087FE69 /* Anchorage */,
-				CD2E96112E0F63FD00706A7C /* PadiddleCore */,
-			);
-			productName = Padiddle;
-			productReference = CD193CB91BA4891500203B44 /* Padiddle.app */;
-			productType = "com.apple.product-type.application";
-		};
 		CD193CCC1BA4891500203B44 /* PadiddleTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */;
@@ -307,10 +175,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CD193CCF1BA4891500203B44 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CD4E0A822DFD562100FBBC4C /* PadiddleTests */,
 			);
 			name = PadiddleTests;
 			packageProductDependencies = (
@@ -319,26 +183,6 @@
 			productName = PadiddleTests;
 			productReference = CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CD193CD71BA4891500203B44 /* PadiddleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */;
-			buildPhases = (
-				CD193CD41BA4891500203B44 /* Sources */,
-				CD193CD51BA4891500203B44 /* Frameworks */,
-				CD193CD61BA4891500203B44 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CD193CDA1BA4891500203B44 /* PBXTargetDependency */,
-			);
-			name = PadiddleUITests;
-			packageProductDependencies = (
-			);
-			productName = PadiddleUITests;
-			productReference = CD193CD81BA4891500203B44 /* PadiddleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		CD8973AB2E2498AA0092247A /* PunchBuggy */ = {
 			isa = PBXNativeTarget;
@@ -404,21 +248,10 @@
 						LastSwiftMigration = 1020;
 						TestTargetID = CD8973AB2E2498AA0092247A;
 					};
-					CD193CB81BA4891500203B44 = {
-						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 2KJHM26Y46;
-						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
-					};
 					CD193CCC1BA4891500203B44 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 2KJHM26Y46;
 						LastSwiftMigration = 1020;
-					};
-					CD193CD71BA4891500203B44 = {
-						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 1020;
-						TestTargetID = CD193CB81BA4891500203B44;
 					};
 					CD8973AB2E2498AA0092247A = {
 						CreatedOnToolsVersion = 26.0;
@@ -451,10 +284,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD193CB81BA4891500203B44 /* Padiddle */,
 				CD8973AB2E2498AA0092247A /* PunchBuggy */,
 				CD193CCC1BA4891500203B44 /* PadiddleTests */,
-				CD193CD71BA4891500203B44 /* PadiddleUITests */,
 				CD114B6D1CB80066001BBF75 /* Screenshots */,
 				CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 			);
@@ -469,21 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD193CB71BA4891500203B44 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CD193CCB1BA4891500203B44 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CD193CD61BA4891500203B44 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,43 +325,6 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		7AC362232E6879C800DEB03F /* Check Dev Environment for Common Errors */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Check Dev Environment for Common Errors";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/environment-check.sh\"\n";
-		};
-		CD118DBF1BA4E7C800668DB6 /* Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\n    branchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-		CD63C30B2DFD285F0045F7ED /* Check Dev Environment for Common Errors */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -601,25 +381,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -ex\nset -o pipefail\n\nenv\n\nif [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n  # Clean up files from previous runs to make debugging more predictable\n  rm -rf \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/ScreenshotPersistedImage*.png\n\n  cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\n\n  # Prevent codesign error: \"resource fork, Finder information, or similar detritus not allowed\"\n  xattr -c \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/ScreenshotPersistedImage*.png\nfi\n";
 		};
-		CDD3A43E1CCE933500569E38 /* Copy Screenshot Images If Needed */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Screenshot Images If Needed";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -ex\nset -o pipefail\n\nif [[ $FASTLANE_SNAPSHOT == \"YES\" ]]; then\n    cp \"${SRCROOT}\"/Screenshots/ScreenshotPersistedImage* \"${BUILT_PRODUCTS_DIR}\"/\"${PRODUCT_NAME}\".app/\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -630,21 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD193CB51BA4891500203B44 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CD193CC91BA4891500203B44 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CD193CD41BA4891500203B44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -668,16 +415,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CD193CCF1BA4891500203B44 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CD193CB81BA4891500203B44 /* Padiddle */;
-			targetProxy = CD193CCE1BA4891500203B44 /* PBXContainerItemProxy */;
-		};
-		CD193CDA1BA4891500203B44 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CD193CB81BA4891500203B44 /* Padiddle */;
-			targetProxy = CD193CD91BA4891500203B44 /* PBXContainerItemProxy */;
-		};
 		CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
@@ -776,7 +513,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -837,7 +574,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -846,50 +583,6 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		CD193CE21BA4891500203B44 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Padiddle/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 2.2.3;
-				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zeveisenberg.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		CD193CE31BA4891500203B44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Padiddle/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 2.2.3;
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zeveisenberg.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -920,40 +613,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-			};
-			name = Release;
-		};
-		CD193CE81BA4891500203B44 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PadiddleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Padiddle;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		CD193CE91BA4891500203B44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PadiddleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PadiddleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				TEST_TARGET_NAME = Padiddle;
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -1022,7 +681,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1035,7 +693,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.SnapshotTestHost;
@@ -1057,7 +714,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1070,7 +726,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.SnapshotTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1101,29 +756,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD193CE11BA4891500203B44 /* Build configuration list for PBXNativeTarget "Padiddle" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CD193CE21BA4891500203B44 /* Debug */,
-				CD193CE31BA4891500203B44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CD193CE41BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD193CE51BA4891500203B44 /* Debug */,
 				CD193CE61BA4891500203B44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CD193CE71BA4891500203B44 /* Build configuration list for PBXNativeTarget "PadiddleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CD193CE81BA4891500203B44 /* Debug */,
-				CD193CE91BA4891500203B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1176,10 +813,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD2E96112E0F63FD00706A7C /* PadiddleCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PadiddleCore;
-		};
 		CD657F6A2DFD31C300215549 /* RealModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */;
@@ -1188,16 +821,6 @@
 		CD8973B82E2498CE0092247A /* PadiddleCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PadiddleCore;
-		};
-		CD9C7B8E24BF63290087FE69 /* BonMot */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */;
-			productName = BonMot;
-		};
-		CD9C7B9124BF63450087FE69 /* Anchorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */;
-			productName = Anchorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
