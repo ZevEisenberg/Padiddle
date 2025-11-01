@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
-               BuildableName = "PunchBuggy.app"
-               BlueprintName = "PunchBuggy"
+               BuildableName = "Padiddle.app"
+               BlueprintName = "Padiddle"
                ReferencedContainer = "container:Padiddle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,8 +27,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:Test Plans/Padiddle.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,8 +50,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
-            BuildableName = "PunchBuggy.app"
-            BlueprintName = "PunchBuggy"
+            BuildableName = "Padiddle.app"
+            BlueprintName = "Padiddle"
             ReferencedContainer = "container:Padiddle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -83,8 +88,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
-            BuildableName = "PunchBuggy.app"
-            BlueprintName = "PunchBuggy"
+            BuildableName = "Padiddle.app"
+            BlueprintName = "Padiddle"
             ReferencedContainer = "container:Padiddle.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

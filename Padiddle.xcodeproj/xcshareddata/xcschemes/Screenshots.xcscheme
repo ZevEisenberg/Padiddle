@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
-               BuildableName = "PunchBuggy.app"
-               BlueprintName = "PunchBuggy"
+               BuildableName = "Padiddle.app"
+               BlueprintName = "Padiddle"
                ReferencedContainer = "container:Padiddle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -118,8 +118,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD8973AB2E2498AA0092247A"
-            BuildableName = "PunchBuggy.app"
-            BlueprintName = "PunchBuggy"
+            BuildableName = "Padiddle.app"
+            BlueprintName = "Padiddle"
             ReferencedContainer = "container:Padiddle.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

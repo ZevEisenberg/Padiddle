@@ -12,30 +12,37 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD8602662EB0649E0075B9BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD9C55CC2E05DB0D00D3D3C8;
+			remoteInfo = SnapshotTestHost;
+		};
 		CDAFE17C2E76109E000EFA7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD193CB11BA4891500203B44 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CD8973AB2E2498AA0092247A;
-			remoteInfo = PunchBuggy;
+			remoteInfo = Padiddle;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CD114B6E1CB80066001BBF75 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadiddleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD8973AC2E2498AA0092247A /* PunchBuggy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PunchBuggy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD8973AC2E2498AA0092247A /* Padiddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Padiddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapshotTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB6247B2E05BC8600C07147 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CD22A0942EA53EB1008E5DAF /* Exceptions for "PunchBuggy" folder in "PunchBuggy" target */ = {
+		CD22A0942EA53EB1008E5DAF /* Exceptions for "Padiddle" folder in "Padiddle" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
+			target = CD8973AB2E2498AA0092247A /* Padiddle */;
 		};
 		CD4E0ABD2DFD565C00FBBC4C /* Exceptions for "Screenshots" folder in "Screenshots" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -56,12 +63,12 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
-		CD8973AD2E2498AA0092247A /* PunchBuggy */ = {
+		CD8973AD2E2498AA0092247A /* Padiddle */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				CD22A0942EA53EB1008E5DAF /* Exceptions for "PunchBuggy" folder in "PunchBuggy" target */,
+				CD22A0942EA53EB1008E5DAF /* Exceptions for "Padiddle" folder in "Padiddle" target */,
 			);
-			path = PunchBuggy;
+			path = Padiddle;
 			sourceTree = "<group>";
 		};
 		CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */ = {
@@ -115,7 +122,7 @@
 			children = (
 				CDB6247B2E05BC8600C07147 /* Packages */,
 				CD9C55D92E05DBD800D3D3C8 /* Test Plans */,
-				CD8973AD2E2498AA0092247A /* PunchBuggy */,
+				CD8973AD2E2498AA0092247A /* Padiddle */,
 				CD4E0ABA2DFD565C00FBBC4C /* Screenshots */,
 				CD9C55CE2E05DB0D00D3D3C8 /* SnapshotTestHost */,
 				CD8973B72E2498CE0092247A /* Frameworks */,
@@ -129,7 +136,7 @@
 				CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */,
 				CD114B6E1CB80066001BBF75 /* Screenshots.xctest */,
 				CD9C55CD2E05DB0D00D3D3C8 /* SnapshotTestHost.app */,
-				CD8973AC2E2498AA0092247A /* PunchBuggy.app */,
+				CD8973AC2E2498AA0092247A /* Padiddle.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +163,7 @@
 			);
 			dependencies = (
 				CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */,
+				CD8602672EB0649E0075B9BE /* PBXTargetDependency */,
 			);
 			name = Screenshots;
 			packageProductDependencies = (
@@ -184,9 +192,9 @@
 			productReference = CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CD8973AB2E2498AA0092247A /* PunchBuggy */ = {
+		CD8973AB2E2498AA0092247A /* Padiddle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD8973B42E2498AB0092247A /* Build configuration list for PBXNativeTarget "PunchBuggy" */;
+			buildConfigurationList = CD8973B42E2498AB0092247A /* Build configuration list for PBXNativeTarget "Padiddle" */;
 			buildPhases = (
 				7AC362232E6879C800DEB03F /* Check Dev Environment for Common Errors */,
 				CD8973A82E2498AA0092247A /* Sources */,
@@ -200,14 +208,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				CD8973AD2E2498AA0092247A /* PunchBuggy */,
+				CD8973AD2E2498AA0092247A /* Padiddle */,
 			);
-			name = PunchBuggy;
+			name = Padiddle;
 			packageProductDependencies = (
 				CD8973B82E2498CE0092247A /* PadiddleCore */,
 			);
-			productName = PunchBuggy;
-			productReference = CD8973AC2E2498AA0092247A /* PunchBuggy.app */;
+			productName = Padiddle;
+			productReference = CD8973AC2E2498AA0092247A /* Padiddle.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */ = {
@@ -284,7 +292,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CD8973AB2E2498AA0092247A /* PunchBuggy */,
+				CD8973AB2E2498AA0092247A /* Padiddle */,
 				CD193CCC1BA4891500203B44 /* PadiddleTests */,
 				CD114B6D1CB80066001BBF75 /* Screenshots */,
 				CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */,
@@ -415,9 +423,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD8602672EB0649E0075B9BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD9C55CC2E05DB0D00D3D3C8 /* SnapshotTestHost */;
+			targetProxy = CD8602662EB0649E0075B9BE /* PBXContainerItemProxy */;
+		};
 		CDAFE17D2E76109E000EFA7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CD8973AB2E2498AA0092247A /* PunchBuggy */;
+			target = CD8973AB2E2498AA0092247A /* Padiddle */;
 			targetProxy = CDAFE17C2E76109E000EFA7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -436,7 +449,7 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PunchBuggy;
+				TEST_TARGET_NAME = Padiddle;
 			};
 			name = Debug;
 		};
@@ -455,7 +468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				TEST_TARGET_NAME = PunchBuggy;
+				TEST_TARGET_NAME = Padiddle;
 			};
 			name = Release;
 		};
@@ -628,7 +641,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PunchBuggy/Info.plist;
+				INFOPLIST_FILE = Padiddle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -637,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PunchBuggy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Padiddle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 			};
@@ -655,7 +668,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PunchBuggy/Info.plist;
+				INFOPLIST_FILE = Padiddle/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -664,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.PunchBuggy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeveisenberg.Padiddle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
@@ -765,7 +778,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD8973B42E2498AB0092247A /* Build configuration list for PBXNativeTarget "PunchBuggy" */ = {
+		CD8973B42E2498AB0092247A /* Build configuration list for PBXNativeTarget "Padiddle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD8973B52E2498AB0092247A /* Debug */,
