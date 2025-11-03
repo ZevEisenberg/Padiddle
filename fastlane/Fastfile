@@ -100,6 +100,10 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :release do
     # match(type: "appstore")
+
+    # https://github.com/fastlane/fastlane/issues/22193
+    ENV["SPACESHIP_SCREENSHOT_UPLOAD_TIMEOUT"] = "1"
+
     screenshots
     gym(
       scheme: "Padiddle",
@@ -107,8 +111,10 @@ platform :ios do
       include_bitcode: true,
       export_xcargs: '-allowProvisioningUpdates'
     )
+    deliver(
+      force: true,
+      # skip_binary_upload: true
     )
-    deliver(force: true)
     # frameit
   end
 
