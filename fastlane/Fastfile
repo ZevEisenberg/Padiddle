@@ -18,7 +18,6 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'] = ??? # add it here and don't commit it
   end
 
   desc "Runs all the tests"
@@ -100,6 +99,8 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :release do
     # match(type: "appstore")
+
+    ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'] = ??? # add it here from 1P but don't commit it
 
     # https://github.com/fastlane/fastlane/issues/22193
     ENV["SPACESHIP_SCREENSHOT_UPLOAD_TIMEOUT"] = "1"
