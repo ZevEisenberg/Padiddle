@@ -187,68 +187,72 @@ struct ToolbarView: View {
   var body: some View {
     ZStack(alignment: .bottom) {
       ZStack(alignment: .top) {
-        GlassEffectContainer {
-          HStack(spacing: 20) {
-            @SharedReader(.isRecording) var isRecording
+        GeometryReader { proxy in
+          GlassEffectContainer {
+            HStack(spacing: 20) {
+              @SharedReader(.isRecording) var isRecording
 
-            if !isRecording {
-              eraseButton
-                .glassEffect(.regular.interactive())
-                .glassEffectID("clear", in: namespace)
-                .glassEffectUnion(id: "leading", namespace: namespace)
+              if !isRecording {
+                eraseButton
+                  .glassEffect(.regular.interactive())
+                  .glassEffectID("clear", in: namespace)
+                  .glassEffectUnion(id: "leading", namespace: namespace)
 
-              colorButton
-                .keyframeAnimator(
-                  initialValue: 1.0,
-                  trigger: store.colorGenerator,
-                  content: { content, value in
-                    content
-                      .scaleEffect(value)
-                  },
-                  keyframes: { _ in
-                    KeyframeTrack {
-                      if !isPopoverActuallyPopover {
-                        // wait for sheet to dismiss
-                        LinearKeyframe(1, duration: 0.4)
-                      } else {
-                        // required for conditional builder
+                colorButton
+                  .keyframeAnimator(
+                    initialValue: 1.0,
+                    trigger: store.colorGenerator,
+                    content: { content, value in
+                      content
+                        .scaleEffect(value)
+                    },
+                    keyframes: { _ in
+                      KeyframeTrack {
+                        if !isPopoverActuallyPopover {
+                          // wait for sheet to dismiss
+                          LinearKeyframe(1, duration: 0.4)
+                        } else {
+                          // required for conditional builder
+                        }
+                        SpringKeyframe(1.2, duration: 0.2, spring: .smooth)
+                        SpringKeyframe(1, spring: .smooth, startVelocity: 10)
                       }
-                      SpringKeyframe(1.2, duration: 0.2, spring: .smooth)
-                      SpringKeyframe(1, spring: .smooth, startVelocity: 10)
                     }
+                  )
+                  .glassEffect(.regular.interactive())
+                  .glassEffectID("color", in: namespace)
+                  .glassEffectUnion(id: "leading", namespace: namespace)
+                  .popover(
+                    item: $store.scope(
+                      state: \.destination?.colorPicker,
+                      action: \.destination.colorPicker
+                    ),
+                    arrowEdge: .bottom
+                  ) { store in
+                    ColorPickerView(store: store)
+                      .frame(minWidth: 320)
                   }
-                )
-                .glassEffect(.regular.interactive())
-                .glassEffectID("color", in: namespace)
-                .glassEffectUnion(id: "leading", namespace: namespace)
-                .popover(
-                  item: $store.scope(
-                    state: \.destination?.colorPicker,
-                    action: \.destination.colorPicker
-                  ),
-                  arrowEdge: .bottom
-                ) { store in
-                  ColorPickerView(store: store)
-                    .frame(minWidth: 320)
-                }
-            }
+              }
 
-            recordButton
-              .glassEffectID("record", in: namespace)
-              .glassEffectUnion(id: "middle", namespace: namespace)
+              recordButton
+                .glassEffectID("record", in: namespace)
+                .glassEffectUnion(id: "middle", namespace: namespace)
 
-            if !isRecording {
-              shareButton
-                .glassEffect(.regular.interactive())
-                .glassEffectID("share", in: namespace)
-                .glassEffectUnion(id: "trailing", namespace: namespace)
+              if !isRecording {
+                shareButton
+                  .glassEffect(.regular.interactive())
+                  .glassEffectID("share", in: namespace)
+                  .glassEffectUnion(id: "trailing", namespace: namespace)
 
-              aboutButton
-                .glassEffect(.regular.interactive())
-                .glassEffectID("about", in: namespace)
-                .glassEffectUnion(id: "trailing", namespace: namespace)
+                aboutButton
+                  .glassEffect(.regular.interactive())
+                  .glassEffectID("about", in: namespace)
+                  .glassEffectUnion(id: "trailing", namespace: namespace)
+              }
             }
           }
+          .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+          .padding(.bottom, proxy.safeAreaInsets.bottom.isZero ? 10 : 0)
         }
 
         if store.hint.hintState == .promptForRecord {
