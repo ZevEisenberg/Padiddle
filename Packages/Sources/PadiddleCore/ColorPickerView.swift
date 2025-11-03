@@ -103,6 +103,7 @@ struct SpiralCell: View {
         .aspectRatio(1, contentMode: .fit)
 
         Text(generator.title)
+          .font(.body)
           .fixedSize(horizontal: false, vertical: true)
           .frame(maxWidth: .infinity, alignment: .leading)
           .padding(.bottom, 5)
