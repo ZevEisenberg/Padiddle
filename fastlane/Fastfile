@@ -43,7 +43,8 @@ platform :ios do
       devices: [
         "iPhone SE (3rd generation)",
         "iPhone 14",
-        "iPad Air 13-inch (M3)",
+        "iPhone 11 Pro Max", # 6.5-inch screen requirement
+        "iPad Pro (12.9-inch) (3rd generation)",
       ],
       languages: [
         "en-US",
@@ -54,6 +55,20 @@ platform :ios do
         "zh-Hant",
       ],
     )
+
+    # Prepend iPad screenshots with magic string to disambiguate them so they upload to the right slot on App Store Connect
+    # https://docs.fastlane.tools/actions/deliver/#uploading-screenshots-for-ipad-pro-129-inch-3rd-generation
+
+    # n.b. `pwd` is Padiddle/fastlane/
+    Dir.glob('screenshots/**/iPad Pro*.png') do |ipad_screenshot_filename_with_path|
+      puts "doing {ipad_screenshot_filename_with_path}"
+      folder_path = File.dirname(ipad_screenshot_filename_with_path)
+      new_filename = "IPAD_PRO_3GEN_129 " + File.basename(ipad_screenshot_filename_with_path) + ".png"
+
+      new_path_with_filename = File.join(folder_path, new_filename)
+
+      File.rename(ipad_screenshot_filename_with_path, new_path_with_filename)
+    end
   end
 
   desc "Take screenshots for the website"
