@@ -30,6 +30,7 @@ class Screenshots: XCTestCase {
     // in a blank screen. Sleep to make sure we get it.
     sleep(1)
 
+    dismissAppleIntelligenceNotification()
     snapshot("2")
 
     // n.b. we used to check for the accessibility identifier of the nav bar, but we can't control that in SwiftUI, so it ends up defaulting to the localized name, which is no good for UI tests. Instead, infer the About screen by looking for its Close button.
@@ -47,6 +48,7 @@ class Screenshots: XCTestCase {
 
     app.buttons["colorButton"].tap()
 
+    dismissAppleIntelligenceNotification()
     snapshot("3")
   }
 
