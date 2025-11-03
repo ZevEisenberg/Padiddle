@@ -118,6 +118,7 @@ private struct ColorPickerButtonStyle: ButtonStyle {
 
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
+      .padding(5)
       .background {
         let color: ColorResource = if configuration.isPressed {
           .ColorPicker.Background.highlighted
@@ -126,12 +127,8 @@ private struct ColorPickerButtonStyle: ButtonStyle {
         } else {
           .ColorPicker.Background.normal
         }
-        Color(color)
-          .padding(-5)
-          .clipShape(.rect(cornerRadius: 10))
-      }
-      .overlay {
         RoundedRectangle(cornerRadius: 10)
+          .fill(Color(color))
           .stroke(
             Color(
               configuration.isPressed
@@ -140,18 +137,20 @@ private struct ColorPickerButtonStyle: ButtonStyle {
             ),
             lineWidth: (configuration.isPressed || isSelected) ? 2 : 0
           )
-          .padding(-5)
       }
   }
 }
 
 #Preview {
-  ColorPickerView(
-    store: .init(
-      initialState: .init()
-    ) {
-      ColorPickerFeature()
-        ._printChanges()
+  Color(.systemBackground)
+    .sheet(isPresented: .constant(true)) {
+      ColorPickerView(
+        store: .init(
+          initialState: .init()
+        ) {
+          ColorPickerFeature()
+            ._printChanges()
+        }
+      )
     }
-  )
 }
