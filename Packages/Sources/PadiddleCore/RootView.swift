@@ -120,6 +120,7 @@ struct RootFeature {
 public struct RootView: View {
   let store = StoreOf<RootFeature>(initialState: .init()) {
     RootFeature()
+    #if DEBUG
       .signpost()
       ._printChanges(.init(printChange: { receivedAction, oldState, newState in
         switch receivedAction {
@@ -131,6 +132,7 @@ public struct RootView: View {
           _ReducerPrinter.customDump.printChange(receivedAction: receivedAction, oldState: oldState, newState: newState)
         }
       }))
+    #endif
   }
 
   @Environment(\.scenePhase)
