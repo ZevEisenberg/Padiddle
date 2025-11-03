@@ -40,7 +40,7 @@ platform :ios do
       test_without_building: true,
       derived_data_path: ".build/DerivedData",
       clear_previous_screenshots: true,
-      erase_simulator: true,
+      erase_simulator: false, # prevent Apple Intelligence alert, which only appears after a simulator wipe
       devices: [
         "iPhone SE (3rd generation)",
         "iPhone 14",
@@ -71,7 +71,7 @@ platform :ios do
       test_without_building: true,
       derived_data_path: ".build/DerivedData",
       clear_previous_screenshots: true,
-      erase_simulator: true,
+      erase_simulator: false, # prevent Apple Intelligence alert, which only appears after a simulator wipe
       devices: [
         "iPhone 14",
         "iPad Pro (11-inch) (3rd generation)",
