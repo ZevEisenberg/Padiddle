@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD657F6B2DFD31C300215549 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CD657F6A2DFD31C300215549 /* RealModule */; };
 		CD8973B92E2498CE0092247A /* PadiddleCore in Frameworks */ = {isa = PBXBuildFile; productRef = CD8973B82E2498CE0092247A /* PadiddleCore */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD657F6B2DFD31C300215549 /* RealModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +184,6 @@
 			);
 			name = PadiddleTests;
 			packageProductDependencies = (
-				CD657F6A2DFD31C300215549 /* RealModule */,
 			);
 			productName = PadiddleTests;
 			productReference = CD193CCD1BA4891500203B44 /* PadiddleTests.xctest */;
@@ -283,9 +280,6 @@
 			);
 			mainGroup = CD193CB01BA4891500203B44;
 			packageReferences = (
-				CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */,
-				CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */,
-				CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CD193CBA1BA4891500203B44 /* Products */;
@@ -798,39 +792,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-numerics.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
-		CD9C7B8D24BF63290087FE69 /* XCRemoteSwiftPackageReference "BonMot" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Rightpoint/BonMot.git";
-			requirement = {
-				kind = exactVersion;
-				version = 6.1.3;
-			};
-		};
-		CD9C7B9024BF63450087FE69 /* XCRemoteSwiftPackageReference "Anchorage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Rightpoint/Anchorage.git";
-			requirement = {
-				kind = exactVersion;
-				version = 4.5.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		CD657F6A2DFD31C300215549 /* RealModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD657F692DFD31C300215549 /* XCRemoteSwiftPackageReference "swift-numerics" */;
-			productName = RealModule;
-		};
 		CD8973B82E2498CE0092247A /* PadiddleCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PadiddleCore;

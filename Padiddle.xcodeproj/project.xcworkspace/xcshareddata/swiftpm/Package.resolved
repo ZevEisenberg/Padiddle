@@ -1,24 +1,6 @@
 {
-  "originHash" : "ba4d9394921d218f988b2888b490d89f033546de985bb2e356d60fab2ca96b34",
+  "originHash" : "1e4179f8295d031fbd6f0f69ae04e643202f0697320c1d694982658522153f0c",
   "pins" : [
-    {
-      "identity" : "anchorage",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Rightpoint/Anchorage.git",
-      "state" : {
-        "revision" : "23a6dd0ccf9529d2750d8679a2e74a161cff2f16",
-        "version" : "4.5.0"
-      }
-    },
-    {
-      "identity" : "bonmot",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Rightpoint/BonMot.git",
-      "state" : {
-        "revision" : "001139aad601ed8009b49a0e868e21df3dea979c",
-        "version" : "6.1.3"
-      }
-    },
     {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
