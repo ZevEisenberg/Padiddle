@@ -18,7 +18,7 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-
+    ENV['FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD'] = ??? # add it here and don't commit it
   end
 
   desc "Runs all the tests"
@@ -113,9 +113,10 @@ platform :ios do
     )
     deliver(
       force: true,
-      # skip_binary_upload: true
+      skip_metadata: false,
+      skip_screenshots: false,
+      skip_binary_upload: false
     )
-    # frameit
   end
 
   # You can define as many lanes as you want
