@@ -18,14 +18,14 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    
+
   end
 
   desc "Runs all the tests"
   lane :test do
     scan(scheme: "Padiddle")
   end
-  
+
   desc "Take screenshots for the App Store"
   lane :screenshots do
     ENV["FASTLANE_SNAPSHOT"] = "YES"
@@ -76,7 +76,7 @@ platform :ios do
         "iPhone 14",
         "iPad Pro (11-inch) (3rd generation)",
       ],
-      languages: ["en-US"],    
+      languages: ["en-US"],
       output_directory: "fastlane/screenshots_for_website"
     )
     frameit
