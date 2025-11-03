@@ -44,7 +44,7 @@ platform :ios do
       devices: [
         "iPhone SE (3rd generation)",
         "iPhone 14",
-        "iPad Air 11-inch (M3)",
+        "iPad Air 13-inch (M3)",
       ],
       languages: [
         "en-US",
