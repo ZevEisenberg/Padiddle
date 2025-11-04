@@ -1,0 +1,11 @@
+public extension BinaryFloatingPoint {
+  func closeEnough(to: Self) -> Bool {
+    let epsilon = Self(0.0001)
+    let closeEnough = abs(self - to) < epsilon
+    return closeEnough
+  }
+
+  var zeroIfCloseToZero: Self {
+    closeEnough(to: 0) ? 0 : self
+  }
+}

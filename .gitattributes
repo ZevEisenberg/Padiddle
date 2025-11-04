@@ -1,1 +1,8 @@
 *.sketch diff=sketchtool
+*.strings diff=localizablestrings
+
+**/*.psd filter=lfs diff=lfs merge=lfs -text
+**/*.icon/Assets/*.png filter=lfs diff=lfs merge=lfs -text
+
+# Snapshots
+**/__Snapshots__/**/*.png filter=lfs diff=lfs merge=lfs -text

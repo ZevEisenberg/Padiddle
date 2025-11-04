@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "88CE18EE-25BB-47CA-92AC-B84510B556C8",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "UtilitiesTests",
+        "name" : "UtilitiesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "PadiddleCoreTests",
+        "name" : "PadiddleCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

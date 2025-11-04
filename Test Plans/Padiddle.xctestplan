@@ -1,0 +1,65 @@
+{
+  "configurations" : [
+    {
+      "id" : "700B568B-3E3B-4F52-BC7D-5D1EBDE3037F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-FASTLANE_SNAPSHOT",
+        "enabled" : false
+      },
+      {
+        "argument" : "YES",
+        "enabled" : false
+      },
+      {
+        "argument" : "-ui_testing",
+        "enabled" : false
+      }
+    ],
+    "environmentVariableEntries" : [
+      {
+        "enabled" : false,
+        "key" : "FASTLANE_SNAPSHOT",
+        "value" : "YES"
+      }
+    ],
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Padiddle.xcodeproj",
+      "identifier" : "CD8973AB2E2498AA0092247A",
+      "name" : "Padiddle"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "PadiddleCoreTests",
+        "name" : "PadiddleCoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "UtilitiesTests",
+        "name" : "UtilitiesTests"
+      }
+    }
+  ],
+  "version" : 1
+}

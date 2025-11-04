@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+
+            /* http://meyerweb.com/eric/tools/css/reset/
+             v2.0 | 20110126
+             License: none (public domain)
+             */
+
+        html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /* end reset */
+
+        body {
+            background-color: #FFFFFF;
+            padding: 20px;
+            -webkit-user-select: none;
+            color: #181818;
+            -webkit-text-size-adjust: none; /* reflow text on rotate */
+        }
+
+        h1 {
+            font: -apple-system-headline;
+            color: #ff3b30;
+            line-height: 2.0;
+        }
+
+        p {
+            font: -apple-system-body;
+            padding: 0px;
+            margin:0px 0px 20px 0px;
+            line-height: 1.5;
+        }
+
+        a {
+            color: #007aff;
+        }
+
+        ul {
+            line-height: 1.5;
+            padding: 0px 0px 20px 20px;
+        }
+
+        .dedication {
+            font: -apple-system-body;
+            font-style: italic;
+        }
+
+        .footer {
+            font: -apple-system-caption;
+        }
+
+        /* images */
+
+        #recordButton {
+            vertical-align: middle;
+            position: relative;
+            top: -2pt;
+            width: 2em;
+            height: 2em;
+        }
+
+        #colorButton {
+            vertical-align: middle;
+            position: relative;
+            top: -2pt;
+            width: 2em;
+            height: 2em;
+        }
+
+        #deviceImage {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 80%;
+            max-width: 200px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #D3D3D3;
+            }
+
+            h1 {
+                color: #FF4E45;
+                letter-spacing: 0.08em;
+            }
+        }
+            </style>
+    </head>
+    <body>
+        <h1>简介</h1>
+        <p>按下<img id="recordButton" src="padiddle-asset://recordButton" alt="应用程序的记录按钮的图片" />按钮，快速旋转您的^deviceName^设备如下图所示:</p>
+        <p><img id="deviceImage" src="padiddle-asset://deviceImage" alt="iOS设备在人的手指上旋转" /></p>
+        <p>点击<img id="colorButton" src="padiddle-asset://colorButton" alt="图片的应用程序的颜色按钮" />按钮，选择更多精彩主题。</p>
+        <h1>支持</h1>
+        <p>我非常乐意收到来自您的任何疑问、建议、反馈。可以使用这些方法联系我: <a href="https://mastodon.social/@ZevEisenberg">Mastodon</a>。也可以通过在线的FAQ疑问区<a href="http://ZevEisenberg.com/#padiddle-faq">website</a>获得支持。</p>
+        <h1>关于</h1>
+        <p>由<a href="https://zeveisenberg.com">Zev Eisenberg</a>创建</p>
+        <p>感谢我的那些beta版本测试者以及他们的反馈和建议。</p>
+        <p>Avner Eisenberg &bull; Cheryl Pedersen &bull; David Tatzel &bull; Laurent Sauerwein</p>
+        <p>特别感谢Ian McClure，Kyler Hanzie以及Andy Hamm提供的设计支持，Cameron Pulsford帮助我解决了令人厌恶的内存泄露问题。</p>
+        <p class="dedication">仅以转图Padiddle献给Luke Wilson这位聪明和富有创造力的人士。他给了我使用iPad旋转进行绘画的创意理念。Luke是我的第一个beta版本测试者，他提供了很多建议和帮助才有了今天的软件。我一直想念他。</p>
+        <p class="footer">转图 Padiddle ^version^<br />&copy; 2014 Zev Eisenberg.</p>
+    </body>
+</html>
