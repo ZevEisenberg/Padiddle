@@ -22,13 +22,13 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(scheme: "Padiddle")
+    run_tests(scheme: "Padiddle")
   end
 
   desc "Take screenshots for the App Store"
   lane :screenshots do
     ENV["FASTLANE_SNAPSHOT"] = "YES"
-    scan(
+    run_tests(
       scheme: "Screenshots",
       configuration: "Debug",
       derived_data_path: ".build/DerivedData"
@@ -74,7 +74,7 @@ platform :ios do
   desc "Take screenshots for the website"
   lane :screenshotsForWebsite do
     ENV["FASTLANE_SNAPSHOT"] = "YES"
-    scan(
+    run_tests(
       scheme: "Screenshots",
       configuration: "Debug",
       derived_data_path: ".build/DerivedData"
@@ -100,7 +100,7 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
-    gym(
+    build_app(
       scheme: "Padiddle",
       include_symbols: true,
       include_bitcode: true
@@ -121,13 +121,13 @@ platform :ios do
     ENV["SPACESHIP_SCREENSHOT_UPLOAD_TIMEOUT"] = "1"
 
     screenshots
-    gym(
+    build_app(
       scheme: "Padiddle",
       include_symbols: true,
       include_bitcode: true,
       export_xcargs: '-allowProvisioningUpdates'
     )
-    deliver(
+    upload_to_app_store(
       force: true,
       skip_metadata: false,
       skip_screenshots: false,
