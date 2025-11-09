@@ -22,7 +22,10 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    run_tests(scheme: "Padiddle")
+    run_tests(
+      scheme: "Padiddle",
+      xcargs: "-skipPackagePluginValidation"
+    )
   end
 
   desc "Take screenshots for the App Store"
@@ -31,7 +34,8 @@ platform :ios do
     run_tests(
       scheme: "Screenshots",
       configuration: "Debug",
-      derived_data_path: ".build/DerivedData"
+      derived_data_path: ".build/DerivedData",
+      xcargs: "-skipPackagePluginValidation"
     )
     snapshot(
       scheme: "Screenshots",
@@ -77,7 +81,8 @@ platform :ios do
     run_tests(
       scheme: "Screenshots",
       configuration: "Debug",
-      derived_data_path: ".build/DerivedData"
+      derived_data_path: ".build/DerivedData",
+      xcargs: "-skipPackagePluginValidation"
     )
     snapshot(
       scheme: "ScreenshotsForWebsite",
