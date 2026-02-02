@@ -14,4 +14,5 @@ gem 'fastlane'
 # required by fastlane
 gem 'abbrev'
 gem 'benchmark'
+gem 'nkf'
 gem 'ostruct'
