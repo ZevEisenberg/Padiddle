@@ -143,7 +143,7 @@ struct AboutTests {
               <p><img id="deviceImage" src="padiddle-asset://deviceImage" alt="iOS device spinning on a person&rsquo;s finger" /></p>
               <p>Tap the <img id="colorButton" src="padiddle-asset://colorButton" alt="picture of the app&rsquo;s Color button" /> button to choose from a library of color schemes.</p>
               <h1>Support</h1>
-              <p>Questions? Comments? Feedback? I would love to hear from you! Contact me on <a href="https://mastodon.social/@ZevEisenberg">Mastodon</a>, or check out the FAQ on the <a href="http://ZevEisenberg.com/#padiddle-faq">website</a>.</p>
+              <p>Questions? Comments? Feedback? I would love to hear from you! Contact me on <a href="https://mastodon.social/@ZevEisenberg">Mastodon</a>, or check out the FAQ on the <a href="https://ZevEisenberg.com/#padiddle-faq">website</a>.</p>
               <h1>Credits</h1>
               <p>Created by <a href="https://zeveisenberg.com">Zev Eisenberg</a></p>
               <p>Thanks to my awesome beta testers for their feedback and ideas:</p>
@@ -297,7 +297,7 @@ struct AboutTests {
               <p><img id="deviceImage" src="padiddle-asset://deviceImage" alt="Appareil iOS tournant sur le doigt d&rsquo;une personne" /></p>
               <p>Touchez le bouton <img id="colorButton" src="padiddle-asset://colorButton" alt="Image du bouton Couleur de l&rsquo;application" /> pour choisir un thème de couleur dans la bibliothèque.</p>
               <h1>Support</h1>
-              <p>Des Questions&nbsp;? Commentaires&nbsp;? Suggestions&nbsp;? Je voudrais vous entendre&nbsp;! Contactez-moi sur <a href="https://mastodon.social/@ZevEisenberg">Mastodon</a> et consultez la FAQ sur le <a href="http://ZevEisenberg.com/#padiddle-faq">site</a>.</p>
+              <p>Des Questions&nbsp;? Commentaires&nbsp;? Suggestions&nbsp;? Je voudrais vous entendre&nbsp;! Contactez-moi sur <a href="https://mastodon.social/@ZevEisenberg">Mastodon</a> et consultez la FAQ sur le <a href="https://ZevEisenberg.com/#padiddle-faq">site</a>.</p>
               <h1>Cr&eacute;dits</h1>
               <p>Cr&eacute;e par <a href="https://zeveisenberg.com">Zev Eisenberg</a></p>
               <p>Merci &agrave; mes b&ecirc;ta-testeurs formidables pour leurs retours d&rsquo;informations et id&eacute;es&nbsp;:</p>

@@ -13,7 +13,7 @@ struct AboutModel {
     ].compactMap(\.self)
 
     let urls = languageCodes.lazy.compactMap { code in
-      Bundle.module.url(
+      #bundle.url(
         forResource: "about",
         withExtension: "html",
         subdirectory: nil,
@@ -21,8 +21,13 @@ struct AboutModel {
       )
     }
 
-    guard let url = urls.first else {
-      fatalError("Couldn't find About HTML file for \(locale), \(locale.identifier) in \(Bundle.module) containing \(Bundle.module.localizations)")
+    var url: URL? = urls.first
+    if url == nil {
+      print("⚠️ WARNING: Couldn't find About HTML file for \(locale), \(locale.identifier) in \(#bundle) containing \(#bundle.localizations)")
+      url = #bundle.url(forResource: "about", withExtension: "html", subdirectory: nil)
+    }
+    guard let url else {
+      fatalError("Couldn't find About HTML file fallback in \(#bundle)")
     }
 
     do {

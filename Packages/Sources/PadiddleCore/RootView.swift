@@ -84,7 +84,7 @@ struct RootFeature {
           await send(.toolbar(.hint(.spunEnoughToHideSpinPrompt)))
 
           // Uncomment the code in DrawingView to capture new values for this file
-          guard let sampleURL = Bundle.module.url(forResource: "sample_drawing", withExtension: "json") else {
+          guard let sampleURL = #bundle.url(forResource: "sample_drawing", withExtension: "json") else {
             assertionFailure("could not find sample URL")
             return
           }

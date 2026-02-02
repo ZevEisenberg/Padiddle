@@ -1,8 +1,8 @@
-import _WebKit_SwiftUI
 import Dependencies
 import Models
 import Sharing
 import SwiftUI
+import WebKit
 
 public struct AboutView: View {
   /// Pass this in because the About view is presented in a popover, and it is the size class of the parent view that we care about.
@@ -15,6 +15,7 @@ public struct AboutView: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(\.displayScale) private var displayScale
   @Environment(\.colorScheme) private var colorScheme
+  @Environment(\.openURL) private var openURL
 
   private struct ContentInvalidator: Hashable {
     let colorGenerator: ColorGenerator
@@ -91,9 +92,28 @@ private extension AboutView {
         deviceKind: deviceKind,
         displayScale: displayScale,
         colorScheme: colorScheme
-      )
+      ),
+      navigationDecider: NavigationDecider(openURL: openURL)
     )
     webPage.load(html: html, baseURL: baseURL)
+  }
+}
+
+private struct NavigationDecider: WebPage.NavigationDeciding {
+  let openURL: OpenURLAction
+
+  func decidePolicy(
+    for response: WebPage.NavigationResponse
+  ) async -> WKNavigationResponsePolicy {
+    await withCheckedContinuation { continuation in
+      if let url = response.response.url {
+        openURL(url, completion: { didOpen in
+          continuation.resume(returning: didOpen ? .cancel : .allow)
+        })
+      } else {
+        continuation.resume(returning: .allow)
+      }
+    }
   }
 }
 
