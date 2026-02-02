@@ -6,7 +6,11 @@
 
 # Disabled Rules
 
+--disable blankLinesBetweenImports
+--disable docComments
 --disable modifiersOnSameLine
+--disable redundantProperty
+--disable redundantViewBuilder
 --disable trailingClosures
 
 # Enabled Rules

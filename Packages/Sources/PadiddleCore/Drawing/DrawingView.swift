@@ -266,5 +266,6 @@ extension CATransaction {
       )
     ) {
       DrawingFeature()
-    })
+    }
+  )
 }
