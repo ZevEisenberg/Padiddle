@@ -802,7 +802,7 @@
 			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
 			requirement = {
 				kind = exactVersion;
-				version = 4.8.0;
+				version = 4.10.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
