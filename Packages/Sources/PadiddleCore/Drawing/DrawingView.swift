@@ -48,98 +48,100 @@ struct DrawingFeature {
   @SharedReader(.colorGenerator)
   private var colorGenerator
 
-  func reduce(into state: inout State, action: Action) -> Effect<Action> {
-    switch action {
-    case .onAppear(let viewSize):
-      state.viewSize = viewSize
+  var body: some Reducer<State, Action> {
+    Reduce { state, action in
+      switch action {
+      case .onAppear(let viewSize):
+        state.viewSize = viewSize
 
-      if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
-        return .run { _ in
-          let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
-          let image = try imageIO.fetchImage(sideLengthPixels: sideLength)
-          await CATransaction.withoutAnimation {
-            drawingLayer().contents = image
-          }
-        }
-      }
-
-      return .none
-
-    case .eraseDrawing:
-      return .run { _ in
-        await bitmapContext.eraseDrawing()
-        await CATransaction.withoutAnimation {
-          drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
-        }
-      }
-
-    case .updateMotion:
-      return .run { send in
-        if let deviceMotion = await motionClient.deviceMotion() {
-          await send(.processMotion(deviceMotion))
-        }
-      }
-
-    case .processMotion(let motion):
-      guard let viewSize = state.viewSize else {
-        return .none
-      }
-
-      // Uncomment to record new drawing data
-//      if isRecording {
-//        let motionData = try! JSONEncoder().encode(motion)
-//        print("motionLog:", String(decoding: motionData, as: UTF8.self))
-//      }
-
-      let zRotation = motion.rotationRateZ
-      let maxRadius = max(viewSize.width, viewSize.height) / 2
-      let radius = maxRadius / 30 * abs(zRotation)
-
-      // Yaw is on the range [-π...π]. Remap to [0...π]
-      let theta = motion.attitudeYaw + .pi
-
-      let coordinate = ColorGenerator.Coordinate(
-        radius: radius,
-        theta: theta,
-        maxRadius: maxRadius
-      )
-
-      let contextSideLength = state.contextSideLength
-      let x = radius * cos(theta) + contextSideLength / 2
-      let y = radius * sin(theta) + contextSideLength / 2
-      let point = CGPoint(x: x, y: y)
-
-      state.nibLocation = point
-      if isRecording {
-        if state.needToMoveNibToNewStartLocation {
-          state.restart(
-            at: point,
-            contextSideLength: contextSideLength
-          )
-          state.needToMoveNibToNewStartLocation = false
-        } else {
-          state.addPoint(
-            point,
-            contextSideLength: contextSideLength
-          )
-        }
-
-        let points = state.points
-        return .run { _ in
-          await bitmapContext.contextOperation { context in
-            let pathSegment = CGPath.smoothedPathSegment(points: points)
-            context.addPath(pathSegment)
-            if let color = colorGenerator.color(at: coordinate).cgColor {
-              context.setStrokeColor(color)
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+          return .run { _ in
+            let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
+            let image = try imageIO.fetchImage(sideLengthPixels: sideLength)
+            await CATransaction.withoutAnimation {
+              drawingLayer().contents = image
             }
-            context.strokePath()
           }
+        }
+
+        return .none
+
+      case .eraseDrawing:
+        return .run { _ in
+          await bitmapContext.eraseDrawing()
           await CATransaction.withoutAnimation {
             drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
           }
         }
+
+      case .updateMotion:
+        return .run { send in
+          if let deviceMotion = await motionClient.deviceMotion() {
+            await send(.processMotion(deviceMotion))
+          }
+        }
+
+      case .processMotion(let motion):
+        guard let viewSize = state.viewSize else {
+          return .none
+        }
+
+        // Uncomment to record new drawing data
+        //      if isRecording {
+        //        let motionData = try! JSONEncoder().encode(motion)
+        //        print("motionLog:", String(decoding: motionData, as: UTF8.self))
+        //      }
+
+        let zRotation = motion.rotationRateZ
+        let maxRadius = max(viewSize.width, viewSize.height) / 2
+        let radius = maxRadius / 30 * abs(zRotation)
+
+        // Yaw is on the range [-π...π]. Remap to [0...π]
+        let theta = motion.attitudeYaw + .pi
+
+        let coordinate = ColorGenerator.Coordinate(
+          radius: radius,
+          theta: theta,
+          maxRadius: maxRadius
+        )
+
+        let contextSideLength = state.contextSideLength
+        let x = radius * cos(theta) + contextSideLength / 2
+        let y = radius * sin(theta) + contextSideLength / 2
+        let point = CGPoint(x: x, y: y)
+
+        state.nibLocation = point
+        if isRecording {
+          if state.needToMoveNibToNewStartLocation {
+            state.restart(
+              at: point,
+              contextSideLength: contextSideLength
+            )
+            state.needToMoveNibToNewStartLocation = false
+          } else {
+            state.addPoint(
+              point,
+              contextSideLength: contextSideLength
+            )
+          }
+
+          let points = state.points
+          return .run { _ in
+            await bitmapContext.contextOperation { context in
+              let pathSegment = CGPath.smoothedPathSegment(points: points)
+              context.addPath(pathSegment)
+              if let color = colorGenerator.color(at: coordinate).cgColor {
+                context.setStrokeColor(color)
+              }
+              context.strokePath()
+            }
+            await CATransaction.withoutAnimation {
+              drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+            }
+          }
+        }
+        return .none
       }
-      return .none
     }
   }
 }
