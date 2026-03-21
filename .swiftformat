@@ -10,7 +10,10 @@
 --disable docComments
 --disable modifiersOnSameLine
 --disable redundantProperty
+--disable redundantSwiftTestingSuite
+--disable redundantVariable
 --disable redundantViewBuilder
+--disable swiftTestingTestCaseNames
 --disable trailingClosures
 
 # Enabled Rules

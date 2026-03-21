@@ -228,7 +228,7 @@ struct DrawingView: View {
 }
 
 @DependencyClient
-struct DrawingLayerClient: DependencyKey, Sendable {
+struct DrawingLayerClient: DependencyKey {
   var layer: @Sendable () -> CALayer = { CALayer() }
 
   static var testValue: Self {

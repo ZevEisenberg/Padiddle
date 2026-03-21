@@ -3,7 +3,7 @@ import DependenciesMacros
 import Foundation
 
 @DependencyClient
-struct InfoDictionaryClient: DependencyKey, Sendable {
+struct InfoDictionaryClient: DependencyKey {
   var marketingVersion: @Sendable () async -> String = { unimplemented(placeholder: "0.0.0") }
   var buildNumber: @Sendable () async -> String = { unimplemented(placeholder: "0000") }
 

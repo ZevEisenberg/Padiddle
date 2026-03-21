@@ -4,7 +4,7 @@ import SwiftUI
 import UIKit
 
 @DependencyClient
-struct DeviceClient: DependencyKey, Sendable {
+struct DeviceClient: DependencyKey {
   enum DeviceKind: String {
     case iPad
     case iPhone
