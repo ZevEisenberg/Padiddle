@@ -15,7 +15,7 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/apple/swift-algorithms", exact: "1.2.1"),
     .package(url: "https://github.com/apple/swift-numerics", exact: "1.1.1"),
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.25.2"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.25.2", traits: ["ComposableArchitecture2Deprecations"]),
     .package(url: "https://github.com/pointfreeco/swift-dependencies", exact: "1.11.0"),
     .package(url: "https://github.com/pointfreeco/swift-identified-collections", exact: "1.1.1"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", exact: "1.18.9"),

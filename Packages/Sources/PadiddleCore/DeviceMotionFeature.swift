@@ -58,8 +58,8 @@ struct DeviceMotionFeature {
       case .stop:
         state.isMonitoringForSufficientSpin = false
         return .merge {
-          Effect.cancel(id: CancelID.sufficientSpinTimer)
-          Effect.run { _ in
+          _Effect.cancel(id: CancelID.sufficientSpinTimer)
+          _Effect.run { _ in
             await deviceMotionClient.stopMotionUpdates()
           }
         }

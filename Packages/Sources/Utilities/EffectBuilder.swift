@@ -1,6 +1,6 @@
 import ComposableArchitecture
 
-public extension Effect {
+public extension _Effect {
   static func merge(
     @EffectBuilder<Action> effects: () -> [Self]
   ) -> Self {
@@ -8,17 +8,9 @@ public extension Effect {
   }
 }
 
-public extension Effect {
-  static func concatenate(
-    @EffectBuilder<Action> effects: () -> [Self]
-  ) -> Self {
-    .concatenate(effects())
-  }
-}
-
 @resultBuilder
 public enum EffectBuilder<Action> {
-  public typealias EffectType = Effect<Action>
+  public typealias EffectType = _Effect<Action>
 
   public typealias ArrayOfEffects = [EffectType]
 

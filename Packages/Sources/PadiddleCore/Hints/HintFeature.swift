@@ -51,7 +51,7 @@ struct HintFeature {
         }
         return .merge {
           if state.hintState == .waitToShowRecordPrompt {
-            Effect.run { send in
+            _Effect.run { send in
               try await clock.sleep(for: Design.waitForRecordTimeout)
               await send(.showRecordPrompt, animation: .spring)
             }
@@ -59,9 +59,11 @@ struct HintFeature {
           }
 
           @SharedReader(.isRecording) var isRecording
-          Effect.publisher {
-            $isRecording.publisher.dropFirst().map {
-              Action.isRecordingChanged($0)
+          let obs = Observations { isRecording }
+
+          _Effect.run { send in
+            for await value in obs.dropFirst() {
+              await send(.isRecordingChanged(value))
             }
           }
           .cancellable(id: CancelID.spunEnoughToHideSpinPrompt)
@@ -77,15 +79,15 @@ struct HintFeature {
         ///  - _Not_ set the state to `disabled`, because the next time they start recording, we still want to be able to show the spin prompt if they don’t understand how spinning works.
         state.hintState = .waitToShowSpinPrompt
         return .merge {
-          Effect.cancel(id: CancelID.waitToShowRecordPrompt)
+          _Effect.cancel(id: CancelID.waitToShowRecordPrompt)
           if isRecording {
-            Effect.run { send in
+            _Effect.run { send in
               try await clock.sleep(for: Design.waitForSpinTimeout)
               await send(.showSpinPrompt, animation: .default)
             }
             .cancellable(id: CancelID.waitToShowSpinPrompt, cancelInFlight: true)
           } else {
-            Effect.cancel(id: CancelID.waitToShowSpinPrompt)
+            _Effect.cancel(id: CancelID.waitToShowSpinPrompt)
           }
         }
 
