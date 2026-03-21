@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3
 
 import PackageDescription
 
@@ -36,7 +36,7 @@ let package = Package(
       name: "ModelsTests",
       dependencies: [
         .models,
-        .testHelpers,
+        .snapshotTesting,
       ]
     ),
     .target(
@@ -58,13 +58,6 @@ let package = Package(
         .inlineSnapshotTesting,
         .issueReportingTestSupport,
         "PadiddleCore",
-        .testHelpers,
-      ]
-    ),
-    .target(
-      name: "TestHelpers",
-      dependencies: [
-        .snapshotTesting,
       ]
     ),
     .target(
@@ -98,7 +91,6 @@ extension Target.Dependency {
   // Internal
 
   static let models: Self = "Models"
-  static let testHelpers: Self = "TestHelpers"
   static let utilities: Self = "Utilities"
 
   // External
