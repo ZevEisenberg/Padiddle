@@ -372,7 +372,9 @@ private extension ToolbarView {
   var recordButton: some View {
     @SharedReader(.isRecording) var isRecording
     Button {
-      store.send(.recordButtonTapped, animation: .snappy)
+      withAnimation {
+        _ = store.send(.recordButtonTapped)
+      }
     } label: {
       Self.recordButtonLabel(isRecording: isRecording)
         .glassEffect(

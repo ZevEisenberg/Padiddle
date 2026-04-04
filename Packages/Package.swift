@@ -23,12 +23,12 @@ let package = Package(
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-composable-architecture",
-      exact: "1.25.2",
+      exact: "1.25.5",
       traits: ["ComposableArchitecture2Deprecations"]
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-dependencies",
-      exact: "1.11.0"
+      exact: "1.12.0"
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-identified-collections",
@@ -36,7 +36,7 @@ let package = Package(
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-snapshot-testing",
-      exact: "1.18.9"
+      exact: "1.19.2"
     ),
     .package(
       url: "https://github.com/pointfreeco/xctest-dynamic-overlay",
