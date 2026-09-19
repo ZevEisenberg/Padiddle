@@ -142,7 +142,7 @@ struct RootFeature {
 }
 
 public struct RootView: View {
-  let store = StoreOf<RootFeature>(initialState: .init()) {
+  @State private var store = StoreOf<RootFeature>(initialState: .init()) {
     RootFeature()
 
     // swiftlint:disable:next redundant_discardable_let

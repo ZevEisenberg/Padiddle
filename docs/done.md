@@ -75,6 +75,20 @@ ever start tasks in `onMount`, never mutate state, so there's no example of it a
 
 Tests that rely on lifetime-scoped tasks should end with `await store.dismount()`.
 
+### The root store must be `@State`
+
+`main` held the root store as a plain stored property — `let store = StoreOf<RootFeature>(...)` — on
+`RootView`, and that survived 1.x fine. Under TCA 2 it makes the app loop forever on launch:
+`RootView.init` ran ~60×/second, and because the store is a stored-property initializer, every one
+of those inits built a **brand-new root store with fresh `.init()` state**. The evidence in the log
+was a `RootFeature.toolbar: mount` / `dismount` pair every frame, where each dismount snapshot read
+`hintState: .waitToShowRecordPrompt` (written by `.onMount`) and the very next mount snapshot read
+`hintState: .initial` — state that has no business resetting unless the whole store is new.
+
+It is self-feeding: the new store's `.onMount` writes state, that invalidates the view, SwiftUI
+rebuilds `RootView`, which builds another store. Fix is `@State private var store = ...`, which is
+what every store in TCA 2's own `Examples/` uses.
+
 ### Where to actually learn this
 
 TCA 2 has no published documentation. In descending order of usefulness:
