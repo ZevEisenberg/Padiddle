@@ -1,6 +1,6 @@
-import ComposableArchitecture
+import ComposableArchitecture1
 
-@Reducer
+@Feature
 struct DeviceMotionFeature {
   struct State: Equatable {
     var isMonitoringForSufficientSpin = false
@@ -10,36 +10,41 @@ struct DeviceMotionFeature {
   enum Action {
     case start
     case stop
-
-    case delegate(Delegate)
-
-    @CasePathable
-    enum Delegate {
-      /// The user has spun the device enough that they understand the rotation direction and/or they can see the drawing happening, so we can hide the hints.
-      case spunSufficiently
-    }
   }
+
+  enum DelegateAction {
+    /// The user has spun the device enough that they understand the rotation direction and/or they can see the drawing happening, so we can hide the hints.
+    case spunSufficiently
+  }
+
+  let delegate: (DelegateAction) -> Void
 
   @Dependency(\.deviceMotionClient) var deviceMotionClient
   @Dependency(\.continuousClock) var clock
 
-  enum CancelID {
-    case sufficientSpinTimer
-  }
+  @StoreTaskID private var sufficientSpinTimer
 
-  var body: some Reducer<State, Action> {
-    Reduce { state, action in
+  var body: some FeatureProtocol<State, Action> {
+    Update { state, action in
       switch action {
       case .start:
+        guard store.isPresented else {
+          return
+        }
         var actuallyStart = false
         if !state.isMonitoringForSufficientSpin {
           actuallyStart = true
           state.isMonitoringForSufficientSpin = true
         }
-        return .run { [isMonitoring = state.isMonitoringForSufficientSpin, actuallyStart] send in
+
+        if actuallyStart {
+          store.addTask { sufficientSpinTimer.cancel() }
+        }
+
+        store.addTask(id: sufficientSpinTimer) { [actuallyStart] in
           await deviceMotionClient.startMotionUpdates()
           if actuallyStart {
-            guard isMonitoring else {
+            guard store.isMonitoringForSufficientSpin else {
               return
             }
 
@@ -48,25 +53,22 @@ struct DeviceMotionFeature {
                 let motion = await deviceMotionClient.deviceMotion(),
                 motion.isSufficientMotionToHideHints
               {
-                await send(.delegate(.spunSufficiently))
+                delegate(.spunSufficiently)
+                try store.modify {
+                  $0.isMonitoringForSufficientSpin = false
+                }
+                sufficientSpinTimer.cancel()
               }
             }
           }
         }
-        .cancellable(id: CancelID.sufficientSpinTimer, cancelInFlight: actuallyStart)
 
       case .stop:
         state.isMonitoringForSufficientSpin = false
-        return .merge {
-          Effect.cancel(id: CancelID.sufficientSpinTimer)
-          Effect.run { _ in
-            await deviceMotionClient.stopMotionUpdates()
-          }
+        sufficientSpinTimer.cancel()
+        store.addTask {
+          await deviceMotionClient.stopMotionUpdates()
         }
-
-      case .delegate(.spunSufficiently):
-        state.isMonitoringForSufficientSpin = false
-        return .cancel(id: CancelID.sufficientSpinTimer)
       }
     }
   }

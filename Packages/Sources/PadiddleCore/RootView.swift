@@ -1,10 +1,12 @@
-import ComposableArchitecture
+import ComposableArchitecture1
+import os
 import SwiftUI
 import Utilities
 
-@Reducer
+let signposter = OSSignposter(subsystem: "padiddle", category: "root")
+
+@Feature
 struct RootFeature {
-  @ObservableState
   struct State: Equatable {
     var screenMetrics: ScreenMetrics?
 
@@ -31,46 +33,76 @@ struct RootFeature {
   @Dependency(\.bitmapContextClient) var bitmapContext
   @Dependency(\.deviceMotionClient) var deviceMotion
 
-  var body: some ReducerOf<Self> {
-    Scope(state: \.deviceMotion, action: \.deviceMotion) {
-      DeviceMotionFeature()
+  var body: some FeatureProtocol<State, Action> {
+    Update { _, action in
+      switch action {
+      case .screenChanged(let metrics):
+        signposter.emitEvent("screenChanged", "metrics: \(String(describing: metrics))")
+      case .scenePhaseChanged(let phase):
+        signposter.emitEvent("screenPhaseChanged", "metrics: \(String(describing: phase))")
+      #if DEBUG
+      case .debugDrawImage:
+        signposter.emitEvent("debugDrawImage")
+      #endif
+      case .deviceMotion(let motion):
+        signposter.emitEvent("deviceMotion", "motion: \(String(describing: motion))")
+      case .drawing(let drawing):
+        signposter.emitEvent("drawing", "\(String(describing: drawing))")
+      case .toolbar(let toolbar):
+        signposter.emitEvent("toolbar", "\(String(describing: toolbar))")
+      }
+    }
+    Scope(\.deviceMotion, action: \.deviceMotion) {
+      DeviceMotionFeature(delegate: { action in
+        switch action {
+        case .spunSufficiently:
+          store.addTask {
+            try store.toolbar.hint.spunEnoughToHidePrompt()
+          }
+        }
+      })
     }
 
-    Scope(state: \.drawing, action: \.drawing) {
+    Scope(\.drawing, action: \.drawing) {
       DrawingFeature()
     }
 
-    Scope(state: \.toolbar, action: \.toolbar) {
-      ToolbarFeature()
+    Scope(\.toolbar, action: \.toolbar) {
+      ToolbarFeature(
+        delegate: { action in
+          switch action {
+          case .eraseDrawing:
+            try store.drawing.erase()
+          }
+        }
+      )
     }
 
-    Reduce { state, action in
+    Update { state, action in
       switch action {
       case .screenChanged(let metrics):
         if let metrics {
           let maxDimension = max(metrics.size.width, metrics.size.height)
           state.drawing.contextSideLength = maxDimension
-          return .run { send in
+          store.addTask {
             let success = await bitmapContext.configure(
               contextSideLength: maxDimension,
               screenScale: metrics.scale
             )
             assert(success, "Problem creating bitmap context")
 
-            await send(.deviceMotion(.start))
+            try store.send(.deviceMotion(.start))
           }
         }
 
-        return .none
-
       case .scenePhaseChanged(let phase):
-        return .run { send in
+        store.addTask {
           switch phase {
           case .active:
-            await send(.deviceMotion(.start))
+            try store.send(.deviceMotion(.start))
           case .inactive,
                .background:
-            await send(.deviceMotion(.stop))
+            try store.send(.deviceMotion(.stop))
           @unknown default:
             assertionFailure("unknown scene phase \(phase)")
           }
@@ -79,9 +111,9 @@ struct RootFeature {
       #if DEBUG
       case .debugDrawImage:
         Shared(.isRecording).withLock { $0 = true }
-        return .run { send in
-          await send(.drawing(.eraseDrawing))
-          await send(.toolbar(.hint(.spunEnoughToHideSpinPrompt)))
+        store.addTask {
+          try store.drawing.erase()
+          try store.toolbar.hint.spunEnoughToHidePrompt()
 
           // Uncomment the code in DrawingView to capture new values for this file
           guard let sampleURL = #bundle.url(forResource: "sample_drawing", withExtension: "json") else {
@@ -93,25 +125,16 @@ struct RootFeature {
           let motions = try JSONDecoder().decode([PadiddleDeviceMotion].self, from: data)
 
           for motion in motions {
-            await send(.drawing(.processMotion(motion)))
+            try store.send(.drawing(.processMotion(motion)))
           }
           Shared(.isRecording).withLock { $0 = false }
         }
       #endif
 
-      case .deviceMotion(.delegate(let action)):
-        switch action {
-        case .spunSufficiently:
-          return .send(.toolbar(.hint(.spunEnoughToHideSpinPrompt)))
-        }
-
-      case .toolbar(.delegate(.eraseDrawing)):
-        return .send(.drawing(.eraseDrawing))
-
       case .deviceMotion,
            .drawing,
            .toolbar:
-        return .none
+        break
       }
     }
   }
@@ -120,19 +143,23 @@ struct RootFeature {
 public struct RootView: View {
   let store = StoreOf<RootFeature>(initialState: .init()) {
     RootFeature()
-    #if DEBUG
-      .signpost()
-      ._printChanges(.init(printChange: { receivedAction, oldState, newState in
-        switch receivedAction {
-        case .drawing(.updateMotion),
-             .drawing(.processMotion):
-          // noisy things
-          break
-        default:
-          _ReducerPrinter.customDump.printChange(receivedAction: receivedAction, oldState: oldState, newState: newState)
-        }
-      }))
-    #endif
+
+    // swiftlint:disable:next redundant_discardable_let
+    let _ = RootFeature._logChanges()
+    // swiftformat:disable:previous redundantLet
+
+    #warning("TODO: use action/trigger/delegation/event/private stuff to reduce noise instead of doing it the old way")
+
+//    let _ = RootFeature._printChanges(.init(printChange: { receivedAction, oldState, newState in
+//      switch receivedAction {
+//      case .drawing(.updateMotion),
+//           .drawing(.processMotion):
+//        // noisy things
+//        break
+//      default:
+//        _ReducerPrinter.customDump.printChange(receivedAction: receivedAction, oldState: oldState, newState: newState)
+//      }
+//    }))
   }
 
   @Environment(\.scenePhase)
@@ -144,10 +171,7 @@ public struct RootView: View {
     ZStack {
       GeometryReader { proxy in
         DrawingView(
-          store: store.scope(
-            state: \.drawing,
-            action: \.drawing
-          )
+          store: store.scope(\.drawing, action: \.drawing)
         )
         .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
       }
@@ -163,10 +187,7 @@ public struct RootView: View {
       #endif
 
       ToolbarView(
-        store: store.scope(
-          state: \.toolbar,
-          action: \.toolbar
-        )
+        store: store.scope(\.toolbar, action: \.toolbar)
       )
       .frame(maxHeight: .infinity, alignment: .bottom)
     }

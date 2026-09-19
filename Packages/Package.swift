@@ -22,13 +22,13 @@ let package = Package(
       exact: "1.1.1"
     ),
     .package(
-      url: "https://github.com/pointfreeco/swift-composable-architecture",
-      exact: "1.25.5",
-      traits: ["ComposableArchitecture2Deprecations"]
+      url: "https://github.com/pointfreeco/TCA26",
+      branch: "main",
+      traits: ["Dependencies"]
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-dependencies",
-      exact: "1.12.0"
+      branch: "26"
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-identified-collections",
@@ -66,7 +66,7 @@ let package = Package(
       dependencies: [
         .algorithms,
         .models,
-        .tca,
+        .tca1,
         .utilities,
       ],
       resources: [
@@ -85,7 +85,7 @@ let package = Package(
     .target(
       name: "Utilities",
       dependencies: [
-        .tca,
+        .tca1,
       ]
     ),
     .testTarget(
@@ -124,5 +124,7 @@ extension Target.Dependency {
   static let issueReportingTestSupport: Self = .product(name: "IssueReportingTestSupport", package: "xctest-dynamic-overlay")
   static let numerics: Self = .product(name: "RealModule", package: "swift-numerics")
   static let snapshotTesting: Self = .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-  static let tca: Self = .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+  static let tca: Self = .product(name: "ComposableArchitecture", package: "TCA26")
+  static let tca1: Self = .product(name: "ComposableArchitecture1", package: "TCA26")
+  static let tca2: Self = .product(name: "ComposableArchitecture2", package: "TCA26")
 }

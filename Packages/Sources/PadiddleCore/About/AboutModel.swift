@@ -5,7 +5,7 @@ import UIKit
 struct AboutModel {
   var html: String
   init() async {
-    @Dependency(\.locale) var locale
+    @Dependency(\DependencyValues.locale) var locale
 
     let languageCodes = [
       locale.identifier,

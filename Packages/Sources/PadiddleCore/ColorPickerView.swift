@@ -1,11 +1,10 @@
 import Algorithms
-import ComposableArchitecture
+import ComposableArchitecture1
 import Models
 import SwiftUI
 
-@Reducer
+@Feature
 struct ColorPickerFeature {
-  @ObservableState
   struct State: Equatable {
     var currentSelection: ColorGenerator.ID = ColorGenerator.classic.id
   }
@@ -20,15 +19,14 @@ struct ColorPickerFeature {
     }
   }
 
-  var body: some Reducer<State, Action> {
-    Reduce { state, action in
+  var body: some FeatureProtocol<State, Action> {
+    Update { state, action in
       switch action {
       case .colorPicked(let colorGenerator):
         state.currentSelection = colorGenerator.id
-        return .none
 
       case .delegate:
-        return .none
+        break
       }
     }
   }
@@ -152,7 +150,9 @@ private struct ColorPickerButtonStyle: ButtonStyle {
           initialState: .init()
         ) {
           ColorPickerFeature()
-            ._printChanges()
+          // swiftlint:disable:next redundant_discardable_let
+          let _ = ColorPickerFeature._logChanges()
+          // swiftformat:disable:previous redundantLet
         }
       )
     }

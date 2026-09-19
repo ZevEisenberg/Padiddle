@@ -1,4 +1,4 @@
-import ComposableArchitecture
+import ComposableArchitecture1
 import Testing
 
 @testable import PadiddleCore
@@ -8,18 +8,16 @@ import Testing
 struct DeviceMotionTests {
   @Test
   func startAndStopWithNoSpin() async throws {
-    var startMotionCallCount = 0
+    let startMotionCallCount = LockIsolated(0)
     var stopMotionCallCount = 0
 
     let clock = TestClock()
 
-    let store = TestStore(initialState: .init()) {
-      DeviceMotionFeature()
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = clock
       $0.deviceMotionClient = .init(
         startMotionUpdates: {
-          startMotionCallCount += 1
+          startMotionCallCount.withValue { $0 += 1 }
         },
         stopMotionUpdates: {
           stopMotionCallCount += 1
@@ -28,23 +26,27 @@ struct DeviceMotionTests {
           .zero
         }
       )
+    } operation: {
+      TestStore(initialWrappedState: .init()) {
+        DeviceMotionFeature(delegate: { _ in })
+      }
     }
 
-    #expect(startMotionCallCount == 0)
-    await store.send(.start) {
-      $0.isMonitoringForSufficientSpin = true
+    #expect(startMotionCallCount.value == 0)
+    store.send(.wrapped(.start)) {
+      $0.wrapped.isMonitoringForSufficientSpin = true
     }
-    #expect(startMotionCallCount == 1)
+    #expect(startMotionCallCount.value == 1)
 
     await clock.advance(by: .seconds(1))
 
     #expect(stopMotionCallCount == 0)
-    await store.send(.stop) {
-      $0.isMonitoringForSufficientSpin = false
+    store.send(.wrapped(.stop)) {
+      $0.wrapped.isMonitoringForSufficientSpin = false
     }
     #expect(stopMotionCallCount == 1)
 
-    #expect(startMotionCallCount == 1) // no change
+    #expect(startMotionCallCount.value == 1) // no change
 
     try await clock.checkSuspension()
   }
@@ -57,9 +59,7 @@ struct DeviceMotionTests {
 
     let clock = TestClock()
 
-    let store = TestStore(initialState: .init()) {
-      DeviceMotionFeature()
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = clock
       $0.deviceMotionClient.startMotionUpdates = {
         startMotionCallCount += 1
@@ -68,10 +68,14 @@ struct DeviceMotionTests {
         stopMotionCallCount += 1
       }
       $0.deviceMotionClient.deviceMotion = { motionToGet }
+    } operation: {
+      TestStore(initialState: .init()) {
+        DeviceMotionFeature(delegate: { _ in })
+      }
     }
 
     #expect(startMotionCallCount == 0)
-    await store.send(.start) {
+    store.send(.start) {
       $0.isMonitoringForSufficientSpin = true
     }
 
@@ -83,7 +87,7 @@ struct DeviceMotionTests {
 
     await clock.advance(by: .seconds(1.0 / 60))
 
-    await store.receive(\.delegate.spunSufficiently, timeout: .seconds(1)) {
+    store.expect {
       $0.isMonitoringForSufficientSpin = false
     }
 
@@ -92,7 +96,7 @@ struct DeviceMotionTests {
     #expect(startMotionCallCount == 1) // no change
 
     #expect(stopMotionCallCount == 0)
-    await store.send(.stop)
+    store.send(.stop)
     #expect(stopMotionCallCount == 1)
 
     try await clock.checkSuspension()

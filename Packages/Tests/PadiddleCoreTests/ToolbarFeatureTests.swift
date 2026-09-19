@@ -1,4 +1,4 @@
-import ComposableArchitecture
+import ComposableArchitecture1
 import Models
 import Testing
 
@@ -8,66 +8,76 @@ import Testing
 @MainActor
 struct ToolbarFeatureTests {
   @Test
-  func basics() async {
+  func basics() throws {
     @Shared(.colorGenerator) var colorGenerator = .tangerine
-    let store = TestStore(
-      initialState: .init(colorGenerator: $colorGenerator)
-    ) {
-      ToolbarFeature()
-    } withDependencies: {
-      $0.continuousClock = ImmediateClock()
+
+    let clock = TestClock()
+    try TestExhaustivity.$current.withValue(.off) {
+      let store = withDependencies {
+        $0.continuousClock = clock
+      } operation: {
+        TestStore(
+          initialState: .init(wrapped: .init(colorGenerator: $colorGenerator))
+        ) {
+          TestWrapper(ToolbarFeature(delegate: { _ in }))
+        }
+      }
+
+      try store.wrapped.hint.start()
+
+      store.expect {
+        $0.wrapped.hint.hintState = .waitToShowRecordPrompt
+      }
     }
-
-    store.exhaustivity = .off
-
-    await store.send(.onTask)
-
-    await store.receive(\.hint, .start)
   }
 
   @Test
-  func colorPickerCancel() async {
+  func colorPickerCancel() {
     @Shared(.colorGenerator) var colorGenerator = .blackWidow
 
-    let store = TestStore(
-      initialState: .init(
-        colorGenerator: $colorGenerator
-      )
-    ) {
-      ToolbarFeature(disableHintsForTesting: true)
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = ImmediateClock()
+    } operation: {
+      TestStore(
+        initialState: .init(
+          colorGenerator: $colorGenerator
+        )
+      ) {
+        ToolbarFeature(disableHintsForTesting: true, delegate: { _ in })
+      }
     }
 
-    await store.send(.colorButtonTapped) {
+    store.send(.colorButtonTapped) {
       $0.destination = .colorPicker(.init(currentSelection: ColorGenerator.blackWidow.id))
     }
 
-    await store.send(\.destination.colorPicker.delegate.cancelTapped) {
+    store.send(.destination(.colorPicker(.delegate(.cancelTapped)))) {
       $0.destination = nil
     }
   }
 
   @Test
-  func colorPickerPick() async {
+  func colorPickerPick() {
     @Shared(.colorGenerator) var colorGenerator = .monsters
-    let store = TestStore(
-      initialState: .init(
-        colorGenerator: $colorGenerator
-      )
-    ) {
-      ToolbarFeature(disableHintsForTesting: true)
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = ImmediateClock()
+    } operation: {
+      TestStore(
+        initialState: .init(
+          colorGenerator: $colorGenerator
+        )
+      ) {
+        ToolbarFeature(disableHintsForTesting: true, delegate: { _ in })
+      }
     }
 
-    await store.send(.colorButtonTapped) {
+    store.send(.colorButtonTapped) {
       $0.destination = .colorPicker(.init(currentSelection: ColorGenerator.monsters.id))
     }
 
-    await store.send(\.destination.colorPicker.colorPicked, .merlin) {
+    store.send(.destination(.colorPicker(.colorPicked(.merlin)))) {
       $0.destination = nil
-      $0.$colorGenerator.withLock { $0 = .merlin }
+      $0.colorGenerator = .merlin
     }
   }
 }

@@ -1,14 +1,15 @@
-import ComposableArchitecture
+import ComposableArchitecture1
 import Models
 import SwiftUI
 import Utilities
 
 let brushDiameter = 12.0
 
-@Reducer
+@Feature
 struct DrawingFeature {
-  @ObservableState
   struct State: Equatable {
+    @Trigger var erase
+
     var contextSideLength: CGFloat = 0
 
     /// Where the nib is right now, relative to the center point.
@@ -21,12 +22,12 @@ struct DrawingFeature {
 
     /// The size of the drawing view in points.
     var viewSize: CGSize?
+
+    var invalidateDrawingWhenThisChanges: Int = 0
   }
 
   enum Action {
     case onAppear(viewSize: CGSize)
-    case eraseDrawing
-    case updateMotion
     case processMotion(PadiddleDeviceMotion)
   }
 
@@ -48,14 +49,14 @@ struct DrawingFeature {
   @SharedReader(.colorGenerator)
   private var colorGenerator
 
-  var body: some Reducer<State, Action> {
-    Reduce { state, action in
+  var body: some FeatureProtocol<State, Action> {
+    Update { state, action in
       switch action {
       case .onAppear(let viewSize):
         state.viewSize = viewSize
 
         if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
-          return .run { _ in
+          store.addTask { [drawingLayer] in
             let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
             let image = try imageIO.fetchImage(sideLengthPixels: sideLength)
             await CATransaction.withoutAnimation {
@@ -64,26 +65,9 @@ struct DrawingFeature {
           }
         }
 
-        return .none
-
-      case .eraseDrawing:
-        return .run { _ in
-          await bitmapContext.eraseDrawing()
-          await CATransaction.withoutAnimation {
-            drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
-          }
-        }
-
-      case .updateMotion:
-        return .run { send in
-          if let deviceMotion = await motionClient.deviceMotion() {
-            await send(.processMotion(deviceMotion))
-          }
-        }
-
       case .processMotion(let motion):
         guard let viewSize = state.viewSize else {
-          return .none
+          return
         }
 
         // Uncomment to record new drawing data
@@ -126,7 +110,7 @@ struct DrawingFeature {
           }
 
           let points = state.points
-          return .run { _ in
+          store.addTask { [bitmapContext, colorGenerator, drawingLayer] in
             await bitmapContext.contextOperation { context in
               let pathSegment = CGPath.smoothedPathSegment(points: points)
               context.addPath(pathSegment)
@@ -140,7 +124,21 @@ struct DrawingFeature {
             }
           }
         }
-        return .none
+      }
+    }
+    .onChange(of: store.invalidateDrawingWhenThisChanges) { _, _, _ in
+      store.addTask {
+        if let deviceMotion = await motionClient.deviceMotion() {
+          try store.send(.processMotion(deviceMotion))
+        }
+      }
+    }
+    .onTrigger(store.erase) { _ in
+      store.addTask { [drawingLayer, bitmapContext] in
+        await bitmapContext.eraseDrawing()
+        await CATransaction.withoutAnimation {
+          drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+        }
       }
     }
   }
@@ -207,8 +205,9 @@ struct DrawingView: View {
     GeometryReader { proxy in
       TimelineView(.animation) { context in
         LayerHostingViewRepresentable(hostedLayer: drawingLayer())
-          .onChange(of: context.date) {
-            store.send(.updateMotion)
+          .onChange(of: context.date) { _, _ in
+            @Bindable var store = store
+            $store.invalidateDrawingWhenThisChanges.wrappedValue &+= 1 // wrapping increment
           }
       }
       .overlay(alignment: .topLeading) {

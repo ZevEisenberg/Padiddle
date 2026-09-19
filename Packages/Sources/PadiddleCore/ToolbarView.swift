@@ -1,7 +1,8 @@
 import Clocks
-import ComposableArchitecture
+import ComposableArchitecture1
 import Models
 import SwiftUI
+import SwiftUINavigation
 import Utilities
 
 extension SharedKey where Self == InMemoryKey<Bool>.Default {
@@ -16,34 +17,25 @@ extension SharedKey where Self == AppStorageKey<ColorGenerator>.Default {
   }
 }
 
-extension ToolbarFeature.Destination.Action {
-  @CasePathable
-  enum ConfirmationDialog {
-    case eraseDrawingButtonTapped
+@Feature
+struct EraseConfirmation: Prompt {
+  enum Action {
+    case eraseDrawingTapped
   }
 }
 
-private extension ConfirmationDialogState where Action == ToolbarFeature.Destination.Action.ConfirmationDialog {
-  static var eraseDrawing: Self {
-    .init {
-      TextState(String(localized: .eraseDrawing))
-    } actions: {
-      ButtonState(role: .destructive, action: .eraseDrawingButtonTapped) {
-        TextState(String(localized: .erase))
-      }
-    }
-  }
-}
-
-@Reducer
+@Feature
 struct ToolbarFeature {
   let disableHintsForTesting: Bool
 
-  init(disableHintsForTesting: Bool = false) {
+  init(
+    disableHintsForTesting: Bool = false,
+    delegate: @escaping (DelegateAction) throws -> Void
+  ) {
     self.disableHintsForTesting = disableHintsForTesting
+    self.delegate = delegate
   }
 
-  @ObservableState
   struct State: Equatable {
     @Shared(.colorGenerator)
     var colorGenerator: ColorGenerator
@@ -51,112 +43,88 @@ struct ToolbarFeature {
     @Shared(.isRecording)
     var isRecording: Bool
 
-    @Presents
     var destination: Destination.State?
 
     var hint: HintFeature.State = .init()
   }
 
-  @Reducer
+  @Feature
   enum Destination {
     case colorPicker(ColorPickerFeature)
-    case clearConfirmation(ConfirmationDialogState<Action.ConfirmationDialog>)
-    @ReducerCaseIgnored
+    case clearConfirmation(EraseConfirmation)
     case about
   }
 
-  enum Action: BindableAction {
-    case onTask
-
+  enum Action {
     // User Actions
     case eraseButtonTapped
     case colorButtonTapped
     case recordButtonTapped
     case aboutButtonTapped
 
-    // Parent Features
-    case delegate(Delegate)
-
     // Nested Features
-    case destination(PresentationAction<Destination.Action>)
+    case destination(Destination.Action)
     case hint(HintFeature.Action)
-
-    case binding(BindingAction<ToolbarFeature.State>)
-
-    enum Delegate {
-      case eraseDrawing
-    }
   }
 
-  var body: some ReducerOf<Self> {
+  enum DelegateAction {
+    case eraseDrawing
+  }
+
+  let delegate: (DelegateAction) throws -> Void
+
+  var body: some FeatureProtocol<State, Action> {
+    let _ = Self._logChanges() // swiftlint:disable:this redundant_discardable_let
     if !disableHintsForTesting {
-      Scope(state: \.hint, action: \.hint) {
+      Scope(\.hint, action: \.hint) {
         HintFeature()
       }
     }
 
-    Reduce { state, action in
+    Update { state, action in
       switch action {
-      case .onTask:
-        return .run { send in
-          if !disableHintsForTesting {
-            await send(.hint(.start))
-          }
-        }
-
       case .eraseButtonTapped:
-        state.destination = .clearConfirmation(.init {
-          TextState("Erase Drawing?")
-        } actions: {
-          ButtonState(role: .destructive, action: .eraseDrawingButtonTapped) {
-            TextState(String(localized: .erase))
-          }
-        })
-        return .none
+        state.destination = .clearConfirmation(.init())
 
       case .colorButtonTapped:
         state.destination = .colorPicker(ColorPickerFeature.State(currentSelection: state.colorGenerator.id))
-        return .none
 
       case .recordButtonTapped:
         state.$isRecording.withLock { $0.toggle() }
-        return .none
 
       case .aboutButtonTapped:
         state.destination = .about
-        return .none
 
-      case .destination(.presented(.colorPicker(let action))):
+      case .destination(.colorPicker(let action)):
         switch action {
         case .colorPicked(let color):
           state.$colorGenerator.withLock { $0 = color }
           state.destination = nil
-          return .none
 
         case .delegate(.cancelTapped):
           state.destination = nil
-          return .none
         }
 
-      case .destination(.presented(.clearConfirmation(.eraseDrawingButtonTapped))):
-        return .send(.delegate(.eraseDrawing))
+      case .destination(.clearConfirmation(.eraseDrawingTapped)):
+        store.addTask {
+          try delegate(.eraseDrawing)
+        }
 
-      case .destination:
-        return .none
-
-      case .hint:
-        return .none
-
-      case .binding:
-        return .none
-
-      case .delegate:
-        return .none
+      case .destination,
+           .hint:
+        return
       }
     }
-    .ifLet(\.$destination, action: \.destination)
-
-    BindingReducer()
+    .onMount { _ in
+      store.addTask {
+        if !disableHintsForTesting {
+          try store.hint.start()
+        }
+      }
+    }
+    .ifLet(\.destination, action: \.destination) {
+      Destination.body
+    }
   }
 }
 
@@ -222,11 +190,7 @@ struct ToolbarView: View {
                 .glassEffectID("color", in: namespace)
                 .glassEffectUnion(id: "leading", namespace: namespace)
                 .popover(
-                  item: $store.scope(
-                    state: \.destination?.colorPicker,
-                    action: \.destination.colorPicker
-                  ),
-                  arrowEdge: .bottom
+                  item: $store.scope(\.destination, action: \.destination).colorPicker
                 ) { store in
                   ColorPickerView(store: store)
                     .frame(minWidth: 320)
@@ -278,9 +242,6 @@ struct ToolbarView: View {
       }
       .font(.system(size: 28))
       .frame(maxWidth: .infinity)
-      .task {
-        await store.send(.onTask).finish()
-      }
     }
   }
 }
@@ -305,11 +266,15 @@ private extension ToolbarView {
         .frame(size: Design.buttonSize)
     }
     .confirmationDialog(
-      $store.scope(
-        state: \.destination?.clearConfirmation,
-        action: \.destination.clearConfirmation
-      )
-    )
+      item: $store.scope(\.destination, action: \.destination)
+        .clearConfirmation
+    ) { _ in
+      Text(.eraseDrawing)
+    } actions: { _ in
+      Button(.erase, role: .destructive) {
+        store.send(.eraseButtonTapped)
+      }
+    }
   }
 
   @ViewBuilder
@@ -410,7 +375,11 @@ extension ToolbarView {
     store: .init(
       initialState: .init()
     ) {
-      ToolbarFeature()._printChanges()
+      ToolbarFeature(delegate: { _ in })
+
+      // swiftlint:disable:next redundant_discardable_let
+      let _ = ToolbarFeature._logChanges()
+      // swiftformat:disable:previous redundantLet
     }
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -420,14 +389,20 @@ extension ToolbarView {
 #Preview("Prompt for Record") {
   @Previewable @Shared(.isRecording) var isRecording = false
   ToolbarView(
-    store: .init(
-      initialState: .init(
-        hint: .init(hintState: .promptForRecord)
-      )
-    ) {
-      ToolbarFeature()._printChanges()
-    } withDependencies: {
+    store: withDependencies {
       $0.continuousClock = ImmediateClock()
+    } operation: {
+      Store(
+        initialState: .init(
+          hint: .init(hintState: .promptForRecord)
+        )
+      ) {
+        ToolbarFeature(delegate: { _ in })
+
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = ToolbarFeature._logChanges()
+        // swiftformat:disable:previous redundantLet
+      }
     }
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -440,14 +415,20 @@ extension ToolbarView {
 #Preview("Spin Prompt") {
   @Previewable @Shared(.isRecording) var isRecording
   ToolbarView(
-    store: .init(
-      initialState: .init(
-        hint: .init(hintState: .promptForSpin)
-      )
-    ) {
-      ToolbarFeature()._printChanges()
-    } withDependencies: {
+    store: withDependencies {
       $0.continuousClock = ImmediateClock()
+    } operation: {
+      .init(
+        initialState: .init(
+          hint: .init(hintState: .promptForSpin)
+        )
+      ) {
+        ToolbarFeature(delegate: { _ in })
+
+        // swiftlint:disable:next redundant_discardable_let
+        let _ = ToolbarFeature._logChanges()
+        // swiftformat:disable:previous redundantLet
+      }
     }
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -457,17 +438,25 @@ extension ToolbarView {
   }
 }
 
-private let aboutPreviewState = ToolbarFeature.State(
-  destination: .about,
-  hint: .init(hintState: .disabled)
-)
+private extension ToolbarFeature.State {
+  static var aboutPreview: Self {
+    .init(
+      destination: .about,
+      hint: .init(hintState: .disabled)
+    )
+  }
+}
 
 #Preview("About") {
   ToolbarView(
     store: .init(
-      initialState: aboutPreviewState
+      initialState: .aboutPreview
     ) {
-      ToolbarFeature()._printChanges()
+      ToolbarFeature(delegate: { _ in })
+
+      // swiftlint:disable:next redundant_discardable_let
+      let _ = ToolbarFeature._logChanges()
+      // swiftformat:disable:previous redundantLet
     }
   )
   .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

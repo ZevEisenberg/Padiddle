@@ -1,4 +1,4 @@
-import ComposableArchitecture
+import ComposableArchitecture1
 import CoreGraphics.CGBase
 import Models
 import Synchronization
@@ -14,9 +14,7 @@ struct RootFeatureTests {
     var startMotionUpdatesCallCount = 0
     var stopMotionUpdatesCallCount = 0
 
-    let store = TestStore(initialState: RootFeature.State()) {
-      RootFeature()
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = ImmediateClock()
       $0.deviceMotionClient.startMotionUpdates = {
         startMotionUpdatesCallCount += 1
@@ -24,9 +22,13 @@ struct RootFeatureTests {
       $0.deviceMotionClient.stopMotionUpdates = {
         stopMotionUpdatesCallCount += 1
       }
+    } operation: {
+      TestStore(initialState: RootFeature.State()) {
+        RootFeature()
+      }
     }
 
-    await store.send(
+    store.send(
       .screenChanged(
         ScreenMetrics(
           size: CGSize(width: 100, height: 100),
@@ -43,7 +45,7 @@ struct RootFeatureTests {
 
     #expect(startMotionUpdatesCallCount == 1)
 
-    await store.send(\.scenePhaseChanged, .inactive)
+    store.send(.scenePhaseChanged(.inactive))
 
     await store.receive(\.deviceMotion.stop) {
       $0.deviceMotion.isMonitoringForSufficientSpin = false
@@ -59,9 +61,7 @@ struct RootFeatureTests {
 
     let clock = TestClock()
 
-    let store = TestStore(initialState: RootFeature.State()) {
-      RootFeature()
-    } withDependencies: {
+    let store = withDependencies {
       $0.continuousClock = clock
       $0.deviceMotionClient.startMotionUpdates = {
         startMotionUpdatesCallCount += 1
@@ -69,9 +69,13 @@ struct RootFeatureTests {
       $0.deviceMotionClient.stopMotionUpdates = {
         stopMotionUpdatesCallCount += 1
       }
+    } operation: {
+      TestStore(initialState: RootFeature.State()) {
+        RootFeature()
+      }
     }
 
-    await store.send(
+    store.send(
       .screenChanged(
         ScreenMetrics(
           size: CGSize(width: 100, height: 100),
@@ -88,14 +92,14 @@ struct RootFeatureTests {
 
     #expect(startMotionUpdatesCallCount == 1)
 
-    await store.send(.toolbar(.recordButtonTapped)) {
-      $0.toolbar.$isRecording.withLock { $0 = true }
+    store.send(.toolbar(.recordButtonTapped)) {
+      $0.toolbar.isRecording = true
     }
 
     await clock.advance(by: .seconds(2)) // not enough for prompt to show
 
-    await store.send(.toolbar(.recordButtonTapped)) {
-      $0.toolbar.$isRecording.withLock { $0 = false }
+    store.send(.toolbar(.recordButtonTapped)) {
+      $0.toolbar.isRecording = false
     }
 
     await clock.advance(by: .seconds(2)) // enough time for prompt to show if it were going to
@@ -103,7 +107,7 @@ struct RootFeatureTests {
     // n.b. I never actually got this test to fail, but I fixed the issue it was supposed to test, and who knows, maybe it'll catch it or some other regression if it crops up again
 
     // tear down
-    await store.send(\.scenePhaseChanged, .inactive)
+    store.send(.scenePhaseChanged(.inactive))
 
     await store.receive(\.deviceMotion.stop) {
       $0.deviceMotion.isMonitoringForSufficientSpin = false
