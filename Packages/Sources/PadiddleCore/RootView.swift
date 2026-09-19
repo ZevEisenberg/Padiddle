@@ -52,7 +52,7 @@ struct RootFeature {
         signposter.emitEvent("toolbar", "\(String(describing: toolbar))")
       }
     }
-    Scope(\.deviceMotion, action: \.deviceMotion) {
+    Scope(\.deviceMotion) {
       DeviceMotionFeature(delegate: { action in
         switch action {
         case .spunSufficiently:
@@ -63,11 +63,11 @@ struct RootFeature {
       })
     }
 
-    Scope(\.drawing, action: \.drawing) {
+    Scope(\.drawing) {
       DrawingFeature()
     }
 
-    Scope(\.toolbar, action: \.toolbar) {
+    Scope(\.toolbar) {
       ToolbarFeature(
         delegate: { action in
           switch action {
@@ -172,7 +172,7 @@ public struct RootView: View {
     ZStack {
       GeometryReader { proxy in
         DrawingView(
-          store: store.scope(\.drawing, action: \.drawing)
+          store: store.scope(\.drawing)
         )
         .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
       }
@@ -188,7 +188,7 @@ public struct RootView: View {
       #endif
 
       ToolbarView(
-        store: store.scope(\.toolbar, action: \.toolbar)
+        store: store.scope(\.toolbar)
       )
       .frame(maxHeight: .infinity, alignment: .bottom)
     }

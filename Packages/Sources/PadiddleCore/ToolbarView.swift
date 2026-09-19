@@ -76,7 +76,7 @@ struct ToolbarFeature {
   var body: some FeatureProtocol<State, Action> {
     let _ = Self._logChanges() // swiftlint:disable:this redundant_discardable_let
     if !disableHintsForTesting {
-      Scope(\.hint, action: \.hint) {
+      Scope(\.hint) {
         HintFeature()
       }
     }
