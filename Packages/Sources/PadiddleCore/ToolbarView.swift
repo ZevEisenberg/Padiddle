@@ -122,6 +122,16 @@ struct ToolbarFeature {
         }
       }
     }
+    .onChange(of: store.destination) { oldValue, newValue, _ in
+      // The toolbar is never fully removed from the hierarchy, so its view lifecycle doesn't fire
+      // when a sheet or popover over it goes away. Remind the user again once they're back.
+      guard oldValue != nil, newValue == nil, !disableHintsForTesting else {
+        return
+      }
+      store.addTask {
+        try store.hint.start()
+      }
+    }
     .ifLet(\.destination, action: \.destination) {
       Destination.body
     }

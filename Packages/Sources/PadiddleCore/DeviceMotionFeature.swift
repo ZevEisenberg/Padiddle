@@ -28,9 +28,6 @@ struct DeviceMotionFeature {
     Update { state, action in
       switch action {
       case .start:
-        guard store.isPresented else {
-          return
-        }
         var actuallyStart = false
         if !state.isMonitoringForSufficientSpin {
           actuallyStart = true
@@ -65,7 +62,7 @@ struct DeviceMotionFeature {
 
       case .stop:
         state.isMonitoringForSufficientSpin = false
-        sufficientSpinTimer.cancel()
+        store.addTask { sufficientSpinTimer.cancel() }
         store.addTask {
           await deviceMotionClient.stopMotionUpdates()
         }

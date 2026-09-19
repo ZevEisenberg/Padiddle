@@ -100,6 +100,7 @@ struct RootFeature {
           switch phase {
           case .active:
             try store.send(.deviceMotion(.start))
+            try store.toolbar.hint.start()
           case .inactive,
                .background:
             try store.send(.deviceMotion(.stop))

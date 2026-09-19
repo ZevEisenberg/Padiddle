@@ -25,6 +25,9 @@ struct RootFeatureTests {
     } operation: {
       TestStore(initialState: RootFeature.State()) {
         RootFeature()
+      } changes: {
+        // Mounting the toolbar starts the hint reminder.
+        $0.toolbar.hint.hintState = .waitToShowRecordPrompt
       }
     }
 
@@ -37,6 +40,11 @@ struct RootFeatureTests {
       )
     ) {
       $0.drawing.contextSideLength = 100
+    }
+
+    // The clock is immediate, so the reminder countdown elapses right away.
+    await store.receive(\.toolbar.hint.showRecordPrompt) {
+      $0.toolbar.hint.hintState = .promptForRecord
     }
 
     await store.receive(\.deviceMotion.start) {
@@ -52,6 +60,8 @@ struct RootFeatureTests {
     }
 
     #expect(stopMotionUpdatesCallCount == 1)
+
+    await store.dismount()
   }
 
   @Test
@@ -72,6 +82,9 @@ struct RootFeatureTests {
     } operation: {
       TestStore(initialState: RootFeature.State()) {
         RootFeature()
+      } changes: {
+        // Mounting the toolbar starts the hint reminder.
+        $0.toolbar.hint.hintState = .waitToShowRecordPrompt
       }
     }
 
@@ -96,15 +109,22 @@ struct RootFeatureTests {
       $0.toolbar.isRecording = true
     }
 
+    await store.receive(\.toolbar.hint.isRecordingChanged) {
+      $0.toolbar.hint.hintState = .waitToShowSpinPrompt
+    }
+
     await clock.advance(by: .seconds(2)) // not enough for prompt to show
 
     store.send(.toolbar(.recordButtonTapped)) {
       $0.toolbar.isRecording = false
     }
 
+    await store.receive(\.toolbar.hint.isRecordingChanged)
+
     await clock.advance(by: .seconds(2)) // enough time for prompt to show if it were going to
 
     // n.b. I never actually got this test to fail, but I fixed the issue it was supposed to test, and who knows, maybe it'll catch it or some other regression if it crops up again
+    #expect(store.toolbar.hint.hintState == .waitToShowSpinPrompt)
 
     // tear down
     store.send(.scenePhaseChanged(.inactive))
@@ -114,5 +134,7 @@ struct RootFeatureTests {
     }
 
     #expect(stopMotionUpdatesCallCount == 1)
+
+    await store.dismount()
   }
 }

@@ -1,6 +1,6 @@
+import IssueReporting
 import SwiftUI
 import UIKit
-import XCTestDynamicOverlay
 
 extension View {
   @ViewBuilder

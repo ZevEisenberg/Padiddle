@@ -28,19 +28,19 @@ let package = Package(
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-dependencies",
-      branch: "26"
+      exact: "1.17.1"
     ),
     .package(
       url: "https://github.com/pointfreeco/swift-identified-collections",
       exact: "1.1.1"
     ),
     .package(
-      url: "https://github.com/pointfreeco/swift-snapshot-testing",
-      exact: "1.19.2"
+      url: "https://github.com/pointfreeco/swift-issue-reporting",
+      exact: "2.1.0"
     ),
     .package(
-      url: "https://github.com/pointfreeco/xctest-dynamic-overlay",
-      exact: "1.9.0"
+      url: "https://github.com/pointfreeco/swift-snapshot-testing",
+      exact: "1.19.5"
     ),
   ],
   targets: [
@@ -121,7 +121,7 @@ extension Target.Dependency {
   static let dependenciesTestSupport: Self = .product(name: "DependenciesTestSupport", package: "swift-dependencies")
   static let identifiedCollections: Self = .product(name: "IdentifiedCollections", package: "swift-identified-collections")
   static let inlineSnapshotTesting: Self = .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing")
-  static let issueReportingTestSupport: Self = .product(name: "IssueReportingTestSupport", package: "xctest-dynamic-overlay")
+  static let issueReportingTestSupport: Self = .product(name: "IssueReportingTestSupport", package: "swift-issue-reporting")
   static let numerics: Self = .product(name: "RealModule", package: "swift-numerics")
   static let snapshotTesting: Self = .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
   static let tca: Self = .product(name: "ComposableArchitecture", package: "TCA26")

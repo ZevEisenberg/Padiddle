@@ -61,19 +61,41 @@ parameters and collections *before first*, trailing commas in collections only, 
 
 ## Conventions
 
-**TCA.** Each feature is a `@Reducer` struct paired with its SwiftUI view **in the same file**,
-named after the view: `RootView.swift` holds `RootFeature` + `RootView`, `ToolbarView.swift` holds
+**TCA.** This project is on **TCA 2.0** — the `TCA26` package pinned to `branch: "main"`, importing
+the `ComposableArchitecture1` compatibility module (a 1.x-shaped surface on the 2.0 runtime). TCA 2.0
+is a beta with no published migration guide; `docs/done.md` records what the port established, and
+the [beta preview post](https://www.pointfree.co/blog/posts/206-beta-preview-composablearchitecture-2-0)
+is the closest thing to an outline.
+
+Each feature is a `@Feature` struct paired with its SwiftUI view **in the same file**, named after
+the view: `RootView.swift` holds `RootFeature` + `RootView`, `ToolbarView.swift` holds
 `ToolbarFeature` + `ToolbarView`. Reducer-only features (`HintFeature`, `DeviceMotionFeature`) get
 their own file.
 
 Within a feature:
-- Child-to-parent communication goes through a nested `case delegate(Delegate)` action; the parent
-  matches `.child(.delegate(...))` and never reaches into child state.
-- Cancellation tokens live in a nested `enum CancelID { case … }`.
+- The body is `var body: some FeatureProtocol<State, Action>`, assembled from `Scope`s, one or more
+  `Update { state, action in … }` blocks, and modifiers (`.onMount`, `.onChange(of:)`,
+  `.onTrigger(_:)`, `.ifLet`). `Update` returns nothing — async work goes through
+  `store.addTask { … }`.
+- Child-to-parent communication is a **delegate closure** passed to the child's init
+  (`DeviceMotionFeature(delegate: { action in … })`), not a nested `case delegate(Delegate)` action.
+  The child declares `enum DelegateAction` and holds `let delegate: (DelegateAction) throws -> Void`.
+- Parent-to-child commands are `@Trigger` properties on the child's state (`@Trigger var start`),
+  fired from the parent as `try store.toolbar.hint.start()` and handled with `.onTrigger(store.start)`.
+- Cancellation tokens are `@StoreTaskID` properties on the feature, not a nested `enum CancelID`.
+- **Cancels must be deferred.** Calling `someID.cancel()` straight from a feature body traps with
+  "Can't cancel a store task synchronously from a feature body." Always wrap it:
+  `store.addTask { someID.cancel() }`.
+- **`addTask(id:)` accumulates.** There is no implicit cancel-in-flight. To restart a task, cancel
+  immediately before starting: `store.addTask { id.cancel() }` then `store.addTask(id: id) { … }`.
+- **`.onMount` is feature-lifetime scoped**, not view-visibility scoped the way 1.x `.task`/`onTask`
+  was. It does *not* fire again when a sheet or popover presented over the feature is dismissed —
+  `ToolbarView` compensates with `.onChange(of: store.destination)`. On a test core the hooks are
+  also not run immediately at construction, which is why mount-time state changes are asserted
+  through `TestStore`'s `changes:` closure — see **Tests** below.
+- Navigation is a plain `var destination: Destination.State?` plus a `@Feature enum Destination`,
+  attached with `.ifLet(\.destination, action: \.destination) { Destination.body }`.
 - Timing/layout constants live in a nested `enum Design`.
-- Navigation uses `@Presents var destination` with a `@Reducer enum Destination`.
-- `Utilities/EffectBuilder.swift` provides `.merge { … }` with a result builder, so effects can be
-  assembled with `if`/`else` inline. Prefer it over building arrays by hand.
 
 **Dependencies.** Live in `PadiddleCore/Dependencies/`, declared with `@DependencyClient` and
 registered via a `DependencyValues` extension in the same file. Clients that must not ship a live
@@ -93,6 +115,21 @@ lookup uses the `#bundle` macro, not `Bundle.module`.
 dependencies overridden in the `withDependencies:` trailing closure. Image snapshots live in
 `__Snapshots__/` and are LFS-tracked; the suite records with `.snapshots(record: .failed)`.
 
+A feature that mutates state in `.onMount` must be constructed with the `changes:` overload, which
+asserts the mount-time mutation — a `store.expect { }` placed after construction reports "no changes
+occurred" while the construction site still flags them:
+
+```swift
+TestStore(initialState: RootFeature.State()) {
+  RootFeature()
+} changes: {
+  $0.toolbar.hint.hintState = .waitToShowRecordPrompt
+}
+```
+
+End such a test with `await store.dismount()` to tear down lifetime-scoped tasks (e.g. the
+`Observations` loop in `HintFeature`).
+
 **UIKit interop.** Several SwiftUI views wrap UIKit for things SwiftUI can't do: `ScreenReader`
 (screen size/scale via `didMoveToWindow`), `CounterRotatingView` (counter-rotates the content against
 `windowScene.effectiveGeometry.interfaceOrientation` so the drawing stays fixed to the hardware),
@@ -102,17 +139,16 @@ dependencies overridden in the `withDependencies:` trailing closure. Image snaps
 
 In DEBUG builds, double-tapping the drawing area sends `.debugDrawImage`, which replays recorded
 motion from `PadiddleCore/Resources/sample_drawing.json` to produce a deterministic drawing. The
-root store is wired with `.signpost()` and a `._printChanges` printer that filters out the noisy
-per-frame motion actions.
+root store emits `OSSignposter` events for every action from `RootFeature`'s first `Update`, and is
+wired with `RootFeature._logChanges()`. A commented-out `_printChanges` printer that filtered the
+noisy per-frame motion actions is still in `RootView.swift`, alongside a `#warning` about redoing
+that filtering the TCA 2 way.
 
-## Known issues
+## Planned work
 
-As of 2026-09-19, the **test** build fails under Xcode 27.1: the `-enable-testing` variant of
-ComposableArchitecture 1.25.5 doesn't compile
-(`NavigationStack+Observation.swift:149: cannot form key path to main actor-isolated subscript`).
-The app target itself builds and runs fine; only the test build is affected. It's a dependency/
-toolchain incompatibility, not project code — fixing it means bumping the pinned TCA version in
-`Packages/Package.swift`. Don't chase it as a regression in this repo's sources.
+`docs/todo.md` holds open work and open questions; `docs/done.md` records finished work worth
+remembering (mostly TCA 2 migration findings). Check `docs/todo.md` before starting something that
+looks unfinished — it may be deliberate.
 
 ## Screenshots
 

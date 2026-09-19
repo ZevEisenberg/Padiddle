@@ -27,22 +27,22 @@ struct DeviceMotionTests {
         }
       )
     } operation: {
-      TestStore(initialWrappedState: .init()) {
+      TestStore(initialState: .init()) {
         DeviceMotionFeature(delegate: { _ in })
       }
     }
 
     #expect(startMotionCallCount.value == 0)
-    store.send(.wrapped(.start)) {
-      $0.wrapped.isMonitoringForSufficientSpin = true
+    store.send(.start) {
+      $0.isMonitoringForSufficientSpin = true
     }
     #expect(startMotionCallCount.value == 1)
 
     await clock.advance(by: .seconds(1))
 
     #expect(stopMotionCallCount == 0)
-    store.send(.wrapped(.stop)) {
-      $0.wrapped.isMonitoringForSufficientSpin = false
+    store.send(.stop) {
+      $0.isMonitoringForSufficientSpin = false
     }
     #expect(stopMotionCallCount == 1)
 

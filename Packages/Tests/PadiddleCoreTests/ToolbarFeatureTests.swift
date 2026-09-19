@@ -17,16 +17,16 @@ struct ToolbarFeatureTests {
         $0.continuousClock = clock
       } operation: {
         TestStore(
-          initialState: .init(wrapped: .init(colorGenerator: $colorGenerator))
+          initialState: .init(colorGenerator: $colorGenerator)
         ) {
-          TestWrapper(ToolbarFeature(delegate: { _ in }))
+          ToolbarFeature(delegate: { _ in })
         }
       }
 
-      try store.wrapped.hint.start()
+      try store.hint.start()
 
       store.expect {
-        $0.wrapped.hint.hintState = .waitToShowRecordPrompt
+        $0.hint.hintState = .waitToShowRecordPrompt
       }
     }
   }
