@@ -178,13 +178,13 @@ public struct RootView: View {
       }
       .ignoresSafeArea()
       #if DEBUG
-        .overlay {
-          Color.clear
-            .contentShape(.rect) // make clear color tappable
-            .onTapGesture(count: 2) {
-              store.send(.debugDrawImage)
-            }
-        }
+      .overlay {
+        Color.clear
+          .contentShape(.rect) // make clear color tappable
+          .onTapGesture(count: 2) {
+            store.send(.debugDrawImage)
+          }
+      }
       #endif
 
       ToolbarView(
