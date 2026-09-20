@@ -25,6 +25,27 @@ Open question: what should reset it? Options, roughly in order of how much they 
 `.disabled` already exists for the last case — it's set from `spunEnoughToHidePrompt` — but it's
 in-memory per launch, not persisted.
 
+### Decided: show the spin prompt on *every* record-without-spin
+
+Observing real users, people don't get this app the first couple of times — that's fine, it's
+esoteric, but they need a nudge. So the spin prompt should reappear **every time** the user taps
+record and then doesn't spin, not just the first time per launch.
+
+That means `spunEnoughToHidePrompt` should stop being a one-way latch to `.disabled`. The natural
+shape: keep `.disabled` for the current recording only, and let `isRecordingChanged(true)` put the
+state back to `.waitToShowSpinPrompt` the way it already does — i.e. drop the `.disabled` terminal
+state, or make `.onTrigger(store.spunEnoughToHidePrompt)` set something that `isRecordingChanged`
+clears.
+
+Watch out for two things when doing this:
+
+- `HintFeature`'s `spunEnoughToHidePrompt` handler currently cancels `spunEnoughToHideSpinPrompt`,
+  which is the `@StoreTaskID` of the `isRecording` *observation loop* — so today the feature stops
+  observing `isRecording` for good after a successful spin. That cancel has to go, or the prompt
+  can never come back.
+- `DeviceMotionFeature` sets `isMonitoringForSufficientSpin = false` after a successful spin and
+  only restarts monitoring on the next `.start`. It needs to re-arm per recording session too.
+
 ## Reduce the action-log noise the TCA 2 way
 
 `RootView.swift` carries a `#warning`: the old `_printChanges` printer that filtered out the noisy

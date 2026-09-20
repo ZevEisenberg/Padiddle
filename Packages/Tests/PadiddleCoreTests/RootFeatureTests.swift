@@ -137,4 +137,71 @@ struct RootFeatureTests {
 
     await store.dismount()
   }
+
+  @Test
+  func spinningHidesSpinPrompt() async {
+    let clock = TestClock()
+    let motionToGet = LockIsolated<PadiddleDeviceMotion?>(.zero)
+
+    let store = withDependencies {
+      $0.continuousClock = clock
+      $0.deviceMotionClient.startMotionUpdates = {}
+      $0.deviceMotionClient.stopMotionUpdates = {}
+      $0.deviceMotionClient.deviceMotion = { motionToGet.value }
+    } operation: {
+      TestStore(initialState: RootFeature.State()) {
+        RootFeature()
+      } changes: {
+        // Mounting the toolbar starts the hint reminder.
+        $0.toolbar.hint.hintState = .waitToShowRecordPrompt
+      }
+    }
+
+    store.send(
+      .screenChanged(
+        ScreenMetrics(
+          size: CGSize(width: 100, height: 100),
+          scale: 2
+        )
+      )
+    ) {
+      $0.drawing.contextSideLength = 100
+    }
+
+    // Configuring the bitmap context is async, so `.start` can take a moment to land.
+    await store.receive(\.deviceMotion.start, timeout: .seconds(1)) {
+      $0.deviceMotion.isMonitoringForSufficientSpin = true
+    }
+
+    store.send(.toolbar(.recordButtonTapped)) {
+      $0.toolbar.isRecording = true
+    }
+
+    await store.receive(\.toolbar.hint.isRecordingChanged) {
+      $0.toolbar.hint.hintState = .waitToShowSpinPrompt
+    }
+
+    await clock.advance(by: HintFeature.Design.waitForSpinTimeout)
+
+    await store.receive(\.toolbar.hint.showSpinPrompt) {
+      $0.toolbar.hint.hintState = .promptForSpin
+    }
+
+    // The user finally spins the device.
+    motionToGet.setValue(PadiddleDeviceMotion(rotationRateZ: 4, attitudeYaw: 2))
+
+    await clock.advance(by: .seconds(1.0 / 60))
+
+    store.expect {
+      $0.deviceMotion.isMonitoringForSufficientSpin = false
+      $0.toolbar.hint.hintState = .disabled
+    }
+
+    // tear down
+    store.send(.scenePhaseChanged(.inactive))
+
+    await store.receive(\.deviceMotion.stop)
+
+    await store.dismount()
+  }
 }

@@ -56,9 +56,10 @@ struct RootFeature {
       DeviceMotionFeature(delegate: { action in
         switch action {
         case .spunSufficiently:
-          store.addTask {
-            try store.toolbar.hint.spunEnoughToHidePrompt()
-          }
+          // n.b. the delegate is called from inside the motion-polling task, so this must fire the
+          // trigger directly. Wrapping it in `store.addTask` is outside any update phase, and the
+          // store rejects it, silently dropping the trigger.
+          try store.toolbar.hint.spunEnoughToHidePrompt()
         }
       })
     }

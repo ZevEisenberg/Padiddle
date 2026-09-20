@@ -17,7 +17,7 @@ struct DeviceMotionFeature {
     case spunSufficiently
   }
 
-  let delegate: (DelegateAction) -> Void
+  let delegate: (DelegateAction) throws -> Void
 
   @Dependency(\.deviceMotionClient) var deviceMotionClient
   @Dependency(\.continuousClock) var clock
@@ -28,29 +28,25 @@ struct DeviceMotionFeature {
     Update { state, action in
       switch action {
       case .start:
-        var actuallyStart = false
-        if !state.isMonitoringForSufficientSpin {
-          actuallyStart = true
-          state.isMonitoringForSufficientSpin = true
-        }
-
-        if actuallyStart {
-          store.addTask { sufficientSpinTimer.cancel() }
-        }
-
-        store.addTask(id: sufficientSpinTimer) { [actuallyStart] in
+        // Starting motion updates is idempotent and has to happen on every `.start`, but it
+        // deliberately does not run under `sufficientSpinTimer`. A later `.start` registering a
+        // task under that ID tears down the monitoring loop an earlier `.start` left running, and
+        // then nothing is watching for the spin that hides the hints.
+        store.addTask {
           await deviceMotionClient.startMotionUpdates()
-          if actuallyStart {
-            guard store.isMonitoringForSufficientSpin else {
-              return
-            }
+        }
 
+        if !state.isMonitoringForSufficientSpin {
+          state.isMonitoringForSufficientSpin = true
+
+          store.addTask { sufficientSpinTimer.cancel() }
+          store.addTask(id: sufficientSpinTimer) {
             for await _ in clock.timer(interval: .seconds(1.0 / 60)) {
               if
                 let motion = await deviceMotionClient.deviceMotion(),
                 motion.isSufficientMotionToHideHints
               {
-                delegate(.spunSufficiently)
+                try delegate(.spunSufficiently)
                 try store.modify {
                   $0.isMonitoringForSufficientSpin = false
                 }
