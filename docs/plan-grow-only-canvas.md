@@ -121,7 +121,7 @@ fails before the change.
 - Duo display scales: both the inner and cover displays are @3x, so the fixed-scale rule never
   kicks in on the Duo. The code still handles a mismatch.
 
-### [ ] 3. Size the canvas square from the bitmap, not the current screen
+### [x] 3. Size the canvas square from the bitmap, not the current screen
 
 After step 2, the bitmap may be bigger than the current screen's square. `RootView.canvas` still
 sizes the square from `max(proxy.size)`, so the layer would squash the whole bitmap into the
@@ -141,6 +141,22 @@ still lines up, since it's positioned in square coordinates.
 Padiddle simulator and the test plan `Padiddle` to confirm there's no regression.
 
 **Notes:**
+
+- Done. `RootView.canvas` passes `max(store.drawing.contextSideLength, max(proxy.size))`. The
+  `Padiddle` test plan passes (34 tests), and `RunProject` on Duo Padiddle launches cleanly with no
+  constraint warnings. There was no visual check (see step 1's device-interaction trouble).
+- Nib overlay: `DrawingView` offsets the nib from the square's top-leading corner, and nib points
+  are centered on `contextSideLength / 2`. After any `.screenChanged`, `contextSideLength >=` the
+  screen's longest side, so the square's side equals `contextSideLength` and the nib stays
+  centered. Before the first report, `.processMotion` bails out on a nil `viewSize`, so the two
+  never disagree.
+- `store.drawing.contextSideLength` is read in the view body, so SwiftUI re-renders the canvas
+  when it grows. That runs `updateUIViewController`, which updates the size constraints.
+- `RunProject` (unlike `DeviceInteractionInstallAndRun`) left `Padiddle.xcscheme` untouched.
+- On the simulator the nib isn't centered on the inner display. That's expected: the simulator
+  gives no motion data, so `nibLocation` stays at its initial `.zero` (the square's top-left).
+  Still to do on hardware: nib centering on a real iPhone and on a Duo, and resizability on
+  an iPad.
 
 ### [ ] 4. Make `ScreenReader` reactive
 

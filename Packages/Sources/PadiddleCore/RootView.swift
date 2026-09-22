@@ -230,7 +230,15 @@ public struct RootView: View {
       DrawingView(
         store: store.scope(\.drawing)
       )
-      .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
+      // The bitmap only grows, so after moving to a smaller display it is bigger than this screen's
+      // square. Size the square to the bitmap so the layer shows it at 1:1, centered and cropped,
+      // rather than squashing it to fit. Before the first screen report, `contextSideLength` is 0.
+      .counterRotating(
+        longestSideLength: max(
+          store.drawing.contextSideLength,
+          max(proxy.size.width, proxy.size.height)
+        )
+      )
     }
     .ignoresSafeArea()
     #if DEBUG
