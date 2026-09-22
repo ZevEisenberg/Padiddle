@@ -122,3 +122,41 @@ known when it broke. Questions to start from:
 
 The grow-only canvas work ([plan-grow-only-canvas.md](plan-grow-only-canvas.md)) touches the same
 views, so check this again when that's done before looking into it separately.
+
+## Erase doesn't erase
+
+Tapping Erase and confirming leaves the drawing on screen. Seen 2026-09-22 on the Duo Padiddle
+simulator (cover display, DEBUG sample replay, no folding) and on a real iPhone, with both the
+sample and a real drawing. So it's not caused by the grow-only canvas work. It probably broke early
+in the TCA 2 port.
+
+The path: `ToolbarFeature` handles `.destination(.clearConfirmation(.eraseDrawingTapped))` by calling
+`delegate(.eraseDrawing)` inside `store.addTask`. `RootFeature`'s delegate closure fires
+`try store.drawing.erase()`, and `DrawingFeature`'s `.onTrigger(store.erase)` calls
+`bitmapContext.eraseDrawing()` and pushes a new image to the layer. Find which link drops it. The
+`spunSufficiently` comment in `RootView.swift` about triggers silently dropped outside an update
+phase is a likely lead. Add a `RootFeatureTests` test that erases and reads the bitmap back.
+
+## Shared image is upside down
+
+Share/export produces a vertically flipped image (seen on a real iPhone, with a real drawing).
+`BitmapContextClient.renderedImageData` has the bug, and it predates the `resizability` branch.
+
+Core Graphics' native coordinate system has its origin at the **bottom**-left, with y going up.
+UIKit hides that by giving its contexts (including `UIGraphicsImageRenderer`'s) a flipped transform,
+so drawing code sees top-left and y-down. `CGContext.draw(_:in:)` draws a `CGImage` in the native
+orientation, so inside a UIKit context it comes out upside down. The drawing bitmap looks right on
+screen because it applies its own flip (`translateBy` + `scaleBy(y: -scale)`) and its image is
+shown through `CALayer.contents`, not redrawn.
+
+The likely fix: `UIImage(cgImage: cgImage).draw(in: fullRect)` instead of
+`rendererContext.cgContext.draw(cgImage, in: fullRect)`. `UIImage.draw` accounts for the flip. Add
+a test that renders a known asymmetric pixel and checks where it lands.
+
+## Use Display P3 colors in some presets
+
+Some `ColorGenerator` presets could use Display P3 for more saturated colors on screens that
+support it. Things to work out: which presets benefit, whether `ColorGenerator` builds its colors in
+a way that can express P3 (for example, extended-range components), and whether the drawing bitmap
+(`CGColorSpaceCreateDeviceRGB()`, 8 bits per component) and the PNG export need a P3 color space
+too, or the extra range is clamped away.

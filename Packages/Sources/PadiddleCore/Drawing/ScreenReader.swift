@@ -35,6 +35,10 @@ private struct ScreenReader: UIViewRepresentable {
 private final class ScreenReportingView: UIView {
   var screenChanged: (ScreenMetrics?) -> Void
 
+  /// Observes the window scene's geometry, which changes when the scene moves to another display
+  /// (for example, folding a Duo) or is resized.
+  private var geometryObservation: NSKeyValueObservation?
+
   init(screenChanged: @escaping (ScreenMetrics?) -> Void) {
     self.screenChanged = screenChanged
     super.init(frame: .zero)
@@ -47,11 +51,20 @@ private final class ScreenReportingView: UIView {
 
   override func didMoveToWindow() {
     super.didMoveToWindow()
+    geometryObservation = window?.windowScene?.observe(\.effectiveGeometry) { [weak self] scene, _ in
+      MainActor.assumeIsolated {
+        self?.reportScreen(of: scene)
+      }
+    }
+    reportScreen(of: window?.windowScene)
+  }
+
+  private func reportScreen(of windowScene: UIWindowScene?) {
     screenChanged(
-      (window?.windowScene?.screen).map {
+      windowScene.map {
         ScreenMetrics(
-          size: $0.bounds.size,
-          scale: $0.scale
+          size: $0.screen.bounds.size,
+          scale: $0.screen.scale
         )
       }
     )

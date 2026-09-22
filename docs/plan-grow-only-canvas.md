@@ -158,7 +158,7 @@ Padiddle simulator and the test plan `Padiddle` to confirm there's no regression
   Still to do on hardware: nib centering on a real iPhone and on a Duo, and resizability on
   an iPad.
 
-### [ ] 4. Make `ScreenReader` reactive
+### [x] 4. Make `ScreenReader` reactive
 
 **Change `ScreenReportingView`:** in `didMoveToWindow`, start KVO on
 `window?.windowScene` for `\.effectiveGeometry` (documented as KVO-observable), replacing any
@@ -180,6 +180,19 @@ If KVO on `effectiveGeometry` doesn't fire when moving between Duo displays, try
 4. Erase and export/share still work after a grow (export uses `contextSideLength`).
 
 **Notes:**
+
+- Done. KVO on `\.effectiveGeometry` is enough; no scene-delegate fallback was needed. The
+  observation is replaced on every `didMoveToWindow` and dropped when `window` is nil. The KVO
+  handler hops with `MainActor.assumeIsolated`.
+- With a temporary print on the Duo Padiddle simulator, the reports were cover `466×678`, then
+  inner (screen `669×951`, scene geometry `951×669`), then cover `466×678` again. The inner
+  display's `screen.bounds` is portrait while the scene is landscape, but `max(w, h)` doesn't care.
+  Going from closed to book posture to fully open gave **one** report, not two.
+- Checked by eye (by the user): launch on the cover display, replay the sample, unfold, fold,
+  unfold. The drawing survived every step. The `Padiddle` test plan passes (34 tests).
+- Two bugs turned up while verifying. Neither is caused by this work, since both also happen on a
+  real iPhone with no folding. They're logged in `docs/todo.md` as "Erase doesn't erase" and
+  "Shared image is upside down". Don't count them against step 4's erase/export check.
 
 ### [ ] 5. Wrap up
 
