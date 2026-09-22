@@ -27,7 +27,7 @@ struct DrawingFeature {
   }
 
   enum Action {
-    case onAppear(viewSize: CGSize)
+    case onAppear
     case processMotion(PadiddleDeviceMotion)
   }
 
@@ -52,9 +52,11 @@ struct DrawingFeature {
   var body: some FeatureProtocol<State, Action> {
     Update { state, action in
       switch action {
-      case .onAppear(let viewSize):
-        state.viewSize = viewSize
-
+      case .onAppear:
+        // `viewSize` deliberately isn't read from this view's own geometry. The canvas sits behind
+        // an `ArrangementView`, and on a folded device an arrangement lays its children out inside
+        // a single page, so this view's proxy would report half the display. `RootFeature` sets
+        // `viewSize` from the screen metrics instead, which stay whole in every pose.
         if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
           store.addTask { [drawingLayer] in
             let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
@@ -202,7 +204,7 @@ struct DrawingView: View {
   private var drawingLayer
 
   var body: some View {
-    GeometryReader { proxy in
+    GeometryReader { _ in
       TimelineView(.animation) { context in
         LayerHostingViewRepresentable(hostedLayer: drawingLayer())
           .onChange(of: context.date) { _, _ in
@@ -220,7 +222,7 @@ struct DrawingView: View {
           .offset(store.nibLocation)
       }
       .onAppear {
-        store.send(.onAppear(viewSize: proxy.size))
+        store.send(.onAppear)
       }
     }
   }

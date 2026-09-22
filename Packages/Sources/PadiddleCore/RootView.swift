@@ -85,6 +85,7 @@ struct RootFeature {
         if let metrics {
           let maxDimension = max(metrics.size.width, metrics.size.height)
           state.drawing.contextSideLength = maxDimension
+          state.drawing.viewSize = metrics.size
           store.addTask {
             let success = await bitmapContext.configure(
               contextSideLength: maxDimension,
@@ -170,36 +171,85 @@ public struct RootView: View {
   public init() {}
 
   public var body: some View {
-    ZStack {
-      GeometryReader { proxy in
-        DrawingView(
-          store: store.scope(\.drawing)
-        )
-        .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
+    arrangedContent
+      .onScreenChange { metrics in
+        store.send(.screenChanged(metrics))
       }
-      .ignoresSafeArea()
-      #if DEBUG
-      .overlay {
-        Color.clear
-          .contentShape(.rect) // make clear color tappable
-          .onTapGesture(count: 2) {
-            store.send(.debugDrawImage)
-          }
+      .onChange(of: scenePhase) {
+        store.send(.scenePhaseChanged(scenePhase))
       }
-      #endif
+      .statusBarHidden()
+  }
 
-      ToolbarView(
-        store: store.scope(\.toolbar)
+  /// The canvas and the toolbar, arranged so a folded device puts the toolbar on its own page.
+  ///
+  /// This is an `ArrangementView` rather than a `ZStack` so that the system can hand the toolbar a
+  /// page of its own when the device is folded into book mode. Flat, the arrangement overlays its
+  /// two children full-width and the result is indistinguishable from the old `ZStack`; folded, it
+  /// gives each child a page and the toolbar lands on the right-hand one.
+  @ViewBuilder
+  private var arrangedContent: some View {
+    if #available(iOS 27.1, *) {
+      ArrangementView {
+        // In an overlay arrangement the *primary* is the foreground. Putting the canvas here
+        // instead hides the toolbar behind it and swallows its touches.
+        toolbar
+          .overlayArrangementEdge(.bottom)
+      } secondary: {
+        // The canvas is deliberately not the secondary. An arrangement sizes and places each child
+        // within a single page, and the drawing derives its square from whatever box it is laid out
+        // in, so as the secondary it comes out one page wide and centred on that page. It spans the
+        // whole display behind the arrangement instead, and this placeholder just occupies the page
+        // the toolbar vacated.
+        Color.clear
+      }
+      .arrangementViewStyle(.overlay)
+      .background {
+        canvas
+      }
+    } else {
+      ZStack {
+        canvas
+        toolbar
+      }
+    }
+  }
+
+  @ViewBuilder
+  private var canvas: some View {
+    GeometryReader { proxy in
+      DrawingView(
+        store: store.scope(\.drawing)
       )
-      .frame(maxHeight: .infinity, alignment: .bottom)
+      .counterRotating(longestSideLength: max(proxy.size.width, proxy.size.height))
     }
-    .onScreenChange { metrics in
-      store.send(.screenChanged(metrics))
+    .ignoresSafeArea()
+    #if DEBUG
+    .overlay {
+      Color.clear
+        .contentShape(.rect) // make clear color tappable
+        .onTapGesture(count: 2) {
+          store.send(.debugDrawImage)
+        }
     }
-    .onChange(of: scenePhase) {
-      store.send(.scenePhaseChanged(scenePhase))
-    }
-    .statusBarHidden()
+    #endif
+  }
+
+  @ViewBuilder
+  private var toolbar: some View {
+    ToolbarView(
+      store: store.scope(\.toolbar)
+    )
+    .frame(maxHeight: .infinity, alignment: .bottom)
+    // A display cutout contributes its full width to `safeAreaInsets` for the whole height of the
+    // scene, not just the rows it actually occupies. On the Duo cover display that is an 84pt
+    // trailing inset for a camera in the top corner, which shoves this bar 42pt off centre even
+    // though it sits hundreds of points below the camera. Span the full width instead.
+    //
+    // This is safe only because the bar is narrow and centred, so it never reaches a cutout at
+    // either end. A bar that stretched edge to edge would have to inset itself by the occlusion
+    // regions that genuinely overlap its own band — see `reservedRegions(kind: .occlusion)`.
+    .ignoresSafeArea(.container, edges: .horizontal)
   }
 }
 

@@ -70,3 +70,34 @@ double-fire when a sheet dismissal and a foreground happen close together.
 `Packages/Package.swift` pins `TCA26` to `branch: "main"`, which is a moving target — the port
 already had to chase one breaking change mid-stream. Switch to an exact tag once the beta publishes
 one.
+
+## Folding between displays won't resize the drawing — and fixing it naively erases it
+
+`ScreenReader` reports `ScreenMetrics` only from `didMoveToWindow`, so it fires once per window and
+never again. On a Duo that means moving between the inner display (951×669) and the cover display
+(466×678) never re-runs `.screenChanged`, and the drawing keeps the size it had at launch.
+
+The obvious fix — make `ScreenReader` reactive, via
+`windowScene(_:didUpdateEffectiveGeometry:)` — is **worse than the bug**, because
+`.screenChanged` feeds two things with very different tolerances:
+
+- `drawing.viewSize`, which only scales the spiral's radius against the current screen
+  (`max(viewSize.width, viewSize.height) / 2 / 30 * zRotation`). Updating this live is free.
+- `drawing.contextSideLength`, which calls `BitmapContextClient.configure`. That allocates a **new**
+  `CGContext` and drops the old one, so re-configuring **erases the user's drawing**.
+
+So today's non-reactivity is accidentally the thing protecting the artwork. Folding the device
+mid-drawing would wipe it the moment `ScreenReader` started doing its job.
+
+Whoever picks this up needs to split the two paths:
+
+- Let `viewSize` track the live screen.
+- Make the bitmap grow-only: reconfigure solely when the new side length is *larger*, and draw the
+  old context's image into the new one before swapping. Or size it once to the largest screen the
+  app can ever occupy and never touch it again — on Duo that's the inner display, and the cover
+  display then just draws into a subset.
+
+The second option is less code and costs some memory that a toy drawing app can afford.
+
+Until then the app is correct as long as it isn't moved between displays while running, which is
+also why the Duo spike measured each pose from a fresh launch.

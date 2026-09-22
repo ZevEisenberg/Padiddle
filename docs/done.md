@@ -95,3 +95,78 @@ TCA 2 has no published documentation. In descending order of usefulness:
 `Documentation.docc/Articles/FeatureFundamentals/FeatureFundamentals-Lifecycle.md` (solid),
 `-StoreTaskManagement.md` (several sections still say "TODO: todo"), the repo's own test suite, and
 the pull requests — #204 (which gated hooks off on test cores), #202, #186, #185.
+
+## iPhone Duo book mode: toolbar on its own page
+
+On a folded Duo, the toolbar moves onto the right-hand page while the drawing runs unbroken across
+the whole inner display. This is `ArrangementView` (iOS 27.1) doing the work; the code that opts in
+is a few lines in `RootView.arrangedContent`. These are the things that cost time to work out.
+
+### The fold APIs are in SwiftUICore, not SwiftUI
+
+`ArrangementView`, `OverlayArrangementViewStyle`, `ReservedRegion` and `DeviceHinge` all live in
+**SwiftUICore**. Grepping `SwiftUI.framework`'s swiftinterface finds none of them and produces a
+confident, wrong conclusion that the whole area is UIKit-only. It isn't: no `UIHostingController`
+restructuring is needed.
+
+The one genuine gap is `UITraitCollection.verticalBarEdge`, which has no SwiftUI equivalent and
+needs a `UITraitBridgedEnvironmentKey` to cross over. Its `write(to:)` is a no-op, since the trait
+is read-only. The protocol requirement is `inout any UIMutableTraits` — `some` does not satisfy it.
+
+`DeviceHinge` has **no** environment key, only `View.onHingeChange(_:)`. The pose is available more
+cheaply as `isActive` on `reservedRegions(kind: .division)`, which is what the spike measured with.
+
+### In an overlay arrangement, the primary is the foreground
+
+Not the other way round. With the canvas as primary the toolbar is invisible *and* untappable,
+because the opaque canvas covers it and swallows its touches. Two independent confirmations: the
+Tech Talk swaps primary and secondary when moving from `.split` to `.overlay`, and
+`@Environment(\.overlayArrangementZIndex)` reports 1 for primary against 0 for secondary.
+
+The same environment value doubles as a pose readout: `1 / 0` means the children are stacked, and
+`0 / 0` means the system has split them one per page.
+
+### The canvas can't be an arrangement child
+
+An arrangement sizes and positions each child **within a single page**. The drawing takes its
+square from whatever box it is laid out in, so as the secondary it came out one page wide and
+centred on that page — 669pt at x 228 instead of 951pt centred on the display. The visible symptom
+was a debug drawing that appeared only on the left page and a double-tap that only worked there.
+
+It is not clipping. The arrangement does not forbid its children from crossing the fold; the
+drawing simply never reached that far. So the canvas hangs off `.background` on the
+`ArrangementView`, spanning the whole display, and the secondary is a `Color.clear` placeholder
+whose only job is to occupy the page the toolbar vacated. An empty secondary is enough — the
+arrangement still displaces the toolbar.
+
+For the same reason `DrawingFeature.viewSize` no longer comes from `DrawingView`'s own
+`GeometryProxy`. It is set from `ScreenMetrics` in `RootFeature`, which stays whole in every pose.
+
+### Duo geometry, measured
+
+| pose | window | each region | zIndex | division |
+|---|---|---|---|---|
+| inner, flat | 951×669 | 951×635, stacked | 1 / 0 | `off` x456 w40 |
+| inner, book | 951×669 | 456×635, one per page | 0 / 0 | **`on`** x456 w40 |
+| cover | 466×678 | 382×644, stacked | 1 / 0 | none; 2 active occlusions |
+
+The fold is 40pt at x 456–496. `GeometryProxy.size` excludes safe-area insets while
+`reservedRegions` frames do not, which is why the region heights are 34pt short of the window.
+
+### `verticalBarEdge` is not a pose signal
+
+It reports `.trailing` in **all three** poses, including the closed cover display in portrait. It
+never returns `.unspecified` and never flips to `.leading`. So it answers "which side, if you show
+one," not "should you show one" — the decision to go vertical would have been entirely ours.
+
+This is what ruled out the alternative design (a bar that moves to the leading/trailing edge
+depending on pose). Measured on one beta simulator; the header documents `.unspecified` for
+contexts where no vertical bar is used, so this may just be unimplemented in the beta.
+
+### A cutout insets the whole height
+
+`safeAreaInsets` applies a display cutout's full width down the entire scene, not just the rows it
+occupies. On the cover display that is an 84pt trailing inset for a camera whose occlusion region
+is `382,0 84x82` — the top corner only — and it pushed the bottom bar 42pt off centre. The toolbar
+takes `.ignoresSafeArea(.container, edges: .horizontal)`, which is safe only because the bar is
+narrow and centred and so never reaches a cutout at either end.

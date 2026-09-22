@@ -40,6 +40,7 @@ struct RootFeatureTests {
       )
     ) {
       $0.drawing.contextSideLength = 100
+      $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }
 
     // The clock is immediate, so the reminder countdown elapses right away.
@@ -97,6 +98,7 @@ struct RootFeatureTests {
       )
     ) {
       $0.drawing.contextSideLength = 100
+      $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }
 
     await store.receive(\.deviceMotion.start) {
@@ -166,6 +168,7 @@ struct RootFeatureTests {
       )
     ) {
       $0.drawing.contextSideLength = 100
+      $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }
 
     // Configuring the bitmap context is async, so `.start` can take a moment to land.
