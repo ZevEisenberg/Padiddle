@@ -1,6 +1,7 @@
 # Excludes
 
 --exclude .build/**/*
+--exclude Packages/.build/**/*
 --exclude Scripts/**/*
 --exclude Screenshots/SnapshotHelper.swift
 
