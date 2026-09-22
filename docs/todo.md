@@ -73,6 +73,8 @@ one.
 
 ## Folding between displays won't resize the drawing — and fixing it naively erases it
 
+**In progress:** see [plan-grow-only-canvas.md](plan-grow-only-canvas.md).
+
 `ScreenReader` reports `ScreenMetrics` only from `didMoveToWindow`, so it fires once per window and
 never again. On a Duo that means moving between the inner display (951×669) and the cover display
 (466×678) never re-runs `.screenChanged`, and the drawing keeps the size it had at launch.
