@@ -198,7 +198,7 @@ public struct RootView: View {
       } secondary: {
         // The canvas is deliberately not the secondary. An arrangement sizes and places each child
         // within a single page, and the drawing derives its square from whatever box it is laid out
-        // in, so as the secondary it comes out one page wide and centred on that page. It spans the
+        // in, so as the secondary it comes out one page wide and centered on that page. It spans the
         // whole display behind the arrangement instead, and this placeholder just occupies the page
         // the toolbar vacated.
         Color.clear
@@ -243,10 +243,10 @@ public struct RootView: View {
     .frame(maxHeight: .infinity, alignment: .bottom)
     // A display cutout contributes its full width to `safeAreaInsets` for the whole height of the
     // scene, not just the rows it actually occupies. On the Duo cover display that is an 84pt
-    // trailing inset for a camera in the top corner, which shoves this bar 42pt off centre even
+    // trailing inset for a camera in the top corner, which shoves this bar 42pt off center even
     // though it sits hundreds of points below the camera. Span the full width instead.
     //
-    // This is safe only because the bar is narrow and centred, so it never reaches a cutout at
+    // This is safe only because the bar is narrow and centered, so it never reaches a cutout at
     // either end. A bar that stretched edge to edge would have to inset itself by the occlusion
     // regions that genuinely overlap its own band — see `reservedRegions(kind: .occlusion)`.
     .ignoresSafeArea(.container, edges: .horizontal)

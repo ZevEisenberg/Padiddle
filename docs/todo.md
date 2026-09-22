@@ -103,3 +103,22 @@ The second option is less code and costs some memory that a toy drawing app can 
 
 Until then the app is correct as long as it isn't moved between displays while running, which is
 also why the Duo spike measured each pose from a fresh launch.
+
+## The drawing sometimes rotates with the UI instead of staying fixed to the device
+
+As you rotate the device, the drawing should stay fixed relative to the hardware, like the Procreate
+canvas: the UI rotates, and `CounterRotatingView` cancels that out for the drawing. That works only
+*sometimes*. Other times the drawing counter-rotates the wrong way and keeps its relationship with
+the toolbar instead of the device.
+
+Seen around 2026-09-20, on this branch (`resizability`). It seemed to work earlier, and it isn't
+known when it broke. Questions to start from:
+
+- Does the Duo change an assumption about interface orientation vs. device orientation?
+  `CounterRotatingView` reads `windowScene.effectiveGeometry.interfaceOrientation`. Check what it
+  reports on each display and pose, and whether it changes at all when the rotation is wrong.
+- Is it intermittent on a regular iPhone or iPad too, or only on the Duo?
+- Bisect against `main` to find when it started.
+
+The grow-only canvas work ([plan-grow-only-canvas.md](plan-grow-only-canvas.md)) touches the same
+views, so check this again when that's done before looking into it separately.

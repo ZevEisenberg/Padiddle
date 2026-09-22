@@ -130,7 +130,7 @@ The same environment value doubles as a pose readout: `1 / 0` means the children
 
 An arrangement sizes and positions each child **within a single page**. The drawing takes its
 square from whatever box it is laid out in, so as the secondary it came out one page wide and
-centred on that page — 669pt at x 228 instead of 951pt centred on the display. The visible symptom
+centered on that page — 669pt at x 228 instead of 951pt centered on the display. The visible symptom
 was a debug drawing that appeared only on the left page and a double-tap that only worked there.
 
 It is not clipping. The arrangement does not forbid its children from crossing the fold; the
@@ -167,6 +167,6 @@ contexts where no vertical bar is used, so this may just be unimplemented in the
 
 `safeAreaInsets` applies a display cutout's full width down the entire scene, not just the rows it
 occupies. On the cover display that is an 84pt trailing inset for a camera whose occlusion region
-is `382,0 84x82` — the top corner only — and it pushed the bottom bar 42pt off centre. The toolbar
+is `382,0 84x82` — the top corner only — and it pushed the bottom bar 42pt off center. The toolbar
 takes `.ignoresSafeArea(.container, edges: .horizontal)`, which is safe only because the bar is
-narrow and centred and so never reaches a cutout at either end.
+narrow and centered and so never reaches a cutout at either end.

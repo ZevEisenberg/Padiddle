@@ -99,16 +99,10 @@ struct DrawingFeature {
         state.nibLocation = point
         if isRecording {
           if state.needToMoveNibToNewStartLocation {
-            state.restart(
-              at: point,
-              contextSideLength: contextSideLength
-            )
+            state.restart(at: point)
             state.needToMoveNibToNewStartLocation = false
           } else {
-            state.addPoint(
-              point,
-              contextSideLength: contextSideLength
-            )
+            state.addPoint(point)
           }
 
           let points = state.points
@@ -146,54 +140,19 @@ struct DrawingFeature {
   }
 }
 
+// Points are already in context coordinates: `.processMotion` centers them on the square context,
+// not on `viewSize`, which is the (usually non-square) screen.
 extension DrawingFeature.State {
-  mutating func addPoint(
-    _ point: CGPoint,
-    contextSideLength: CGFloat
-  ) {
-    let scaledPoint = convertViewPointToContextCoordinates(
-      point,
-      contextSideLength: contextSideLength
-    )
-    let distance = CGPoint.distanceBetween(points[3], scaledPoint)
+  mutating func addPoint(_ point: CGPoint) {
+    let distance = CGPoint.distanceBetween(points[3], point)
     if distance > 2.25 {
       points.removeFirst()
-      points.append(scaledPoint)
+      points.append(point)
     }
   }
 
-  mutating func restart(
-    at point: CGPoint,
-    contextSideLength: CGFloat
-  ) {
-    let scaledPoint = convertViewPointToContextCoordinates(
-      point,
-      contextSideLength: contextSideLength
-    )
-    points = Array(repeating: scaledPoint, count: points.count)
-  }
-
-  private func convertViewPointToContextCoordinates(
-    _ point: CGPoint,
-    contextSideLength: CGFloat
-  ) -> CGPoint {
-    guard let viewSize else {
-      fatalError("Not having a view size represents a programmer error")
-    }
-
-    var newPoint = point
-
-    // 1. Get the difference in size between self and the context
-    let difference = CGSize(
-      width: contextSideLength - viewSize.width,
-      height: contextSideLength - viewSize.height
-    )
-
-    // 2. Shift the point by half the difference in width and height
-    newPoint.x += difference.width / 2
-    newPoint.y += difference.height / 2
-
-    return newPoint
+  mutating func restart(at point: CGPoint) {
+    points = Array(repeating: point, count: points.count)
   }
 }
 

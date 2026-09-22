@@ -1,13 +1,13 @@
 # Plan: resize the canvas across displays without erasing it
 
 Fixes the todo item "Folding between displays won't resize the drawing — and fixing it naively
-erases it" (`docs/todo.md`), plus an off-centre stroke bug found while investigating it.
+erases it" (`docs/todo.md`), plus an off-center stroke bug found while investigating it.
 
 **Each step is meant to be done in a fresh context.** Read this whole file first, then do the
 first unchecked step only. When it's finished, tick its box, add anything the next step needs to
 know under its **Notes**, and stop. Follow `CLAUDE.md`: builds, tests and simulator runs go through
-the Xcode MCP server, run `Scripts/lint.sh` before committing, and Duo work uses the
-"Duo Padiddle" simulator.
+the Xcode MCP server, and Duo work uses the "Duo Padiddle" simulator. Don't run `Scripts/lint.sh`
+by hand; the pre-commit hook runs it.
 
 ## Background (established during investigation)
 
@@ -21,10 +21,10 @@ the Xcode MCP server, run `Scripts/lint.sh` before committing, and Duo work uses
   `CGContext` and drops the old one, which erases the drawing. So making `ScreenReader` reactive on
   its own would wipe the artwork on every fold/unfold.
 - The canvas is a **square** of side `max(proxy.size)` (`RootView.canvas` →
-  `.counterRotating(longestSideLength:)`), centred on the screen and overflowing it. The drawing
+  `.counterRotating(longestSideLength:)`), centered on the screen and overflowing it. The drawing
   `CALayer` is sized to that square by `LayerHostingView.layoutSubviews`, so the bitmap is
   stretched to fill whatever size the square is.
-- Nib points are already in square/context coordinates: the centre is `contextSideLength / 2`
+- Nib points are already in square/context coordinates: the center is `contextSideLength / 2`
   (`DrawingFeature`, `.processMotion`).
 - `RootFeature.State.screenMetrics` exists but nothing sets it.
 - `BitmapContextClient.testValue` is its `liveValue`, so tests can use the real context and read it
@@ -33,7 +33,7 @@ the Xcode MCP server, run `Scripts/lint.sh` before committing, and Duo work uses
 
 ## Steps
 
-### [ ] 1. Fix off-centre strokes
+### [x] 1. Fix off-center strokes
 
 **Bug:** commit eff6f02 switched `drawing.viewSize` from `DrawingView`'s own geometry, which is the
 square, to `metrics.size`, the screen, which isn't square.
@@ -52,9 +52,20 @@ state with `viewSize = 390×844`, `contextSideLength = 844`, `isRecording` share
 fails before the change.
 
 **Verify:** on the Duo Padiddle simulator, double-tap the canvas (DEBUG replay of
-`sample_drawing.json`). The drawing should be centred on the screen.
+`sample_drawing.json`). The drawing should be centered on the screen.
 
 **Notes:**
+
+- Done. `addPoint(_:)` and `restart(at:)` no longer take `contextSideLength`; they store the point
+  as-is. `DrawingFeatureTests.strokeStartsUnderTheNibOnANonSquareScreen` failed before the fix
+  with `(649, 422)` as predicted and passes after. The full `Padiddle` test plan passes (29 tests).
+- The test injects its own `BitmapContextClient` and configures it first, because `.processMotion`
+  starts a task that strokes into the context, which is an implicitly unwrapped optional.
+- The simulator check wasn't possible. On the Duo Padiddle simulator, the device-interaction tool
+  captured only blank 678×466 screenshots while the app laid out at 951×669, and the double-taps
+  had no visible effect. Check it by eye, or retry device interaction later.
+- `DeviceInteractionInstallAndRun` rewrites `Padiddle.xcscheme` (debugger off, PosixSpawn
+  launcher). Revert that before committing.
 
 ### [ ] 2. Make the bitmap grow-only, preserving its contents
 
@@ -64,7 +75,7 @@ fails before the change.
   - First call (no context yet): behave as today.
   - Later calls: if `contextSideLength <= self.contextSideLength`, do nothing and return `true`.
     Otherwise allocate the larger context, draw the old context's `makeImage()` into it
-    **centred**, then swap it in.
+    **centered**, then swap it in.
   - Draw the old image **before** applying the flip/scale transforms, so both images are in raw
     pixel space and no y-flip is needed. The old image goes in at
     `((newPx - oldPx) / 2, (newPx - oldPx) / 2)`, size `oldPx × oldPx`.
@@ -88,8 +99,8 @@ fails before the change.
 
 - A larger then a smaller `.screenChanged`: `contextSideLength` stays at the larger value, and
   `viewSize` follows the smaller one.
-- Contents survive growth: configure small, fill a known pixel (e.g. the centre), configure
-  larger, and read back that the pixel is still set at the new centre.
+- Contents survive growth: configure small, fill a known pixel (e.g. the center), configure
+  larger, and read back that the pixel is still set at the new center.
 - The same metrics twice: the second produces no state change and no extra `.deviceMotion(.start)`.
 - Existing tests assert `contextSideLength` / `viewSize` after `.screenChanged`. Update them for
   `screenMetrics` now being set.
@@ -105,7 +116,7 @@ smaller square.
 **Change:** in `RootView.canvas`, pass
 `max(store.drawing.contextSideLength, max(proxy.size.width, proxy.size.height))` to
 `.counterRotating(longestSideLength:)`. Before the first `.screenChanged`, `contextSideLength` is 0,
-so the fallback is today's value. The square stays centred and overflows the screen, so a smaller
+so the fallback is today's value. The square stays centered and overflows the screen, so a smaller
 display shows the middle of the drawing at 1:1.
 
 `CounterRotatingViewController` already updates its size constraints in
@@ -132,15 +143,19 @@ If KVO on `effectiveGeometry` doesn't fire when moving between Duo displays, try
 **Verify on the Duo Padiddle simulator:**
 
 1. Launch on the inner display, record a drawing, then fold to the cover display. The drawing is
-   kept, centred, and cropped. Spiral radius follows the smaller screen.
+   kept, centered, and cropped. Spiral radius follows the smaller screen.
 2. Unfold. The drawing is unchanged and the full bitmap is visible again.
 3. Launch on the cover display, draw, then unfold. The bitmap grows to the inner size, and the old
-   drawing sits centred inside it.
+   drawing sits centered inside it.
 4. Erase and export/share still work after a grow (export uses `contextSideLength`).
 
 **Notes:**
 
 ### [ ] 5. Wrap up
+
+- While verifying steps 3–4, rotate the device and check whether the drawing stays fixed to the
+  hardware every time (see "The drawing sometimes rotates with the UI" in `docs/todo.md`). If it
+  does, remove that todo item. If it doesn't, leave it for separate work.
 
 - Remove the "Folding between displays…" section from `docs/todo.md`. Add a short entry to
   `docs/done.md`: the grow-only rule and why (`configure` erases), the viewSize/square coordinate
