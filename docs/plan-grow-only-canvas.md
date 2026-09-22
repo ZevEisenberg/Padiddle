@@ -67,7 +67,7 @@ fails before the change.
 - `DeviceInteractionInstallAndRun` rewrites `Padiddle.xcscheme` (debugger off, PosixSpawn
   launcher). Revert that before committing.
 
-### [ ] 2. Make the bitmap grow-only, preserving its contents
+### [x] 2. Make the bitmap grow-only, preserving its contents
 
 **Change `BitmapContextClient`:**
 
@@ -106,6 +106,20 @@ fails before the change.
   `screenMetrics` now being set.
 
 **Notes:**
+
+- Done. `configure(contextSideLength:screenScale:)` is now `ensureSideLength(_:screenScale:)`.
+  It updates `contextSideLength` only after the new context is built, so a failed allocation
+  leaves the old bitmap alone. The unused `setScreenScale(_:)` is gone, because changing the
+  scale later would break the fixed-scale rule.
+- The old image is placed at an integer pixel offset, `(newPx - oldPx) / 2`. With an odd
+  difference, the drawing sits up to half a pixel off center, which isn't visible.
+- `RootFeature` `.screenChanged` returns early for a nil or repeated `metrics`, then sets
+  `screenMetrics`, `contextSideLength = max(old, w, h)` and `viewSize`.
+- New tests: `BitmapContextClientTests` (contents survive growth at the new center, a smaller
+  side is ignored, the first scale sticks) and `RootFeatureTests.smallerScreenKeepsTheLargerBitmap`
+  / `sameScreenTwiceIsIgnored`. The `Padiddle` test plan passes (34 tests).
+- Duo display scales: both the inner and cover displays are @3x, so the fixed-scale rule never
+  kicks in on the Duo. The code still handles a mismatch.
 
 ### [ ] 3. Size the canvas square from the bitmap, not the current screen
 

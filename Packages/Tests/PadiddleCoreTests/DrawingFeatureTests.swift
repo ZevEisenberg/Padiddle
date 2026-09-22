@@ -12,7 +12,7 @@ struct DrawingFeatureTests {
   @Test
   func strokeStartsUnderTheNibOnANonSquareScreen() async {
     let bitmapContext = BitmapContextClient()
-    _ = await bitmapContext.configure(contextSideLength: 844, screenScale: 1)
+    _ = await bitmapContext.ensureSideLength(844, screenScale: 1)
 
     @Shared(.isRecording) var isRecording
     $isRecording.withLock { $0 = true }

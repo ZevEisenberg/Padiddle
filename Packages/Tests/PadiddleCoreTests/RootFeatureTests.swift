@@ -39,6 +39,7 @@ struct RootFeatureTests {
         )
       )
     ) {
+      $0.screenMetrics = ScreenMetrics(size: CGSize(width: 100, height: 100), scale: 2)
       $0.drawing.contextSideLength = 100
       $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }
@@ -61,6 +62,102 @@ struct RootFeatureTests {
     }
 
     #expect(stopMotionUpdatesCallCount == 1)
+
+    await store.dismount()
+  }
+
+  /// Moving to a smaller screen (e.g. folding the iPhone Duo) must not shrink the bitmap, or the
+  /// drawing would be erased. The spiral still follows the current screen through `viewSize`.
+  @Test
+  func smallerScreenKeepsTheLargerBitmap() async {
+    let bitmapContext = BitmapContextClient()
+
+    let store = withDependencies {
+      $0.continuousClock = TestClock()
+      $0.bitmapContextClient = bitmapContext
+      $0.deviceMotionClient.startMotionUpdates = {}
+      $0.deviceMotionClient.stopMotionUpdates = {}
+    } operation: {
+      TestStore(initialState: RootFeature.State()) {
+        RootFeature()
+      } changes: {
+        // Mounting the toolbar starts the hint reminder.
+        $0.toolbar.hint.hintState = .waitToShowRecordPrompt
+      }
+    }
+
+    let inner = ScreenMetrics(size: CGSize(width: 951, height: 669), scale: 1)
+    store.send(.screenChanged(inner)) {
+      $0.screenMetrics = inner
+      $0.drawing.contextSideLength = 951
+      $0.drawing.viewSize = inner.size
+    }
+
+    await store.receive(\.deviceMotion.start, timeout: .seconds(1)) {
+      $0.deviceMotion.isMonitoringForSufficientSpin = true
+    }
+
+    let cover = ScreenMetrics(size: CGSize(width: 466, height: 678), scale: 1)
+    store.send(.screenChanged(cover)) {
+      $0.screenMetrics = cover
+      $0.drawing.viewSize = cover.size
+    }
+
+    await store.receive(\.deviceMotion.start, timeout: .seconds(1))
+
+    #expect(await bitmapContext.contextSideLength == 951)
+
+    // tear down
+    store.send(.scenePhaseChanged(.inactive))
+
+    await store.receive(\.deviceMotion.stop) {
+      $0.deviceMotion.isMonitoringForSufficientSpin = false
+    }
+
+    await store.dismount()
+  }
+
+  /// A repeated report of the same screen must not reconfigure the bitmap or restart motion.
+  @Test
+  func sameScreenTwiceIsIgnored() async {
+    var startMotionUpdatesCallCount = 0
+
+    let store = withDependencies {
+      $0.continuousClock = TestClock()
+      $0.deviceMotionClient.startMotionUpdates = {
+        startMotionUpdatesCallCount += 1
+      }
+      $0.deviceMotionClient.stopMotionUpdates = {}
+    } operation: {
+      TestStore(initialState: RootFeature.State()) {
+        RootFeature()
+      } changes: {
+        // Mounting the toolbar starts the hint reminder.
+        $0.toolbar.hint.hintState = .waitToShowRecordPrompt
+      }
+    }
+
+    let metrics = ScreenMetrics(size: CGSize(width: 100, height: 100), scale: 2)
+    store.send(.screenChanged(metrics)) {
+      $0.screenMetrics = metrics
+      $0.drawing.contextSideLength = 100
+      $0.drawing.viewSize = CGSize(width: 100, height: 100)
+    }
+
+    await store.receive(\.deviceMotion.start, timeout: .seconds(1)) {
+      $0.deviceMotion.isMonitoringForSufficientSpin = true
+    }
+
+    store.send(.screenChanged(metrics))
+
+    // tear down. An extra `.start` from the duplicate would be received before this `.stop`.
+    store.send(.scenePhaseChanged(.inactive))
+
+    await store.receive(\.deviceMotion.stop) {
+      $0.deviceMotion.isMonitoringForSufficientSpin = false
+    }
+
+    #expect(startMotionUpdatesCallCount == 1)
 
     await store.dismount()
   }
@@ -97,6 +194,7 @@ struct RootFeatureTests {
         )
       )
     ) {
+      $0.screenMetrics = ScreenMetrics(size: CGSize(width: 100, height: 100), scale: 2)
       $0.drawing.contextSideLength = 100
       $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }
@@ -167,6 +265,7 @@ struct RootFeatureTests {
         )
       )
     ) {
+      $0.screenMetrics = ScreenMetrics(size: CGSize(width: 100, height: 100), scale: 2)
       $0.drawing.contextSideLength = 100
       $0.drawing.viewSize = CGSize(width: 100, height: 100)
     }

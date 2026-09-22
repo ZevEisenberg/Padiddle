@@ -82,19 +82,28 @@ struct RootFeature {
     Update { state, action in
       switch action {
       case .screenChanged(let metrics):
-        if let metrics {
-          let maxDimension = max(metrics.size.width, metrics.size.height)
-          state.drawing.contextSideLength = maxDimension
-          state.drawing.viewSize = metrics.size
-          store.addTask {
-            let success = await bitmapContext.configure(
-              contextSideLength: maxDimension,
-              screenScale: metrics.scale
-            )
-            assert(success, "Problem creating bitmap context")
+        guard let metrics, metrics != state.screenMetrics else {
+          break
+        }
+        state.screenMetrics = metrics
 
-            try store.send(.deviceMotion(.start))
-          }
+        // The bitmap only grows (see `ensureSideLength`), and `contextSideLength` must always
+        // match it, not the current screen. `viewSize` follows the current screen.
+        let sideLength = max(
+          state.drawing.contextSideLength,
+          metrics.size.width,
+          metrics.size.height
+        )
+        state.drawing.contextSideLength = sideLength
+        state.drawing.viewSize = metrics.size
+        store.addTask {
+          let success = await bitmapContext.ensureSideLength(
+            sideLength,
+            screenScale: metrics.scale
+          )
+          assert(success, "Problem creating bitmap context")
+
+          try store.send(.deviceMotion(.start))
         }
 
       case .scenePhaseChanged(let phase):

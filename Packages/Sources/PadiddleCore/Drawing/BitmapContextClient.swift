@@ -10,18 +10,35 @@ actor BitmapContextClient {
   var contextSideLength: CGFloat = 0
   var screenScale: CGFloat = 0
 
-  func configure(contextSideLength: CGFloat, screenScale: CGFloat) -> Bool {
-    self.contextSideLength = contextSideLength
-    self.screenScale = screenScale
+  /// Makes sure the bitmap is at least `sideLength` points on a side.
+  ///
+  /// The first call creates the bitmap. Later calls only ever grow it, copying the existing drawing
+  /// into the center of the larger bitmap, because swapping in a fresh context would erase the
+  /// drawing. A smaller `sideLength` is a no-op, so moving to a smaller display shows the middle of
+  /// the drawing instead of shrinking it.
+  ///
+  /// The scale from the first call sticks. Growing at a different scale would draw the old pixels
+  /// at the wrong physical size.
+  func ensureSideLength(_ sideLength: CGFloat, screenScale: CGFloat) -> Bool {
+    let oldImage: CGImage?
+    if context == nil {
+      self.screenScale = screenScale
+      oldImage = nil
+    } else {
+      guard sideLength > contextSideLength else {
+        return true
+      }
+      oldImage = context.makeImage()
+    }
 
     let bytesPerPixel: size_t = 4
     let bitsPerComponent: size_t = 8
 
-    /// Number of bytes per row. Each pixel in the bitmap in this example is represented by 4 bytes: 8 bits each of red, green, blue, and alpha.
-    let bitmapBytesPerRow = Int(contextSideLength) * bytesPerPixel * Int(screenScale)
+    let widthPx = Int(sideLength * self.screenScale)
+    let heightPx = Int(sideLength * self.screenScale)
 
-    let widthPx = Int(contextSideLength * screenScale)
-    let heightPx = Int(contextSideLength * screenScale)
+    /// Number of bytes per row. Each pixel in the bitmap in this example is represented by 4 bytes: 8 bits each of red, green, blue, and alpha.
+    let bitmapBytesPerRow = widthPx * bytesPerPixel
 
     guard let theContext = CGContext(
       data: nil,
@@ -35,20 +52,31 @@ actor BitmapContextClient {
       return false
     }
 
+    // Copy the old drawing in before the transforms below, so both images are in raw pixel space
+    // and no y-flip is needed.
+    if let oldImage {
+      theContext.draw(
+        oldImage,
+        in: CGRect(
+          x: (widthPx - oldImage.width) / 2,
+          y: (heightPx - oldImage.height) / 2,
+          width: oldImage.width,
+          height: oldImage.height
+        )
+      )
+    }
+
     // Scale by screen scale because the context is in pixels, not points.
     // If we don't invert the y axis, the world will be turned upside down
     theContext.translateBy(x: 0, y: CGFloat(heightPx))
-    theContext.scaleBy(x: screenScale, y: -screenScale)
+    theContext.scaleBy(x: self.screenScale, y: -self.screenScale)
 
     theContext.setLineCap(.round)
     theContext.setLineWidth(brushDiameter)
 
     context = theContext
+    contextSideLength = sideLength
     return true
-  }
-
-  func setScreenScale(_ newValue: CGFloat) {
-    screenScale = newValue
   }
 
   func contextOperation<Output>(_ operation: @Sendable (CGContext) -> Output) -> Output {
