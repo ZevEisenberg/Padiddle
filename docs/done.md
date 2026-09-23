@@ -170,3 +170,56 @@ occupies. On the cover display that is an 84pt trailing inset for a camera whose
 is `382,0 84x82` — the top corner only — and it pushed the bottom bar 42pt off center. The toolbar
 takes `.ignoresSafeArea(.container, edges: .horizontal)`, which is safe only because the bar is
 narrow and centered and so never reaches a cutout at either end.
+
+## Moving between displays keeps the drawing (branch `resizability`)
+
+On a Duo, folding or unfolding now resizes the canvas without erasing it. `ScreenReader` used to
+report `ScreenMetrics` only once, from `didMoveToWindow`, so the drawing kept its launch size.
+These are the things that cost time to work out.
+
+### Why the bitmap is grow-only
+
+Making `ScreenReader` reactive on its own would have been worse than the bug. `.screenChanged` set
+`contextSideLength`, which called `BitmapContextClient.configure`, and that allocated a **new**
+`CGContext` and dropped the old one, so every fold would have erased the drawing. The one-shot
+reader was accidentally what protected the artwork.
+
+So the path is split in two:
+
+- `drawing.viewSize` follows the current screen. It only scales the spiral radius, so updating it
+  live costs nothing.
+- The bitmap only grows. `configure` became `ensureSideLength(_:screenScale:)`: a smaller or equal
+  side is ignored, and a larger one draws the old image, centered, into the new context before
+  swapping it in. The old image is drawn before the flip/scale transforms, in raw pixel space, so no
+  y-flip is needed. The first `screenScale` sticks, because mixing scales would put old pixels at
+  the wrong physical size. (Both Duo displays are @3x, so this never triggers there.)
+- `RootFeature` keeps `contextSideLength = max(old, w, h)`, so it always equals the bitmap's side,
+  not the current screen's. It stores `screenMetrics` and ignores repeated reports, so duplicates
+  don't re-run `ensureSideLength` or `.deviceMotion(.start)`.
+- `RootView.canvas` sizes the square from `max(contextSideLength, max(proxy.size))`. The square stays
+  centered and overflows the screen, so a smaller display shows the middle of the drawing at 1:1
+  instead of squashing the whole bitmap.
+
+`ScreenReportingView` observes `windowScene.effectiveGeometry` with KVO, re-armed in every
+`didMoveToWindow`. That alone was enough; the scene-delegate fallback wasn't needed. On the Duo the
+inner display's `screen.bounds` is portrait (669×951) while the scene is landscape (951×669), which
+`max(w, h)` doesn't care about. Closed → book → flat produced **one** report, not two.
+
+### Nib points are already in square coordinates
+
+Strokes were drawing off-center from the nib on non-square screens. When `viewSize` moved from
+`DrawingView`'s own geometry (the square) to `ScreenMetrics` (the screen), the old
+`convertViewPointToContextCoordinates` started shifting every point by
+`(contextSideLength - viewSize) / 2`, which had always been zero before: 227pt on a 390×844 phone.
+Nib points are already centered on `contextSideLength / 2`, so the conversion was removed.
+`viewSize` means "the current screen" and is used only for the spiral radius. Don't use it for
+coordinates.
+
+### Tooling notes
+
+- `BitmapContextClient.testValue` is its `liveValue`, so tests can draw into the real context and
+  read pixels back (`BitmapContextClientTests`).
+- The Xcode MCP's `DeviceInteractionInstallAndRun` rewrites `Padiddle.xcscheme` (debugger off,
+  PosixSpawn launcher). Revert that before committing. `RunProject` leaves the scheme alone. On the
+  Duo Padiddle simulator, device interaction captured only blank screenshots, so visual checks were
+  done by eye.
