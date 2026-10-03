@@ -61,7 +61,7 @@ struct DrawingFeature {
           store.addTask { [drawingLayer] in
             let sideLength = await Int(bitmapContext.contextSideLength * bitmapContext.screenScale)
             let image = try imageIO.fetchImage(sideLengthPixels: sideLength)
-            await CATransaction.withoutAnimation {
+            CATransaction.withoutAnimation {
               drawingLayer().contents = image
             }
           }
@@ -115,8 +115,9 @@ struct DrawingFeature {
               }
               context.strokePath()
             }
-            await CATransaction.withoutAnimation {
-              drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+            let image = await bitmapContext.contextOperation { $0.makeImage() }
+            CATransaction.withoutAnimation {
+              drawingLayer().contents = image
             }
           }
         }
@@ -132,8 +133,9 @@ struct DrawingFeature {
     .onTrigger(store.erase) { _ in
       store.addTask { [drawingLayer, bitmapContext] in
         await bitmapContext.eraseDrawing()
-        await CATransaction.withoutAnimation {
-          drawingLayer().contents = await bitmapContext.contextOperation { $0.makeImage() }
+        let image = await bitmapContext.contextOperation { $0.makeImage() }
+        CATransaction.withoutAnimation {
+          drawingLayer().contents = image
         }
       }
     }
@@ -212,10 +214,10 @@ extension DependencyValues {
 }
 
 extension CATransaction {
-  static func withoutAnimation(_ block: @Sendable () async -> Void) async {
+  static func withoutAnimation(_ block: () -> Void) {
     CATransaction.begin()
     CATransaction.setDisableActions(true)
-    await block()
+    block()
     CATransaction.commit()
   }
 }
