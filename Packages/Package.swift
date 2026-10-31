@@ -2,6 +2,7 @@
 
 import PackageDescription
 
+// swiftformat:sort
 let package = Package(
   name: "Packages",
   defaultLocalization: "en",
@@ -22,11 +23,6 @@ let package = Package(
       exact: "1.1.1"
     ),
     .package(
-      url: "https://github.com/pointfreeco/TCA26",
-      branch: "main",
-      traits: ["Dependencies"]
-    ),
-    .package(
       url: "https://github.com/pointfreeco/swift-dependencies",
       exact: "1.17.1"
     ),
@@ -42,6 +38,11 @@ let package = Package(
       url: "https://github.com/pointfreeco/swift-snapshot-testing",
       exact: "1.19.5"
     ),
+    .package(
+      url: "https://github.com/pointfreeco/TCA26",
+      branch: "main",
+      traits: ["Dependencies"]
+    ),
   ],
   targets: [
     .target(
@@ -52,13 +53,6 @@ let package = Package(
       ],
       resources: [
         .process("Resources"),
-      ]
-    ),
-    .testTarget(
-      name: "ModelsTests",
-      dependencies: [
-        .models,
-        .snapshotTesting,
       ]
     ),
     .target(
@@ -73,19 +67,26 @@ let package = Package(
         .process("Resources"),
       ]
     ),
+    .target(
+      name: "Utilities",
+      dependencies: [
+        .tca1,
+      ]
+    ),
+    .testTarget(
+      name: "ModelsTests",
+      dependencies: [
+        .models,
+        .snapshotTesting,
+      ]
+    ),
     .testTarget(
       name: "PadiddleCoreTests",
       dependencies: [
         .dependenciesTestSupport,
         .inlineSnapshotTesting,
         .issueReportingTestSupport,
-        "PadiddleCore",
-      ]
-    ),
-    .target(
-      name: "Utilities",
-      dependencies: [
-        .tca1,
+        .padiddleCore,
       ]
     ),
     .testTarget(
@@ -107,16 +108,19 @@ extension Product {
   }
 }
 
+// Internal
+// swiftformat:sort
 @MainActor
 extension Target.Dependency {
-  // Please keep these sections and sub-sections alphabetized!
-  // Internal
-
   static let models: Self = "Models"
+  static let padiddleCore: Self = "PadiddleCore"
   static let utilities: Self = "Utilities"
+}
 
-  // External
-
+// External
+// swiftformat:sort
+@MainActor
+extension Target.Dependency {
   static let algorithms: Self = .product(name: "Algorithms", package: "swift-algorithms")
   static let dependenciesTestSupport: Self = .product(name: "DependenciesTestSupport", package: "swift-dependencies")
   static let identifiedCollections: Self = .product(name: "IdentifiedCollections", package: "swift-identified-collections")

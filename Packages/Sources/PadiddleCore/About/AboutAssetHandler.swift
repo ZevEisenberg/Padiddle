@@ -66,8 +66,8 @@ struct AboutAssetHandler: URLSchemeHandler {
   }
 }
 
+@MainActor
 extension UIImage {
-  @MainActor
   static func recordButton(displayScale: CGFloat) -> UIImage {
     let renderer = ImageRenderer(
       content: ToolbarView.recordButtonLabel(isRecording: false)

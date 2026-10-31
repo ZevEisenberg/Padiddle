@@ -8,22 +8,23 @@
 # Disabled Rules
 
 --disable blankLinesBetweenImports
+--disable contentBuilder
 --disable docComments
 --disable modifiersOnSameLine
 --disable redundantProperty
 --disable redundantSwiftTestingSuite
 --disable redundantVariable
---disable redundantViewBuilder
+--disable repeatedGuard
 --disable swiftTestingTestCaseNames
 --disable trailingClosures
 
 # Enabled Rules
 
 --enable blankLinesBetweenScopes
+--enable commonTypos
 --enable emptyExtensions
 --enable environmentEntry
 --enable noGuardInTests
---enable privateStateVariables
 --enable redundantEquatable
 --enable throwingTests
 --enable wrapEnumCases
