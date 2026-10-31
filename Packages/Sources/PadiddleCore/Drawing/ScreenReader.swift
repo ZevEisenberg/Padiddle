@@ -10,7 +10,7 @@ struct ScreenMetrics: Equatable {
 }
 
 extension View {
-  @ViewBuilder
+  @ContentBuilder
   func onScreenChange(callback: @escaping (ScreenMetrics?) -> Void) -> some View {
     background {
       ScreenReader(screenChanged: callback)

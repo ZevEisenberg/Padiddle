@@ -266,7 +266,7 @@ private extension ToolbarView {
 // MARK: - Main Buttons
 
 private extension ToolbarView {
-  @ViewBuilder
+  @ContentBuilder
   var eraseButton: some View {
     Button {
       store.send(.eraseButtonTapped)
@@ -287,7 +287,7 @@ private extension ToolbarView {
     }
   }
 
-  @ViewBuilder
+  @ContentBuilder
   var colorButton: some View {
     Button {
       store.send(.colorButtonTapped)
@@ -304,7 +304,7 @@ private extension ToolbarView {
     .accessibilityIdentifier("colorButton")
   }
 
-  @ViewBuilder
+  @ContentBuilder
   var shareButton: some View {
     @Dependency(\.bitmapContextClient) var bitmapClient
     ShareLink(
@@ -323,7 +323,7 @@ private extension ToolbarView {
     }
   }
 
-  @ViewBuilder
+  @ContentBuilder
   var aboutButton: some View {
     Button {
       store.send(.aboutButtonTapped)
@@ -343,7 +343,7 @@ private extension ToolbarView {
 // MARK: - Record Button
 
 private extension ToolbarView {
-  @ViewBuilder
+  @ContentBuilder
   var recordButton: some View {
     @SharedReader(.isRecording) var isRecording
     Button {
@@ -368,7 +368,7 @@ private extension ToolbarView {
 }
 
 extension ToolbarView {
-  @ViewBuilder
+  @ContentBuilder
   static func recordButtonLabel(isRecording: Bool) -> some View {
     Image(systemName: isRecording ? "pause" : "arrow.trianglehead.2.clockwise.rotate.90")
       .fontWeight(.black)

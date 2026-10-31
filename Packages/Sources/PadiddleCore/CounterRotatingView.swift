@@ -3,7 +3,7 @@ import SwiftUI
 import UIKit
 
 extension View {
-  @ViewBuilder
+  @ContentBuilder
   func counterRotating(longestSideLength: CGFloat) -> some View {
     CounterRotatingViewControllerRepresentable(
       longestSideLength: longestSideLength,

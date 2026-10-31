@@ -196,7 +196,7 @@ public struct RootView: View {
   /// page of its own when the device is folded into book mode. Flat, the arrangement overlays its
   /// two children full-width and the result is indistinguishable from the old `ZStack`; folded, it
   /// gives each child a page and the toolbar lands on the right-hand one.
-  @ViewBuilder
+  @ContentBuilder
   private var arrangedContent: some View {
     if #available(iOS 27.1, *) {
       ArrangementView {
@@ -224,7 +224,7 @@ public struct RootView: View {
     }
   }
 
-  @ViewBuilder
+  @ContentBuilder
   private var canvas: some View {
     GeometryReader { proxy in
       DrawingView(
@@ -252,7 +252,7 @@ public struct RootView: View {
     #endif
   }
 
-  @ViewBuilder
+  @ContentBuilder
   private var toolbar: some View {
     ToolbarView(
       store: store.scope(\.toolbar)

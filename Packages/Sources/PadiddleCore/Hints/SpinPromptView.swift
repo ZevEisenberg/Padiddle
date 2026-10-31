@@ -15,7 +15,7 @@ struct SpinPromptView: View {
     }
   }
 
-  @ViewBuilder
+  @ContentBuilder
   var deviceImage: some View {
     @Dependency(\.deviceClient) var deviceClient
     deviceClient.deviceKind().deviceImage
